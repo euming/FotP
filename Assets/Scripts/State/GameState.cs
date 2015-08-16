@@ -12,6 +12,8 @@ public class GameState : MonoBehaviour {
 	public PlayerBoard			currentPlayer;
 	public List<PlayerBoard> 	allPlayers;		
 	public TileShop				tileShop;
+	public List<DieSlot>		lockedDiceSlots;	//	my dice slots. Dice that are in the locked zone may be temporarily locked dice as well.
+	public List<DieSlot>		activeDiceSlots;
 
 	GameState()
 	{
@@ -25,5 +27,25 @@ public class GameState : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	public DieSlot GetNextLockedDieSlot()
+	{
+		foreach(DieSlot ds in lockedDiceSlots) {
+			if (ds.isEmpty()) {
+				return ds;
+			}
+		}
+		return null;
+	}
+
+	public DieSlot GetNextActiveDieSlot()
+	{
+		foreach(DieSlot ds in activeDiceSlots) {
+			if (ds.isEmpty()) {
+				return ds;
+			}
+		}
+		return null;
 	}
 }

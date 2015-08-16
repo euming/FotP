@@ -7,10 +7,13 @@ using System.Collections.Generic;
 public class PlayerBoard : MonoBehaviour {
 
 	public List<Tile>	tileList;	//	all my tiles
+	public List<PharoahDie>	diceList;	//	all my dice
+	public int hasLockedThisTurn = 0;	//	number of dice locked this turn
 
 	public void NewGame()
 	{
 		tileList.Clear();
+		hasLockedThisTurn = 0;
 	}
 
 	void Awake() {
@@ -49,5 +52,16 @@ public class PlayerBoard : MonoBehaviour {
 			tileList.Remove (tile);
 		}
 		return bSuccess;
+	}
+
+	public void RollDice()
+	{
+		foreach(PharoahDie d6 in diceList) {
+			d6.EndTurn();
+			if (!d6.isLocked) {
+				d6.PutDieInCup();
+				d6.RollDie();
+			}
+		}
 	}
 }
