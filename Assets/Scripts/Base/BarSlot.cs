@@ -6,6 +6,7 @@ public class BarSlot : Slot {
 	public Vector2		tileShopPos;	//	where we are in the tile shop
 	public TileMapDatabase	tileDB;	//	which tile database we're using
 	public int		nTiles;					//	number of tiles still available for sale
+	PurchaseCriteria		criteria;
 
 	public void NewGame()
 	{
@@ -20,6 +21,7 @@ public class BarSlot : Slot {
 		else {
 			Debug.LogWarning("BarSlot " + this.name + " could not find a Tile on Start().");
 		}
+		criteria = GetComponent<PurchaseCriteria>();
 	}
 
 	// Use this for initialization
@@ -60,5 +62,16 @@ public class BarSlot : Slot {
 	public void ReturnOne()
 	{
 		nTiles++;
+	}
+
+	//	if the locked dice have the proper dice to purchase this, then return true. return false otherwise.
+	public bool isQualified()
+	{
+		bool	isQual = false;
+		GameState gs = GameState.GetCurrentGameState();
+		if (criteria) {
+			isQual = criteria.MatchesCriteria(gs.currentPlayer.diceList);
+		}
+		return isQual;
 	}
 }

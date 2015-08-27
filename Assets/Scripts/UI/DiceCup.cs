@@ -19,4 +19,18 @@ public class DiceCup : MonoBehaviour {
 		PlayerBoard currentPlayer = gs.currentPlayer;
 		currentPlayer.RollDice();
 	}
+
+	void OnMouseRightDown() {
+		Debug.Log("DiceCup.RightClick()");
+		GameState gs = GameState.GetCurrentGameState();
+		PlayerBoard currentPlayer = gs.currentPlayer;
+		currentPlayer.EndTurn();
+	}
+
+	//	detect right mouse click
+	void OnMouseOver () {
+		if(Input.GetMouseButtonDown(1)){
+			OnMouseRightDown ();
+		}
+	}
 }

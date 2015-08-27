@@ -5,8 +5,23 @@ using System.Collections.Generic;
 [System.Serializable]
 public class GameState : MonoBehaviour {
 
+	static public string[] DiceAreaTagStrings =
+	{
+		"ActiveArea",
+		"LockedArea",
+		"SetDiceArea",
+	};
+
+	public enum DiceAreaTags
+	{
+		ActiveDiceArea,
+		LockedDiceArea,
+		SetDiceArea,
+	};
+
 	static private GameState instance;
 	static public GameState GetCurrentGameState() {return instance;}
+	public bool					CheatModeEnabled = false;	//	helpful for debugging.
 
 	int							nPlayers;		//	number of players this game session
 	public PlayerBoard			currentPlayer;
@@ -14,6 +29,8 @@ public class GameState : MonoBehaviour {
 	public TileShop				tileShop;
 	public List<DieSlot>		lockedDiceSlots;	//	my dice slots. Dice that are in the locked zone may be temporarily locked dice as well.
 	public List<DieSlot>		activeDiceSlots;
+	public List<DieSlot>		setDiceSlots;		//	where set dice go
+	public DiceFactory			diceFactory;
 
 	GameState()
 	{
@@ -42,6 +59,16 @@ public class GameState : MonoBehaviour {
 	public DieSlot GetNextActiveDieSlot()
 	{
 		foreach(DieSlot ds in activeDiceSlots) {
+			if (ds.isEmpty()) {
+				return ds;
+			}
+		}
+		return null;
+	}
+
+	public DieSlot GetNextSetDieSlot()
+	{
+		foreach(DieSlot ds in setDiceSlots) {
 			if (ds.isEmpty()) {
 				return ds;
 			}

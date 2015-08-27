@@ -20,10 +20,29 @@ public class PlayerBoard : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
+		foreach(PharoahDie d6 in diceList) {
+			d6.PutDieInCup();
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
+	}
+
+	//	add a new die to myself
+	public PharoahDie AddDie(DiceFactory.DieType dieType)
+	{
+		PharoahDie die = GameState.GetCurrentGameState().diceFactory.NewDie(dieType);
+		diceList.Add(die);
+		die.PutDieInCup();
+		return die;
+	}
+
+	public void DestroyDie(PharoahDie die)
+	{
+		die.PutDieInCup();
+		diceList.Remove(die);
+		Destroy (die.gameObject);
 	}
 
 	//	do we own a tile?
@@ -40,6 +59,7 @@ public class PlayerBoard : MonoBehaviour {
 		bool bSuccess = true;
 		Debug.Log(this.name + " takes " + newTile.name);
 		tileList.Add(newTile);
+		newTile.OnAcquire(this);
 		return bSuccess;
 	}
 
@@ -50,18 +70,32 @@ public class PlayerBoard : MonoBehaviour {
 			bSuccess = true;
 			Debug.Log(this.name + " drops " + tile.name);
 			tileList.Remove (tile);
+			tile.OnAcquireUndo(this);
 		}
 		return bSuccess;
+	}
+
+	public void SortDiceList()
+	{
+		diceList.Sort();
 	}
 
 	public void RollDice()
 	{
 		foreach(PharoahDie d6 in diceList) {
 			d6.EndTurn();
-			if (!d6.isLocked) {
+			if (d6.isInActiveArea()) {
 				d6.PutDieInCup();
 				d6.RollDie();
 			}
+		}
+		SortDiceList();
+	}
+		
+	public void EndTurn()
+	{
+		foreach(PharoahDie d6 in diceList) {
+			d6.PutDieInCup();
 		}
 	}
 }

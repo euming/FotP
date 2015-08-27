@@ -69,6 +69,21 @@ public class Tile : SelectableObject {
 		mySlot.ReturnOne();
 	}
 
+	public void OnAcquire(PlayerBoard plr)
+	{
+		TileAbility[] abilities = GetComponents<TileAbility>();
+		foreach(TileAbility ability in abilities) {
+			ability.OnAcquire(plr);
+		}
+	}
+	public void OnAcquireUndo(PlayerBoard plr)
+	{
+		TileAbility[] abilities = GetComponents<TileAbility>();
+		foreach(TileAbility ability in abilities) {
+			ability.OnAcquireUndo(plr);
+		}
+	}
+
 	public override void OnSelect(PlayerBoard currentPlayer) {
 		base.OnSelect(currentPlayer);
 		if (currentPlayer.Has(this)) {
@@ -76,12 +91,22 @@ public class Tile : SelectableObject {
 			currentPlayer.Drop(this);
 		}
 		else {
-			bool bGotOne = mySlot.TakeOne();
-			if (bGotOne) {
-				currentPlayer.Take(this);
+			bool bQualifiedToPurchase = false;
+			if (mySlot) 
+				bQualifiedToPurchase = mySlot.isQualified();
+			else
+				Debug.LogError("No Slot found for Tile " + this.name);
+			if (bQualifiedToPurchase) {
+				bool bGotOne = mySlot.TakeOne();
+				if (bGotOne) {
+					currentPlayer.Take(this);
+				}
+				else {
+					Debug.Log(mySlot.name + " is out of " + this.name + " so " + currentPlayer.name + " got none!");
+				}
 			}
 			else {
-				Debug.Log(mySlot.name + " is out of " + this.name + " so " + currentPlayer.name + " got none!");
+				Debug.Log(mySlot.name + " is not qualified to buy " + this.name + " because it didn't satisfy " + mySlot.name);
 			}
 		}
 	}
