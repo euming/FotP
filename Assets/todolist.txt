@@ -1,9 +1,13 @@
+UI:
+- Purchase board should allow us to buy tiles easily.
+
 Tile abilities:
-- weird colored dice
-  - orange, yellow, blue, geren, black, purple
 - estate overseer, granary master +1 pip each roll
 - priest of the dead - reroll after locking all
 - queen - reroll
 
+Dice:
 - d6_purple is does not have a purple texture
 - d6_orange is not orange
+- weird colored dice abilities
+  - orange, yellow, blue, green, black, purple
