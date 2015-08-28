@@ -8,6 +8,7 @@ public class PlayerBoard : MonoBehaviour {
 
 	public List<Tile>	tileList;	//	all my tiles
 	public List<PharoahDie>	diceList;	//	all my dice
+	public List<Scarab>		scarabList;		//	all my scarabs
 	public int hasLockedThisTurn = 0;	//	number of dice locked this turn
 
 	public void NewGame()
@@ -29,6 +30,20 @@ public class PlayerBoard : MonoBehaviour {
 	void Update () {
 	}
 
+	//	========================================================================================
+	//	scarab stuff
+	public Scarab AddScarab(Scarab.ScarabType scarabType)
+	{
+		Scarab bug = GameState.GetCurrentGameState().scarabPrefab;
+		scarabList.Add(bug);
+		return bug;
+	}
+	public void DestroyScarab(Scarab scarab)
+	{
+		scarabList.Remove(scarab);
+		Destroy (scarab.gameObject);
+	}
+
 	//	add a new die to myself
 	public PharoahDie AddDie(DiceFactory.DieType dieType)
 	{
@@ -38,6 +53,8 @@ public class PlayerBoard : MonoBehaviour {
 		return die;
 	}
 
+	//	========================================================================================
+	//	dice stuff
 	public void DestroyDie(PharoahDie die)
 	{
 		die.PutDieInCup();

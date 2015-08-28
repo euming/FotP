@@ -34,6 +34,6 @@ public class TileMapDatabase : MonoBehaviour {
 				}
 			}
 		}
-		return "Name Not Found";
+		return null;	//"Name Not Found";
 	}
 }

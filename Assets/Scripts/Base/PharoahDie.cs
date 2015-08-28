@@ -78,7 +78,7 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
 	}
 
 	//	put this die into the locked area
-	void MoveToLockedArea()
+	public void MoveToLockedArea()
 	{
 		GameState gs = GameState.GetCurrentGameState();
 
@@ -86,7 +86,7 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
 		MoveToSlot (ds);
 	}
 
-	void MoveToUnlockedArea()
+	public void MoveToUnlockedArea()
 	{
 		GameState gs = GameState.GetCurrentGameState();
 
@@ -94,7 +94,7 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
 		MoveToSlot(ds);
 	}
 
-	void MoveToSetDieArea()
+	public void MoveToSetDieArea()
 	{
 		GameState gs = GameState.GetCurrentGameState();
 		

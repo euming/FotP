@@ -32,7 +32,7 @@ public class DiceFactory : MonoBehaviour {
 	{
 		PharoahDie newDie = GameObject.Instantiate(prefabDice[(int)dieType]);
 		if (newDie.isSetDie()) {
-			newDie.isLocked = true;	//	when rolling this die, put it into the set die area instead of the active dice area.
+			newDie.MoveToSetDieArea();
 		}
 		return newDie;
 	}

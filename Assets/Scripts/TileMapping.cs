@@ -29,7 +29,15 @@ public class TileMapping : MonoBehaviour {
 	//	do this shit only in the editor because this should be baked by the time we ship. but it's convenient to do it this way while in dev.
 	void EditorOnlyUpdate()
 	{
-		this.gameObject.name = tileDB.GetName(row, col);
+		if (!tileDB) {
+			Debug.LogWarning("Tile " + this.name + " has no tileDB.");
+		}
+		else {
+			string newName = tileDB.GetName(row, col);
+			if (newName != null) {
+				this.gameObject.name = newName;
+			}
+		}
 		texOffset.x = (float)col / (float)maxCol;
 		texOffset.y = (float)row / (float)maxRow;
 		mat.mainTextureOffset = texOffset;

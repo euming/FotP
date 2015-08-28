@@ -31,6 +31,7 @@ public class GameState : MonoBehaviour {
 	public List<DieSlot>		activeDiceSlots;
 	public List<DieSlot>		setDiceSlots;		//	where set dice go
 	public DiceFactory			diceFactory;
+	public Scarab				scarabPrefab;
 
 	GameState()
 	{
