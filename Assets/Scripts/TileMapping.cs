@@ -17,10 +17,14 @@ public class TileMapping : MonoBehaviour {
 	public TileMapDatabase tileDB;
 
 	void Awake() {
-		mat = GetComponent<Renderer>().material;	//	don't use shared material here because we want the instance to be different for each tile depending on tiling.
+		//mat = GetComponent<Renderer>().material;	//	don't use shared material here because we want the instance to be different for each tile depending on tiling.
 
+		Material tempMaterial = new Material(GetComponent<Renderer>().sharedMaterial);
+		tempMaterial.name = GetComponent<Renderer>().sharedMaterial.name + " " + this.name;
+		GetComponent<Renderer>().sharedMaterial = tempMaterial;
 		texOffset.x = (float)col / (float)maxCol;
 		texOffset.y = (float)row / (float)maxRow;
+		mat = tempMaterial;
 	}
 
 	// Use this for initialization
