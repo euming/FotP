@@ -1,0 +1,9 @@
+Tile abilities:
+- weird colored dice
+  - orange, yellow, blue, geren, black, purple
+- estate overseer, granary master +1 pip each roll
+- priest of the dead - reroll after locking all
+- queen - reroll
+
+- d6_purple is does not have a purple texture
+- d6_orange is not orange
