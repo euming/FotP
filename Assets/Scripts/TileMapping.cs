@@ -17,7 +17,8 @@ public class TileMapping : MonoBehaviour {
 	public TileMapDatabase tileDB;
 
 	void Awake() {
-		mat = GetComponent<Renderer>().sharedMaterial;
+		mat = GetComponent<Renderer>().material;	//	don't use shared material here because we want the instance to be different for each tile depending on tiling.
+
 		texOffset.x = (float)col / (float)maxCol;
 		texOffset.y = (float)row / (float)maxRow;
 	}
