@@ -1,5 +1,8 @@
 UI:
 - Purchase board should allow us to buy tiles easily.
+  - Place tiles in slots correctly oriented.
+- Blue tiles
+- Red tiles
 
 Tile abilities:
 - estate overseer, granary master +1 pip each roll

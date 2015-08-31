@@ -12,7 +12,7 @@ public class TileMapDatabase : MonoBehaviour {
 	//	eventually, we want to tie to the object directly rather than by name
 	public List<string> names;
 	
-	protected Vector2[] pos = new Vector2[24];
+	public Vector2[] pos = new Vector2[24];
 	
 	void Awake() {
 	}
@@ -30,6 +30,7 @@ public class TileMapDatabase : MonoBehaviour {
 		for (int ii=0; ii<this.pos.Length; ++ii) {
 			if (this.pos[ii].x == row) {
 				if (this.pos[ii].y == col) {
+					//Debug.Log ("("+row.ToString()+"x"+col.ToString()+")+names["+ii.ToString()+"]="+names[ii]);
 					return names[ii];
 				}
 			}

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 public class Toggler : MonoBehaviour {
 
-	public List<ToggleReceiver>		toggleReceivers;
+	public List<MonoBehaviour>		toggleReceivers;
 
 	// Use this for initialization
 	void Start () {
@@ -16,10 +16,17 @@ public class Toggler : MonoBehaviour {
 	}
 
 	//	tap to hide/unhide
-	void OnMouseDown() {
-		foreach(ToggleReceiver recv in toggleReceivers) {
-			recv.Toggle();
+	virtual public void OnMouseDown() {
+		IToggleReceiver recv;
+		//	toggle the stuff in my list
+		foreach(MonoBehaviour mb in toggleReceivers) {
+			Component[] comps = mb.GetComponents<Component>();
+			foreach(Component c in comps) {
+				recv = c as IToggleReceiver;
+				if (recv != null) {
+					recv.Toggle();
+				}
+			}
 		}
 	}
-
 }

@@ -1,7 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ToggleReceiver : MonoBehaviour {
+public interface IToggleReceiver
+{
+	int Toggle();
+}
+
+public class ToggleReceiver : MonoBehaviour, IToggleReceiver {
 
 	// Use this for initialization
 	void Start () {

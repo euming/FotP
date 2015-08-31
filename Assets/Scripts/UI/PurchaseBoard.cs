@@ -35,8 +35,6 @@ public class PurchaseBoard : ToggleReceiver {
 		switch (curState)
 		{
 		case PurchaseBoardState.isTuckedAway:
-			this.gameObject.SetActive(false);
-			tileDisplayBar.SetActive(true);
 				break;
 		/*
 		case PurchaseBoardState.isCollapsed:
@@ -45,8 +43,6 @@ public class PurchaseBoard : ToggleReceiver {
 			break;
 		*/
 		case PurchaseBoardState.isExpanded:
-			this.gameObject.SetActive(true);
-			tileDisplayBar.SetActive(false);
 			break;
 		}
 		return (int)curState;

@@ -8,6 +8,8 @@ public class Slot : Container {
 	public bool scaleChild = false;	//	whether to scale the child according to the slot or not
 	public bool orientChild = false;	//	whether to orient the child according to the slot or not
 	public bool moveSlotToChild = false;	//	move the slot to the child.
+
+	public int initialPositionToggleState = 0;
 	// Use this for initialization
 	void Start () {
 	
@@ -42,6 +44,13 @@ public class Slot : Container {
 		}
 		if (orientChild) {
 			child.transform.localRotation = Quaternion.identity;		//	allows the slot scale to rotate the child as well.
+		}
+
+		if (initialPositionToggleState >= 0) {
+			PositionToggler tglr = GetComponent<PositionToggler>();
+			if (tglr != null) {
+				tglr.SetState(initialPositionToggleState);
+			}
 		}
 		return prevChild;
 	}
