@@ -101,7 +101,7 @@ public class PlayerBoard : MonoBehaviour {
 	{
 		foreach(PharoahDie d6 in diceList) {
 			d6.EndTurn();
-			if (d6.isInActiveArea()) {
+			if (d6.isInActiveArea() || (d6.isInNoArea())) {
 				d6.PutDieInCup();
 				d6.RollDie();
 			}

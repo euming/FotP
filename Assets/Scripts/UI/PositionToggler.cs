@@ -3,11 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 [ExecuteInEditMode]
 
+//	this maintains various states of position/orientation/scale
+//	so that we may move things among the various states
 public class PositionToggler : ToggleReceiver {
 
 	public List<Vector3> 			positions;
 	public List<Quaternion> 		rotations;
-	public int						curIndex;
+	public int						curIndex;	//	state
+	public float					animTime = 0.8f;
+	protected bool 	bUseTween = true;
 
 	void Awake() {
 		curIndex = 0;
@@ -19,12 +23,18 @@ public class PositionToggler : ToggleReceiver {
 		}
 	}
 
-	public void SetState(int idx)
+	virtual public void SetState(int idx)
 	{
 		if ((idx >= 0) && (idx < positions.Count)) {
 			curIndex = idx;
-			this.transform.localPosition = positions[idx];
-			this.transform.localRotation = rotations[idx];
+			if (bUseTween) {
+				iTween.MoveToLocal(gameObject, positions[idx], animTime);
+				iTween.RotateToLocal(gameObject, rotations[idx].eulerAngles, animTime);
+			}
+			else {
+				this.transform.localPosition = positions[idx];
+				this.transform.localRotation = rotations[idx];
+			}
 		}
 	}
 
@@ -56,6 +66,7 @@ public class PositionToggler : ToggleReceiver {
 	}
 
 #if UNITY_EDITOR
+	//	these things help us build our data in the editor
 	public void SetKeyframe()
 	{
 		Vector3 newPos = new Vector3(
@@ -80,6 +91,40 @@ public class PositionToggler : ToggleReceiver {
 			Vector3 newPos = new Vector3(this.transform.localPosition.x, pos.y, pos.z);
 			positions[idx] = newPos;
 			idx++;
+		}
+	}
+
+	public void RemoveITweenComponents()
+	{
+		iTween[] components = this.GetComponents<iTween>();
+		foreach(Component c in components) {
+			if (c != null) {
+				DestroyImmediate (c);
+			}
+		}
+	}
+
+	void Swap01()
+	{
+		Vector3 swapPos = positions[0];
+		Quaternion swapQuat = rotations[0];
+		
+		positions[0] = positions[1];
+		rotations[0] = rotations[1];
+		positions[1] = swapPos;
+		rotations[1] = swapQuat;
+	}
+
+	public void SwapBarSlotPositions()
+	{
+		Bar bar = this.GetComponent<Bar>();
+		if (bar) {
+			foreach(BarSlot slot in bar.barSlotList) {
+				PositionToggler ptglr = slot.GetComponent<PositionToggler>();
+				if (ptglr!=null) {
+					ptglr.Swap01();
+				}
+			}
 		}
 	}
 

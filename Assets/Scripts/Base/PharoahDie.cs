@@ -13,12 +13,19 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
 	public int	setDieValue;	//	if >0, then this die is set when we roll and not rolled from the cup.
 
 	DieSlot	mySlot;
+	GameObject spawnPoint = null;
+
 
 	// Use this for initialization
 	void Start () {
 		if (this.type == DiceFactory.DieType.White) {
 			isAutoLocking = true;
 		}
+		spawnPoint = GameObject.Find("rollingDiceSpawnPoint");
+		if (spawnPoint==null) {
+			Debug.LogError("rollingDiceSpawnPoint not found! Cannot spawn dice.");
+		}
+		iTween.Init (this.gameObject);
 	}
 	
 	// Update is called once per frame
@@ -110,16 +117,39 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
 		MoveToUnlockedArea();
 	}
 
+	private void Unfreeze()
+	{
+		Rigidbody rb = this.GetComponent<Rigidbody> ();
+		rb.useGravity = true;
+		rb.constraints = RigidbodyConstraints.None;
+	}
+	private Vector3 Force()
+	{
+		Vector3 rollTarget = Vector3.zero + new Vector3(2 + 7 * UnityEngine.Random.value, .5F + 4 * UnityEngine.Random.value, -2 - 3 * UnityEngine.Random.value);
+		return Vector3.Lerp(spawnPoint.transform.position, rollTarget, 1).normalized * (-35 - UnityEngine.Random.value * 20);
+	}
+
+	public void RollDiePhysics()
+	{
+		Unslot ();
+		Unfreeze ();
+		//Dice.Roll("1d6", "d6-red", spawnPoint.transform.position, Force());
+		Dice.RollDie (this, spawnPoint.transform.position, Force ());
+	}
+
 	public void RollDie() {
 		if (isLocked) return;	//	don't roll locked dice
 		//	take me out of any slots I happen to be in.
 		Unslot ();
-		SetDie (UnityEngine.Random.Range(1, 7));
-		if (isAutoLocking) {
-			LockDie();
+		if (GameState.GetCurrentGameState().bUseDicePhysics) {
+			RollDiePhysics();
 		}
 		else {
+			SetDie (UnityEngine.Random.Range(1, 7));
 			MoveToUnlockedArea();
+		}
+		if (isAutoLocking) {
+			LockDie();
 		}
 	}
 
@@ -147,6 +177,13 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
 	{
 		bool bIsInArea = isInDiceArea(GameState.DiceAreaTags.ActiveDiceArea);
 		return bIsInArea;
+	}
+	public bool isInNoArea()
+	{
+		//bool bIsInNoArea = false;
+		if (this.mySlot == null)
+			return true;
+		return false;
 	}
 	public bool isInSetDiceArea()
 	{

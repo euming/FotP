@@ -1,8 +1,13 @@
+Bugs:
+- iTween creates 2 extra components after ending play of editor.
+
 UI:
 - Purchase board should allow us to buy tiles easily.
-  - Place tiles in slots correctly oriented.
+  x Place tiles in slots correctly oriented.
 - Blue tiles
 - Red tiles
+- Automatically move purchase board when rolling
+- Automatically open purchase board when done rolling
 
 Tile abilities:
 - estate overseer, granary master +1 pip each roll
@@ -10,7 +15,21 @@ Tile abilities:
 - queen - reroll
 
 Dice:
-- d6_purple is does not have a purple texture
-- d6_orange is not orange
+x d6_purple does not have a purple texture
+x d6_orange is not orange
 - weird colored dice abilities
   - orange, yellow, blue, green, black, purple
+  
+Gameplay:
+- Force at least one lock before allowing re-roll.
+
+Cosmetic stuff:
+- tiles should display their names when on their sides
+x Animate tiles when opening/closing bar
+- Animate dice to their slots
+  - iTween not working here.
+x Allow dice rolling physics
+  x Have to figure out their weird physics system or make up a new one.
+  x figure what number is showing after dice land
+  - rotate the dice around the up axis so that it is lined up neatly.
+  

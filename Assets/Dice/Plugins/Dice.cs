@@ -19,7 +19,7 @@ using System.Collections;
 
 /// <summary>
 /// This dice dupporting class has some 'static' methods to help you throwning dice
-///  and getting the rolling dice count, value or rolling state (asString)
+///  and getting the rolling dice count, value or roll`ing state (asString)
 /// </summary>
 public class Dice : MonoBehaviour {	
 	
@@ -125,7 +125,24 @@ public class Dice : MonoBehaviour {
 	{
 		Debug.Log(txt);
 	}		
-	
+
+	public static void RollDie(Die die, Vector3 spawnPoint, Vector3 force)
+	{
+		string dieType = "d6";
+		rolling = true;
+		// give it a random rotation
+		die.transform.Rotate(new Vector3(Random.value * 360, Random.value * 360, Random.value * 360));
+		// inactivate this gameObject because activating it will be handeled using the rollQueue and at the apropriate time
+		die.gameObject.SetActive(false);
+		Vector3 spawnRnd = new Vector3 (Random.value * 2.0f - 1.0f, Random.value * 2.0f - 1.0f, Random.value * 2.0f - 1.0f);
+		die.transform.position = spawnPoint + spawnRnd;
+		// create RollingDie class that will hold things like spawnpoint and force, to be used when activating the die at a later stage
+		RollingDie rDie = new RollingDie(die.gameObject, dieType, "d6-red", spawnPoint, force);
+		// add RollingDie to allDices
+		allDice.Add(rDie);               
+		// add RollingDie to the rolling queue
+		rollQueue.Add(rDie);
+	}
 	/// <summary>
 	/// Roll one or more dice with a specific material from a spawnPoint and give it a specific force.
 	/// format dice 			: 	({count}){die type}	, exmpl.  d6, 4d4, 12d8 , 1d20
@@ -271,7 +288,13 @@ public class Dice : MonoBehaviour {
 
         rolling = false;
 	}
-
+	static void DetermineRollQueueValues()
+	{
+		foreach (RollingDie rdie in allDice) {
+			Die die = rdie.die;
+			die.value = die.GetSide();
+		}
+	}
 	/// <summary>
 	/// Update is called once per frame
 	/// </summary>
@@ -304,8 +327,11 @@ public class Dice : MonoBehaviour {
                 if (rollQueue.Count == 0)
                 {
 					// roll queue is empty so if no dice are rolling we can set the rolling attribute to false
-                    if (!IsRolling())
+                    if (!IsRolling()) {
+						DetermineRollQueueValues();	//	what were the values of each die after rolling?
                         rolling = false;
+						DiceCup.StopRolling();
+					}
                 }
         }
     }

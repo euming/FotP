@@ -22,6 +22,7 @@ public class GameState : MonoBehaviour {
 	static private GameState instance;
 	static public GameState GetCurrentGameState() {return instance;}
 	public bool					CheatModeEnabled = false;	//	helpful for debugging.
+	public bool					bUseDicePhysics = true;	//	actually roll the dice
 
 	int							nPlayers;		//	number of players this game session
 	public PlayerBoard			currentPlayer;
