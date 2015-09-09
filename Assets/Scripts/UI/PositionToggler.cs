@@ -12,6 +12,7 @@ public class PositionToggler : ToggleReceiver {
 	public int						curIndex;	//	state
 	public float					animTime = 0.8f;
 	protected bool 	bUseTween = true;
+	protected bool 	bAfterStart = false;
 
 	void Awake() {
 		curIndex = 0;
@@ -23,11 +24,20 @@ public class PositionToggler : ToggleReceiver {
 		}
 	}
 
+	void Start()
+	{
+		bAfterStart = true;
+	}
+	void OnDestroy()
+	{
+		bAfterStart = false;	//	don't use iTween anymore.
+	}
+
 	virtual public void SetState(int idx)
 	{
 		if ((idx >= 0) && (idx < positions.Count)) {
 			curIndex = idx;
-			if (bUseTween) {
+			if (bUseTween && (bAfterStart==true)) {
 				iTween.MoveToLocal(gameObject, positions[idx], animTime);
 				iTween.RotateToLocal(gameObject, rotations[idx].eulerAngles, animTime);
 			}
@@ -55,11 +65,6 @@ public class PositionToggler : ToggleReceiver {
 		SetState (curIndex);
 	}
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
 	// Update is called once per frame
 	void Update () {
 	
@@ -91,6 +96,18 @@ public class PositionToggler : ToggleReceiver {
 			Vector3 newPos = new Vector3(this.transform.localPosition.x, pos.y, pos.z);
 			positions[idx] = newPos;
 			idx++;
+		}
+	}
+
+	//	remove them from me and all my descendants.
+	public void RemoveITweenComponentsTree()
+	{
+		RemoveITweenComponents ();
+		foreach (Transform child in this.transform) {
+			PositionToggler pt = child.GetComponent<PositionToggler>();
+			if (pt != null) {
+				pt.RemoveITweenComponentsTree();
+			}
 		}
 	}
 

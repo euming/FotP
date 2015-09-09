@@ -12,29 +12,24 @@ public class Bar : Toggler, IToggleReceiver {
 	public int shopRow;
 
 	public int curState;	//	0=closed, 1=open. This affects the barSlot positions/orientations
-	public bool bFirstUpdate = false;
 
 	void Awake() {
-		bFirstUpdate = false;
 		int idx = 0;
 		foreach(BarSlot slot in barSlotList) {
 			slot.tileShopPos = new Vector2(idx, shopRow);
 			++idx;
 		}
+		SetState (curState);
 	}
 
 	// Use this for initialization
 	void Start () {
-		bFirstUpdate = true;
 	}
-	
+
+	void OnDestroy() {
+	}
 	// Update is called once per frame
 	void Update () {
-		if (bFirstUpdate) {
-			SetState (curState);
-			bFirstUpdate = false;
-		}
-
 	}
 
 	public void SetState(int stateIdx)

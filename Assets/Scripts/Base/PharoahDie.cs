@@ -25,7 +25,7 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
 		if (spawnPoint==null) {
 			Debug.LogError("rollingDiceSpawnPoint not found! Cannot spawn dice.");
 		}
-		iTween.Init (this.gameObject);
+		//iTween.Init (this.gameObject);
 	}
 	
 	// Update is called once per frame

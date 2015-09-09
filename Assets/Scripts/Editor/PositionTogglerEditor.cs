@@ -9,7 +9,7 @@ using UnityEditor;
 public class PositionTogglerEditor : Editor
 {
 	//	sometimes, we just want to fix things and move on. This allows us to do that. But we should go back and fix the bugs for realz.
-	const bool QUICKHACK_EDITS = (true);
+	const bool QUICKHACK_EDITS = false;
 
 	public override void OnInspectorGUI()
 	{
@@ -33,7 +33,7 @@ public class PositionTogglerEditor : Editor
 
 		//	iTween bug keeps creating iTween components in editor
 		if (GUILayout.Button ("Remove itween components")) {
-			myScript.RemoveITweenComponents();
+			myScript.RemoveITweenComponentsTree();
 		}
 #if QUICKHACK_EDITS
 		//	hack: do this automatically
