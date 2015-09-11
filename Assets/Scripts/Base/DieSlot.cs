@@ -28,6 +28,9 @@ public class DieSlot : Slot {
 			this.transform.rotation = child.transform.rotation;
 		}
 		
+		if (scaleChild) {
+			child.transform.localScale = Vector3.one;		//	allows the slot scale to scale the child as well.
+		}
 		if (moveChild) {
 			if (animateMove) {	//	we need to set the position to be where we currently are after we have this slot as the new parent. Then we will interpolate to zero directly on top of the slot.
 				Rigidbody rb = child.GetComponent<Rigidbody>();
@@ -42,9 +45,6 @@ public class DieSlot : Slot {
 			else {
 				child.transform.localPosition = Vector3.zero;	//	put the child on top of the parent.
 			}
-		}
-		if (scaleChild) {
-			child.transform.localScale = Vector3.one;		//	allows the slot scale to scale the child as well.
 		}
 		if (orientChild) {
 			Die_d6 die = child.GetComponent<Die_d6> ();

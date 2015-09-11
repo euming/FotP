@@ -97,6 +97,7 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
 		mySlot = ds;
 		
 		Rigidbody rb = this.GetComponent<Rigidbody>();
+		//rb.detectCollisions = false;
 		//rb.constraints = RigidbodyConstraints.FreezeAll;
 	}
 
@@ -125,11 +126,21 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
 		MoveToSlot (ds);
 	}
 
+	public void MoveToDiceCupArea()
+	{
+		DieSlot ds = GameState.GetCurrentGameState ().diceCupSlot;
+		MoveToSlot (ds);
+		Unslot ();
+		Rigidbody rb = this.GetComponent<Rigidbody>();
+		//rb.detectCollisions = false;
+
+	}
 	public void PutDieInCup()
 	{
 		isLocked = false;
 		isTempLocked = false;
 		Unslot();
+		MoveToDiceCupArea ();
 		//MoveToUnlockedArea();
 	}
 

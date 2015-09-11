@@ -10,6 +10,7 @@ public class GameState : MonoBehaviour {
 		"ActiveArea",
 		"LockedArea",
 		"SetDiceArea",
+		"InCupArea",
 	};
 
 	public enum DiceAreaTags
@@ -17,6 +18,7 @@ public class GameState : MonoBehaviour {
 		ActiveDiceArea,
 		LockedDiceArea,
 		SetDiceArea,
+		InCupArea,
 	};
 
 	static private GameState instance;
@@ -31,6 +33,7 @@ public class GameState : MonoBehaviour {
 	public List<DieSlot>		lockedDiceSlots;	//	my dice slots. Dice that are in the locked zone may be temporarily locked dice as well.
 	public List<DieSlot>		activeDiceSlots;
 	public List<DieSlot>		setDiceSlots;		//	where set dice go
+	public DieSlot				diceCupSlot;		//	for rolling dice
 	public DiceFactory			diceFactory;
 	public Scarab				scarabPrefab;
 
