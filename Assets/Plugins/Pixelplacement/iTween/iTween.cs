@@ -1352,7 +1352,7 @@ public class iTween : MonoBehaviour{
 	}	
 		
 	public static void MoveToLocal(GameObject target, Vector3 position, float time){
-		MoveTo(target,Hash("position",position,"time",time,"isLocal",true));
+		MoveTo(target,Hash("position",position,"time",time,"isLocal",true,"onStart","OnMoveStart","onComplete","OnMoveComplete"));
 	}	
 	/// <summary>
 	/// Changes a GameObject's position over time to a supplied destination with FULL customization options.

@@ -115,4 +115,14 @@ public class PlayerBoard : MonoBehaviour {
 			d6.PutDieInCup();
 		}
 	}
+
+	public void LockWhiteDice()
+	{
+		foreach (PharoahDie die in diceList) {
+			if (die.isAutoLocking && !die.isLocked) {
+				die.MoveToLockedArea();
+				die.isLocked = true;
+			}
+		}
+	}
 }

@@ -74,6 +74,22 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
 		}
 	}
 
+	//	itween callback stuff
+	void OnMoveStart()
+	{
+		Debug.Log ("iTween started " + this.name);
+		Rigidbody rb = GetComponent<Rigidbody> ();
+		rb.detectCollisions = false;
+		rb.useGravity = false;
+	}
+	void OnMoveComplete()
+	{
+		Debug.Log ("iTween completed " + this.name);
+		Rigidbody rb = GetComponent<Rigidbody> ();
+		rb.detectCollisions = true;
+		rb.useGravity = true;
+	}
+
 	void MoveToSlot(DieSlot ds)
 	{
 		Unslot();
@@ -81,7 +97,7 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
 		mySlot = ds;
 		
 		Rigidbody rb = this.GetComponent<Rigidbody>();
-		rb.constraints = RigidbodyConstraints.FreezeAll;
+		//rb.constraints = RigidbodyConstraints.FreezeAll;
 	}
 
 	//	put this die into the locked area
@@ -114,7 +130,7 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
 		isLocked = false;
 		isTempLocked = false;
 		Unslot();
-		MoveToUnlockedArea();
+		//MoveToUnlockedArea();
 	}
 
 	private void Unfreeze()
@@ -147,9 +163,9 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
 		else {
 			SetDie (UnityEngine.Random.Range(1, 7));
 			MoveToUnlockedArea();
-		}
-		if (isAutoLocking) {
-			LockDie();
+			if (isAutoLocking) {
+				LockDie();
+			}
 		}
 	}
 

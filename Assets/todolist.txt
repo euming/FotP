@@ -1,7 +1,8 @@
 Bugs:
 x iTween creates 2 extra components after ending play of editor.
 x White dice are no longer white
-- White dice auto lock without being rolled.
+x White dice auto lock without being rolled.
+- White dice scaled improperly after fresh roll. Need slot in DiceCup to reset all the scales and stuff.
 
 UI:
 x Purchase board should allow us to buy tiles easily.
@@ -28,8 +29,8 @@ Gameplay:
 Cosmetic stuff:
 - tiles should display their names when on their sides
 x Animate tiles when opening/closing bar
-- Animate dice to their slots
-  - iTween not working here.
+x Animate dice to their slots
+  x iTween not working here.
 x Allow dice rolling physics
   x Have to figure out their weird physics system or make up a new one.
   x figure what number is showing after dice land

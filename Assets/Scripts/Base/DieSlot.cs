@@ -30,13 +30,14 @@ public class DieSlot : Slot {
 		
 		if (moveChild) {
 			if (animateMove) {	//	we need to set the position to be where we currently are after we have this slot as the new parent. Then we will interpolate to zero directly on top of the slot.
-				child.transform.localPosition = Vector3.zero;	//	put the child on top of the parent.
-				//iTween.MoveToLocal(child.gameObject, Vector3.zero, animTime);
+				Rigidbody rb = child.GetComponent<Rigidbody>();
+				//rb.detectCollisions = false;
+				//child.transform.localPosition = Vector3.zero;	//	put the child on top of the parent.
+				iTween.MoveToLocal(child.gameObject, Vector3.zero, animTime);
 				//	break child/parent relationship then reconnect it
 				//GameObject parentGO = child.transform.parent.gameObject;
 				//child.transform.parent = null;
 				//iTween.MoveTo (child.gameObject, this.transform.position, 3.0f);
-
 			}
 			else {
 				child.transform.localPosition = Vector3.zero;	//	put the child on top of the parent.
@@ -48,6 +49,9 @@ public class DieSlot : Slot {
 		if (orientChild) {
 			Die_d6 die = child.GetComponent<Die_d6> ();
 			if (die != null) {
+				Rigidbody rb = die.GetComponent<Rigidbody>();
+				//rb.detectCollisions = false;
+				die.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 				die.OrientTowardLinedUp();
 			} else {
 				child.transform.localRotation = Quaternion.identity;		//	allows the slot scale to rotate the child as well.

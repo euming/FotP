@@ -34,6 +34,12 @@ public class GameState : MonoBehaviour {
 	public DiceFactory			diceFactory;
 	public Scarab				scarabPrefab;
 
+	static public void LockWhiteDice()
+	{
+		GameState gs = instance;
+		gs.currentPlayer.LockWhiteDice();
+	}
+
 	GameState()
 	{
 		instance = this;
