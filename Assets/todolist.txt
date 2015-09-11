@@ -1,8 +1,10 @@
 Bugs:
-- iTween creates 2 extra components after ending play of editor.
+x iTween creates 2 extra components after ending play of editor.
+x White dice are no longer white
+- White dice auto lock without being rolled.
 
 UI:
-- Purchase board should allow us to buy tiles easily.
+x Purchase board should allow us to buy tiles easily.
   x Place tiles in slots correctly oriented.
 - Blue tiles
 - Red tiles
@@ -31,5 +33,5 @@ x Animate tiles when opening/closing bar
 x Allow dice rolling physics
   x Have to figure out their weird physics system or make up a new one.
   x figure what number is showing after dice land
-  - rotate the dice around the up axis so that it is lined up neatly.
+  x rotate the dice around the up axis so that it is lined up neatly.
   

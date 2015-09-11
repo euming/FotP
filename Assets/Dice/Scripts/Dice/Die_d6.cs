@@ -35,6 +35,97 @@ public class Die_d6 : Die {
         }
         return Vector3.zero;
     }
+	public void AlignTowardsVector(Vector3 curVector, Vector3 destVector)
+	{
+		//Vector3 curUp = GetCurUpVector(this.value);
+		float dotProduct = Vector3.Dot (curVector, destVector);	//	near 1.0f or 1.0f
+		float tolerance = 0.0000f;
+		if (dotProduct > 1.0f)
+			dotProduct = 1.0f;
+		float angleRadians = Mathf.Acos (dotProduct);
+		float angleDegrees = Mathf.Rad2Deg * angleRadians;
+		if ( dotProduct < 1.0f - tolerance) {
+			Vector3 perpendicular = Vector3.Cross (curVector, destVector);
+			perpendicular = Vector3.Normalize (perpendicular);
+			this.transform.RotateAround (this.transform.position, perpendicular, angleDegrees);
+		}
+		//Debug.Log ("Rotate by " + angleDegrees.ToString ());
+	}
+
+	//	orient towards up.	point directly to the side that's already up.
+	public void OrientTowardsUp()
+	{
+		Vector3 curUp = GetCurUpVector(this.value);
+		AlignTowardsVector (curUp, Vector3.up);
+	}
+
+	//	assuming already up, orient so 0/90/180/270 degrees
+	public void OrientTowardStraightened()
+	{
+		Vector3 curSide = GetCurSideVector (this.value);
+		AlignTowardsVector (curSide, Vector3.right);
+	}
+
+	public void OrientTowardLinedUp()
+	{
+		OrientTowardsUp ();
+		OrientTowardStraightened ();
+	}
+	public Vector3 GetCurSideVector(int side_value)
+	{
+		Vector3 side_vector = new Vector3(0,0,0);
+		switch (side_value) {
+		default:
+			break;
+		case 1:
+			side_vector = (this.transform.right);
+			break;
+		case 2:
+			side_vector = -(this.transform.forward);
+			break;
+		case 3:
+			side_vector = (-this.transform.up);
+			break;
+		case 4:
+			side_vector = (this.transform.up);
+			break;
+		case 5:
+			side_vector = (this.transform.forward);
+			break;
+		case 6:
+			side_vector = (-this.transform.right);
+			break;
+		}
+		return side_vector;
+	}
+
+	public Vector3 GetCurUpVector(int side_value)
+	{
+		Vector3 up_vector = new Vector3(0,0,0);
+		switch (side_value) {
+		default:
+			break;
+		case 1:
+			up_vector = (this.transform.forward);
+			break;
+		case 2:
+			up_vector = -(this.transform.up);
+			break;
+		case 3:
+			up_vector = (-this.transform.right);
+			break;
+		case 4:
+			up_vector = (this.transform.right);
+			break;
+		case 5:
+			up_vector = (this.transform.up);
+			break;
+		case 6:
+			up_vector = (-this.transform.forward);
+			break;
+		}
+		return up_vector;
+	}
 
 	//	get the side that's up
 	override public int GetSide()

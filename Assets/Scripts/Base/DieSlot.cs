@@ -46,7 +46,12 @@ public class DieSlot : Slot {
 			child.transform.localScale = Vector3.one;		//	allows the slot scale to scale the child as well.
 		}
 		if (orientChild) {
-			child.transform.localRotation = Quaternion.identity;		//	allows the slot scale to rotate the child as well.
+			Die_d6 die = child.GetComponent<Die_d6> ();
+			if (die != null) {
+				die.OrientTowardLinedUp();
+			} else {
+				child.transform.localRotation = Quaternion.identity;		//	allows the slot scale to rotate the child as well.
+			}
 		}
 		
 		/*

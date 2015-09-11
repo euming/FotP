@@ -31,11 +31,11 @@ public class PositionTogglerEditor : Editor
 			myScript.ToggleNext();
 		}
 
+#if QUICKHACK_EDITS
 		//	iTween bug keeps creating iTween components in editor
 		if (GUILayout.Button ("Remove itween components")) {
 			myScript.RemoveITweenComponentsTree();
 		}
-#if QUICKHACK_EDITS
 		//	hack: do this automatically
 		myScript.RemoveITweenComponents();
 #endif
