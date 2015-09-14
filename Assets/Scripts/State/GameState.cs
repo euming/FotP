@@ -28,6 +28,7 @@ public class GameState : MonoBehaviour {
 
 	int							nPlayers;		//	number of players this game session
 	public PlayerBoard			currentPlayer;
+	public PurchaseBoard		purchaseBoard;	//	what we can buy in this game
 	public List<PlayerBoard> 	allPlayers;		
 	public TileShop				tileShop;
 	public List<DieSlot>		lockedDiceSlots;	//	my dice slots. Dice that are in the locked zone may be temporarily locked dice as well.

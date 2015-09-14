@@ -17,7 +17,7 @@ public class TileDisplayToggle : MonoBehaviour {
 	void OnMouseDown() {
 		if (this.transform.parent) {
 			PurchaseBoard pb = this.transform.parent.GetComponent<PurchaseBoard>();
-			if (pb) {
+			if (pb!=null) {
 				pb.ChangeState();
 			}
 		}

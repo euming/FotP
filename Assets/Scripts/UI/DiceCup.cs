@@ -25,6 +25,8 @@ public class DiceCup : MonoBehaviour {
 			wall.enabled = true;
 		}
 	}
+
+	//	when the dice have stopped rolling, this is called.
 	public static void StopRolling()
 	{
 		if (s_instance) {

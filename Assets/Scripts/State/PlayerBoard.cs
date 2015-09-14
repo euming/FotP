@@ -99,6 +99,7 @@ public class PlayerBoard : MonoBehaviour {
 
 	public void RollDice()
 	{
+		GameState.GetCurrentGameState ().purchaseBoard.SetState (PurchaseBoard.PurchaseBoardState.isTuckedAway);
 		foreach(PharoahDie d6 in diceList) {
 			d6.EndTurn();
 			if (d6.isInActiveArea() || (d6.isInNoArea())) {
@@ -108,7 +109,16 @@ public class PlayerBoard : MonoBehaviour {
 		}
 		SortDiceList();
 	}
-		
+
+	//	put dice that have just been rolled into the active area so that it doesn't touch the purchase board.
+	public void CollectLooseDice()
+	{
+		foreach(PharoahDie d6 in diceList) {
+			if (d6.isInNoArea()) {
+				d6.MoveToUnlockedArea();
+			}
+		}
+	}
 	public void EndTurn()
 	{
 		foreach(PharoahDie d6 in diceList) {

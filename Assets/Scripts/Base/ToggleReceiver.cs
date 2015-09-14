@@ -6,6 +6,12 @@ public interface IToggleReceiver
 	int Toggle();
 }
 
+//	when something is toggled, sometimes it needs to tell other things that it has toggled.
+public interface IToggleCallback
+{
+	void OnToggle(int newIndex);
+}
+
 public class ToggleReceiver : MonoBehaviour, IToggleReceiver {
 
 	// Use this for initialization

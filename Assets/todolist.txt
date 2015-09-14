@@ -2,14 +2,14 @@ Bugs:
 x iTween creates 2 extra components after ending play of editor.
 x White dice are no longer white
 x White dice auto lock without being rolled.
-- White dice scaled improperly after fresh roll. Need slot in DiceCup to reset all the scales and stuff.
+x White dice scaled improperly after fresh roll. Need slot in DiceCup to reset all the scales and stuff.
 
 UI:
 x Purchase board should allow us to buy tiles easily.
   x Place tiles in slots correctly oriented.
 - Blue tiles
 - Red tiles
-- Automatically move purchase board when rolling
+x Automatically move purchase board when rolling
 - Automatically open purchase board when done rolling
 
 Tile abilities:
@@ -25,6 +25,8 @@ x d6_orange is not orange
   
 Gameplay:
 - Force at least one lock before allowing re-roll.
+- game flow
+- multiplayer game
 
 Cosmetic stuff:
 - tiles should display their names when on their sides
