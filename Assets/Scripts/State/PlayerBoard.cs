@@ -81,6 +81,7 @@ public class PlayerBoard : MonoBehaviour {
 		GameState.Message(this.name + " takes " + newTile.name);
 		tileList.Add(newTile);
 		newTile.OnAcquire(this);
+		TilePurchaseChosen ();
 		return bSuccess;
 	}
 
@@ -92,6 +93,7 @@ public class PlayerBoard : MonoBehaviour {
 			GameState.Message(this.name + " drops " + tile.name);
 			tileList.Remove (tile);
 			tile.OnAcquireUndo(this);
+			WaitForPurchase();
 		}
 		return bSuccess;
 	}
@@ -120,28 +122,60 @@ public class PlayerBoard : MonoBehaviour {
 		}
 		return pgse;
 	}
+
+	//	how many dice can we roll? If it's 0, then we need to force an end to this turn.
+	public int CountActiveDice()
+	{
+		int sum = 0;
+		foreach(PharoahDie d6 in diceList) {
+			if (d6.isInActiveArea() || (d6.isInNoArea())) {
+				sum++;
+			}
+		}
+		return sum;
+	}
+
 	//	return - were dice rolled or not?
+	bool bForcePass = false;
 	public bool RollDice()
 	{
 		if (!PlayerMayRollDice ()) {
-			GameState.Message(this.name + " is in state " + GetPlayerGameState().ToString() + "\nand cannot roll dice yet.");
+			//	we can't roll dice because we just purchased a new tile. We can only end the turn here.
+			if (pgs.curState == PlayerGameState.PlayerGameStates.TilePurchaseChosen) {
+				GameState.EndTurn();
+				return false;
+			}
+			GameState.Message(this.name + " is in state " + GetPlayerGameState().ToString() + "\nand cannot roll. Click again to pass turn.");
+			if (bForcePass) {
+				GameState.EndTurn();
+			}
+			bForcePass = true;
 			return false;
 		}
+		bForcePass = false;
 		int ndicerolled = 0;
 		GameState.GetCurrentGameState ().purchaseBoard.SetState (PurchaseBoard.PurchaseBoardState.isTuckedAway);
+		UnhideDice ();
 		foreach(PharoahDie d6 in diceList) {
-			d6.EndTurn();
+			//d6.EndTurn();
 			if (d6.isInActiveArea() || (d6.isInNoArea())) {
 				d6.PutDieInCup();
-				d6.RollDie();
+				if (pgs.isInitialRoll && d6.isSetDie()) {
+					d6.MakeSetDie(d6.setDieValue);
+				}
+				else {
+					d6.RollDie();
+				}
 				ndicerolled++;
 			}
 		}
 		SortDiceList();
 		GameState.Message (this.name + " rolling (" + ndicerolled.ToString() +"/"+diceList.Count.ToString() + ") dice");
-		pgs.SetState (PlayerGameState.PlayerGameStates.DiceHaveBeenRolled);
-		if (ndicerolled > 0)
+		if (ndicerolled > 0) {
+			pgs.SetState (PlayerGameState.PlayerGameStates.DiceHaveBeenRolled);
 			return true;
+		}
+		GameState.WaitForPurchase ();
 		return false;
 	}
 
@@ -166,7 +200,13 @@ public class PlayerBoard : MonoBehaviour {
 	public void HideDice()
 	{
 		foreach(PharoahDie d6 in diceList) {
-			d6.enabled = false;
+			d6.gameObject.SetActive(false);
+		}
+	}
+	public void UnhideDice()
+	{
+		foreach(PharoahDie d6 in diceList) {
+			d6.gameObject.SetActive(true);
 		}
 	}
 	public void StartTurn()
@@ -175,6 +215,7 @@ public class PlayerBoard : MonoBehaviour {
 		GameState.Message (this.name + " Start turn");
 		if (pgs.curState == PlayerGameState.PlayerGameStates.WaitingNextTurn)
 			pgs.SetState (PlayerGameState.PlayerGameStates.InitTurn);
+		HideDice ();
 	}
 
 	public void WaitForLock()
@@ -182,12 +223,27 @@ public class PlayerBoard : MonoBehaviour {
 		GameState.Message (this.name + " waiting for a locked die");
 		pgs.SetState (PlayerGameState.PlayerGameStates.WaitingForLock);
 	}
+
+	public void WaitForPurchase()
+	{
+		GameState.Message (this.name + " waiting to choose a tile");
+		pgs.SetState (PlayerGameState.PlayerGameStates.WaitingForPurchaseTile);
+	}
+	public void TilePurchaseChosen()
+	{
+		GameState.Message (this.name + " tile chosen. Click dice cup to end turn.");
+		pgs.SetState (PlayerGameState.PlayerGameStates.TilePurchaseChosen);
+	}
 	public void EndTurn()
 	{
+		GameState.Message (this.name + " turn has ended");
+		this.gameObject.SetActive (false);
 		foreach(PharoahDie d6 in diceList) {
 			d6.PutDieInCup();
+			d6.EndTurn();
+			d6.transform.parent = this.transform;
 		}
-		this.gameObject.SetActive (false);
+		pgs.SetState (PlayerGameState.PlayerGameStates.WaitingNextTurn);
 	}
 
 	public void LockWhiteDice()

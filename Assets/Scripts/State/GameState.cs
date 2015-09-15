@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 [System.Serializable]
-public class GameState : MonoBehaviour {
+public class GameState : MonoBehaviour, IToggleReceiver {
 
 	static public string[] DiceAreaTagStrings =
 	{
@@ -61,9 +61,25 @@ public class GameState : MonoBehaviour {
 	{
 		instance.currentPlayer.UnlockedDieThisTurn ();
 	}
+	static public void StartTurn()
+	{
+		instance.currentPlayer.StartTurn();
+	}
+
 	static public void WaitForLock()	//	wait for player to lock a die
 	{
 		instance.currentPlayer.WaitForLock ();
+	}
+	static public void WaitForPurchase()
+	{
+		instance.purchaseBoard.SetState (PurchaseBoard.PurchaseBoardState.isExpanded);
+		instance.currentPlayer.WaitForPurchase();
+	}
+	static public void EndTurn()
+	{
+		instance.currentPlayer.EndTurn ();
+		instance.currentPlayer = instance.NextPlayer ();
+		StartTurn ();
 	}
 
 	GameState()
@@ -79,7 +95,7 @@ public class GameState : MonoBehaviour {
 		}
 		int rndIndex = (int)(Random.value * 4.0f);
 		currentPlayer = allPlayers [rndIndex];
-		currentPlayer.StartTurn ();
+		StartTurn ();
 	}
 	// Use this for initialization
 	void Start () {
@@ -91,6 +107,26 @@ public class GameState : MonoBehaviour {
 	
 	}
 
+	int GetPlayerIndex(PlayerBoard match_plr)
+	{
+		int idx = -1;
+		foreach(PlayerBoard plr in allPlayers) {
+			idx++;
+			if (plr == match_plr) {
+				return idx;
+			}
+		}
+		return idx;
+	}
+	PlayerBoard NextPlayer()
+	{
+		int idx = GetPlayerIndex (currentPlayer);
+		idx++;
+		if (idx >= allPlayers.Count)
+			idx = 0;
+		PlayerBoard nextPlr = allPlayers [idx];
+		return nextPlr;
+	}
 	public DieSlot GetNextLockedDieSlot()
 	{
 		foreach(DieSlot ds in lockedDiceSlots) {
@@ -120,4 +156,18 @@ public class GameState : MonoBehaviour {
 		}
 		return null;
 	}
+
+	public int Toggle()
+	{
+		this.CheatModeEnabled = !this.CheatModeEnabled;
+		if (this.CheatModeEnabled) {
+			GameState.Message("Cheat Mode Enabled!\nBuy any tile without restriction!");
+		} else {
+			GameState.Message("Cheat Mode disabled.\nPlay the game as normal now.");
+		}
+		if (this.CheatModeEnabled)
+			return 1;
+		return 0;
+	}
+
 }

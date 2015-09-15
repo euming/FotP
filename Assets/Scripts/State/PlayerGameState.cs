@@ -15,13 +15,14 @@ public class PlayerGameState : MonoBehaviour {
 		WaitingForLock,		//	waiting for player to lock at least one die
 
 		//	end loop
-		WaitingForPurhcaseTile,	//	player may choose a tile to purchase
+		WaitingForPurchaseTile,	//	player may choose a tile to purchase
 		TilePurchaseChosen,		//	player has chosen a tile to purchase. Waiting for final confirmation
 		EndTurn,			//	my turn is officially done. 
 		WaitingNextTurn,	//	waiting for another player's turn to be done so I can go
 	};
 
 	public PlayerGameStates curState;
+	public bool				isInitialRoll = true;
 	public bool				mayRollDice = false;
 	public int				diceLockedThisTurn;
 	int						lastDiceLockedThisTurn;
@@ -60,6 +61,7 @@ public class PlayerGameState : MonoBehaviour {
 	{
 		diceLockedThisTurn = 0;
 		mayRollDice = true;
+		isInitialRoll = true;
 	}
 
 	//	set some stuff up when we enter these states
@@ -76,13 +78,22 @@ public class PlayerGameState : MonoBehaviour {
 			break;
 		case PlayerGameStates.DiceHaveBeenRolled:
 			mayRollDice = false;
+			isInitialRoll = false;
 			break;
 		case PlayerGameStates.WaitingForLock:
 			diceLockedThisTurn = 0;
 			lastDiceLockedThisTurn = 0;
 			mayRollDice = false;
 			break;
-
+		case PlayerGameStates.WaitingForPurchaseTile:
+			mayRollDice = false;
+			break;
+		case PlayerGameStates.TilePurchaseChosen:
+			mayRollDice = false;
+			break;
+		case PlayerGameStates.WaitingNextTurn:
+			mayRollDice = false;
+			break;
 		}
 	}
 

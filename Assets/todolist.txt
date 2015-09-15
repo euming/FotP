@@ -3,6 +3,7 @@ x iTween creates 2 extra components after ending play of editor.
 x White dice are no longer white
 x White dice auto lock without being rolled.
 x White dice scaled improperly after fresh roll. Need slot in DiceCup to reset all the scales and stuff.
+- You can return a tile after purchasing it.
 
 UI:
 x Purchase board should allow us to buy tiles easily.

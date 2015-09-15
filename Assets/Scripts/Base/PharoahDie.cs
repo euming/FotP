@@ -98,7 +98,7 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
 		ds.addChild(this.gameObject);
 		mySlot = ds;
 		
-		Rigidbody rb = this.GetComponent<Rigidbody>();
+		//Rigidbody rb = this.GetComponent<Rigidbody>();
 		//rb.detectCollisions = false;
 		//rb.constraints = RigidbodyConstraints.FreezeAll;
 	}
