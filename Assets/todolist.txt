@@ -10,7 +10,8 @@ x Purchase board should allow us to buy tiles easily.
 - Blue tiles
 - Red tiles
 x Automatically move purchase board when rolling
-- Automatically open purchase board when done rolling
+x Automatically open purchase board when done rolling
+- Print out status messages
 
 Tile abilities:
 - estate overseer, granary master +1 pip each roll
@@ -27,6 +28,7 @@ Gameplay:
 - Force at least one lock before allowing re-roll.
 - game flow
 - multiplayer game
+- randomize initial tiles
 
 Cosmetic stuff:
 - tiles should display their names when on their sides

@@ -21,7 +21,7 @@ public class PurchaseCriteria : MonoBehaviour {
 	{
 //#if UNITY_EDITOR
 		if (GameState.GetCurrentGameState().CheatModeEnabled) {
-			Debug.LogWarning ("Cheat mode allows purchase of any tile!");
+			GameState.Message ("Cheat mode allows purchase of any tile!");
 			return true;
 		}
 //#endif

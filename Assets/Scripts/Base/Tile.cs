@@ -102,11 +102,12 @@ public class Tile : SelectableObject {
 					currentPlayer.Take(this);
 				}
 				else {
-					Debug.Log(mySlot.name + " is out of " + this.name + " so " + currentPlayer.name + " got none!");
+					GameState.Message(mySlot.name + " is out of " + this.name + " so " + currentPlayer.name + " got none!");
 				}
 			}
 			else {
-				Debug.Log(mySlot.name + " is not qualified to buy " + this.name + " because it didn't satisfy " + mySlot.name);
+				string msg = (mySlot.name + " is not qualified to buy " + this.name + " because it didn't satisfy " + mySlot.name);
+				GameState.Message(msg);
 			}
 		}
 	}

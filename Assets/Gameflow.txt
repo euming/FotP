@@ -1,0 +1,9 @@
+State: All Dice in Cup (may roll dice)
+- roll dice
+State: Must lock 1 Die
+State: At least 1 Die is locked (may roll dice)
+State: After purchase Tile
+- New Dice are locked.
+- Click End Turn to confirm
+- Put all dice in cup
+- Next player's turn.

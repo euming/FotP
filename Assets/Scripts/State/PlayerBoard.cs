@@ -9,21 +9,25 @@ public class PlayerBoard : MonoBehaviour {
 	public List<Tile>	tileList;	//	all my tiles
 	public List<PharoahDie>	diceList;	//	all my dice
 	public List<Scarab>		scarabList;		//	all my scarabs
-	public int hasLockedThisTurn = 0;	//	number of dice locked this turn
+	PlayerGameState pgs;
 
 	public void NewGame()
 	{
 		tileList.Clear();
-		hasLockedThisTurn = 0;
+		diceList.Clear();
+		for (int ii=0; ii<3; ++ii) {
+			Die d6 = AddDie(DiceFactory.DieType.Red);
+			d6.transform.parent = this.transform;
+		}
+		HideDice ();
+		this.gameObject.SetActive (false);
 	}
 
 	void Awake() {
+		pgs = GetComponent<PlayerGameState> ();
 	}
 	// Use this for initialization
 	void Start () {
-		foreach(PharoahDie d6 in diceList) {
-			d6.PutDieInCup();
-		}
 	}
 	
 	// Update is called once per frame
@@ -74,7 +78,7 @@ public class PlayerBoard : MonoBehaviour {
 	public bool Take(Tile newTile)
 	{
 		bool bSuccess = true;
-		Debug.Log(this.name + " takes " + newTile.name);
+		GameState.Message(this.name + " takes " + newTile.name);
 		tileList.Add(newTile);
 		newTile.OnAcquire(this);
 		return bSuccess;
@@ -85,7 +89,7 @@ public class PlayerBoard : MonoBehaviour {
 		bool bSuccess = false;
 		if (Has (tile)) {
 			bSuccess = true;
-			Debug.Log(this.name + " drops " + tile.name);
+			GameState.Message(this.name + " drops " + tile.name);
 			tileList.Remove (tile);
 			tile.OnAcquireUndo(this);
 		}
@@ -97,17 +101,48 @@ public class PlayerBoard : MonoBehaviour {
 		diceList.Sort();
 	}
 
-	public void RollDice()
+	public bool PlayerMayRollDice()
 	{
+		bool bMayRoll = false;
+		PlayerGameState pgs = GetComponent<PlayerGameState> ();
+		if (pgs != null) {
+			bMayRoll = pgs.mayRollDice;
+		}
+		return bMayRoll;
+	}
+
+	public PlayerGameState.PlayerGameStates GetPlayerGameState()
+	{
+		PlayerGameState.PlayerGameStates pgse = PlayerGameState.PlayerGameStates.Uninitialized;
+		PlayerGameState pgs = GetComponent<PlayerGameState> ();
+		if (pgs != null) {
+			pgse = pgs.curState;
+		}
+		return pgse;
+	}
+	//	return - were dice rolled or not?
+	public bool RollDice()
+	{
+		if (!PlayerMayRollDice ()) {
+			GameState.Message(this.name + " is in state " + GetPlayerGameState().ToString() + "\nand cannot roll dice yet.");
+			return false;
+		}
+		int ndicerolled = 0;
 		GameState.GetCurrentGameState ().purchaseBoard.SetState (PurchaseBoard.PurchaseBoardState.isTuckedAway);
 		foreach(PharoahDie d6 in diceList) {
 			d6.EndTurn();
 			if (d6.isInActiveArea() || (d6.isInNoArea())) {
 				d6.PutDieInCup();
 				d6.RollDie();
+				ndicerolled++;
 			}
 		}
 		SortDiceList();
+		GameState.Message (this.name + " rolling (" + ndicerolled.ToString() +"/"+diceList.Count.ToString() + ") dice");
+		pgs.SetState (PlayerGameState.PlayerGameStates.DiceHaveBeenRolled);
+		if (ndicerolled > 0)
+			return true;
+		return false;
 	}
 
 	//	put dice that have just been rolled into the active area so that it doesn't touch the purchase board.
@@ -119,11 +154,40 @@ public class PlayerBoard : MonoBehaviour {
 			}
 		}
 	}
+
+	public void LockedDieThisTurn()
+	{
+		pgs.diceLockedThisTurn++;
+	}
+	public void UnlockedDieThisTurn()
+	{
+		pgs.diceLockedThisTurn--;
+	}
+	public void HideDice()
+	{
+		foreach(PharoahDie d6 in diceList) {
+			d6.enabled = false;
+		}
+	}
+	public void StartTurn()
+	{
+		this.gameObject.SetActive (true);
+		GameState.Message (this.name + " Start turn");
+		if (pgs.curState == PlayerGameState.PlayerGameStates.WaitingNextTurn)
+			pgs.SetState (PlayerGameState.PlayerGameStates.InitTurn);
+	}
+
+	public void WaitForLock()
+	{
+		GameState.Message (this.name + " waiting for a locked die");
+		pgs.SetState (PlayerGameState.PlayerGameStates.WaitingForLock);
+	}
 	public void EndTurn()
 	{
 		foreach(PharoahDie d6 in diceList) {
 			d6.PutDieInCup();
 		}
+		this.gameObject.SetActive (false);
 	}
 
 	public void LockWhiteDice()

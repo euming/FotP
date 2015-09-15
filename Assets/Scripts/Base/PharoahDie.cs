@@ -15,15 +15,17 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
 	DieSlot	mySlot;
 	GameObject spawnPoint = null;
 
+	void Awake() {
+		spawnPoint = GameObject.Find("rollingDiceSpawnPoint");
+		if (spawnPoint==null) {
+			Debug.LogError("rollingDiceSpawnPoint not found! Cannot spawn dice.");
+		}
+	}
 
 	// Use this for initialization
 	void Start () {
 		if (this.type == DiceFactory.DieType.White) {
 			isAutoLocking = true;
-		}
-		spawnPoint = GameObject.Find("rollingDiceSpawnPoint");
-		if (spawnPoint==null) {
-			Debug.LogError("rollingDiceSpawnPoint not found! Cannot spawn dice.");
 		}
 		//iTween.Init (this.gameObject);
 	}
@@ -108,10 +110,14 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
 
 		DieSlot ds = gs.GetNextLockedDieSlot();
 		MoveToSlot (ds);
+		GameState.LockedDieThisTurn();
 	}
 
 	public void MoveToUnlockedArea()
 	{
+		if (this.isInLockedArea ()) {
+			GameState.UnlockedDieThisTurn ();
+		}
 		GameState gs = GameState.GetCurrentGameState();
 
 		DieSlot ds = gs.GetNextActiveDieSlot();

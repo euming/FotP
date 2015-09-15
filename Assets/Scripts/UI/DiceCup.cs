@@ -33,6 +33,7 @@ public class DiceCup : MonoBehaviour {
 			s_instance.DeactivateWalls();
 		}
 		GameState.LockWhiteDice ();
+		GameState.WaitForLock ();
 	}
 
 	public void DeactivateWalls()
@@ -46,8 +47,9 @@ public class DiceCup : MonoBehaviour {
 		Debug.Log("DiceCup.OnMouseDown()");
 		GameState gs = GameState.GetCurrentGameState();
 		PlayerBoard currentPlayer = gs.currentPlayer;
-		ActivateWalls ();
-		currentPlayer.RollDice();
+		if (currentPlayer.RollDice ()) {
+			ActivateWalls ();
+		}
 	}
 
 	void OnMouseRightDown() {

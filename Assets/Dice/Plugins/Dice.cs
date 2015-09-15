@@ -328,9 +328,11 @@ public class Dice : MonoBehaviour {
                 {
 					// roll queue is empty so if no dice are rolling we can set the rolling attribute to false
                     if (!IsRolling()) {
-						DetermineRollQueueValues();	//	what were the values of each die after rolling?
-                        rolling = false;
-						DiceCup.StopRolling();
+						rolling = false;
+						if (allDice.Count > 0) {
+							DetermineRollQueueValues();	//	what were the values of each die after rolling?
+							DiceCup.StopRolling();
+						}
 					}
                 }
         }
