@@ -39,13 +39,26 @@ public class Die : MonoBehaviour {
     protected Vector3 localHitNormalized;
 	// hitVector check margin
     protected float validMargin = 0.45F;
+    private int framesOfNotRolling = 0;
 
+    static float rollingTolerance = 0.0001f;
 	// true is die is still rolling
     public bool rolling
     {
         get
         {
-            return !(GetComponent<Rigidbody>().velocity.sqrMagnitude < .1F && GetComponent<Rigidbody>().angularVelocity.sqrMagnitude < .1F);
+            Rigidbody rb = GetComponent<Rigidbody>();
+            bool isRollingNow = (rb.velocity.sqrMagnitude >= rollingTolerance) || (rb.angularVelocity.sqrMagnitude >= rollingTolerance);
+
+            if (!isRollingNow) {
+                framesOfNotRolling++;
+            }
+            else {
+                framesOfNotRolling = 0;
+            }
+            if (framesOfNotRolling >= 30)
+                return false;
+            return true;
         }
     }
 

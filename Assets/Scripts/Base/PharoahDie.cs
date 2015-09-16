@@ -4,149 +4,149 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class PharoahDie : Die_d6, IComparable<PharoahDie> {
-	public bool isTempLocked = false;	//	when we want to lock this at the end of the turn, but have the option to undo it
-	public bool isLocked = false;
-	public bool isAutoLocking = false;	//	this autolocks (white dice are immediate dice)
+    public bool isTempLocked = false;   //	when we want to lock this at the end of the turn, but have the option to undo it
+    public bool isLocked = false;
+    public bool isAutoLocking = false;	//	this autolocks (white dice are immediate dice)
     bool onMoveCompleteUnslot = false;   //  when we're done moving, unslot (this is for moving to dice cup)
-	bool		isUndoable = false;		//	can we undo?
+    bool isUndoable = false;        //	can we undo?
 
-	public DiceFactory.DieType type;
-	public int	setDieValue;	//	if >0, then this die is set when we roll and not rolled from the cup.
+    public DiceFactory.DieType type;
+    public int setDieValue; //	if >0, then this die is set when we roll and not rolled from the cup.
 
-	DieSlot	mySlot;
-	GameObject spawnPoint = null;
+    DieSlot mySlot;
+    GameObject spawnPoint = null;
 
-	void Awake() {
-		spawnPoint = GameObject.Find("rollingDiceSpawnPoint");
-		if (spawnPoint==null) {
-			Debug.LogError("rollingDiceSpawnPoint not found! Cannot spawn dice.");
-		}
-	}
+    void Awake() {
+        spawnPoint = GameObject.Find("rollingDiceSpawnPoint");
+        if (spawnPoint == null) {
+            Debug.LogError("rollingDiceSpawnPoint not found! Cannot spawn dice.");
+        }
+    }
 
-	// Use this for initialization
-	void Start () {
-		if (this.type == DiceFactory.DieType.White) {
-			isAutoLocking = true;
-		}
-		//iTween.Init (this.gameObject);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    // Use this for initialization
+    void Start() {
+        if (this.type == DiceFactory.DieType.White) {
+            isAutoLocking = true;
+        }
+        //iTween.Init (this.gameObject);
+    }
 
-	//	IComparable
-	// Default comparer. Sorts from high to low.
-	public int CompareTo(PharoahDie die)
-	{
-		if (die == null) {
-			return -1;
-		}
-		else {
-			if (this.value == die.value)
-				return 0;
-			else if (this.value < die.value)
-				return 1;
-			else
-				return -1;
-		}
-	}
+    // Update is called once per frame
+    void Update() {
 
-	//	make this die into a set die. done after instantiate
-	public void MakeSetDie(int setDieValue)
-	{
-		this.setDieValue = setDieValue;
-		this.SetDie(setDieValue);
-		this.isTempLocked = true;	//	start temp locked so that we can select it and move it
-		this.MoveToSetDieArea();
-	}
+    }
 
-	public bool isSetDie()
-	{
-		if (setDieValue > 0) return true;
-		return false;
-	}
+    //	IComparable
+    // Default comparer. Sorts from high to low.
+    public int CompareTo(PharoahDie die)
+    {
+        if (die == null) {
+            return -1;
+        }
+        else {
+            if (this.value == die.value)
+                return 0;
+            else if (this.value < die.value)
+                return 1;
+            else
+                return -1;
+        }
+    }
 
-	//	take me out of whatever slot I'm in right now
-	void Unslot()
-	{
-		if (mySlot) {
-			mySlot.removeChild(this.gameObject);
-			mySlot = null;
-		}
-	}
+    //	make this die into a set die. done after instantiate
+    public void MakeSetDie(int setDieValue)
+    {
+        this.setDieValue = setDieValue;
+        this.SetDie(setDieValue);
+        this.isTempLocked = true;   //	start temp locked so that we can select it and move it
+        this.MoveToSetDieArea();
+    }
 
-	//	itween callback stuff
-	void OnMoveStart()
-	{
-		Debug.Log ("iTween started " + this.name);
-		Rigidbody rb = GetComponent<Rigidbody> ();
-		rb.detectCollisions = false;
-		rb.useGravity = false;
-	}
-	void OnMoveComplete()
-	{
+    public bool isSetDie()
+    {
+        if (setDieValue > 0) return true;
+        return false;
+    }
+
+    //	take me out of whatever slot I'm in right now
+    void Unslot()
+    {
+        if (mySlot) {
+            mySlot.removeChild(this.gameObject);
+            mySlot = null;
+        }
+    }
+
+    //	itween callback stuff
+    void OnMoveStart()
+    {
+        Debug.Log("iTween started " + this.name);
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.detectCollisions = false;
+        rb.useGravity = false;
+    }
+    void OnMoveComplete()
+    {
         if (onMoveCompleteUnslot) {
             Unslot();
             this.gameObject.SetActive(false);
             onMoveCompleteUnslot = false;
         }
 
-		Debug.Log ("iTween completed " + this.name);
-		Rigidbody rb = GetComponent<Rigidbody> ();
-		rb.detectCollisions = true;
-		rb.useGravity = true;
-	}
+        Debug.Log("iTween completed " + this.name);
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.detectCollisions = true;
+        rb.useGravity = true;
+    }
 
-	void MoveToSlot(DieSlot ds)
-	{
-		Unslot();
+    void MoveToSlot(DieSlot ds)
+    {
+        Unslot();
         this.onMoveCompleteUnslot = ds.onMoveCompleteUnslot;    //  this die does whatever the dieSlot wants to do
 
-		ds.addChild(this.gameObject);
-		mySlot = ds;
-		
-		//Rigidbody rb = this.GetComponent<Rigidbody>();
-		//rb.detectCollisions = false;
-		//rb.constraints = RigidbodyConstraints.FreezeAll;
-	}
+        ds.addChild(this.gameObject);
+        mySlot = ds;
 
-	//	put this die into the locked area
-	public void MoveToLockedArea()
-	{
-		GameState gs = GameState.GetCurrentGameState();
+        //Rigidbody rb = this.GetComponent<Rigidbody>();
+        //rb.detectCollisions = false;
+        //rb.constraints = RigidbodyConstraints.FreezeAll;
+    }
 
-		DieSlot ds = gs.GetNextLockedDieSlot();
-		MoveToSlot (ds);
-		GameState.LockedDieThisTurn();
-	}
+    //	put this die into the locked area
+    public void MoveToLockedArea()
+    {
+        GameState gs = GameState.GetCurrentGameState();
 
-	public void MoveToUnlockedArea()
-	{
-		if (this.isInLockedArea ()) {
-			GameState.UnlockedDieThisTurn ();
-		}
-		GameState gs = GameState.GetCurrentGameState();
+        DieSlot ds = gs.GetNextLockedDieSlot();
+        MoveToSlot(ds);
+        GameState.LockedDieThisTurn();
+    }
 
-		DieSlot ds = gs.GetNextActiveDieSlot();
-		MoveToSlot(ds);
-	}
+    public void MoveToUnlockedArea()
+    {
+        if (this.isInLockedArea()) {
+            GameState.UnlockedDieThisTurn();
+        }
+        GameState gs = GameState.GetCurrentGameState();
 
-	public void MoveToSetDieArea()
-	{
-		GameState gs = GameState.GetCurrentGameState();
-		
-		DieSlot ds = gs.GetNextSetDieSlot();
-		MoveToSlot (ds);
-	}
+        DieSlot ds = gs.GetNextActiveDieSlot();
+        MoveToSlot(ds);
+    }
+
+    public void MoveToSetDieArea()
+    {
+        GameState gs = GameState.GetCurrentGameState();
+
+        DieSlot ds = gs.GetNextSetDieSlot();
+        MoveToSlot(ds);
+    }
 
     //  scale the die back to normal size. Hide the die.
-	public void MoveToDiceCupArea()
-	{
+    public void MoveToDiceCupArea()
+    {
 
-        DieSlot ds = GameState.GetCurrentGameState ().diceCupSlot;
-		MoveToSlot (ds);
+        DieSlot ds = GameState.GetCurrentGameState().diceCupSlot;
+        MoveToSlot(ds);
         //Unslot();
         //Rigidbody rb = this.GetComponent<Rigidbody>();
         //rb.detectCollisions = false;
@@ -160,6 +160,13 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
         isTempLocked = true;
         this.MoveToDiceCupArea();
         //this.gameObject.SetActive(false);
+    }
+
+    //  after we roll this die, we should lock the rotation.
+    public void LockRotation()
+    {
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.constraints |= RigidbodyConstraints.FreezeRotation;
     }
 
     //  allow this die to be reset for rolling

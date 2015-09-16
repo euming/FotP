@@ -277,11 +277,13 @@ public class Dice : MonoBehaviour {
 	/// <summary>
 	/// Clears all currently rolling dice
 	/// </summary>
-    public static void Clear()
+    public static void Clear(bool bDestroyDice)
 	{
-		for (int d=0; d<allDice.Count; d++)
-			GameObject.Destroy(((RollingDie)allDice[d]).gameObject);
-
+        if (bDestroyDice)
+        {
+            for (int d = 0; d < allDice.Count; d++)
+                GameObject.Destroy(((RollingDie)allDice[d]).gameObject);
+        }
         allDice.Clear();
         rollingDice.Clear();
         rollQueue.Clear();

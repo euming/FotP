@@ -223,10 +223,18 @@ public class PlayerBoard : MonoBehaviour {
 		HideDice ();
 	}
 
+    public void LockDieRotations()
+    {
+        foreach(PharoahDie die in diceList)
+        {
+            die.LockRotation();
+        }
+    }
 	public void WaitForLock()
 	{
 		GameState.Message (this.name + " waiting for a locked die");
 		pgs.SetState (PlayerGameState.PlayerGameStates.WaitingForLock);
+        LockDieRotations();
 	}
 
 	public void WaitForPurchase()

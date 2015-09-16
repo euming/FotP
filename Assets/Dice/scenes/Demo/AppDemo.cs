@@ -236,7 +236,7 @@ public class AppDemo : MonoBehaviour {
         if (Input.GetMouseButtonDown(Dice.MOUSE_LEFT_BUTTON) && !PointInRect(GuiMousePosition(), rectModeSelect))
 		{
             // left mouse button clicked so roll random colored dice 2 of each dieType
-            Dice.Clear();
+            Dice.Clear(true);
 
             Dice.Roll("1d10", "d10-" + randomColor, spawnPoint.transform.position, Force());
             Dice.Roll("1d10", "d10-" + randomColor, spawnPoint.transform.position, Force());
@@ -251,7 +251,7 @@ public class AppDemo : MonoBehaviour {
         if (Input.GetMouseButtonDown(Dice.MOUSE_RIGHT_BUTTON) && !PointInRect(GuiMousePosition(), rectModeSelect))
         {
             // right mouse button clicked so roll 8 dice of dieType 'gallery die'
-            Dice.Clear();
+            Dice.Clear(true);
             string[] a = galleryDie.Split('-');
             Dice.Roll("8" + a[0], galleryDie, spawnPoint.transform.position, Force());
         }

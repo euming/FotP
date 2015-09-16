@@ -78,7 +78,8 @@ public class GameState : MonoBehaviour, IToggleReceiver {
 	static public void EndTurn()
 	{
 		instance.currentPlayer.EndTurn ();
-		instance.currentPlayer = instance.NextPlayer ();
+        Dice.Clear(false);
+        instance.currentPlayer = instance.NextPlayer ();
 		StartTurn ();
 	}
 
