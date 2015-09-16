@@ -88,12 +88,17 @@ public class PlayerBoard : MonoBehaviour {
 	public bool Drop(Tile tile)
 	{
 		bool bSuccess = false;
-		if (Has (tile)) {
-			bSuccess = true;
-			GameState.Message(this.name + " drops " + tile.name);
-			tileList.Remove (tile);
-			tile.OnAcquireUndo(this);
-			UndoState();
+        if (Has(tile)) {
+            if (tile.canUndo) { 
+                bSuccess = true;
+                GameState.Message(this.name + " returns " + tile.name);
+                tileList.Remove(tile);
+                tile.OnAcquireUndo(this);
+                UndoState();
+            }
+            else {
+                GameState.Message(this.name + " already owns " + tile.name + " and cannot buy another.");
+            }
 		}
 		return bSuccess;
 	}
@@ -249,6 +254,9 @@ public class PlayerBoard : MonoBehaviour {
 			d6.EndTurn();
 			d6.transform.parent = this.transform;
 		}
+        foreach(Tile tile in tileList) {
+            tile.canUndo = false;
+        }
 		pgs.SetState (PlayerGameState.PlayerGameStates.WaitingNextTurn);
 	}
 

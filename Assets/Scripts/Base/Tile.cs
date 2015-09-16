@@ -8,6 +8,7 @@ public class Tile : SelectableObject {
 	public BarSlot		mySlot;		//	where I belong before I'm bought. I may have to go back here if the player changes his mind before hitting DONE.
 	public int		shopRow;	//	index of shop row
 	public List<int> shopCol;	//	index of valid shop columns
+    public bool canUndo;        //  if purchased, can we undo this purchase this turn?
 
 	//	figure out which slot I should be in, and put myself there.
 	void AutoAssignToSlot()
@@ -31,7 +32,7 @@ public class Tile : SelectableObject {
 			BarSlot slot = bar.barSlotList[colIdx];
 			if (slot.isEmpty()) {
 				slot.addChild(this.gameObject);
-				break;	//	we're done
+                break;	//	we're done
 			}
 		}
 	}
@@ -39,7 +40,8 @@ public class Tile : SelectableObject {
 
 	// Use this for initialization
 	void Start () {
-		AutoAssignToSlot();
+        canUndo = true;
+        AutoAssignToSlot();
 	}
 	
 	// Update is called once per frame

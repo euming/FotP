@@ -3,10 +3,10 @@ x iTween creates 2 extra components after ending play of editor.
 x White dice are no longer white
 x White dice auto lock without being rolled.
 x White dice scaled improperly after fresh roll. Need slot in DiceCup to reset all the scales and stuff.
-- You can return a tile after purchasing it.
+x You can return a tile after purchasing it.
 - Walls are removed before die finishes settling
-- No physics on first dice throw sometimes.
-- Do not allow newly purchased dice to be put into active die area.
+- No physics on first dice throw sometimes. (When we pull down the purchaseBoard)
+x Do not allow newly purchased dice to be put into active die area.
 
 UI:
 x Purchase board should allow us to buy tiles easily.
