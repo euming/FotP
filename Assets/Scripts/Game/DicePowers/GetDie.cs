@@ -15,7 +15,8 @@ public class GetDie : TileAbility {
 		if (setDieValue > 0) {
 			die.MakeSetDie(setDieValue);
 		}
-		myDie = die;
+        die.PurchasedDie();
+        myDie = die;
 	}
 
 	public override void OnAcquireUndo(PlayerBoard plr)

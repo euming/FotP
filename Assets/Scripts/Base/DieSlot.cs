@@ -37,12 +37,12 @@ public class DieSlot : Slot {
 				//rb.detectCollisions = false;
 				//child.transform.localPosition = Vector3.zero;	//	put the child on top of the parent.
 				iTween.MoveToLocal(child.gameObject, Vector3.zero, animTime);
-				//	break child/parent relationship then reconnect it
-				//GameObject parentGO = child.transform.parent.gameObject;
-				//child.transform.parent = null;
-				//iTween.MoveTo (child.gameObject, this.transform.position, 3.0f);
-			}
-			else {
+                //	break child/parent relationship then reconnect it
+                //GameObject parentGO = child.transform.parent.gameObject;
+                //child.transform.parent = null;
+                //iTween.MoveTo (child.gameObject, this.transform.position, 3.0f);
+            }
+            else {
 				child.transform.localPosition = Vector3.zero;	//	put the child on top of the parent.
 			}
 		}

@@ -8,6 +8,7 @@ public class Slot : Container {
 	public bool scaleChild = false;	//	whether to scale the child according to the slot or not
 	public bool orientChild = false;	//	whether to orient the child according to the slot or not
 	public bool moveSlotToChild = false;	//	move the slot to the child.
+    public bool onMoveCompleteUnslot = false;   //  when done moving, immediately unslot and hide this (for moving to dice cup)
 	public bool animateMove = true;
 	public float animTime = 0.8f;
 

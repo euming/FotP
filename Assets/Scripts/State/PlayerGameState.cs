@@ -5,69 +5,78 @@ using System.Collections;
  */
 public class PlayerGameState : MonoBehaviour {
 
-	public enum PlayerGameStates {
-		Uninitialized = -1,
-		InitTurn,			//	initialization stuff at start of turn
+    public enum PlayerGameStates {
+        Uninitialized = -1,
+        InitTurn,           //	initialization stuff at start of turn
 
-		//	loop
-		ReadyToRollDice,	//	waiting for player to roll the dice
-		DiceHaveBeenRolled,	//	dice have been rolled. Player may choose some actions
-		WaitingForLock,		//	waiting for player to lock at least one die
+        //	loop
+        ReadyToRollDice,    //	waiting for player to roll the dice
+        DiceHaveBeenRolled, //	dice have been rolled. Player may choose some actions
+        WaitingForLock,     //	waiting for player to lock at least one die
 
-		//	end loop
-		WaitingForPurchaseTile,	//	player may choose a tile to purchase
-		TilePurchaseChosen,		//	player has chosen a tile to purchase. Waiting for final confirmation
-		EndTurn,			//	my turn is officially done. 
-		WaitingNextTurn,	//	waiting for another player's turn to be done so I can go
-	};
+        //	end loop
+        WaitingForPurchaseTile, //	player may choose a tile to purchase
+        TilePurchaseChosen,     //	player has chosen a tile to purchase. Waiting for final confirmation
+        EndTurn,            //	my turn is officially done. 
+        WaitingNextTurn,    //	waiting for another player's turn to be done so I can go
+    };
 
-	public PlayerGameStates curState;
-	public bool				isInitialRoll = true;
-	public bool				mayRollDice = false;
-	public int				diceLockedThisTurn;
-	int						lastDiceLockedThisTurn;
+    public PlayerGameStates lastState;          //  for undoing
+    public PlayerGameStates curState;
+    public bool isInitialRoll = true;
+    public bool mayRollDice = false;
+    public int diceLockedThisTurn;
+    int lastDiceLockedThisTurn;
 
-	void Awake() {
-		curState = PlayerGameStates.WaitingNextTurn;
-		mayRollDice = false;
-		diceLockedThisTurn = 0;
-	}
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (curState == PlayerGameStates.WaitingForLock) {
-			if (diceLockedThisTurn > 0) {
-				mayRollDice = true;
-			} else {
-				mayRollDice = false;
-			}
-			if (lastDiceLockedThisTurn != diceLockedThisTurn) {
-				if (diceLockedThisTurn > 0) {
-					GameState.Message(this.name + " has " + diceLockedThisTurn.ToString() + " locked dice and may roll dice.");
-				}
-				else {
-					GameState.Message(this.name + " has " + diceLockedThisTurn.ToString() + " locked dice and must lock a die.");
-				}
-				lastDiceLockedThisTurn = diceLockedThisTurn;
-			}
-		}
-	}
+    void Awake() {
+        curState = PlayerGameStates.WaitingNextTurn;
+        mayRollDice = false;
+        diceLockedThisTurn = 0;
+    }
+    // Use this for initialization
+    void Start() {
 
-	public void InitTurn()
-	{
-		diceLockedThisTurn = 0;
-		mayRollDice = true;
-		isInitialRoll = true;
-	}
+    }
+
+    // Update is called once per frame
+    void Update() {
+        if (curState == PlayerGameStates.WaitingForLock) {
+            if (diceLockedThisTurn > 0) {
+                mayRollDice = true;
+            } else {
+                mayRollDice = false;
+            }
+            if (lastDiceLockedThisTurn != diceLockedThisTurn) {
+                if (diceLockedThisTurn > 0) {
+                    GameState.Message(this.name + " has " + diceLockedThisTurn.ToString() + " locked dice and may roll dice.");
+                }
+                else {
+                    GameState.Message(this.name + " has " + diceLockedThisTurn.ToString() + " locked dice and must lock a die.");
+                }
+                lastDiceLockedThisTurn = diceLockedThisTurn;
+            }
+        }
+    }
+
+    public void InitTurn()
+    {
+        diceLockedThisTurn = 0;
+        mayRollDice = true;
+        isInitialRoll = true;
+    }
+
+    //  go back to the previous state
+    public PlayerGameStates UndoState()
+    {
+        SetState(lastState);
+        return curState;
+    }
 
 	//	set some stuff up when we enter these states
 	public void SetState(PlayerGameStates newState)
 	{
-		curState = newState;
+        lastState = curState;
+        curState = newState;
 		switch (curState) {
 		case PlayerGameStates.InitTurn:
 			InitTurn();

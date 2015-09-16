@@ -53,7 +53,7 @@ public class PlayerBoard : MonoBehaviour {
 	{
 		PharoahDie die = GameState.GetCurrentGameState().diceFactory.NewDie(dieType);
 		diceList.Add(die);
-		die.PutDieInCup();
+		die.ReadyToRoll();
 		return die;
 	}
 
@@ -61,7 +61,7 @@ public class PlayerBoard : MonoBehaviour {
 	//	dice stuff
 	public void DestroyDie(PharoahDie die)
 	{
-		die.PutDieInCup();
+		die.ReadyToRoll();
 		diceList.Remove(die);
 		Destroy (die.gameObject);
 	}
@@ -93,7 +93,7 @@ public class PlayerBoard : MonoBehaviour {
 			GameState.Message(this.name + " drops " + tile.name);
 			tileList.Remove (tile);
 			tile.OnAcquireUndo(this);
-			WaitForPurchase();
+			UndoState();
 		}
 		return bSuccess;
 	}
@@ -159,7 +159,7 @@ public class PlayerBoard : MonoBehaviour {
 		foreach(PharoahDie d6 in diceList) {
 			//d6.EndTurn();
 			if (d6.isInActiveArea() || (d6.isInNoArea())) {
-				d6.PutDieInCup();
+				d6.ReadyToRoll();
 				if (pgs.isInitialRoll && d6.isSetDie()) {
 					d6.MakeSetDie(d6.setDieValue);
 				}
@@ -229,7 +229,13 @@ public class PlayerBoard : MonoBehaviour {
 		GameState.Message (this.name + " waiting to choose a tile");
 		pgs.SetState (PlayerGameState.PlayerGameStates.WaitingForPurchaseTile);
 	}
-	public void TilePurchaseChosen()
+    public void UndoState()
+    {
+        PlayerGameState.PlayerGameStates newState = pgs.UndoState();
+        GameState.Message(this.name + " Undo previous state. New State is " + newState.ToString());
+    }
+
+    public void TilePurchaseChosen()
 	{
 		GameState.Message (this.name + " tile chosen. Click dice cup to end turn.");
 		pgs.SetState (PlayerGameState.PlayerGameStates.TilePurchaseChosen);
@@ -239,7 +245,7 @@ public class PlayerBoard : MonoBehaviour {
 		GameState.Message (this.name + " turn has ended");
 		this.gameObject.SetActive (false);
 		foreach(PharoahDie d6 in diceList) {
-			d6.PutDieInCup();
+			d6.ReadyToRoll();
 			d6.EndTurn();
 			d6.transform.parent = this.transform;
 		}

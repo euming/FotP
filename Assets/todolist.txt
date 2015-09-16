@@ -4,6 +4,9 @@ x White dice are no longer white
 x White dice auto lock without being rolled.
 x White dice scaled improperly after fresh roll. Need slot in DiceCup to reset all the scales and stuff.
 - You can return a tile after purchasing it.
+- Walls are removed before die finishes settling
+- No physics on first dice throw sometimes.
+- Do not allow newly purchased dice to be put into active die area.
 
 UI:
 x Purchase board should allow us to buy tiles easily.
@@ -12,7 +15,8 @@ x Purchase board should allow us to buy tiles easily.
 - Red tiles
 x Automatically move purchase board when rolling
 x Automatically open purchase board when done rolling
-- Print out status messages
+x Print out status messages
+- Automatically close other tiles if opening one.
 
 Tile abilities:
 - estate overseer, granary master +1 pip each roll
@@ -26,10 +30,12 @@ x d6_orange is not orange
   - orange, yellow, blue, green, black, purple
   
 Gameplay:
-- Force at least one lock before allowing re-roll.
-- game flow
-- multiplayer game
+x Force at least one lock before allowing re-roll.
+x game flow
+x multiplayer game
 - randomize initial tiles
+- Declare winner
+
 
 Cosmetic stuff:
 - tiles should display their names when on their sides
@@ -40,4 +46,6 @@ x Allow dice rolling physics
   x Have to figure out their weird physics system or make up a new one.
   x figure what number is showing after dice land
   x rotate the dice around the up axis so that it is lined up neatly.
+- Add sounds
+
   

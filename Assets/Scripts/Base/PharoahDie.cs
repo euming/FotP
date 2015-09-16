@@ -7,6 +7,7 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
 	public bool isTempLocked = false;	//	when we want to lock this at the end of the turn, but have the option to undo it
 	public bool isLocked = false;
 	public bool isAutoLocking = false;	//	this autolocks (white dice are immediate dice)
+    bool onMoveCompleteUnslot = false;   //  when we're done moving, unslot (this is for moving to dice cup)
 	bool		isUndoable = false;		//	can we undo?
 
 	public DiceFactory.DieType type;
@@ -86,6 +87,12 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
 	}
 	void OnMoveComplete()
 	{
+        if (onMoveCompleteUnslot) {
+            Unslot();
+            this.gameObject.SetActive(false);
+            onMoveCompleteUnslot = false;
+        }
+
 		Debug.Log ("iTween completed " + this.name);
 		Rigidbody rb = GetComponent<Rigidbody> ();
 		rb.detectCollisions = true;
@@ -95,6 +102,8 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
 	void MoveToSlot(DieSlot ds)
 	{
 		Unslot();
+        this.onMoveCompleteUnslot = ds.onMoveCompleteUnslot;    //  this die does whatever the dieSlot wants to do
+
 		ds.addChild(this.gameObject);
 		mySlot = ds;
 		
@@ -132,21 +141,43 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
 		MoveToSlot (ds);
 	}
 
+    //  scale the die back to normal size. Hide the die.
 	public void MoveToDiceCupArea()
 	{
-		DieSlot ds = GameState.GetCurrentGameState ().diceCupSlot;
-		MoveToSlot (ds);
-		Unslot ();
-		Rigidbody rb = this.GetComponent<Rigidbody>();
-		//rb.detectCollisions = false;
 
-	}
-	public void PutDieInCup()
+        DieSlot ds = GameState.GetCurrentGameState ().diceCupSlot;
+		MoveToSlot (ds);
+        //Unslot();
+        //Rigidbody rb = this.GetComponent<Rigidbody>();
+        //rb.detectCollisions = false;
+
+    }
+
+    //  this is a die we just purchased. We can't do anything with it.
+    public void PurchasedDie()
+    {
+        isLocked = true;
+        isTempLocked = true;
+        this.MoveToDiceCupArea();
+        //this.gameObject.SetActive(false);
+    }
+
+    //  allow this die to be reset for rolling
+    public void ReadyToRoll()
+    {
+        onMoveCompleteUnslot = false;
+        isLocked = false;
+        isTempLocked = false;
+        Unslot();
+        //  reset scale
+        this.transform.localScale = Vector3.one;
+    }
+
+    //  move this die to the cup area
+    public void PutDieInCup()
 	{
-		isLocked = false;
-		isTempLocked = false;
-		Unslot();
-		MoveToDiceCupArea ();
+        ReadyToRoll();
+        MoveToDiceCupArea ();
 		//MoveToUnlockedArea();
 	}
 
