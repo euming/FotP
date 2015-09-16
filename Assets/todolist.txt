@@ -4,9 +4,12 @@ x White dice are no longer white
 x White dice auto lock without being rolled.
 x White dice scaled improperly after fresh roll. Need slot in DiceCup to reset all the scales and stuff.
 x You can return a tile after purchasing it.
-- Walls are removed before die finishes settling
+x Walls are removed before die finishes settling
 - No physics on first dice throw sometimes. (When we pull down the purchaseBoard)
 x Do not allow newly purchased dice to be put into active die area.
+- Don't allow player to click the dice before the dice have stopped rolling.
+  x Don't allow dice purchase before rolling.
+- Should have a number of tiles appropriate to the number of players
 
 UI:
 x Purchase board should allow us to buy tiles easily.
@@ -17,6 +20,7 @@ x Automatically move purchase board when rolling
 x Automatically open purchase board when done rolling
 x Print out status messages
 - Automatically close other tiles if opening one.
+- hover for tooltip on tiles
 
 Tile abilities:
 - estate overseer, granary master +1 pip each roll
@@ -33,6 +37,7 @@ Gameplay:
 x Force at least one lock before allowing re-roll.
 x game flow
 x multiplayer game
+- implement herder tile
 - randomize initial tiles
 - Declare winner
 

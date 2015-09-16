@@ -159,6 +159,8 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
         isLocked = true;
         isTempLocked = true;
         this.MoveToDiceCupArea();
+        CannotSelect();
+
         //this.gameObject.SetActive(false);
     }
 
@@ -178,6 +180,7 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
         Unslot();
         //  reset scale
         this.transform.localScale = Vector3.one;
+        CannotSelect();
     }
 
     //  move this die to the cup area
@@ -200,10 +203,21 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
 		return Vector3.Lerp(spawnPoint.transform.position, rollTarget, 1).normalized * (-35 - UnityEngine.Random.value * 20);
 	}
 
+    public void CannotSelect()
+    {
+        this.gameObject.layer = 2;  //  ignore raycast
+    }
+
+    public void CanSelect()
+    {
+        this.gameObject.layer = 8;  //  back to dice layer
+    }
+
 	public void RollDiePhysics()
 	{
 		Unslot ();
 		Unfreeze ();
+        CannotSelect();
 		//Dice.Roll("1d6", "d6-red", spawnPoint.transform.position, Force());
 		Dice.RollDie (this, spawnPoint.transform.position, Force ());
 	}

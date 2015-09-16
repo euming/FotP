@@ -99,9 +99,11 @@ public class Tile : SelectableObject {
 			else
 				Debug.LogError("No Slot found for Tile " + this.name);
 			if (bQualifiedToPurchase) {
-				bool bGotOne = mySlot.TakeOne();
+				bool bGotOne = mySlot.HasOne();
 				if (bGotOne) {
-					currentPlayer.Take(this);
+					bool bSuccessfulTake = currentPlayer.Take(this);
+                    if (bSuccessfulTake)
+                        mySlot.TakeOne();
 				}
 				else {
 					GameState.Message(mySlot.name + " is out of " + this.name + " so " + currentPlayer.name + " got none!");

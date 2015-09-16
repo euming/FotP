@@ -49,6 +49,11 @@ public class BarSlot : Slot {
 		childTile.mySlot = null;
 	}
 
+    public bool HasOne()
+    {
+        if (nTiles > 0) return true;
+        return false;
+    }
 	public bool TakeOne()
 	{
 		bool bSuccess = false;

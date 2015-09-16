@@ -25,6 +25,7 @@ public class PlayerGameState : MonoBehaviour {
     public PlayerGameStates curState;
     public bool isInitialRoll = true;
     public bool mayRollDice = false;
+    public bool mayPurchaseTile = false;
     public int diceLockedThisTurn;
     int lastDiceLockedThisTurn;
 
@@ -63,6 +64,7 @@ public class PlayerGameState : MonoBehaviour {
         diceLockedThisTurn = 0;
         mayRollDice = true;
         isInitialRoll = true;
+        mayPurchaseTile = false;
     }
 
     //  go back to the previous state
@@ -84,25 +86,29 @@ public class PlayerGameState : MonoBehaviour {
 			break;
 		case PlayerGameStates.ReadyToRollDice:
 			mayRollDice = true;
-			break;
+            mayPurchaseTile = false;
+            break;
 		case PlayerGameStates.DiceHaveBeenRolled:
 			mayRollDice = false;
 			isInitialRoll = false;
-			break;
+            break;
 		case PlayerGameStates.WaitingForLock:
 			diceLockedThisTurn = 0;
 			lastDiceLockedThisTurn = 0;
 			mayRollDice = false;
-			break;
+            mayPurchaseTile = true;
+            break;
 		case PlayerGameStates.WaitingForPurchaseTile:
 			mayRollDice = false;
-			break;
+            break;
 		case PlayerGameStates.TilePurchaseChosen:
 			mayRollDice = false;
-			break;
+            mayPurchaseTile = false;
+            break;
 		case PlayerGameStates.WaitingNextTurn:
 			mayRollDice = false;
-			break;
+            mayPurchaseTile = false;
+            break;
 		}
 	}
 

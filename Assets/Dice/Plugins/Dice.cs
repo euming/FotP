@@ -306,7 +306,8 @@ public class Dice : MonoBehaviour {
         {
 			// there are dice rolling so increment rolling time
             rollTime += Time.deltaTime;
-			// check rollTime against rollSpeed to determine if a die should be activated ( if one available in the rolling  queue )
+            // check rollTime against rollSpeed to determine if a die should be activated ( if one available in the rolling  queue )
+            DetermineRollQueueValues();	//	what were the values of each die after rolling?
             if (rollQueue.Count > 0 && rollTime > rollSpeed)
             {
 				// get die from rolling queue
@@ -332,7 +333,6 @@ public class Dice : MonoBehaviour {
                     if (!IsRolling()) {
 						rolling = false;
 						if (allDice.Count > 0) {
-							DetermineRollQueueValues();	//	what were the values of each die after rolling?
 							DiceCup.StopRolling();
 						}
 					}

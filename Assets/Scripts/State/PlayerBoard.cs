@@ -75,13 +75,20 @@ public class PlayerBoard : MonoBehaviour {
 		return false;
 	}
 
-	public bool Take(Tile newTile)
-	{
-		bool bSuccess = true;
-		GameState.Message(this.name + " takes " + newTile.name);
-		tileList.Add(newTile);
-		newTile.OnAcquire(this);
-		TilePurchaseChosen ();
+    public bool Take(Tile newTile)
+    {
+        bool bSuccess = false;
+        if (this.pgs.mayPurchaseTile) {
+            GameState.Message(this.name + " takes " + newTile.name);
+            tileList.Add(newTile);
+            newTile.OnAcquire(this);
+            TilePurchaseChosen();
+            bSuccess = true;
+        }
+        else
+        {
+            GameState.Message(this.name + " may not take " + newTile.name);
+        }
 		return bSuccess;
 	}
 
@@ -230,11 +237,21 @@ public class PlayerBoard : MonoBehaviour {
             die.LockRotation();
         }
     }
-	public void WaitForLock()
+
+    public void AllowDieSelect()
+    {
+        foreach (PharoahDie die in diceList)
+        {
+            die.CanSelect();
+        }
+    }
+
+    public void WaitForLock()
 	{
 		GameState.Message (this.name + " waiting for a locked die");
 		pgs.SetState (PlayerGameState.PlayerGameStates.WaitingForLock);
         LockDieRotations();
+        AllowDieSelect();
 	}
 
 	public void WaitForPurchase()
