@@ -7,7 +7,7 @@ x You can return a tile after purchasing it.
 x Walls are removed before die finishes settling
 - No physics on first dice throw sometimes. (When we pull down the purchaseBoard)
 x Do not allow newly purchased dice to be put into active die area.
-- Don't allow player to click the dice before the dice have stopped rolling.
+x Don't allow player to click the dice before the dice have stopped rolling.
   x Don't allow dice purchase before rolling.
 - Should have a number of tiles appropriate to the number of players
 
@@ -21,6 +21,7 @@ x Automatically open purchase board when done rolling
 x Print out status messages
 - Automatically close other tiles if opening one.
 - hover for tooltip on tiles
+- Other players
 
 Tile abilities:
 - estate overseer, granary master +1 pip each roll
@@ -52,5 +53,7 @@ x Allow dice rolling physics
   x figure what number is showing after dice land
   x rotate the dice around the up axis so that it is lined up neatly.
 - Add sounds
+- highlight tiles that can be purchased.
+- translucent empty stacks
 
   
