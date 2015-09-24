@@ -19,7 +19,15 @@ public class PlayerGameState : MonoBehaviour {
         TilePurchaseChosen,     //	player has chosen a tile to purchase. Waiting for final confirmation
         EndTurn,            //	my turn is officially done. 
         WaitingNextTurn,    //	waiting for another player's turn to be done so I can go
+
+        //  outside of game loop states
+        WaitingToSelectDie, //  if some tile/scarab ability requires me to select a die, I will be in this state
     };
+
+    //  delegate is a C# safe function pointer.
+    public delegate void delOnDieSelect(PharoahDie die);
+    //  do something when a die is selected. We don't know what. That is for the ability to decide.
+    public delOnDieSelect OnDieSelect;
 
     public PlayerGameStates lastState;          //  for undoing
     public PlayerGameStates curState;
@@ -118,4 +126,10 @@ public class PlayerGameState : MonoBehaviour {
 			return;
 		SetState (PlayerGameStates.InitTurn);
 	}
+
+    //  selecting a die
+    public void ChooseDie(PharoahDie die)
+    {
+        OnDieSelect(die);
+    }
 }

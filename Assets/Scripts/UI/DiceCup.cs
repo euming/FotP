@@ -25,9 +25,16 @@ public class DiceCup : MonoBehaviour {
 			wall.enabled = true;
 		}
 	}
+    public static void StartRolling()
+    {
+        if (s_instance)
+        {
+            s_instance.ActivateWalls();
+        }
 
-	//	when the dice have stopped rolling, this is called.
-	public static void StopRolling()
+    }
+    //	when the dice have stopped rolling, this is called.
+    public static void StopRolling()
 	{
 		if (s_instance) {
 			s_instance.DeactivateWalls();
@@ -48,7 +55,7 @@ public class DiceCup : MonoBehaviour {
 		GameState gs = GameState.GetCurrentGameState();
 		PlayerBoard currentPlayer = gs.currentPlayer;
 		if (currentPlayer.RollDice ()) {
-			ActivateWalls ();
+			StartRolling();
 		}
 	}
 

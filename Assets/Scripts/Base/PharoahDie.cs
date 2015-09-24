@@ -296,8 +296,15 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
 		}
 	}
 
-	//	tap to hide/unhide
-	void OnMouseDown() {
+    //	tap to hide/unhide
+    void OnMouseDown() {
+        //  player wants to select a die now.
+        if (GameState.GetCurrentGameState().currentPlayer.isSelectingDie())
+        {
+            GameState.GetCurrentGameState().currentPlayer.ChooseDie(this);
+            return; //  early bail because this state is unique! bad programming practice. :-(
+        }
+        //  this is in the game play state
 		if (isInLockedArea()) {
 			UnlockDie();
 		}

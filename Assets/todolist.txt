@@ -1,3 +1,6 @@
+High Priority
+- Make a list of the texture sheets that I need.
+
 Bugs:
 x iTween creates 2 extra components after ending play of editor.
 x White dice are no longer white
@@ -9,19 +12,22 @@ x Walls are removed before die finishes settling
 x Do not allow newly purchased dice to be put into active die area.
 x Don't allow player to click the dice before the dice have stopped rolling.
   x Don't allow dice purchase before rolling.
-- Should have a number of tiles appropriate to the number of players
+x Should have a number of tiles appropriate to the number of players
 
 UI:
 x Purchase board should allow us to buy tiles easily.
   x Place tiles in slots correctly oriented.
-- Blue tiles
-- Red tiles
+x Blue tiles
+x Red tiles
 x Automatically move purchase board when rolling
 x Automatically open purchase board when done rolling
 x Print out status messages
+- Show scarabs. Allow scarab use
 - Automatically close other tiles if opening one.
 - hover for tooltip on tiles
 - Other players
+- Herder tile
+- Open PurchaseBoard to highest row that may be purchased.
 
 Tile abilities:
 - estate overseer, granary master +1 pip each roll
@@ -41,7 +47,8 @@ x multiplayer game
 - implement herder tile
 - randomize initial tiles
 - Declare winner
-
+x Add scarabs. Scarab factory.
+- Allow scarab use
 
 Cosmetic stuff:
 - tiles should display their names when on their sides

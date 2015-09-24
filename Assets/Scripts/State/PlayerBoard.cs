@@ -9,7 +9,11 @@ public class PlayerBoard : MonoBehaviour {
 	public List<Tile>	tileList;	//	all my tiles
 	public List<PharoahDie>	diceList;	//	all my dice
 	public List<Scarab>		scarabList;		//	all my scarabs
-	PlayerGameState pgs;
+
+    Scarab curScarabInUse;          //  while we're using the scarab, keep it separate from the others
+    PlayerGameState pgs;
+
+    
 
 	public void NewGame()
 	{
@@ -38,8 +42,11 @@ public class PlayerBoard : MonoBehaviour {
 	//	scarab stuff
 	public Scarab AddScarab(Scarab.ScarabType scarabType)
 	{
-		Scarab bug = GameState.GetCurrentGameState().scarabPrefab;
+        GameObject bugGO = GameObject.Instantiate(GameState.GetCurrentGameState().scarabPrefab.gameObject);
+        Scarab bug = bugGO.GetComponent<Scarab>();
+        bug.SetType(scarabType);
 		scarabList.Add(bug);
+        bugGO.transform.parent = this.transform;    //  put this under the player board hierarchy.
 		return bug;
 	}
 	public void DestroyScarab(Scarab scarab)
@@ -48,8 +55,48 @@ public class PlayerBoard : MonoBehaviour {
 		Destroy (scarab.gameObject);
 	}
 
-	//	add a new die to myself
-	public PharoahDie AddDie(DiceFactory.DieType dieType)
+    public bool hasScarab(Scarab.ScarabType type)
+    {
+        bool hasIt = false;
+        foreach (Scarab sc in scarabList) {
+            if (sc.type == type)
+            {
+                hasIt = true;
+                break;
+            }
+        }
+            return hasIt;
+    }
+    public Scarab PopScarab(Scarab.ScarabType type)
+    {
+        Scarab hasIt = null;
+        foreach (Scarab sc in scarabList)
+        {
+            if (sc.type == type)
+            {
+                hasIt = sc;
+                break;
+            }
+        }
+        if (hasIt != null)
+            scarabList.Remove(hasIt);
+        return hasIt;
+    }
+    public bool UseScarab(Scarab.ScarabType type)
+    {
+        bool bSuccess = false;
+        bool bHasScarab = hasScarab(type);
+        if (bHasScarab) {
+            curScarabInUse = PopScarab(type);
+            this.AskToChooseDie(curScarabInUse.onDieSelect, type.ToString());
+        }
+
+        return bSuccess;
+    }
+    //  =============================================================================
+
+    //	add a new die to myself
+    public PharoahDie AddDie(DiceFactory.DieType dieType)
 	{
 		PharoahDie die = GameState.GetCurrentGameState().diceFactory.NewDie(dieType);
 		diceList.Add(die);
@@ -118,17 +165,44 @@ public class PlayerBoard : MonoBehaviour {
 	public bool PlayerMayRollDice()
 	{
 		bool bMayRoll = false;
-		PlayerGameState pgs = GetComponent<PlayerGameState> ();
+		//PlayerGameState pgs = GetComponent<PlayerGameState> ();
 		if (pgs != null) {
 			bMayRoll = pgs.mayRollDice;
 		}
 		return bMayRoll;
 	}
 
-	public PlayerGameState.PlayerGameStates GetPlayerGameState()
+    //  special select die state
+    public bool isSelectingDie()
+    {
+        bool bIs = false;
+        if (GetPlayerGameState() == PlayerGameState.PlayerGameStates.WaitingToSelectDie)
+        {
+            bIs = true;
+        }
+        return bIs;
+    }
+
+    //  the UI is asking the player to choose a die for some reason
+    public void AskToChooseDie(PlayerGameState.delOnDieSelect del, string reason)
+    {
+        GameState.Message(this.name + " please choose a die for " + reason);
+        pgs.SetState(PlayerGameState.PlayerGameStates.WaitingToSelectDie);
+        pgs.OnDieSelect = del;  //  set the delegate
+    }
+    //  player has chosen a die
+    public void ChooseDie(PharoahDie die)
+    {
+        pgs.UndoState();    //  go back to previous state before WaitingToSelectDie
+        pgs.ChooseDie(die);
+        //  tbd: activate callback
+    }
+
+    //  player state stuff
+    public PlayerGameState.PlayerGameStates GetPlayerGameState()
 	{
 		PlayerGameState.PlayerGameStates pgse = PlayerGameState.PlayerGameStates.Uninitialized;
-		PlayerGameState pgs = GetComponent<PlayerGameState> ();
+		//PlayerGameState pgs = GetComponent<PlayerGameState> ();
 		if (pgs != null) {
 			pgse = pgs.curState;
 		}

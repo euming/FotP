@@ -10,7 +10,10 @@ public class BarSlot : Slot {
 
 	public void NewGame()
 	{
-		nTiles = 1;	//	tbd
+		if (nTiles <= 0)
+        {
+            nTiles += GameState.GetCurrentGameState().allPlayers.Count;
+        }
 
 		//	tbd: roll a number and add the correct tile
 		Tile	childTile;
@@ -61,13 +64,18 @@ public class BarSlot : Slot {
 			bSuccess = true;
 			nTiles--;
 		}
+        if (nTiles==0)
+        {
+            this.myChild.GetComponent<Renderer>().enabled = false;
+        }
 		return bSuccess;
 	}
 
 	public void ReturnOne()
 	{
 		nTiles++;
-	}
+        this.myChild.GetComponent<Renderer>().enabled = true;
+    }
 
 	//	if the locked dice have the proper dice to purchase this, then return true. return false otherwise.
 	public bool isQualified()

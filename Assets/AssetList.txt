@@ -1,0 +1,7 @@
+Small Die Icon (for UI to show how many dice each player has)
+Pharaoh Icon (to show who currently is winning in the roll-off stage)
+Question Mark icon (for additional help info)
+Scarab Token Back
+Scarab Token Front - Pip
+Scarab Token Front - Reroll
+
