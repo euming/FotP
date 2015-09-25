@@ -11,6 +11,7 @@ public class Scarab : SelectableObject {
 	static public Scarab			prefabScarab = GameState.GetCurrentGameState().scarabPrefab;
 	public ScarabType 		type;
     public PlayerGameState.delOnDieSelect onDieSelect;
+    public bool isConsumed = false; //  if we've used this scarab. This lets our owner know when this object has been used up.
 
     static public Scarab NewScarab(ScarabType type)
 	{
@@ -22,6 +23,12 @@ public class Scarab : SelectableObject {
     public void AddPip(PharoahDie die)
     {
         GameState.Message("Adding Pip to " + die.name);
+        int val = die.value;
+        val++;
+        if (val >= 6)
+            val = 6;
+        die.SetDie(val);
+        isConsumed = true;
     }
 
     public void Reroll(PharoahDie die)
@@ -30,6 +37,7 @@ public class Scarab : SelectableObject {
         DiceCup.StartRolling();
         die.ReadyToRoll();
         die.RollDie();
+        isConsumed = true;
     }
 
     public void SetType(ScarabType newType)

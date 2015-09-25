@@ -88,6 +88,7 @@ public class PlayerBoard : MonoBehaviour {
         bool bHasScarab = hasScarab(type);
         if (bHasScarab) {
             curScarabInUse = PopScarab(type);
+            //  this will wait until the player has selected a die, and then perform the scarab's delegate function on that die.
             this.AskToChooseDie(curScarabInUse.onDieSelect, type.ToString());
         }
 
@@ -195,7 +196,11 @@ public class PlayerBoard : MonoBehaviour {
     {
         pgs.UndoState();    //  go back to previous state before WaitingToSelectDie
         pgs.ChooseDie(die);
-        //  tbd: activate callback
+        if (this.curScarabInUse.isConsumed)
+        {
+            Destroy(this.curScarabInUse.gameObject);
+            this.curScarabInUse = null;
+        }
     }
 
     //  player state stuff

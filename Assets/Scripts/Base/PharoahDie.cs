@@ -298,23 +298,28 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
 
     //	tap to hide/unhide
     void OnMouseDown() {
-        //  player wants to select a die now.
+        //  Game has determined that player needs to select a die now.
         if (GameState.GetCurrentGameState().currentPlayer.isSelectingDie())
         {
             GameState.GetCurrentGameState().currentPlayer.ChooseDie(this);
-            return; //  early bail because this state is unique! bad programming practice. :-(
         }
-        //  this is in the game play state
-		if (isInLockedArea()) {
-			UnlockDie();
-		}
-		else if (isInSetDiceArea()) {	//	move to active area
-			MoveToUnlockedArea();
-			isUndoable = true;	//	if we started here, we can undo and come back here.
-		}
-		else {	//	active area
-			LockDie();
-		}
+        else  //  normal game state stuff
+        {
+            //  this is in the game play state
+            if (isInLockedArea())
+            {
+                UnlockDie();
+            }
+            else if (isInSetDiceArea())
+            {   //	move to active area
+                MoveToUnlockedArea();
+                isUndoable = true;  //	if we started here, we can undo and come back here.
+            }
+            else
+            {   //	active area
+                LockDie();
+            }
+        }
 	}
 
 	virtual public void OnRightClick(PlayerBoard currentPlayer) {

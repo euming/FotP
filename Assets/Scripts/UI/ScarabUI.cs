@@ -16,16 +16,25 @@ public class ScarabUI : MonoBehaviour {
     public Scarab.ScarabType    type;
     public ScarabUIState        scuiState;
     public PharoahDie           selectedDie;
+    public UnityEngine.UI.Button    buttonCancel;
+    public UnityEngine.UI.Button    buttonDone;
 
     // Use this for initialization
     void Start () {
         SetState(ScarabUIState.ready);
-	}
+        EnableButtons(false);
+    }
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
+
+    void EnableButtons(bool bEnable)
+    {
+        buttonCancel.gameObject.SetActive(bEnable);
+        buttonDone.gameObject.SetActive(bEnable);
+    }
 
     bool SetState(ScarabUIState newState)
     {
@@ -69,8 +78,7 @@ public class ScarabUI : MonoBehaviour {
         PlayerBoard currentPlayer = gs.currentPlayer;
         if (GameState.GetCurrentGameState().CheatModeEnabled)
         {
-            currentPlayer.AddScarab(Scarab.ScarabType.AddPip);
-            currentPlayer.AddScarab(Scarab.ScarabType.Reroll);
+            currentPlayer.AddScarab(type);
         }
         switch (scuiState)
         {
@@ -83,16 +91,16 @@ public class ScarabUI : MonoBehaviour {
                 }
                 else
                 {
-                    GameState.Message(this.name + " does not have scarab " + type.ToString());
+                    GameState.Message(currentPlayer.name + " does not have scarab " + type.ToString());
                 }
                 break;
             case ScarabUIState.waiting_die_select:
-                GameState.Message(this.name + " please select a die for scarab action");
+                GameState.Message(currentPlayer.name + " please select a die for scarab action");
                 break;
         }
 
-        if (currentPlayer.UseScarab(type))
-        {
-        }
+        //if (currentPlayer.UseScarab(type))
+        //{
+        //}
     }
 }

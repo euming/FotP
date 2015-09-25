@@ -22,7 +22,7 @@ x Red tiles
 x Automatically move purchase board when rolling
 x Automatically open purchase board when done rolling
 x Print out status messages
-- Show scarabs. Allow scarab use
+x Show scarabs. Allow scarab use
 - Automatically close other tiles if opening one.
 - hover for tooltip on tiles
 - Other players
@@ -48,7 +48,7 @@ x multiplayer game
 - randomize initial tiles
 - Declare winner
 x Add scarabs. Scarab factory.
-- Allow scarab use
+x Allow scarab use
 
 Cosmetic stuff:
 - tiles should display their names when on their sides
