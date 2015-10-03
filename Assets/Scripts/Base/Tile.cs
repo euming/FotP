@@ -126,4 +126,32 @@ public class Tile : SelectableObject {
 			}
 		}
 	}
+
+    //  debug stuff
+    public string GetDebugStatusString()
+    {
+        string statusStr = "";
+        
+        switch (testingState)
+        {
+            default:
+            case TestingState.NotImplemented:
+                statusStr = "?    \t";
+                break;
+            case TestingState.PartiallyImplemented:
+                statusStr = "pp   \t";
+                break;
+            case TestingState.Completed_ReadyToTest:
+                statusStr = "RRR  \t";
+                break;
+            case TestingState.Completed_HasBug:
+                statusStr = "BBBB \t";
+                break;
+            case TestingState.Completed_PassedTests:
+                statusStr = "PPPPP\t";
+                break;
+        }
+        return statusStr;
+    }
+
 }
