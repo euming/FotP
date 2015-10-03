@@ -6,4 +6,11 @@ State: After purchase Tile
 - New Dice are locked.
 - Click End Turn to confirm
 - Put all dice in cup
+
+- Trigger: After all Dice are locked
 - Next player's turn.
+
+
+--- End main game loop
+
+Final roll off Start

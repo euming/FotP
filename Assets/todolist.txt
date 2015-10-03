@@ -2,6 +2,7 @@ High Priority
 - Make a list of the texture sheets that I need.
 - Make a generic ability power that includes the UI state machine. 
   - Retrofit scarab abilities.
+- Game state triggers to enable certain tiles to be played.
 
 Bugs:
 x iTween creates 2 extra components after ending play of editor.
@@ -36,7 +37,11 @@ Tile abilities:
 - priest of the dead - reroll after locking all
 - queen - reroll
 - Level 3
+  x Farmer
+  x Guard
+  x Indentured Worker
   - Serf - Roll +1 serf die to start your turn
+  x Worker
   t Beggar - Each turn, gain 1 token before your first roll
   - Servant
   - Soothsayer
@@ -59,7 +64,7 @@ Tile abilities:
 - Level 5
   x Charioteer
   - Conspirator
-  x Observer
+  x Overseer
   - Ship Captain
   t Tomb Builder
   - Head Servant

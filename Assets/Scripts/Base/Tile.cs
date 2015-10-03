@@ -4,6 +4,17 @@ using System.Collections.Generic;
 
 //	a tile is one of things you buy that gives you abilties to help you win the game
 public class Tile : SelectableObject {
+    public enum TestingState
+    {
+        NotImplemented,
+        PartiallyImplemented,
+        Completed_ReadyToTest,
+        Completed_HasBug,
+        Completed_PassedTests,
+    };
+
+    public TestingState testingState;
+
     public string       hintText;   //  official hint text. same as in the rule book.
 	public BarSlot		mySlot;		//	where I belong before I'm bought. I may have to go back here if the player changes his mind before hitting DONE.
 	public int		shopRow;	//	index of shop row
