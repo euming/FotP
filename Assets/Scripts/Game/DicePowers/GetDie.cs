@@ -11,6 +11,7 @@ public class GetDie : TileAbility {
 	//	does something when we acquire this tile
 	public override void OnAcquire(PlayerBoard plr)
 	{
+        base.OnAcquire(plr);
 		PharoahDie die = plr.AddDie(type);
 		if (setDieValue > 0) {
 			die.MakeSetDie(setDieValue);
@@ -21,6 +22,7 @@ public class GetDie : TileAbility {
 
 	public override void OnAcquireUndo(PlayerBoard plr)
 	{
+        base.OnAcquireUndo(plr);
 		plr.DestroyDie(myDie);
 		myDie = null;
 	}

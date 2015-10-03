@@ -5,31 +5,25 @@ using System.Collections;
 public class GetScarab : TileAbility {
 
 	Scarab					myScarab;	//	the scarab that is associated with this tile.
-	Scarab.ScarabType		rndType;	//	predetermined randomly by the tile.
-
-	void Start()
-	{
-		rndType = (Scarab.ScarabType)Random.Range (0, 2);
-	}
+	Scarab.ScarabType		rndType;	//	save this state in case we undo acquiring this tile
 
     public override void OnStartTurn(PlayerBoard plr)
     {
         base.OnStartTurn(plr);
-        //Scarab bug = 
-            plr.AddScarab(rndType);
-        //myScarab = bug;
-        //  do not allow undo
+        OnAcquire(plr); //  do the same thing as acquire.
     }
 
     //	does something when we acquire this tile
     public override void OnAcquire(PlayerBoard plr)
 	{
         base.OnAcquire(plr);
-		Scarab bug = plr.AddScarab(rndType);
+        rndType = (Scarab.ScarabType)Random.Range(0, 2);
+        Scarab bug = plr.AddScarab(rndType);
 		myScarab = bug;
-	}
-	
-	public override void OnAcquireUndo(PlayerBoard plr)
+        bug.name = "Scarab " + rndType.ToString();
+    }
+
+    public override void OnAcquireUndo(PlayerBoard plr)
 	{
         base.OnAcquireUndo(plr);
 		plr.DestroyScarab(myScarab);

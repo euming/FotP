@@ -1,10 +1,11 @@
 High Priority
 - Make a list of the texture sheets that I need.
-- Make a generic ability power that includes the UI state machine. 
-  - Retrofit scarab abilities.
-- Game state triggers to enable certain tiles to be played.
+x Make a generic ability power that includes the UI state machine. 
+  x Retrofit scarab abilities.
+x Game state triggers to enable certain tiles to be played.
 
 Bugs:
+x Locked dice from previous rolls should not be able to be rerolled
 x iTween creates 2 extra components after ending play of editor.
 x White dice are no longer white
 x White dice auto lock without being rolled.

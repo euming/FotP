@@ -1,3 +1,5 @@
+*************** Player Turn
+--- Start Turn Loop
 State: All Dice in Cup (may roll dice)
 - roll dice
 State: Must lock 1 Die
@@ -6,11 +8,23 @@ State: After purchase Tile
 - New Dice are locked.
 - Click End Turn to confirm
 - Put all dice in cup
+  - trigger after each roll abilities
 
 - Trigger: After all Dice are locked
 - Next player's turn.
+--- End Turn Loop
 
+************* Tile Abilities
+- User click tile to enter
+- Automatic trigger to enter
+--- Start Tile Ability Loop
+- Player may do some ability to N dice of some type (active, immediate, custom, standard)
+- Check Done/Cancel
+--- End Tile Ability Loop
+- Done - Finalize changes
+- Cancel - Undo changes
 
 --- End main game loop
 
+***************** Roll-off
 Final roll off Start

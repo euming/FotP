@@ -154,4 +154,13 @@ public class Tile : SelectableObject {
         return statusStr;
     }
 
+    //  *********************   TileAbility stuff
+    public void FireTrigger(TileAbility.PlayerTurnStateTriggers trigState, PlayerBoard plr)
+    {
+        TileAbility[] abilityList = GetComponents<TileAbility>();
+        foreach(TileAbility ability in abilityList)
+        {
+            ability.FireTrigger(trigState, plr);
+        }
+    }
 }

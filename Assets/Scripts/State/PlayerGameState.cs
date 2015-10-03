@@ -15,6 +15,7 @@ public class PlayerGameState : MonoBehaviour {
         WaitingForLock,     //	waiting for player to lock at least one die
 
         //	end loop
+        AllDiceLocked,          //  all the dice have been locked
         WaitingForPurchaseTile, //	player may choose a tile to purchase
         TilePurchaseChosen,     //	player has chosen a tile to purchase. Waiting for final confirmation
         EndTurn,            //	my turn is officially done. 
@@ -36,11 +37,13 @@ public class PlayerGameState : MonoBehaviour {
     public bool mayPurchaseTile = false;
     public int diceLockedThisTurn;
     int lastDiceLockedThisTurn;
+    PlayerBoard myPlayer;
 
     void Awake() {
         curState = PlayerGameStates.WaitingNextTurn;
         mayRollDice = false;
         diceLockedThisTurn = 0;
+        myPlayer = GetComponent<PlayerBoard>();
     }
     // Use this for initialization
     void Start() {
@@ -73,6 +76,7 @@ public class PlayerGameState : MonoBehaviour {
         mayRollDice = true;
         isInitialRoll = true;
         mayPurchaseTile = false;
+        myPlayer.FireTriggers(TileAbility.PlayerTurnStateTriggers.StartOfTurn);
     }
 
     //  go back to the previous state

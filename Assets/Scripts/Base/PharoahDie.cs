@@ -275,7 +275,42 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
 		bool bIsInArea = isInDiceArea(GameState.DiceAreaTags.SetDiceArea);
 		return bIsInArea;
 	}
-	public void LockDie() {
+
+    //  Dice properties
+    public bool isImmediateDie()
+    {
+        return this.isAutoLocking;
+    }
+    public bool isStandardDie()
+    {
+        bool isStandard = (this.type == DiceFactory.DieType.Red);
+        return isStandard;
+    }
+
+    public bool isCustomDie()
+    {
+        bool isCustom = true;
+        if (isImmediateDie())
+            isCustom = false;
+        if (isStandardDie())
+        {
+            isCustom = false;
+        }
+        return isCustom;
+    }
+
+    public bool isLockedDie()
+    {
+        bool bisLocked = isLocked || isTempLocked;
+        return bisLocked;
+    }
+
+    public bool isActiveDie()
+    {
+        return !isLockedDie();
+    }
+
+    public void LockDie() {
 		if (isInLockedArea()) return;
 
 		if (isAutoLocking)
@@ -344,11 +379,20 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
 		}
 	}
 
-	public void EndTurn() {
-		if (isInLockedArea()) {		//	set dice may be temp locked
-			isLocked = true;		//	if we're in the locked area at the end of the turn, we become permanently locked
-		}
-		isTempLocked = false;
-		isUndoable = false;
+    //  a single roll is finished after the player starts a new roll
+    public void EndRoll()
+    {
+        if (isInLockedArea())
+        {       //	set dice may be temp locked
+            isLocked = true;        //	if we're in the locked area at the end of the turn, we become permanently locked
+        }
+        isTempLocked = false;
+        isUndoable = false;
+
+    }
+
+    //  a turn is finished after the player has completed all rolls and chooses to pass play to the next player
+    public void EndTurn() {
+        EndRoll();
 	}
 }

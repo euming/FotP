@@ -49,6 +49,8 @@ public class GameState : MonoBehaviour, IToggleReceiver {
 	{
 		UnityEngine.UI.Text txt = instance.statusMsg.GetComponent<UnityEngine.UI.Text> ();
 		txt.text = msg;
+        if (msg[msg.Length-1] != '\n')
+            msg = msg + "\n";
 		Debug.Log(msg);
 	}
 

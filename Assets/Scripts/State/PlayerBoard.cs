@@ -10,6 +10,7 @@ public class PlayerBoard : MonoBehaviour {
 	public List<PharoahDie>	diceList;	//	all my dice
 	public List<Scarab>		scarabList;		//	all my scarabs
 
+    Tile curTileInUse;              //  while we're using a tile, keep track of it.
     Scarab curScarabInUse;          //  while we're using the scarab, keep it separate from the others
     PlayerGameState pgs;
 
@@ -17,7 +18,9 @@ public class PlayerBoard : MonoBehaviour {
 
 	public void NewGame()
 	{
-		tileList.Clear();
+        curTileInUse = null;
+        curScarabInUse = null;
+        tileList.Clear();
 		diceList.Clear();
 		for (int ii=0; ii<3; ++ii) {
 			Die d6 = AddDie(DiceFactory.DieType.Red);
@@ -129,7 +132,7 @@ public class PlayerBoard : MonoBehaviour {
         if (this.pgs.mayPurchaseTile) {
             GameState.Message(this.name + " takes " + newTile.name);
             tileList.Add(newTile);
-            newTile.OnAcquire(this);
+            newTile.FireTrigger(TileAbility.PlayerTurnStateTriggers.Acquire, this);
             TilePurchaseChosen();
             bSuccess = true;
         }
@@ -148,7 +151,7 @@ public class PlayerBoard : MonoBehaviour {
                 bSuccess = true;
                 GameState.Message(this.name + " returns " + tile.name);
                 tileList.Remove(tile);
-                tile.OnAcquireUndo(this);
+                tile.FireTrigger(TileAbility.PlayerTurnStateTriggers.AcquireUndo, this);
                 UndoState();
             }
             else {
@@ -196,10 +199,17 @@ public class PlayerBoard : MonoBehaviour {
     {
         pgs.UndoState();    //  go back to previous state before WaitingToSelectDie
         pgs.ChooseDie(die);
-        if (this.curScarabInUse.isConsumed)
+
+        //  this should be made generic for all TileAbility
+        if (this.curScarabInUse && this.curScarabInUse.isConsumed)
         {
-            Destroy(this.curScarabInUse.gameObject);
+            Destroy(this.curScarabInUse.gameObject);    //  destroy the scarab after we've rolled/added pip to the die.
             this.curScarabInUse = null;
+        }
+
+        if (this.curTileInUse)
+        {
+            this.curTileInUse.FireTrigger(TileAbility.PlayerTurnStateTriggers.ChooseDie, this);
         }
     }
 
@@ -248,7 +258,7 @@ public class PlayerBoard : MonoBehaviour {
 		GameState.GetCurrentGameState ().purchaseBoard.SetState (PurchaseBoard.PurchaseBoardState.isTuckedAway);
 		UnhideDice ();
 		foreach(PharoahDie d6 in diceList) {
-			//d6.EndTurn();
+			d6.EndRoll();
 			if (d6.isInActiveArea() || (d6.isInNoArea())) {
 				d6.ReadyToRoll();
 				if (pgs.isInitialRoll && d6.isSetDie()) {
@@ -373,4 +383,13 @@ public class PlayerBoard : MonoBehaviour {
 			}
 		}
 	}
+
+    //  ***************** Tile ability stuff
+    public void FireTriggers(TileAbility.PlayerTurnStateTriggers trigState)
+    {
+        foreach(Tile tile in tileList)
+        {
+            tile.FireTrigger(trigState, this);
+        }
+    }
 }
