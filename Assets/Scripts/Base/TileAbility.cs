@@ -6,9 +6,10 @@ public class TileAbility : MonoBehaviour {
 
 	public bool isArtifact;
 	public bool isArtifactUsed;		//	Artifacts may be used once per game. Once used, we can't use it again
-	public bool isUsedThisTurn;		//	true if we already used this ability this turn
+	public bool isUsedThisTurn;     //	true if we already used this ability this turn
+    public bool isTriggeredStartOfEachTurn; //  true if we need to do this at the start of each turn.
 
-	/*
+    /*
 	// Use this for initialization
 	void Start () {
 	
@@ -19,6 +20,11 @@ public class TileAbility : MonoBehaviour {
 	
 	}
 	*/
+
+    //  does something on the start of each turn
+    public virtual void OnStartTurn(PlayerBoard plr)
+    {
+    }
 
 	//	does something when we acquire this tile
 	public virtual void OnAcquire(PlayerBoard plr)

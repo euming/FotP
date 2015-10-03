@@ -1,5 +1,7 @@
 High Priority
 - Make a list of the texture sheets that I need.
+- Make a generic ability power that includes the UI state machine. 
+  - Retrofit scarab abilities.
 
 Bugs:
 x iTween creates 2 extra components after ending play of editor.
@@ -33,6 +35,64 @@ Tile abilities:
 - estate overseer, granary master +1 pip each roll
 - priest of the dead - reroll after locking all
 - queen - reroll
+- Level 3
+  - Serf - Roll +1 serf die to start your turn
+  t Beggar - Each turn, gain 1 token before your first roll
+  - Servant
+  - Soothsayer
+  - Ankh
+  - Omen
+  - Ancestral Guidance
+- Level 4
+  - Artisan
+  t Builder
+  - Noble Adoption
+  x Palace Servants
+  x Soldier
+  - Grain Merchant
+  - Entertainer
+  - Match Maker
+  - Good Omen
+  - Palace Key
+  - Spirit of the Dead
+
+- Level 5
+  x Charioteer
+  - Conspirator
+  x Observer
+  - Ship Captain
+  t Tomb Builder
+  - Head Servant
+  - Master Artisan
+  - Priest
+  - Bad Omen
+  - Burial Mask
+  - Royal Decree
+
+- Level 6
+  - Embalmer
+  - Estate Overseer
+  t Grain Trader
+  - Priest of the Dead
+  x Royal Attendants
+  - Astrologer
+  - Priestess
+  - Surveyor
+  - Pharoah's Gift
+  - Secret Passage
+  - Treasure
+
+- Level 7
+  - Queen
+  x General
+  - Grand Vizier
+  - Granary Master
+  - Heir
+  - Royal Astrologer
+  - Royal Mother
+  - Queen's Favor
+  - Royal Death
+  - Royal Power
 
 Dice:
 x d6_purple does not have a purple texture
@@ -46,6 +106,7 @@ x game flow
 x multiplayer game
 - implement herder tile
 - randomize initial tiles
+- implement remainder of specific tiles
 - Declare winner
 x Add scarabs. Scarab factory.
 x Allow scarab use
@@ -62,5 +123,6 @@ x Allow dice rolling physics
 - Add sounds
 - highlight tiles that can be purchased.
 - translucent empty stacks
+- Show number of scarab tokens
 
   

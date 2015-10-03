@@ -12,15 +12,26 @@ public class GetScarab : TileAbility {
 		rndType = (Scarab.ScarabType)Random.Range (0, 2);
 	}
 
-	//	does something when we acquire this tile
-	public override void OnAcquire(PlayerBoard plr)
+    public override void OnStartTurn(PlayerBoard plr)
+    {
+        base.OnStartTurn(plr);
+        //Scarab bug = 
+            plr.AddScarab(rndType);
+        //myScarab = bug;
+        //  do not allow undo
+    }
+
+    //	does something when we acquire this tile
+    public override void OnAcquire(PlayerBoard plr)
 	{
+        base.OnAcquire(plr);
 		Scarab bug = plr.AddScarab(rndType);
 		myScarab = bug;
 	}
 	
 	public override void OnAcquireUndo(PlayerBoard plr)
 	{
+        base.OnAcquireUndo(plr);
 		plr.DestroyScarab(myScarab);
 		myScarab = null;
 	}
