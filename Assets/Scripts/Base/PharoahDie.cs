@@ -13,7 +13,8 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
     public DiceFactory.DieType type;
     public int setDieValue; //	if >0, then this die is set when we roll and not rolled from the cup.
     int tempPips = 0;
-    int origValue;
+    int origSide;
+    bool bIsTemporary = false;
 
     DieSlot mySlot;
     GameObject spawnPoint = null;
@@ -46,9 +47,9 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
             return -1;
         }
         else {
-            if (this.value == die.value)
+            if (this.GetValue() == die.GetValue())
                 return 0;
-            else if (this.value < die.value)
+            else if (this.GetValue() < die.GetValue())
                 return 1;
             else
                 return -1;
@@ -64,6 +65,15 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
         this.MoveToSetDieArea();
     }
 
+    public void MakeTemporary()
+    {
+        bIsTemporary = true;
+    }
+
+    public bool isTemporary()
+    {
+        return bIsTemporary;
+    }
     public bool isSetDie()
     {
         if (setDieValue > 0) return true;
@@ -438,33 +448,33 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
     public void ClearTempPips()
     {
         tempPips = 0;
-        origValue = value;
+        origSide = GetSide();
     }
 
     //  this allows us to wrap around by having a negative tempPips value
     public void SetTempPipsValue(int val)
     {
-        //  val = origValue + tempPips. tempPips = val - origValue.
-        tempPips = val - origValue;
-        this.SetDie(origValue + tempPips);
+        //  val = origSide + tempPips. tempPips = val - origSide.
+        tempPips = val - origSide;
+        this.SetDie(origSide + tempPips);
     }
     public void AddTempPips(int pips)
     {
         tempPips += pips;
-        this.SetDie(origValue + tempPips);
+        this.SetDie(origSide + tempPips);
     }
 
     public void UndoTempPips()
     {
-        this.SetDie(origValue);
+        this.SetDie(origSide);
         tempPips = 0;
     }
 
     public void FinalizeTempPips()
     {
-        this.SetDie(origValue + tempPips);
+        this.SetDie(origSide + tempPips);
         tempPips = 0;
-        origValue = value;
+        origSide = GetSide();
         this.EndRoll();
     }
 

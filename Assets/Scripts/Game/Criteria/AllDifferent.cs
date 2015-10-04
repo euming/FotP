@@ -10,8 +10,8 @@ public class AllDifferent : PurchaseCriteria {
 
 		int lastDie = -1;
 		foreach(PharoahDie die in sortedList) {
-			if (die.value == lastDie) return false;
-			lastDie = die.value;
+			if (die.GetValue() == lastDie) return false;
+			lastDie = die.GetValue();
 		}
 		return true;
 	}

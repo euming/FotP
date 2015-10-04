@@ -9,7 +9,7 @@ public class AllOdd : PurchaseCriteria {
 		if (base.MatchesCriteria(sortedList) == false) return false;	//	bail on basics. Not enough dice.
 		
 		foreach(PharoahDie die in sortedList) {
-			if (die.value % 2 == 0) return false;
+			if (die.GetValue() % 2 == 0) return false;
 		}
 		return true;
 	}

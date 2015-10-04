@@ -3,8 +3,12 @@ High Priority
 x Make a generic ability power that includes the UI state machine. 
   x Retrofit scarab abilities.
 x Game state triggers to enable certain tiles to be played.
+- Should instantiate/clone tiles rather than use the actual tile
 
 Bugs:
+- rolling single die is buggy due to requirement that all dice are rolled for physics and shit
+- Only checked locked dice for criteria. Automatically lock other dice.
+- AddPips doesn't work with custom dice
 x Locked dice from previous rolls should not be able to be rerolled
 x iTween creates 2 extra components after ending play of editor.
 x White dice are no longer white
@@ -19,6 +23,7 @@ x Don't allow player to click the dice before the dice have stopped rolling.
 x Should have a number of tiles appropriate to the number of players
 
 UI:
+- Tile Ability bar to show all abilities
 x Purchase board should allow us to buy tiles easily.
   x Place tiles in slots correctly oriented.
 x Blue tiles
@@ -46,9 +51,9 @@ Tile abilities:
   t Beggar - Each turn, gain 1 token before your first roll
   x Servant
   t Soothsayer
-  - Ankh
+  t Ankh
   - Omen
-  - Ancestral Guidance
+  t Ancestral Guidance
 - Level 4
   - Artisan
   t Builder
@@ -72,7 +77,7 @@ Tile abilities:
   x Master Artisan
   x Priest
   - Bad Omen
-  - Burial Mask
+  t Burial Mask
   - Royal Decree
 
 - Level 6
@@ -81,7 +86,7 @@ Tile abilities:
   t Grain Trader
   - Priest of the Dead
   x Royal Attendants
-  - Astrologer
+  t Astrologer
   x Priestess
   - Surveyor
   - Pharoah's Gift
@@ -107,12 +112,15 @@ x d6_orange is not orange
   - orange, yellow, blue, green, black, purple
   
 Gameplay:
+x Remember who the start player is.
+x Gain 2 tokens if you player does not claim a tile
 x Force at least one lock before allowing re-roll.
 x game flow
 x multiplayer game
 - implement herder tile
 - randomize initial tiles
 - implement remainder of specific tiles
+- roll-off game state logic
 - Declare winner
 x Add scarabs. Scarab factory.
 x Allow scarab use

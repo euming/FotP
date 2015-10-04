@@ -52,7 +52,7 @@ public class NofaKind2 : PurchaseCriteria {
 		groupIndices.Clear();
 		//	first, count the completed groups
 		foreach(PharoahDie die in sortedList) {
-			if (die.value != lastValue) {	//	different than previous die
+			if (die.GetValue() != lastValue) {	//	different than previous die
 				if (numMatching > 0) {	//	make a new group
 					completedGroups.Add(numMatching);
 					groupIndices.Add(lastValue);
@@ -61,7 +61,7 @@ public class NofaKind2 : PurchaseCriteria {
 					}
 				}
 				numMatching = 1;
-				lastValue = die.value;
+				lastValue = die.GetValue();
 			}
 			else {	//	same as previous die
 				numMatching++;

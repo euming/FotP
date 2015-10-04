@@ -17,7 +17,7 @@ public class ExactMatchOfList : PurchaseCriteria {
 
 		foreach(PharoahDie die in sortedList) {
 			int idx = matched.Count;
-			if (die.value == exactMatchList[idx]) {	//	found one!
+			if (die.GetValue() == exactMatchList[idx]) {	//	found one!
 				matched.Add(true);
 			}
 		}

@@ -211,7 +211,7 @@ public class Dice : MonoBehaviour {
             RollingDie rDie = (RollingDie) allDice[d];
 			// check the type
             if (rDie.name == dieType || dieType == "")
-                v += rDie.die.value;
+                v += rDie.die.GetValue();
         }
         return v;
     }
@@ -264,7 +264,7 @@ public class Dice : MonoBehaviour {
                     if (hasValue) v += " + ";
 					// if the value of the die is 0 , no value could be determined
 					// this could be because the die is rolling or is in a invalid position
-                    v += "" + ((rDie.die.value == 0) ? "?" : "" + rDie.die.value);
+                    v += "" + ((rDie.die.GetValue() == 0) ? "?" : "" + rDie.die.GetValue());
                     hasValue = true;
                 }
             }
@@ -294,7 +294,8 @@ public class Dice : MonoBehaviour {
 	{
 		foreach (RollingDie rdie in allDice) {
 			Die die = rdie.die;
-			die.value = die.GetSide();
+            //die.value = die.GetSide();
+            die.GetValue();
 		}
 	}
 	/// <summary>
@@ -388,7 +389,7 @@ class RollingDie
     {
         get
         {
-            return die.value;
+            return die.GetValue();
         }
     }
 

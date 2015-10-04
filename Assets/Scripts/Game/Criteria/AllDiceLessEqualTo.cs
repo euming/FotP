@@ -13,7 +13,7 @@ public class AllDiceLessEqualTo : PurchaseCriteria {
 		if (base.MatchesCriteria(sortedList) == false) return false;	//	bail on basics. Not enough dice.
 		
 		foreach(PharoahDie die in sortedList) {
-			if (die.value > mustLessThanEqualTo) {
+			if (die.GetValue() > mustLessThanEqualTo) {
 				return false;
 			}
 		}

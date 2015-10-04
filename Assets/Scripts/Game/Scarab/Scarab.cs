@@ -16,14 +16,14 @@ public class Scarab : SelectableObject {
     static public Scarab NewScarab(ScarabType type)
 	{
 		Scarab bug = GameObject.Instantiate(prefabScarab);
-
+        bug.SetType(type);
 		return bug;
 	}
 
     public void AddPip(PharoahDie die)
     {
         GameState.Message("Adding Pip to " + die.name);
-        int val = die.value;
+        int val = die.GetValue();
         val++;
         if (val >= 6)
             val = 6;
@@ -46,10 +46,12 @@ public class Scarab : SelectableObject {
         if (type== ScarabType.Reroll)
         {
             onDieSelect = Reroll;
+            this.name = "Scarab Reroll";
         }
         else
         {
             onDieSelect = AddPip;
+            this.name = "Scarab AddPip";
         }
     }
 }

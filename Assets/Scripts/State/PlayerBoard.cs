@@ -14,12 +14,13 @@ public class PlayerBoard : MonoBehaviour {
     Scarab curScarabInUse;          //  while we're using the scarab, keep it separate from the others
     PlayerGameState pgs;
     bool isFirstRoll = false;
-    
+    bool bisStartPlayer;
 
 	public void NewGame()
 	{
         curTileInUse = null;
         curScarabInUse = null;
+        bisStartPlayer = false;
         tileList.Clear();
 		diceList.Clear();
 		for (int ii=0; ii<3; ++ii) {
@@ -29,6 +30,16 @@ public class PlayerBoard : MonoBehaviour {
 		HideDice ();
 		this.gameObject.SetActive (false);
 	}
+
+    public void SetStartPlayer()
+    {
+        bisStartPlayer = true;
+    }
+
+    public bool isStartPlayer()
+    {
+        return bisStartPlayer;
+    }
 
 	void Awake() {
 		pgs = GetComponent<PlayerGameState> ();
@@ -43,6 +54,12 @@ public class PlayerBoard : MonoBehaviour {
 
 	//	========================================================================================
 	//	scarab stuff
+    public Scarab AddRandomScarab()
+    {
+        Scarab.ScarabType rndScarab = (Scarab.ScarabType)((int)(Random.value*2.0f));
+        return AddScarab(rndScarab);
+    }
+
 	public Scarab AddScarab(Scarab.ScarabType scarabType)
 	{
         GameObject bugGO = GameObject.Instantiate(GameState.GetCurrentGameState().scarabPrefab.gameObject);
@@ -96,6 +113,18 @@ public class PlayerBoard : MonoBehaviour {
         }
 
         return bSuccess;
+    }
+    public int CountScarabs()
+    {
+        int nScarabs = 0;
+        foreach (Scarab sc in scarabList)
+        {
+            if (sc != null)
+            {
+                nScarabs++;
+            }
+        }
+        return nScarabs;
     }
     //  =============================================================================
 
@@ -268,8 +297,19 @@ public class PlayerBoard : MonoBehaviour {
 		return sum;
 	}
 
-	//	return - were dice rolled or not?
-	bool bForcePass = false;
+    //  roll a single die
+    public bool RollDie(PharoahDie die)
+    {
+        if (die == null) return false;
+        GameState.GetCurrentGameState().purchaseBoard.SetState(PurchaseBoard.PurchaseBoardState.isTuckedAway);
+        UnhideDice();
+        die.ReadyToRoll();
+        die.RollDie();
+        SortDiceList();
+        return true;
+    }
+    //	return - were dice rolled or not?
+    bool bForcePass = false;
 	public bool RollDice()
 	{
 		if (!PlayerMayRollDice ()) {
@@ -280,7 +320,10 @@ public class PlayerBoard : MonoBehaviour {
 			}
 			GameState.Message(this.name + " is in state " + GetPlayerGameState().ToString() + "\nand cannot roll. Click again to pass turn.");
 			if (bForcePass) {
-				GameState.EndTurn();
+                //  add two scarabs when you don't purchase a tile
+                AddRandomScarab();
+                AddRandomScarab();
+                GameState.EndTurn();
 			}
 			bForcePass = true;
 			return false;
@@ -405,7 +448,15 @@ public class PlayerBoard : MonoBehaviour {
 	{
 		GameState.Message (this.name + " turn has ended");
 		this.gameObject.SetActive (false);
-		foreach(PharoahDie d6 in diceList) {
+        foreach (PharoahDie d6 in diceList)
+        {
+            if (d6.isTemporary())
+            {
+                diceList.Remove(d6);
+                Destroy(d6.gameObject);
+            }
+        }
+        foreach (PharoahDie d6 in diceList) {
 			d6.ReadyToRoll();
 			d6.EndTurn();
 			d6.transform.parent = this.transform;

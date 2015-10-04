@@ -15,15 +15,15 @@ public class Straight : PurchaseCriteria {
 		int curLen = 0;
 		int lastDieValue = -1;
 		foreach(PharoahDie die in sortedList) {
-			if (maxStraightValue == die.value) {
+			if (maxStraightValue == die.GetValue()) {
 				curLen = 1;
 				isValidStraight = true;
-				lastDieValue = die.value;
+				lastDieValue = die.GetValue();
 			}
 			if (isValidStraight) {
-				if (die.value == lastDieValue - 1) {
+				if (die.GetValue() == lastDieValue - 1) {
 					curLen++;
-					lastDieValue = die.value;
+					lastDieValue = die.GetValue();
 				}
 			}
 		}

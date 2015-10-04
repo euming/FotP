@@ -153,7 +153,7 @@ public class AddPips : TileAbility
             {
                 if (die.getTempPips()==0)   //  we haven't messed with this die yet
                 {
-                    if (die.value + nPips > 6)  //  failure case. we can't add this many pips!
+                    if (die.GetSide() + nPips > 6)  //  failure case. we can't add this many pips!
                     {
                         adjustedDice.Remove(die);
                         myPlayer.AskToChooseDie(this.PickDie, this.GetType().ToString()); //  ask the player to choose a die or dice
@@ -178,7 +178,7 @@ public class AddPips : TileAbility
                 }
                 else
                 {
-                    if (!setToAnyFace && (die.value + 1 > 6))  //  failure case. we can't add this many pips!
+                    if (!setToAnyFace && (die.GetSide() + 1 > 6))  //  failure case. we can't add this many pips!
                     {
                         die.UndoTempPips();
                     }
@@ -187,7 +187,7 @@ public class AddPips : TileAbility
                         if (!isSoothsayer)
                         {
                             //  do the wrap around.
-                            if (die.value + 1 > 6)
+                            if (die.GetSide() + 1 > 6)
                             {
                                 //  set the temppips such that it equals 1.
                                 die.SetTempPipsValue(1);
@@ -211,12 +211,12 @@ public class AddPips : TileAbility
                                 PharoahDie otherDie = GetOtherDie(die);
                                 if (isAstrologer)
                                     otherDie = lastDie;
-                                if ((otherDie.value > 1) && (die.value < 6)) //  we can still subtract value from otherDie
+                                if ((otherDie.GetSide() > 1) && (die.GetSide() < 6)) //  we can still subtract value from otherDie
                                 {
                                     die.AddTempPips(1);
                                     otherDie.AddTempPips(-1);
                                 }
-                                else if ((die.value > 1) && (otherDie.value < 6))//  if we have some value in this die, we can add to the other
+                                else if ((die.GetSide() > 1) && (otherDie.GetSide() < 6))//  if we have some value in this die, we can add to the other
                                 {
                                     die.AddTempPips(-1);
                                     otherDie.AddTempPips(1);
@@ -230,7 +230,7 @@ public class AddPips : TileAbility
                     }
                     else//  entertainer flipping nonsense
                     {
-                        int setVal = 7-die.value;
+                        int setVal = 7-die.GetSide();
                         if (die.getTempPips() == 0)
                         {
                             die.SetTempPipsValue(setVal);

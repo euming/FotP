@@ -55,14 +55,14 @@ public class Die_d6 : Die {
 	//	orient towards up.	point directly to the side that's already up.
 	public void OrientTowardsUp()
 	{
-		Vector3 curUp = GetCurUpVector(this.value);
+		Vector3 curUp = GetCurUpVector(this.GetSide());
 		AlignTowardsVector (curUp, Vector3.up);
 	}
 
 	//	assuming already up, orient so 0/90/180/270 degrees
 	public void OrientTowardStraightened()
 	{
-		Vector3 curSide = GetCurSideVector (this.value);
+		Vector3 curSide = GetCurSideVector (this.GetSide());
 		AlignTowardsVector (curSide, Vector3.right);
 	}
 

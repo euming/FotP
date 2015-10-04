@@ -14,7 +14,7 @@ public class SumGreaterEqualTo : PurchaseCriteria {
 
 		int sum = 0;
 		foreach(PharoahDie die in sortedList) {
-			sum += die.value;
+			sum += die.GetValue();
 			if (sum >= minSum) return true;
 		}
 		return false;

@@ -98,7 +98,8 @@ public class GameState : MonoBehaviour, IToggleReceiver {
 		}
 		int rndIndex = (int)(Random.value * 4.0f);
 		currentPlayer = allPlayers [rndIndex];
-		StartTurn ();
+        currentPlayer.SetStartPlayer();
+        StartTurn ();
 	}
 	// Use this for initialization
 	void Start () {

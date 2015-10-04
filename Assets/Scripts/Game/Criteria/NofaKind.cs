@@ -16,9 +16,9 @@ public class NofaKind : PurchaseCriteria {
 		int lastValue = 0;
 
 		foreach(PharoahDie die in sortedList) {
-			if (die.value != lastValue) {
+			if (die.GetValue() != lastValue) {
 				numMatching = 1;
-				lastValue = die.value;
+				lastValue = die.GetValue();
 			}
 			else {
 				numMatching++;

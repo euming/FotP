@@ -29,7 +29,7 @@ public class Die : MonoBehaviour {
 	//------------------------------------------------------------------------------------------------------------------------------
 	
 	// current value, 0 is undetermined (die is rolling) or invalid.
-	public int value = 0;	
+	private int value = 0;	
 
 	//------------------------------------------------------------------------------------------------------------------------------
 	// protected and private attributes
@@ -117,11 +117,11 @@ public class Die : MonoBehaviour {
 	}
 
 	// calculate this die's value
-    void GetValue()
+    public virtual int GetValue()
     {
 		value = GetSide();
-	
-		/*
+
+        /*
 		// value = 0 -> undetermined or invalid
         value = 0;
         float delta = 1;
@@ -156,6 +156,7 @@ public class Die : MonoBehaviour {
 			// if we got a Vector.zero as the testHitVector we have checked all sides of this die
         } while (testHitVector != Vector3.zero);
         */
+        return value;
     }
 
     void Update()

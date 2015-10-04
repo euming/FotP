@@ -9,9 +9,9 @@ public class TileAbility : MonoBehaviour {
         StartOfTurn,
         EndOfTurn,
         AllLocked,
-        Acquire,
-        AcquireUndo,
-        Select,             //  player has chosen this tile
+        Acquire,            //  player has claimed this tile from the shop
+        AcquireUndo,        //  player has returned this tile to the shop before turn end
+        Select,             //  player has chosen this tile to use
         ChooseDie,          //  player has chosen a die
         AllTrigger,         //  all triggers fire
     };
