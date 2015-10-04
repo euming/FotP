@@ -44,7 +44,7 @@ Tile abilities:
   - Serf - Roll +1 serf die to start your turn
   x Worker
   t Beggar - Each turn, gain 1 token before your first roll
-  - Servant
+  x Servant
   - Soothsayer
   - Ankh
   - Omen
@@ -68,9 +68,9 @@ Tile abilities:
   x Overseer
   - Ship Captain
   t Tomb Builder
-  - Head Servant
-  - Master Artisan
-  - Priest
+  t Head Servant
+  x Master Artisan
+  x Priest
   - Bad Omen
   - Burial Mask
   - Royal Decree
@@ -82,7 +82,7 @@ Tile abilities:
   - Priest of the Dead
   x Royal Attendants
   - Astrologer
-  - Priestess
+  x Priestess
   - Surveyor
   - Pharoah's Gift
   - Secret Passage
@@ -93,7 +93,7 @@ Tile abilities:
   x General
   - Grand Vizier
   - Granary Master
-  - Heir
+  x Heir
   - Royal Astrologer
   - Royal Mother
   - Queen's Favor

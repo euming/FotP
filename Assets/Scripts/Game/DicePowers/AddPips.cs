@@ -7,6 +7,7 @@ public class AddPips : TileAbility
     public int nPips = 1;
     public bool isExactlyNumPips = false;
     public int nDice = 1;   //  -1 for any number of dice.
+    public bool setToAnyFace = false;
     int actualNumDice;      //  number of dice we're allowed to modify
     public DieType onlyFor;
     PharoahDie curDie;
@@ -96,6 +97,12 @@ public class AddPips : TileAbility
         bool bLegalDie = false;
         bool bIsNewDie = false;
 
+        if (!die.isDieType(onlyFor))
+        {
+            myPlayer.AskToChooseDie(this.PickDie, this.GetType().ToString()); //  ask the player to choose a die or dice
+            GameState.Message("Cannot pick " + die.name + " because it's the wrong type.");
+            return;
+        }
         curDie = die;
 
         if (isNewDie(die))
@@ -126,8 +133,9 @@ public class AddPips : TileAbility
                 {
                     if (die.value + nPips > 6)  //  failure case. we can't add this many pips!
                     {
-                        GameState.Message("ERROR: Can't add exactly " + nPips.ToString() + " to " + die.name);
                         adjustedDice.Remove(die);
+                        myPlayer.AskToChooseDie(this.PickDie, this.GetType().ToString()); //  ask the player to choose a die or dice
+                        GameState.Message("ERROR: Can't add exactly " + nPips.ToString() + " to " + die.name);
                         return;
                     }
                     else
@@ -148,11 +156,20 @@ public class AddPips : TileAbility
                 }
                 else
                 {
-                    if (die.value + 1 > 6)  //  failure case. we can't add this many pips!
+                    if (!setToAnyFace && (die.value + 1 > 6))  //  failure case. we can't add this many pips!
                     {
                         die.UndoTempPips();
                     }
-                    die.AddTempPips(1);
+                    //  do the wrap around.
+                    if (die.value + 1 > 6)
+                    {
+                        //  set the temppips such that it equals 1.
+                        die.SetTempPipsValue(1);
+                    }
+                    else
+                    {
+                        die.AddTempPips(1);
+                    }
                 }
             }
         }

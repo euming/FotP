@@ -309,7 +309,12 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
 
     public bool isActiveDie()
     {
-        return !isLockedDie();
+        bool isActive = false;
+        if (!isLockedDie() && !isInSetDiceArea())
+        {
+            isActive = true;
+        }
+        return isActive;
     }
     public bool isDieType(TileAbility.DieType onlyDieType)
     {
@@ -433,6 +438,13 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
         origValue = value;
     }
 
+    //  this allows us to wrap around by having a negative tempPips value
+    public void SetTempPipsValue(int val)
+    {
+        //  val = origValue + tempPips. tempPips = val - origValue.
+        tempPips = val - origValue;
+        this.SetDie(origValue + tempPips);
+    }
     public void AddTempPips(int pips)
     {
         tempPips += pips;
@@ -450,6 +462,7 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
         this.SetDie(origValue + tempPips);
         tempPips = 0;
         origValue = value;
+        this.EndRoll();
     }
 
     public int getTempPips()
