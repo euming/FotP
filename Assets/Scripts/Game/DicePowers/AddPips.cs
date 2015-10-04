@@ -8,6 +8,7 @@ public class AddPips : TileAbility
     public bool isExactlyNumPips = false;
     public int nDice = 1;   //  -1 for any number of dice.
     public bool setToAnyFace = false;
+    public bool isEntertainer = false;  //  does the thing where it flips the die around to its opposite face
     int actualNumDice;      //  number of dice we're allowed to modify
     public DieType onlyFor;
     PharoahDie curDie;
@@ -160,15 +161,30 @@ public class AddPips : TileAbility
                     {
                         die.UndoTempPips();
                     }
-                    //  do the wrap around.
-                    if (die.value + 1 > 6)
+                    if (!isEntertainer)
                     {
-                        //  set the temppips such that it equals 1.
-                        die.SetTempPipsValue(1);
+                        //  do the wrap around.
+                        if (die.value + 1 > 6)
+                        {
+                            //  set the temppips such that it equals 1.
+                            die.SetTempPipsValue(1);
+                        }
+                        else
+                        {
+                            die.AddTempPips(1);
+                        }
                     }
-                    else
+                    else//  entertainer flipping nonsense
                     {
-                        die.AddTempPips(1);
+                        int setVal = 7-die.value;
+                        if (die.getTempPips() == 0)
+                        {
+                            die.SetTempPipsValue(setVal);
+                        }
+                        else
+                        {
+                            die.UndoTempPips();
+                        }
                     }
                 }
             }

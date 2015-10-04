@@ -56,7 +56,7 @@ Tile abilities:
   x Palace Servants
   x Soldier
   - Grain Merchant
-  - Entertainer
+  x Entertainer
   - Match Maker
   - Good Omen
   - Palace Key

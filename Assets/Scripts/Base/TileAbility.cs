@@ -23,6 +23,7 @@ public class TileAbility : MonoBehaviour {
         Custom,
         Active,
         Locked,
+        ActiveCustomOrImmediate,   //  for Royal Astrologer
         Any
     };
 

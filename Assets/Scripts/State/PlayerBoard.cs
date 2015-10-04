@@ -13,7 +13,7 @@ public class PlayerBoard : MonoBehaviour {
     Tile curTileInUse;              //  while we're using a tile, keep track of it.
     Scarab curScarabInUse;          //  while we're using the scarab, keep it separate from the others
     PlayerGameState pgs;
-
+    bool isFirstRoll = false;
     
 
 	public void NewGame()
@@ -284,11 +284,19 @@ public class PlayerBoard : MonoBehaviour {
 			}
 			bForcePass = true;
 			return false;
-		}
+		}   //  end player may not roll dice
+
+        //  able to roll dice, continue
 		bForcePass = false;
 		int ndicerolled = 0;
 		GameState.GetCurrentGameState ().purchaseBoard.SetState (PurchaseBoard.PurchaseBoardState.isTuckedAway);
 		UnhideDice ();
+
+        //  white dice must be locked automatically
+        if (!isFirstRoll)
+        {
+            LockWhiteDice();
+        }
 		foreach(PharoahDie d6 in diceList) {
 			d6.EndRoll();
 			if (d6.isInActiveArea() || (d6.isInNoArea())) {
@@ -301,7 +309,8 @@ public class PlayerBoard : MonoBehaviour {
 				}
 				ndicerolled++;
 			}
-		}
+            isFirstRoll = false;
+        }
 		SortDiceList();
 		GameState.Message (this.name + " rolling (" + ndicerolled.ToString() +"/"+diceList.Count.ToString() + ") dice");
 		if (ndicerolled > 0) {
@@ -349,7 +358,8 @@ public class PlayerBoard : MonoBehaviour {
 		if (pgs.curState == PlayerGameState.PlayerGameStates.WaitingNextTurn)
 			pgs.SetState (PlayerGameState.PlayerGameStates.InitTurn);
 		HideDice ();
-	}
+        isFirstRoll = true;
+    }
 
     public void LockDieRotations()
     {

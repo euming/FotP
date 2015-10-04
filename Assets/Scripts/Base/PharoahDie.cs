@@ -234,9 +234,9 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
 		else {
 			SetDie (UnityEngine.Random.Range(1, 7));
 			MoveToUnlockedArea();
-			if (isAutoLocking) {
-				LockDie();
-			}
+			//if (isAutoLocking) {
+			//	LockDie();
+			//}
 		}
 	}
 
@@ -341,6 +341,9 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
             case TileAbility.DieType.Locked:
                 isOfType = isLockedDie();
                 break;
+            case TileAbility.DieType.ActiveCustomOrImmediate:
+                isOfType = (isCustomDie() || isImmediateDie()) && isActiveDie();
+                break;
 
         }
         return isOfType;
@@ -348,9 +351,9 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
     public void LockDie() {
 		if (isInLockedArea()) return;
 
-		if (isAutoLocking)
-			isLocked = true;
-		else
+		//if (isAutoLocking)
+		//	isLocked = true;
+		//else
 			isTempLocked = true;
 
 		MoveToLockedArea();

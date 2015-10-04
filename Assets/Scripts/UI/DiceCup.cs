@@ -39,7 +39,7 @@ public class DiceCup : MonoBehaviour {
 		if (s_instance) {
 			s_instance.DeactivateWalls();
 		}
-		GameState.LockWhiteDice ();
+		//GameState.LockWhiteDice();
 		GameState.WaitForLock ();
 	}
 
