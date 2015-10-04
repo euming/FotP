@@ -100,9 +100,16 @@ public class Tile : SelectableObject {
 	public override void OnSelect(PlayerBoard currentPlayer) {
 		base.OnSelect(currentPlayer);
 		if (currentPlayer.Has(this)) {
-			this.ReturnToSlot();
-			currentPlayer.Drop(this);
-		}
+            if (this.canUndo)
+            {
+                this.ReturnToSlot();
+                currentPlayer.Drop(this);
+            }
+            else if (this.canActivate())
+            {
+                this.FireTrigger(TileAbility.PlayerTurnStateTriggers.Select, currentPlayer);
+            }
+        }
 		else {
 			bool bQualifiedToPurchase = false;
 			if (mySlot) 

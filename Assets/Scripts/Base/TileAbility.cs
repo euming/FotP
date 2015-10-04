@@ -13,6 +13,7 @@ public class TileAbility : MonoBehaviour {
         AcquireUndo,
         Select,             //  player has chosen this tile
         ChooseDie,          //  player has chosen a die
+        AllTrigger,         //  all triggers fire
     };
 
     public enum DieType
@@ -28,7 +29,7 @@ public class TileAbility : MonoBehaviour {
     public bool isArtifact;
 	public bool isArtifactUsed;		//	Artifacts may be used once per game. Once used, we can't use it again
 	public bool isUsedThisTurn;     //	true if we already used this ability this turn
-    public PlayerTurnStateTriggers onStateTrigger = PlayerTurnStateTriggers.Acquire;  //  on this state, trigger this ability
+    public PlayerTurnStateTriggers onStateTrigger = PlayerTurnStateTriggers.AllTrigger;  //  on this state, trigger this ability
 
     /*
 	// Use this for initialization
@@ -73,7 +74,6 @@ public class TileAbility : MonoBehaviour {
     public virtual void OnSelect(PlayerBoard plr)
 	{
         Debug.Log("Tile " + this.name + " triggered OnSelect TileAbility " + this.GetType().ToString() + "\n");
-        isUsedThisTurn = true;
 		if (isArtifact)
 			isArtifactUsed = true;
 	}
@@ -86,7 +86,10 @@ public class TileAbility : MonoBehaviour {
 
     public void FireTrigger(PlayerTurnStateTriggers trig, PlayerBoard plr)
     {
-        if (onStateTrigger != trig) return; //  bail if it's not the right trigger.
+        if (onStateTrigger != PlayerTurnStateTriggers.AllTrigger)   //  if we trigger on all triggers, ignore this bail.
+        {
+            if (onStateTrigger != trig) return; //  bail if it's not the right trigger.
+        }
 
         switch (trig)
         {

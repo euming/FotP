@@ -28,7 +28,11 @@ public class PlayerGameState : MonoBehaviour {
     //  delegate is a C# safe function pointer.
     public delegate void delOnDieSelect(PharoahDie die);
     //  do something when a die is selected. We don't know what. That is for the ability to decide.
-    public delOnDieSelect OnDieSelect;
+    public delOnDieSelect   OnDieSelect;
+    //  do something when the player selects done
+    public delOnDieSelect   OnDieDone;
+    //  do something when the player selects cancel
+    public delOnDieSelect   OnDieCancel;
 
     public PlayerGameStates lastState;          //  for undoing
     public PlayerGameStates curState;
@@ -38,6 +42,7 @@ public class PlayerGameState : MonoBehaviour {
     public int diceLockedThisTurn;
     int lastDiceLockedThisTurn;
     PlayerBoard myPlayer;
+    PharoahDie curDie;
 
     void Awake() {
         curState = PlayerGameStates.WaitingNextTurn;
@@ -135,6 +140,19 @@ public class PlayerGameState : MonoBehaviour {
     public void ChooseDie(PharoahDie die)
     {
         if (OnDieSelect != null)
+        {
             OnDieSelect(die);
+            curDie = die;
+        }
+    }
+
+    public void OnDoneClick()
+    {
+        this.OnDieDone(curDie);
+    }
+    public void OnCancelClick()
+    {
+        this.OnDieCancel(curDie);
+
     }
 }

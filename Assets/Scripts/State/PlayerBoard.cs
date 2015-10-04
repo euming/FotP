@@ -168,11 +168,7 @@ public class PlayerBoard : MonoBehaviour {
                 UndoState();
             }
             else {
-                if (tile.canActivate())
-                {
-                    tile.FireTrigger(TileAbility.PlayerTurnStateTriggers.Select, this);
-                }
-                else
+
                 {
                     GameState.Message(this.name + " already owns " + tile.name + " and cannot buy another.");
                 }
@@ -214,6 +210,17 @@ public class PlayerBoard : MonoBehaviour {
         pgs.SetState(PlayerGameState.PlayerGameStates.WaitingToSelectDie);
         pgs.OnDieSelect = del;  //  set the delegate
     }
+    public void AskToChooseDone(PlayerGameState.delOnDieSelect del)
+    {
+        pgs.OnDieDone = del;
+        UIState.EnableDoneButton();
+    }
+    public void AskToChooseCancel(PlayerGameState.delOnDieSelect del)
+    {
+        pgs.OnDieCancel = del;
+        UIState.EnableCancelButton();
+    }
+
     public void SetTileInUse(Tile tile)
     {
         curTileInUse = tile;
@@ -409,6 +416,14 @@ public class PlayerBoard : MonoBehaviour {
 		}
 	}
 
+    public void OnDoneClick()
+    {
+        pgs.OnDoneClick();
+    }
+    public void OnCancelClick()
+    {
+        pgs.OnCancelClick();
+    }
     //  ***************** Tile ability stuff
     public void FireTriggers(TileAbility.PlayerTurnStateTriggers trigState)
     {

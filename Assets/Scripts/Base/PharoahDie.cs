@@ -445,6 +445,13 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
         tempPips = 0;
     }
 
+    public void FinalizeTempPips()
+    {
+        this.SetDie(origValue + tempPips);
+        tempPips = 0;
+        origValue = value;
+    }
+
     public int getTempPips()
     {
         return tempPips;

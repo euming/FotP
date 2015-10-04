@@ -66,7 +66,7 @@ public class DebugReporterEditor : Editor
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
-        DebugReporter myScript = (DebugReporter)target;
+        //DebugReporter myScript = (DebugReporter)target;
         if (GUILayout.Button("Report Tile Dev Progress"))
         {
             ReportTileDevProgress();

@@ -18,11 +18,23 @@ public class AddPips : TileAbility
     void Start () {
         adjustedDice = new List<PharoahDie>();
     }
-	public override void OnSelect(PlayerBoard plr)
+
+    public override void OnStartTurn(PlayerBoard plr)
+    {
+        base.OnStartTurn(plr);
+        this.isUsedThisTurn = false;    //  refresh this every turn.
+    }
+
+    public override void OnSelect(PlayerBoard plr)
     {
         base.OnSelect(plr);
+        if (this.isUsedThisTurn)
+        {
+            GameState.Message("Already used " + this.name + " this turn.");
+            return;
+        }
+
         curDie = null;
-        isUsedThisTurn = true;
         adjustedDice.Clear();
         if (nDice == -1)
         {
@@ -35,6 +47,8 @@ public class AddPips : TileAbility
         myPlayer = plr;
         plr.SetTileInUse(this.GetComponent<Tile>());
         plr.AskToChooseDie(this.PickDie, this.GetType().ToString()); //  ask the player to choose a die or dice
+        plr.AskToChooseCancel(this.OnCancel);
+        plr.AskToChooseDone(this.OnDone);
     }
 
     public override void OnChooseDie(PlayerBoard plr)
@@ -52,6 +66,29 @@ public class AddPips : TileAbility
         return (!adjustedDice.Contains(die));
     }
 
+    void OnCancel(PharoahDie d)
+    {
+        GameState.Message("Cancel");
+        foreach(PharoahDie die in adjustedDice)
+        {
+            die.UndoTempPips();
+        }
+        myPlayer.UndoState();   //  go back to previous state
+        UIState.EnableCancelButton(false);
+        UIState.EnableDoneButton(false);
+    }
+    void OnDone(PharoahDie d)
+    {
+        GameState.Message("Done");
+        foreach (PharoahDie die in adjustedDice)
+        {
+            die.FinalizeTempPips();
+        }
+        myPlayer.UndoState();   //  go back to previous state
+        UIState.EnableCancelButton(false);
+        UIState.EnableDoneButton(false);
+        this.isUsedThisTurn = true;
+    }
     //  delegate: when the player chooses a die, this will get called.
     //  user clicked on a die. Which one is it? We have to keep track here for this ability.
     void PickDie(PharoahDie die)
