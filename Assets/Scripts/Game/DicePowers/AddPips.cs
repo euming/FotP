@@ -9,9 +9,12 @@ public class AddPips : TileAbility
     public int nDice = 1;   //  -1 for any number of dice.
     public bool setToAnyFace = false;
     public bool isEntertainer = false;  //  does the thing where it flips the die around to its opposite face
+    public bool isSoothsayer = false;   //  does the thing with soothsayer where the two dice maintain the same total.
+    public bool isAstrologer = false;   //  be sure to set isSoothSayer=true if we are also an astrologer
     int actualNumDice;      //  number of dice we're allowed to modify
     public DieType onlyFor;
     PharoahDie curDie;
+    PharoahDie lastDie; //  for astrologer
     PlayerBoard myPlayer;
 
     List<PharoahDie> adjustedDice;
@@ -91,6 +94,21 @@ public class AddPips : TileAbility
         UIState.EnableDoneButton(false);
         this.isUsedThisTurn = true;
     }
+
+    //  get the first die that is not the specified one.
+    PharoahDie GetOtherDie(PharoahDie notThisDie)
+    {
+        PharoahDie theDie = null;
+        foreach (PharoahDie die in adjustedDice)
+        {
+            if (die != notThisDie)
+            {
+                theDie = die;
+                return theDie;
+            }
+        }
+        return theDie;
+    }
     //  delegate: when the player chooses a die, this will get called.
     //  user clicked on a die. Which one is it? We have to keep track here for this ability.
     void PickDie(PharoahDie die)
@@ -104,7 +122,6 @@ public class AddPips : TileAbility
             GameState.Message("Cannot pick " + die.name + " because it's the wrong type.");
             return;
         }
-        curDie = die;
 
         if (isNewDie(die))
         {
@@ -128,6 +145,10 @@ public class AddPips : TileAbility
         //  if we are a legal die, then we can add pips to it (or undo the addpips)
         if (bLegalDie)
         {
+            if (die != curDie)
+                lastDie = curDie;
+            curDie = die;
+
             if (isExactlyNumPips)   //  we add exactly this number of pips.
             {
                 if (die.getTempPips()==0)   //  we haven't messed with this die yet
@@ -163,15 +184,48 @@ public class AddPips : TileAbility
                     }
                     if (!isEntertainer)
                     {
-                        //  do the wrap around.
-                        if (die.value + 1 > 6)
+                        if (!isSoothsayer)
                         {
-                            //  set the temppips such that it equals 1.
-                            die.SetTempPipsValue(1);
+                            //  do the wrap around.
+                            if (die.value + 1 > 6)
+                            {
+                                //  set the temppips such that it equals 1.
+                                die.SetTempPipsValue(1);
+                            }
+                            else
+                            {
+                                die.AddTempPips(1);
+                            }
                         }
-                        else
+                        else//  Soothsayer nonsense here
                         {
-                            die.AddTempPips(1);
+                            int exactlyNumDice = 2;
+                            if (isAstrologer)
+                                exactlyNumDice = 3;
+                            if (adjustedDice.Count!= exactlyNumDice)
+                            {
+                                GameState.Message("Select exactly " + exactlyNumDice.ToString() + " dice.");
+                            }
+                            else
+                            {
+                                PharoahDie otherDie = GetOtherDie(die);
+                                if (isAstrologer)
+                                    otherDie = lastDie;
+                                if ((otherDie.value > 1) && (die.value < 6)) //  we can still subtract value from otherDie
+                                {
+                                    die.AddTempPips(1);
+                                    otherDie.AddTempPips(-1);
+                                }
+                                else if ((die.value > 1) && (otherDie.value < 6))//  if we have some value in this die, we can add to the other
+                                {
+                                    die.AddTempPips(-1);
+                                    otherDie.AddTempPips(1);
+                                }
+                                else//  can't do either, both dice are 1. Make an error
+                                {
+                                    GameState.Message("Cannot change values.");
+                                }
+                            }
                         }
                     }
                     else//  entertainer flipping nonsense

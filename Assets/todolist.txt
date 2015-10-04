@@ -45,7 +45,7 @@ Tile abilities:
   x Worker
   t Beggar - Each turn, gain 1 token before your first roll
   x Servant
-  - Soothsayer
+  t Soothsayer
   - Ankh
   - Omen
   - Ancestral Guidance
@@ -94,7 +94,7 @@ Tile abilities:
   - Grand Vizier
   - Granary Master
   x Heir
-  - Royal Astrologer
+  t Royal Astrologer
   - Royal Mother
   - Queen's Favor
   - Royal Death
