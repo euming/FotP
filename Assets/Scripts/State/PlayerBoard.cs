@@ -110,7 +110,20 @@ public class PlayerBoard : MonoBehaviour {
 
 	//	========================================================================================
 	//	dice stuff
-	public void DestroyDie(PharoahDie die)
+
+    public int GetNumValidDice(TileAbility.DieType onlyDieType)
+    {
+        int nDice = 0;
+        foreach(PharoahDie die in diceList)
+        {
+            if (die.isDieType(onlyDieType))
+            {
+                nDice++;
+            }
+        }
+        return nDice;
+    }
+    public void DestroyDie(PharoahDie die)
 	{
 		die.ReadyToRoll();
 		diceList.Remove(die);
@@ -155,7 +168,14 @@ public class PlayerBoard : MonoBehaviour {
                 UndoState();
             }
             else {
-                GameState.Message(this.name + " already owns " + tile.name + " and cannot buy another.");
+                if (tile.canActivate())
+                {
+                    tile.FireTrigger(TileAbility.PlayerTurnStateTriggers.Select, this);
+                }
+                else
+                {
+                    GameState.Message(this.name + " already owns " + tile.name + " and cannot buy another.");
+                }
             }
 		}
 		return bSuccess;
@@ -194,11 +214,15 @@ public class PlayerBoard : MonoBehaviour {
         pgs.SetState(PlayerGameState.PlayerGameStates.WaitingToSelectDie);
         pgs.OnDieSelect = del;  //  set the delegate
     }
+    public void SetTileInUse(Tile tile)
+    {
+        curTileInUse = tile;
+    }
     //  player has chosen a die
     public void ChooseDie(PharoahDie die)
     {
         pgs.UndoState();    //  go back to previous state before WaitingToSelectDie
-        pgs.ChooseDie(die);
+        pgs.ChooseDie(die); //  calls OnDieSelect delegate. For scarabs, this will reroll or addpip. For TileAbility, it will call the ability's delegate, if any
 
         //  this should be made generic for all TileAbility
         if (this.curScarabInUse && this.curScarabInUse.isConsumed)
@@ -207,6 +231,7 @@ public class PlayerBoard : MonoBehaviour {
             this.curScarabInUse = null;
         }
 
+        //  This will fire the trigger from the player's point of view. The die chosen should be saved by the delegate in ChooseDie
         if (this.curTileInUse)
         {
             this.curTileInUse.FireTrigger(TileAbility.PlayerTurnStateTriggers.ChooseDie, this);

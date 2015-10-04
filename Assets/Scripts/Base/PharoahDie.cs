@@ -12,6 +12,8 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
 
     public DiceFactory.DieType type;
     public int setDieValue; //	if >0, then this die is set when we roll and not rolled from the cup.
+    int tempPips = 0;
+    int origValue;
 
     DieSlot mySlot;
     GameObject spawnPoint = null;
@@ -309,7 +311,35 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
     {
         return !isLockedDie();
     }
+    public bool isDieType(TileAbility.DieType onlyDieType)
+    {
+        bool isOfType = false;
+        switch (onlyDieType)
+        {
+            default:
+                break;
+            case TileAbility.DieType.Any:
+                isOfType = true;
+                break;
+            case TileAbility.DieType.Active:
+                isOfType = this.isActiveDie();
+                break;
+            case TileAbility.DieType.Immediate:
+                isOfType = isImmediateDie();
+                break;
+            case TileAbility.DieType.Custom:
+                isOfType = isCustomDie();
+                break;
+            case TileAbility.DieType.Standard:
+                isOfType = isStandardDie();
+                break;
+            case TileAbility.DieType.Locked:
+                isOfType = isLockedDie();
+                break;
 
+        }
+        return isOfType;
+    }
     public void LockDie() {
 		if (isInLockedArea()) return;
 
@@ -395,4 +425,28 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
     public void EndTurn() {
         EndRoll();
 	}
+
+    //  pip adjustments
+    public void ClearTempPips()
+    {
+        tempPips = 0;
+        origValue = value;
+    }
+
+    public void AddTempPips(int pips)
+    {
+        tempPips += pips;
+        this.SetDie(origValue + tempPips);
+    }
+
+    public void UndoTempPips()
+    {
+        this.SetDie(origValue);
+        tempPips = 0;
+    }
+
+    public int getTempPips()
+    {
+        return tempPips;
+    }
 }

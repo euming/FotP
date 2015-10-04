@@ -15,6 +15,16 @@ public class TileAbility : MonoBehaviour {
         ChooseDie,          //  player has chosen a die
     };
 
+    public enum DieType
+    {
+        Standard,
+        Immediate,
+        Custom,
+        Active,
+        Locked,
+        Any
+    };
+
     public bool isArtifact;
 	public bool isArtifactUsed;		//	Artifacts may be used once per game. Once used, we can't use it again
 	public bool isUsedThisTurn;     //	true if we already used this ability this turn

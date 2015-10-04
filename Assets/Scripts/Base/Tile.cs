@@ -127,6 +127,14 @@ public class Tile : SelectableObject {
 		}
 	}
 
+    public bool canActivate()
+    {
+        bool bCan = false;
+        if (this.GetComponent<TileAbility>() != null)
+            bCan = true;
+        return bCan;
+    }
+
     //  debug stuff
     public string GetDebugStatusString()
     {

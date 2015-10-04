@@ -134,6 +134,7 @@ public class PlayerGameState : MonoBehaviour {
     //  selecting a die
     public void ChooseDie(PharoahDie die)
     {
-        OnDieSelect(die);
+        if (OnDieSelect != null)
+            OnDieSelect(die);
     }
 }
