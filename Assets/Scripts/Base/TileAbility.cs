@@ -89,7 +89,10 @@ public class TileAbility : MonoBehaviour {
     {
         if (onStateTrigger != PlayerTurnStateTriggers.AllTrigger)   //  if we trigger on all triggers, ignore this bail.
         {
-            if (onStateTrigger != trig) return; //  bail if it's not the right trigger.
+            if (trig != PlayerTurnStateTriggers.AcquireUndo)  //  undo does not bail but always goes through
+            {
+                if (onStateTrigger != trig) return; //  bail if it's not the right trigger.
+            }
         }
 
         switch (trig)

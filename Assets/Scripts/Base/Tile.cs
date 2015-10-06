@@ -21,6 +21,7 @@ public class Tile : SelectableObject {
 	public List<int> shopCol;	//	index of valid shop columns
     public bool canUndo;        //  if purchased, can we undo this purchase this turn?
     public Tile myOriginal;     //  when we clone, we want to keep track of the original.
+    List<GameObject> dependencyList;    //  when this tile was instantiated, these things came with it. Destroy these when the tile is destroyed.
 
     //	figure out which slot I should be in, and put myself there.
     void AutoAssignToSlot()

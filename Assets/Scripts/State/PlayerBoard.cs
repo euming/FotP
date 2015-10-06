@@ -64,10 +64,11 @@ public class PlayerBoard : MonoBehaviour {
 	{
         GameObject bugGO = GameObject.Instantiate(GameState.GetCurrentGameState().scarabPrefab.gameObject);
         Scarab bug = bugGO.GetComponent<Scarab>();
-        bug.SetType(scarabType);
 		scarabList.Add(bug);
         bugGO.transform.parent = this.transform;    //  put this under the player board hierarchy.
-		return bug;
+        bug.SetScarabType(scarabType);
+        //bug.type = scarabType;
+        return bug;
 	}
 	public void DestroyScarab(Scarab scarab)
 	{
@@ -160,13 +161,14 @@ public class PlayerBoard : MonoBehaviour {
 	}
 
 	//	do we own a tile?
-	public bool Has(Tile tile)
+	public Tile Has(Tile tile)
 	{
-		foreach(Tile t in tileList) {
-			if (t==tile) return true;
-            if (t.myOriginal == tile) return true;
+        Tile gotIt = null;
+        foreach (Tile t in tileList) {
+			if (t==tile) return t;
+            if (t.myOriginal == tile) return t;
 		}
-		return false;
+		return gotIt;
 	}
 
     public bool Take(Tile claimedTile)
@@ -192,12 +194,14 @@ public class PlayerBoard : MonoBehaviour {
 	public bool Drop(Tile tile)
 	{
 		bool bSuccess = false;
-        if (Has(tile)) {
+        Tile foundTile = Has(tile);
+        if (foundTile!=null) {
             if (tile.canUndo) { 
                 bSuccess = true;
                 GameState.Message(this.name + " returns " + tile.name);
-                tileList.Remove(tile);
-                tile.FireTrigger(TileAbility.PlayerTurnStateTriggers.AcquireUndo, this);
+                tileList.Remove(foundTile);
+                foundTile.FireTrigger(TileAbility.PlayerTurnStateTriggers.AcquireUndo, this);
+                Destroy(foundTile.gameObject);
                 UndoState();
             }
             else {
