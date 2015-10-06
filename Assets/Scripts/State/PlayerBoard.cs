@@ -164,15 +164,19 @@ public class PlayerBoard : MonoBehaviour {
 	{
 		foreach(Tile t in tileList) {
 			if (t==tile) return true;
+            if (t.myOriginal == tile) return true;
 		}
 		return false;
 	}
 
-    public bool Take(Tile newTile)
+    public bool Take(Tile claimedTile)
     {
         bool bSuccess = false;
         if (this.pgs.mayPurchaseTile) {
-            GameState.Message(this.name + " takes " + newTile.name);
+            GameState.Message(this.name + " claims " + claimedTile.name);
+            Tile newTile = Instantiate(claimedTile.gameObject).GetComponent<Tile>();
+            newTile.myOriginal = claimedTile;
+            newTile.transform.parent = this.transform;
             tileList.Add(newTile);
             newTile.FireTrigger(TileAbility.PlayerTurnStateTriggers.Acquire, this);
             TilePurchaseChosen();
@@ -180,7 +184,7 @@ public class PlayerBoard : MonoBehaviour {
         }
         else
         {
-            GameState.Message(this.name + " may not take " + newTile.name);
+            GameState.Message(this.name + " may not claim " + claimedTile.name);
         }
 		return bSuccess;
 	}

@@ -20,9 +20,10 @@ public class Tile : SelectableObject {
 	public int		shopRow;	//	index of shop row
 	public List<int> shopCol;	//	index of valid shop columns
     public bool canUndo;        //  if purchased, can we undo this purchase this turn?
+    public Tile myOriginal;     //  when we clone, we want to keep track of the original.
 
-	//	figure out which slot I should be in, and put myself there.
-	void AutoAssignToSlot()
+    //	figure out which slot I should be in, and put myself there.
+    void AutoAssignToSlot()
 	{
 		GameState		gs = GameState.GetCurrentGameState();
 		TileShop 		ts = gs.tileShop;

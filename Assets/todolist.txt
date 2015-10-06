@@ -6,8 +6,9 @@ x Game state triggers to enable certain tiles to be played.
 - Should instantiate/clone tiles rather than use the actual tile
 
 Bugs:
+- Some tiles are upside-down
 - rolling single die is buggy due to requirement that all dice are rolled for physics and shit
-- Only checked locked dice for criteria. Automatically lock other dice.
+- Only check locked dice for criteria. (Maybe: Automatically lock other dice after initial check.)
 - AddPips doesn't work with custom dice
 x Locked dice from previous rolls should not be able to be rerolled
 x iTween creates 2 extra components after ending play of editor.
