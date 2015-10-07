@@ -71,28 +71,34 @@ public class AddPips : TileAbility
         return (!adjustedDice.Contains(die));
     }
 
-    void OnCancel(PharoahDie d)
+    bool OnCancel(PharoahDie d)
     {
+        bool bSuccess = false;
         GameState.Message("Cancel");
         foreach(PharoahDie die in adjustedDice)
         {
             die.UndoTempPips();
+            bSuccess = true;
         }
         myPlayer.UndoState();   //  go back to previous state
         UIState.EnableCancelButton(false);
         UIState.EnableDoneButton(false);
+        return bSuccess;
     }
-    void OnDone(PharoahDie d)
+    bool OnDone(PharoahDie d)
     {
+        bool bSuccess = false;
         GameState.Message("Done");
         foreach (PharoahDie die in adjustedDice)
         {
             die.FinalizeTempPips();
+            bSuccess = true;
         }
         myPlayer.UndoState();   //  go back to previous state
         UIState.EnableCancelButton(false);
         UIState.EnableDoneButton(false);
         this.isUsedThisTurn = true;
+        return bSuccess;
     }
 
     //  get the first die that is not the specified one.
@@ -111,7 +117,7 @@ public class AddPips : TileAbility
     }
     //  delegate: when the player chooses a die, this will get called.
     //  user clicked on a die. Which one is it? We have to keep track here for this ability.
-    void PickDie(PharoahDie die)
+    bool PickDie(PharoahDie die)
     {
         bool bLegalDie = false;
         bool bIsNewDie = false;
@@ -120,7 +126,7 @@ public class AddPips : TileAbility
         {
             myPlayer.AskToChooseDie(this.PickDie, this.GetType().ToString()); //  ask the player to choose a die or dice
             GameState.Message("Cannot pick " + die.name + " because it's the wrong type.");
-            return;
+            return false;
         }
 
         if (isNewDie(die))
@@ -158,7 +164,7 @@ public class AddPips : TileAbility
                         adjustedDice.Remove(die);
                         myPlayer.AskToChooseDie(this.PickDie, this.GetType().ToString()); //  ask the player to choose a die or dice
                         GameState.Message("ERROR: Can't add exactly " + nPips.ToString() + " to " + die.name);
-                        return;
+                        return false;
                     }
                     else
                     {
@@ -248,5 +254,6 @@ public class AddPips : TileAbility
             GameState.Message("Can't choose " + die.name + " for " + this.name);
         }
         myPlayer.AskToChooseDie(this.PickDie, this.GetType().ToString()); //  ask the player to choose a die or dice
+        return bLegalDie;
     }
 }

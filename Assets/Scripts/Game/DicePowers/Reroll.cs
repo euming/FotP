@@ -26,8 +26,8 @@ public class Reroll : TileAbility
     }
     //  delegate: when the player chooses a die, this will get called.
     //  user clicked on a die. Which one is it? We have to keep track here for this ability.
-    void PickDie(PharoahDie die)
+    bool PickDie(PharoahDie die)
     {
-        myPlayer.RollDie(die);
+        return myPlayer.RollDie(die);
     }
 }

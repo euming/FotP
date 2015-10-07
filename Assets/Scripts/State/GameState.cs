@@ -68,7 +68,11 @@ public class GameState : MonoBehaviour, IToggleReceiver {
 		instance.currentPlayer.StartTurn();
 	}
 
-	static public void WaitForLock()	//	wait for player to lock a die
+    static public void DiceStoppedMoving()  //  dice stopped moving, so we need to do some things.
+    {
+        instance.currentPlayer.SortDiceList();
+    }
+    static public void WaitForLock()	//	wait for player to lock a die
 	{
 		instance.currentPlayer.WaitForLock ();
 	}

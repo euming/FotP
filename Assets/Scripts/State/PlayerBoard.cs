@@ -62,12 +62,15 @@ public class PlayerBoard : MonoBehaviour {
 
 	public Scarab AddScarab(Scarab.ScarabType scarabType)
 	{
-        GameObject bugGO = GameObject.Instantiate(GameState.GetCurrentGameState().scarabPrefab.gameObject);
+        GameState curGamestate = GameState.GetCurrentGameState();
+        Scarab prefab = curGamestate.scarabPrefab;
+        GameObject prefabGO = prefab.gameObject;
+        GameObject bugGO = GameObject.Instantiate(prefabGO);
+        GameState.Message("Instantiate bugGO");
         Scarab bug = bugGO.GetComponent<Scarab>();
 		scarabList.Add(bug);
         bugGO.transform.parent = this.transform;    //  put this under the player board hierarchy.
-        bug.SetScarabType(scarabType);
-        //bug.type = scarabType;
+        bug.type = scarabType;
         return bug;
 	}
 	public void DestroyScarab(Scarab scarab)
@@ -244,6 +247,10 @@ public class PlayerBoard : MonoBehaviour {
     public void AskToChooseDie(PlayerGameState.delOnDieSelect del, string reason)
     {
         GameState.Message(this.name + " please choose a die for " + reason);
+        if (del==null)
+        {
+            Debug.LogError("No delegate was defined, so selecting a die will do nothing.");
+        }
         pgs.SetState(PlayerGameState.PlayerGameStates.WaitingToSelectDie);
         pgs.OnDieSelect = del;  //  set the delegate
     }
@@ -266,19 +273,22 @@ public class PlayerBoard : MonoBehaviour {
     public void ChooseDie(PharoahDie die)
     {
         pgs.UndoState();    //  go back to previous state before WaitingToSelectDie
-        pgs.ChooseDie(die); //  calls OnDieSelect delegate. For scarabs, this will reroll or addpip. For TileAbility, it will call the ability's delegate, if any
+        bool bSuccessfulDieChosen = pgs.ChooseDie(die); //  calls OnDieSelect delegate. For scarabs, this will reroll or addpip. For TileAbility, it will call the ability's delegate, if any
 
-        //  this should be made generic for all TileAbility
-        if (this.curScarabInUse && this.curScarabInUse.isConsumed)
+        if (bSuccessfulDieChosen)
         {
-            Destroy(this.curScarabInUse.gameObject);    //  destroy the scarab after we've rolled/added pip to the die.
-            this.curScarabInUse = null;
-        }
+            //  this should be made generic for all TileAbility
+            if (this.curScarabInUse && this.curScarabInUse.isConsumed)
+            {
+                Destroy(this.curScarabInUse.gameObject);    //  destroy the scarab after we've rolled/added pip to the die.
+                this.curScarabInUse = null;
+            }
 
-        //  This will fire the trigger from the player's point of view. The die chosen should be saved by the delegate in ChooseDie
-        if (this.curTileInUse)
-        {
-            this.curTileInUse.FireTrigger(TileAbility.PlayerTurnStateTriggers.ChooseDie, this);
+            //  This will fire the trigger from the player's point of view. The die chosen should be saved by the delegate in ChooseDie
+            if (this.curTileInUse)
+            {
+                this.curTileInUse.FireTrigger(TileAbility.PlayerTurnStateTriggers.ChooseDie, this);
+            }
         }
     }
 
@@ -311,9 +321,9 @@ public class PlayerBoard : MonoBehaviour {
         if (die == null) return false;
         GameState.GetCurrentGameState().purchaseBoard.SetState(PurchaseBoard.PurchaseBoardState.isTuckedAway);
         UnhideDice();
+        DiceCup.StartRolling();
         die.ReadyToRoll();
         die.RollDie();
-        SortDiceList();
         return true;
     }
     //	return - were dice rolled or not?
@@ -362,13 +372,13 @@ public class PlayerBoard : MonoBehaviour {
 			}
             isFirstRoll = false;
         }
-		SortDiceList();
 		GameState.Message (this.name + " rolling (" + ndicerolled.ToString() +"/"+diceList.Count.ToString() + ") dice");
 		if (ndicerolled > 0) {
 			pgs.SetState (PlayerGameState.PlayerGameStates.DiceHaveBeenRolled);
 			return true;
 		}
-		GameState.WaitForPurchase ();
+        SortDiceList();
+        GameState.WaitForPurchase ();
 		return false;
 	}
 

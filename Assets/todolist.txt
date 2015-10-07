@@ -4,10 +4,14 @@ x Make a generic ability power that includes the UI state machine.
   x Retrofit scarab abilities.
 x Game state triggers to enable certain tiles to be played.
 x Should instantiate/clone tiles rather than use the actual tile
+x Can only reroll active dice.
+  - Make sure the flow works when not-active dice are chosen and rejected.
 
 Bugs:
+x Incorrectly deciding that all dice have settled.
+x pass turn is broken
 x Some tiles are upside-down. Make sure the TileSlot forces orientation.
-- rolling single die is buggy due to requirement that all dice are rolled for physics and shit
+x rolling single die is buggy due to requirement that all dice are rolled for physics and shit
 - Only check locked dice for criteria. (Maybe: Automatically lock other dice after initial check.)
 - AddPips doesn't work with custom dice
 x Locked dice from previous rolls should not be able to be rerolled
@@ -24,7 +28,8 @@ x Don't allow player to click the dice before the dice have stopped rolling.
 x Should have a number of tiles appropriate to the number of players
 
 UI:
-- Tile Ability bar to show all abilities
+- Tile Ability bar to show all Tiles
+- Darken out Tiles that are not available anymore.
 x Purchase board should allow us to buy tiles easily.
   x Place tiles in slots correctly oriented.
 x Blue tiles

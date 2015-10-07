@@ -57,7 +57,10 @@ public class Die : MonoBehaviour {
                 framesOfNotRolling = 0;
             }
             if (framesOfNotRolling >= 30)
+            {
+                framesOfNotRolling = 26;
                 return false;
+            }
             return true;
         }
     }
