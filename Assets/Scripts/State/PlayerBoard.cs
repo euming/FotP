@@ -68,9 +68,9 @@ public class PlayerBoard : MonoBehaviour {
         GameObject bugGO = GameObject.Instantiate(prefabGO);
         GameState.Message("Instantiate bugGO");
         Scarab bug = bugGO.GetComponent<Scarab>();
+        bug.type = scarabType;
 		scarabList.Add(bug);
         bugGO.transform.parent = this.transform;    //  put this under the player board hierarchy.
-        bug.type = scarabType;
         return bug;
 	}
 	public void DestroyScarab(Scarab scarab)
@@ -79,39 +79,25 @@ public class PlayerBoard : MonoBehaviour {
 		Destroy (scarab.gameObject);
 	}
 
-    public bool hasScarab(Scarab.ScarabType type)
+    public Scarab hasScarabType(Scarab.ScarabType type)
     {
-        bool hasIt = false;
+
         foreach (Scarab sc in scarabList) {
             if (sc.type == type)
             {
-                hasIt = true;
-                break;
+                return sc;
             }
         }
-            return hasIt;
+        return null;
     }
-    public Scarab PopScarab(Scarab.ScarabType type)
-    {
-        Scarab hasIt = null;
-        foreach (Scarab sc in scarabList)
-        {
-            if (sc.type == type)
-            {
-                hasIt = sc;
-                break;
-            }
-        }
-        if (hasIt != null)
-            scarabList.Remove(hasIt);
-        return hasIt;
-    }
+
     public bool UseScarab(Scarab.ScarabType type)
     {
         bool bSuccess = false;
-        bool bHasScarab = hasScarab(type);
-        if (bHasScarab) {
-            curScarabInUse = PopScarab(type);
+        Scarab hasScarab = hasScarabType(type);
+        if (hasScarab!=null) {
+            curScarabInUse = hasScarab;
+            scarabList.Remove(hasScarab);   //  remove my scarab from the list and hold it in curScarabInUse until we've decided what happens to it. Consumed or Undo.
             //  this will wait until the player has selected a die, and then perform the scarab's delegate function on that die.
             this.AskToChooseDie(curScarabInUse.onDieSelect, type.ToString());
         }
@@ -288,6 +274,15 @@ public class PlayerBoard : MonoBehaviour {
             if (this.curTileInUse)
             {
                 this.curTileInUse.FireTrigger(TileAbility.PlayerTurnStateTriggers.ChooseDie, this);
+            }
+        }
+        else//  we were not able to select a valid die
+        {
+            if (this.curScarabInUse)
+            {
+                //  return the scarab back to our list without consuming it
+                scarabList.Add(this.curScarabInUse);
+                this.curScarabInUse = null;        
             }
         }
     }

@@ -8,7 +8,7 @@ public class Scarab : SelectableObject {
 		Reroll = 0,
 		AddPip,
 	};
-	private ScarabType 		scarabType;
+	private ScarabType 		_scarabType;
     public PlayerGameState.delOnDieSelect onDieSelect;
     public bool isConsumed = false; //  if we've used this scarab. This lets our owner know when this object has been used up.
 
@@ -16,23 +16,21 @@ public class Scarab : SelectableObject {
     {
         get
         {
-            return scarabType;
+            return _scarabType;
         }
         set
         {
-            scarabType = type;
+            _scarabType = value;
             SetDelegates();
         }
     }
     public void Awake()
     {
-        GameState.Message("Scarab.Awake()");
         onDieSelect = null;
 
     }
     public void Start()
     {
-        GameState.Message("Scarab.Start()");
         SetDelegates();
     }
     public bool AddPip(PharoahDie die)
@@ -54,6 +52,7 @@ public class Scarab : SelectableObject {
     {
         if (!die.isActiveDie())
         {
+            GameState.Message("Cannot use Scarab on non-active die.");
             return false;
         }
         GameState.Message("Rerolling " + die.name);
@@ -64,29 +63,17 @@ public class Scarab : SelectableObject {
         return true;
     }
 
-    //public void SetScarabType(ScarabType newType)
-    //{
-    //    scarabType = newType;
-    //    //if (type == ScarabType.Reroll)
-    //    //{
-    //    //    this.name = "Scarab Reroll";
-    //    //}
-    //    //else
-    //    //{
-    //    //    this.name = "Scarab AddPip";
-    //    //}
-    //    //SetDelegates();
-    //}
-
     public void SetDelegates()
     {
-        if (scarabType == ScarabType.Reroll)
+        if (_scarabType == ScarabType.Reroll)
         {
             onDieSelect = Reroll;
+            this.name = "Scarab Reroll";
         }
         else
         {
             onDieSelect = AddPip;
+            this.name = "Scarab AddPip";
         }
 
     }

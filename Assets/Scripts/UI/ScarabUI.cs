@@ -85,7 +85,7 @@ public class ScarabUI : MonoBehaviour {
             default:
                 break;
             case ScarabUIState.ready:
-                if (currentPlayer.hasScarab(type))
+                if (currentPlayer.hasScarabType(type)!=null)
                 {
                     SetState(ScarabUIState.scarab_activated);
                 }
