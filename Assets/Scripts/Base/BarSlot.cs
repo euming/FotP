@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+//  This is a TileSlot on the PurchaseBoard bar.
 public class BarSlot : Slot {
 
 	public Vector2		tileShopPos;	//	where we are in the tile shop

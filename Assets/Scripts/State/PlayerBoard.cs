@@ -9,6 +9,7 @@ public class PlayerBoard : MonoBehaviour {
 	public List<Tile>	tileList;	//	all my tiles
 	public List<PharoahDie>	diceList;	//	all my dice
 	public List<Scarab>		scarabList;		//	all my scarabs
+    public PlayerBoardUI    plrUI;             //  my UI for tiles
 
     Tile curTileInUse;              //  while we're using a tile, keep track of it.
     Scarab curScarabInUse;          //  while we're using the scarab, keep it separate from the others
@@ -160,6 +161,22 @@ public class PlayerBoard : MonoBehaviour {
 		return gotIt;
 	}
 
+    void AddTile(Tile tile)
+    {
+        tileList.Add(tile);
+        if (this.plrUI != null)
+        {
+            plrUI.AddTile(tile);
+        }
+    }
+    void RemoveTile(Tile tile)
+    {
+        tileList.Remove(tile);
+        if (this.plrUI != null)
+        {
+            plrUI.RemoveTile(tile);
+        }
+    }
     public bool Take(Tile claimedTile)
     {
         bool bSuccess = false;
@@ -168,7 +185,7 @@ public class PlayerBoard : MonoBehaviour {
             Tile newTile = Instantiate(claimedTile.gameObject).GetComponent<Tile>();
             newTile.myOriginal = claimedTile;
             newTile.transform.parent = this.transform;
-            tileList.Add(newTile);
+            AddTile(newTile);
             newTile.FireTrigger(TileAbility.PlayerTurnStateTriggers.Acquire, this);
             TilePurchaseChosen();
             bSuccess = true;
@@ -188,7 +205,7 @@ public class PlayerBoard : MonoBehaviour {
             if (tile.canUndo) { 
                 bSuccess = true;
                 GameState.Message(this.name + " returns " + tile.name);
-                tileList.Remove(foundTile);
+                RemoveTile(foundTile);
                 foundTile.FireTrigger(TileAbility.PlayerTurnStateTriggers.AcquireUndo, this);
                 Destroy(foundTile.gameObject);
                 UndoState();
