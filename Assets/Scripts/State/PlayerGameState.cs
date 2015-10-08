@@ -78,6 +78,7 @@ public class PlayerGameState : MonoBehaviour {
     public void InitTurn()
     {
         diceLockedThisTurn = 0;
+        lastDiceLockedThisTurn = 0;
         mayRollDice = true;
         isInitialRoll = true;
         mayPurchaseTile = false;
@@ -110,8 +111,6 @@ public class PlayerGameState : MonoBehaviour {
 			isInitialRoll = false;
             break;
 		case PlayerGameStates.WaitingForLock:
-			diceLockedThisTurn = 0;
-			lastDiceLockedThisTurn = 0;
 			mayRollDice = false;
             mayPurchaseTile = true;
             break;

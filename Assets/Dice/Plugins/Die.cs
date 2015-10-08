@@ -119,6 +119,11 @@ public class Die : MonoBehaviour {
 		return 0;
 	}
 
+    public virtual int MaxValue()
+    {
+        return 6;   //  maximum value of this die.
+    }
+
 	// calculate this die's value
     public virtual int GetValue()
     {

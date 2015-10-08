@@ -35,14 +35,21 @@ public class Scarab : SelectableObject {
     }
     public bool AddPip(PharoahDie die)
     {
-        if (!die.isActiveDie()) {
+        if (!die.isActiveDie())
+        {
+            GameState.Message("Cannot use Scarab on non-active die.");
             return false;
         }
-        GameState.Message("Adding Pip to " + die.name);
         int val = die.GetValue();
+        if (val+1 > die.MaxValue()) {
+            GameState.Message("Cannot AddPip beyond die's max value of " + die.MaxValue().ToString());
+            return false;
+        }
+
+        GameState.Message("Adding Pip to " + die.name);
         val++;
-        if (val >= 6)
-            val = 6;
+        if (val >= die.MaxValue())
+            val = die.MaxValue();
         die.SetDie(val);
         isConsumed = true;
         return true;
