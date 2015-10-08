@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BarSlot : Slot {
 
@@ -82,9 +83,20 @@ public class BarSlot : Slot {
 	{
 		bool	isQual = false;
 		GameState gs = GameState.GetCurrentGameState();
+
+        //  this checks only the locked dice list.
+        List<PharoahDie> diceList = gs.GetLockedDiceList();
+        if (criteria)
+        {
+            isQual = criteria.MatchesCriteria(diceList);
+        }
+
+        //  optional, check all dice on current player. May make things easier, but may make things more confusing.
+        /*
 		if (criteria) {
 			isQual = criteria.MatchesCriteria(gs.currentPlayer.diceList);
 		}
+        */
 		return isQual;
 	}
 }

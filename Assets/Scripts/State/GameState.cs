@@ -100,7 +100,7 @@ public class GameState : MonoBehaviour, IToggleReceiver {
 		foreach (PlayerBoard plr in allPlayers) {
 			plr.NewGame ();
 		}
-		int rndIndex = (int)(Random.value * 4.0f);
+		int rndIndex = (int)(Random.value * (float)allPlayers.Count);
 		currentPlayer = allPlayers [rndIndex];
         currentPlayer.SetStartPlayer();
         StartTurn ();
@@ -135,6 +135,22 @@ public class GameState : MonoBehaviour, IToggleReceiver {
 		PlayerBoard nextPlr = allPlayers [idx];
 		return nextPlr;
 	}
+
+    public List<PharoahDie> GetLockedDiceList()
+    {
+        List<PharoahDie> diceList = new List<PharoahDie>();
+        foreach(DieSlot ds in lockedDiceSlots)
+        {
+            if (!ds.isEmpty())
+            {
+                if (ds.GetChildAsDie() != null) {
+                    diceList.Add(ds.GetChildAsDie());
+                }
+            }
+        }
+        PharoahDie.SortList(diceList);
+        return diceList;
+    }
 	public DieSlot GetNextLockedDieSlot()
 	{
 		foreach(DieSlot ds in lockedDiceSlots) {

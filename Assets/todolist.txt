@@ -5,14 +5,14 @@ x Make a generic ability power that includes the UI state machine.
 x Game state triggers to enable certain tiles to be played.
 x Should instantiate/clone tiles rather than use the actual tile
 x Can only reroll active dice.
-  - Make sure the flow works when not-active dice are chosen and rejected.
+  x Make sure the flow works when not-active dice are chosen and rejected.
 
 Bugs:
 x Incorrectly deciding that all dice have settled.
 x pass turn is broken
 x Some tiles are upside-down. Make sure the TileSlot forces orientation.
 x rolling single die is buggy due to requirement that all dice are rolled for physics and shit
-- Only check locked dice for criteria. (Maybe: Automatically lock other dice after initial check.)
+x Only check locked dice for criteria. (Maybe: Automatically lock other dice after initial check.)
 - AddPips doesn't work with custom dice
 x Locked dice from previous rolls should not be able to be rerolled
 x iTween creates 2 extra components after ending play of editor.

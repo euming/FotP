@@ -12,6 +12,14 @@ public class DieSlot : Slot {
 	void Update () {
 	
 	}
+
+    public PharoahDie GetChildAsDie()
+    {
+        GameObject childGO = this.myChild;
+        PharoahDie die = childGO.GetComponent<PharoahDie>();
+        return die;
+    }
+
 	//	returns previous child that was in the slot, if any
 	public override GameObject OnAddChild(GameObject child)
 	{

@@ -56,6 +56,11 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
         }
     }
 
+    static public void SortList(List<PharoahDie> diceList)
+    {
+        diceList.Sort();
+    }
+
     //	make this die into a set die. done after instantiate
     public void MakeSetDie(int setDieValue)
     {

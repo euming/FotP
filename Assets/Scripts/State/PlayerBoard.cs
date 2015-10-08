@@ -205,7 +205,7 @@ public class PlayerBoard : MonoBehaviour {
 
 	public void SortDiceList()
 	{
-		diceList.Sort();
+        PharoahDie.SortList(diceList);
 	}
 
 	public bool PlayerMayRollDice()
