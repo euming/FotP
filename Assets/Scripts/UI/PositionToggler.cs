@@ -11,7 +11,7 @@ public class PositionToggler : ToggleReceiver {
 	public List<Quaternion> 		rotations;
 	public int						curIndex;	//	state
 	public float					animTime = 0.8f;
-	public List<IToggleCallback>	onToggleRecvrs;	//	components which need an OnToggle callback
+	private List<IToggleCallback>	onToggleRecvrs;	//	components which need an OnToggle callback
 
 	protected bool 	bUseTween = true;
 	protected bool 	bAfterStart = false;
@@ -27,6 +27,7 @@ public class PositionToggler : ToggleReceiver {
 		if (onToggleRecvrs == null) {
 			onToggleRecvrs = new List<IToggleCallback> ();
 		}
+        
 	}
 
 	void Start()
@@ -52,6 +53,12 @@ public class PositionToggler : ToggleReceiver {
 			}
 		}
 	}
+
+    public void AddOnToggleCallback(IToggleCallback cb)
+    {
+        if (!onToggleRecvrs.Contains(cb))
+            onToggleRecvrs.Add(cb);
+    }
 
 	public override int Toggle()
 	{

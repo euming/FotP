@@ -17,16 +17,16 @@ public class PurchaseBoard : MonoBehaviour, IToggleCallback {
 	};
 
 	void Awake() {
-        posToggler = GetComponent<PositionToggler>();
-        posToggler.onToggleRecvrs.Add(this);
     }
 
     // Use this for initialization
     void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        posToggler = GetComponent<PositionToggler>();
+        posToggler.AddOnToggleCallback(this);
+    }
+
+    // Update is called once per frame
+    void Update () {
 	
 	}
 	public int SetState(PurchaseBoardState newState)
@@ -39,7 +39,7 @@ public class PurchaseBoard : MonoBehaviour, IToggleCallback {
 			break;
 		case PurchaseBoardState.isExpanded:
 			//	need to put any loose dice in the active dice area
-			GameState.GetCurrentGameState().currentPlayer.CollectLooseDice();
+		    GameState.GetCurrentGameState().currentPlayer.CollectLooseDice();
 			break;
 		}
 		return (int)newState;

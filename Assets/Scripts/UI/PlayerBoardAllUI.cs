@@ -14,10 +14,10 @@ public class PlayerBoardAllUI : MonoBehaviour, IToggleCallback
         numOfPlayerBoardAllUIStates,
     };
 
-    void Awake()
+    void Start()
     {
         posToggler = GetComponent<PositionToggler>();
-        posToggler.onToggleRecvrs.Add(this);
+        posToggler.AddOnToggleCallback(this);
     }
 
     public int SetState(PlayerBoardAllUIState newState)
@@ -29,8 +29,6 @@ public class PlayerBoardAllUI : MonoBehaviour, IToggleCallback
             case PlayerBoardAllUIState.isTuckedAway:
                 break;
             case PlayerBoardAllUIState.isExpanded:
-                //	need to put any loose dice in the active dice area
-                GameState.GetCurrentGameState().currentPlayer.CollectLooseDice();
                 break;
         }
         return (int)newState;
