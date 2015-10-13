@@ -362,8 +362,9 @@ public class PlayerBoard : MonoBehaviour {
         //  able to roll dice, continue
 		bForcePass = false;
 		int ndicerolled = 0;
-		GameState.GetCurrentGameState ().purchaseBoard.SetState (PurchaseBoard.PurchaseBoardState.isTuckedAway);
-		UnhideDice ();
+		GameState.GetCurrentGameState().purchaseBoard.SetState (PurchaseBoard.PurchaseBoardState.isTuckedAway);
+        GameState.GetCurrentGameState().playerBoardAllUI.SetState(PlayerBoardAllUI.PlayerBoardAllUIState.isExpanded);
+        UnhideDice ();
 
         //  white dice must be locked automatically
         if (!isFirstRoll)

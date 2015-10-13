@@ -17,12 +17,12 @@ public class PurchaseBoard : MonoBehaviour, IToggleCallback {
 	};
 
 	void Awake() {
-	}
+        posToggler = GetComponent<PositionToggler>();
+        posToggler.onToggleRecvrs.Add(this);
+    }
 
-	// Use this for initialization
-	void Start () {
-		posToggler = GetComponent<PositionToggler> ();
-		posToggler.onToggleRecvrs.Add (this);
+    // Use this for initialization
+    void Start () {
 	}
 	
 	// Update is called once per frame

@@ -29,6 +29,7 @@ public class GameState : MonoBehaviour, IToggleReceiver {
 	int							nPlayers;		//	number of players this game session
 	public PlayerBoard			currentPlayer;
 	public PurchaseBoard		purchaseBoard;	//	what we can buy in this game
+    public PlayerBoardAllUI     playerBoardAllUI;   //  the tiles and scarabs and dice for this player
 	public List<PlayerBoard> 	allPlayers;		
 	public TileShop				tileShop;
 	public List<DieSlot>		lockedDiceSlots;	//	my dice slots. Dice that are in the locked zone may be temporarily locked dice as well.
@@ -79,7 +80,8 @@ public class GameState : MonoBehaviour, IToggleReceiver {
 	static public void WaitForPurchase()
 	{
 		instance.purchaseBoard.SetState (PurchaseBoard.PurchaseBoardState.isExpanded);
-		instance.currentPlayer.WaitForPurchase();
+        instance.playerBoardAllUI.SetState(PlayerBoardAllUI.PlayerBoardAllUIState.isTuckedAway);
+        instance.currentPlayer.WaitForPurchase();
 	}
 	static public void EndTurn()
 	{

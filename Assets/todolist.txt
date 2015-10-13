@@ -1,5 +1,6 @@
 High Priority
 - Make a list of the texture sheets that I need.
+- Dice Physics seems broken when rolling dice with the boards moving
 x Make a generic ability power that includes the UI state machine. 
   x Retrofit scarab abilities.
 x Game state triggers to enable certain tiles to be played.
@@ -28,7 +29,10 @@ x Don't allow player to click the dice before the dice have stopped rolling.
 x Should have a number of tiles appropriate to the number of players
 
 UI:
-- Tile Ability bar to show all Tiles
+- Get UI to work with any resolution.
+x Tile Ability bar to show all Tiles
+  x Arrange Tile Ability bar sensibly as a player UI
+  - Slide tiles left/right
 - Darken out Tiles that are not available anymore.
 x Purchase board should allow us to buy tiles easily.
   x Place tiles in slots correctly oriented.
