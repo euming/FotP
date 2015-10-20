@@ -1,9 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+
+//	when some UI needs to be refreshed.
+public interface IRefreshUI
+{
+    void RefreshUI();
+}
 
 public class PlayerBoardAllUI : MonoBehaviour, IToggleCallback
 {
+    static private PlayerBoardAllUI instance = null;
     public PlayerBoardAllUIState curState;
+    public List<ScarabUI> scarabUIs;
+
     PositionToggler posToggler;
 
     public enum PlayerBoardAllUIState
@@ -13,6 +23,38 @@ public class PlayerBoardAllUI : MonoBehaviour, IToggleCallback
         isExpanded,         //	everything can be seen
         numOfPlayerBoardAllUIStates,
     };
+
+    static public PlayerBoardAllUI getInstance()
+    {
+        return instance;
+    }
+
+    static public void RefreshNewPlayer()
+    {
+        RefreshScarabUI();
+    }
+
+    static public void RefreshScarabUI()
+    {
+        if (instance != null)
+            instance.refreshScarabUI();
+    }
+
+    void refreshScarabUI()
+    {
+        foreach (ScarabUI ui in scarabUIs)
+        {
+            ui.RefreshUI();
+        }
+    }
+
+    void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Debug.LogError("ERROR: Only one instance of PlayerBoardAllUI is allowed.");
+    }
 
     void Start()
     {

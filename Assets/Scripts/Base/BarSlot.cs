@@ -7,7 +7,7 @@ public class BarSlot : Slot {
 
 	public Vector2		tileShopPos;	//	where we are in the tile shop
 	public TileMapDatabase	tileDB;	//	which tile database we're using
-	public int		nTiles;					//	number of tiles still available for sale
+	int		nTiles;					//	number of tiles still available for sale
 	PurchaseCriteria		criteria;
 
 	public void NewGame()

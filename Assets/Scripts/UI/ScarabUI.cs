@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ScarabUI : MonoBehaviour {
+public class ScarabUI : MonoBehaviour, IRefreshUI
+{
     public enum ScarabUIState
     {
         ready,              //  ready to be clicked in normal UI state
@@ -16,6 +17,7 @@ public class ScarabUI : MonoBehaviour {
     public Scarab.ScarabType    type;
     public ScarabUIState        scuiState;
     public PharoahDie           selectedDie;
+    public TextMesh             numUI;
     public UnityEngine.UI.Button    buttonCancel;
     public UnityEngine.UI.Button    buttonDone;
 
@@ -27,9 +29,22 @@ public class ScarabUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        SetNumScarabsUI();  //  hackish: slow and inefficient, but works.
+    }
 
+    //  update the UI to reflect the number of scarabs
+    public void SetNumScarabsUI()
+    {
+        int nScarabs = GameState.GetCurrentGameState().currentPlayer.countScarabsOfType(type);
+        if (numUI)
+        {
+            numUI.text = nScarabs.ToString();
+        }
+    }
+    public void RefreshUI()
+    {
+        SetNumScarabsUI();
+    }
     void EnableButtons(bool bEnable)
     {
         buttonCancel.gameObject.SetActive(bEnable);
@@ -45,6 +60,7 @@ public class ScarabUI : MonoBehaviour {
             case ScarabUIState.ready:
                 selectedDie = null;
                 bSuccess = true;
+                SetNumScarabsUI();
                 break;
 
             //  try to use the scarab

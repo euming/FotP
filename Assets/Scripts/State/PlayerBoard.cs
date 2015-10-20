@@ -72,13 +72,15 @@ public class PlayerBoard : MonoBehaviour {
         bug.type = scarabType;
 		scarabList.Add(bug);
         bugGO.transform.parent = this.transform;    //  put this under the player board hierarchy.
+        PlayerBoardAllUI.RefreshScarabUI();
         return bug;
 	}
 	public void DestroyScarab(Scarab scarab)
 	{
 		scarabList.Remove(scarab);
 		Destroy (scarab.gameObject);
-	}
+        PlayerBoardAllUI.RefreshScarabUI();
+    }
 
     public Scarab hasScarabType(Scarab.ScarabType type)
     {
@@ -92,6 +94,18 @@ public class PlayerBoard : MonoBehaviour {
         return null;
     }
 
+    public int countScarabsOfType(Scarab.ScarabType type)
+    {
+        int nScarabs = 0;
+        foreach (Scarab sc in scarabList)
+        {
+            if (sc.type == type)
+            {
+                nScarabs++;
+            }
+        }
+        return nScarabs;
+    }
     public bool UseScarab(Scarab.ScarabType type)
     {
         bool bSuccess = false;
@@ -99,6 +113,7 @@ public class PlayerBoard : MonoBehaviour {
         if (hasScarab!=null) {
             curScarabInUse = hasScarab;
             scarabList.Remove(hasScarab);   //  remove my scarab from the list and hold it in curScarabInUse until we've decided what happens to it. Consumed or Undo.
+            PlayerBoardAllUI.RefreshScarabUI();
             //  this will wait until the player has selected a die, and then perform the scarab's delegate function on that die.
             this.AskToChooseDie(curScarabInUse.onDieSelect, type.ToString());
         }
@@ -299,6 +314,7 @@ public class PlayerBoard : MonoBehaviour {
             {
                 //  return the scarab back to our list without consuming it
                 scarabList.Add(this.curScarabInUse);
+                PlayerBoardAllUI.RefreshScarabUI();
                 this.curScarabInUse = null;        
             }
         }

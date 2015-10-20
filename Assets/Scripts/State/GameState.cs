@@ -38,7 +38,8 @@ public class GameState : MonoBehaviour, IToggleReceiver {
 	public DieSlot				diceCupSlot;		//	for rolling dice
 	public DiceFactory			diceFactory;
 	public Scarab				scarabPrefab;
-	public CanvasRenderer		statusMsg;
+    public CanvasRenderer		statusMsg;  //  obsolete soon
+    public TextMesh             plrStatusMsg;
 
 	static public void LockWhiteDice()
 	{
@@ -48,8 +49,18 @@ public class GameState : MonoBehaviour, IToggleReceiver {
 
 	static public void Message(string msg)
 	{
-		UnityEngine.UI.Text txt = instance.statusMsg.GetComponent<UnityEngine.UI.Text> ();
-		txt.text = msg;
+        if (instance.plrStatusMsg != null)
+        {
+            TextMesh txt = null;
+            txt = instance.plrStatusMsg.GetComponent<TextMesh>();
+            txt.text = msg;
+        }
+        else if (instance.statusMsg != null)
+        {
+            UnityEngine.UI.Text txt = null;
+            txt = instance.statusMsg.GetComponent<UnityEngine.UI.Text>();
+            txt.text = msg;
+        }
         if (msg[msg.Length-1] != '\n')
             msg = msg + "\n";
 		Debug.Log(msg);
@@ -114,8 +125,8 @@ public class GameState : MonoBehaviour, IToggleReceiver {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        if (Input.GetKeyDown(KeyCode.Escape)) { Application.Quit(); }
+    }
 
 	int GetPlayerIndex(PlayerBoard match_plr)
 	{

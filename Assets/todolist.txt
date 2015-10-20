@@ -1,4 +1,8 @@
 High Priority
+x Show numbers of scarabs
+- implement quit/pause game.
+- implement beggar tile
+- bug fix: infinite dice on click of set dice tile
 - Make a list of the texture sheets that I need.
 - Dice Physics seems broken when rolling dice with the boards moving
 x Make a generic ability power that includes the UI state machine. 
