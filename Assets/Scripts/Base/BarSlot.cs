@@ -7,16 +7,17 @@ public class BarSlot : Slot {
 
 	public Vector2		tileShopPos;	//	where we are in the tile shop
 	public TileMapDatabase	tileDB;	//	which tile database we're using
-	int		nTiles;					//	number of tiles still available for sale
+	public int		nTiles;					//	number of tiles still available for sale
 	PurchaseCriteria		criteria;
 
 	public void NewGame()
 	{
-		if (nTiles <= 0)
+		if (nTiles <= 0)    //  0 is equal to number of players. positive numbers are exact tile count.
         {
             nTiles += GameState.GetCurrentGameState().allPlayers.Count;
         }
-
+        if (nTiles < 1)
+            nTiles = 1;
 		//	tbd: roll a number and add the correct tile
 		Tile	childTile;
 		if (childTile = this.GetComponentInChildren<Tile>()) {

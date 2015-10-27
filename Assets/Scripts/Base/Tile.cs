@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 //	a tile is one of things you buy that gives you abilties to help you win the game
 public class Tile : SelectableObject {
@@ -179,4 +180,21 @@ public class Tile : SelectableObject {
             ability.FireTrigger(trigState, plr);
         }
     }
+
+    void ToolTipOn(string text)
+    {
+        GameState.ToolTipOn(true);
+        GameState.ToolTip(text);
+    }
+
+    void OnMouseEnter()
+    {
+        ToolTipOn(hintText);
+    }
+
+    void OnMouseExit()
+    {
+        GameState.ToolTipOn(false);
+    }
+
 }

@@ -40,6 +40,7 @@ public class GameState : MonoBehaviour, IToggleReceiver {
 	public Scarab				scarabPrefab;
     public CanvasRenderer		statusMsg;  //  obsolete soon
     public TextMesh             plrStatusMsg;
+    public CanvasRenderer       tooltipMsg;
 
 	static public void LockWhiteDice()
 	{
@@ -47,7 +48,26 @@ public class GameState : MonoBehaviour, IToggleReceiver {
 		gs.currentPlayer.LockWhiteDice();
 	}
 
-	static public void Message(string msg)
+    static public void ToolTip(string msg)
+    {
+        if (instance.tooltipMsg != null)
+        {
+            UnityEngine.UI.Text txt = null;
+            txt = instance.tooltipMsg.GetComponent<UnityEngine.UI.Text>();
+            txt.text = msg;
+        }
+    }
+    static public void ToolTipOn(bool isOn=true)
+    {
+        if (instance.tooltipMsg != null)
+        {
+            UnityEngine.UI.Text txt = null;
+            txt = instance.tooltipMsg.GetComponent<UnityEngine.UI.Text>();
+            txt.gameObject.SetActive(isOn);
+        }
+
+    }
+    static public void Message(string msg)
 	{
         if (instance.plrStatusMsg != null)
         {
