@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GetDie : TileAbility {
 
@@ -24,14 +25,8 @@ public class GetDie : TileAbility {
     public override void OnAcquire(PlayerBoard plr)
 	{
         base.OnAcquire(plr);
-		PharoahDie die = plr.AddDie(type);
-		if (setDieValue > 0) {
-			die.MakeSetDie(setDieValue);
-		}
-        die.PurchasedDie();
-        if (isTemporary)
-            die.MakeTemporary();
-        myDie = die;
+        myDie = GetNewDie(plr);
+        myDie.PurchasedDie();
 	}
 
 	public override void OnAcquireUndo(PlayerBoard plr)
@@ -40,4 +35,61 @@ public class GetDie : TileAbility {
 		plr.DestroyDie(myDie);
 		myDie = null;
 	}
+
+    //  get a new die that is ready to roll immediately
+    PharoahDie GetNewDie(PlayerBoard plr)
+    {
+        PharoahDie die = plr.AddDie(type);
+        if (setDieValue > 0)
+        {
+            die.MakeSetDie(setDieValue);
+        }
+        if (isTemporary)
+            die.MakeTemporary();
+
+        return die;
+    }
+    public override void OnLockedPair(PlayerBoard plr)
+    {
+        base.OnLockedPair(plr);
+        //  check to see if the player already has a Herder Die
+        if (plr.hasHerderDie()) return; //  early bail.
+
+        //  check to see if the player has a locked pair
+        //  if so, do the same thing as acquire
+        if (isQualified())
+        {
+            myDie = GetNewDie(plr);
+            plr.GiveHerderDie(myDie);
+        }
+    }
+    
+    //  NB: This was copied from BarSlot.cs. This could be made generic if we need criteria for other things eventually.
+    //	if the locked dice have the proper dice to purchase this, then return true. return false otherwise.
+    public bool isQualified()
+    {
+        bool isQual = false;
+        PurchaseCriteria criteria = this.GetComponent<PurchaseCriteria>();
+
+        if (criteria == null)
+            return true;        //  early bail if no criteria needs to be met
+            isQual = true;
+
+        GameState gs = GameState.GetCurrentGameState();
+
+        //  this checks only the locked dice list.
+        List<PharoahDie> diceList = gs.GetLockedDiceList();
+        if (criteria)
+        {
+            isQual = criteria.MatchesCriteria(diceList);
+        }
+
+        //  optional, check all dice on current player. May make things easier, but may make things more confusing.
+        /*
+		if (criteria) {
+			isQual = criteria.MatchesCriteria(gs.currentPlayer.diceList);
+		}
+        */
+        return isQual;
+    }
 }

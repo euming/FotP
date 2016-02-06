@@ -51,13 +51,15 @@ public class DiceCup : MonoBehaviour {
 		}
 	}
 
+    //   a click on the Dice Cup means the player may want to roll dice OR end the turn
 	void OnMouseDown() {
 		Debug.Log("DiceCup.OnMouseDown()");
 		GameState gs = GameState.GetCurrentGameState();
 		PlayerBoard currentPlayer = gs.currentPlayer;
-		if (currentPlayer.RollDice ()) {
+		if (currentPlayer.RollDice ()) {    //  attempt to roll dice
 			StartRolling();
 		}
+        //  otherwise, if no dice were rolled, it implies end of turn
 	}
 
 	void OnMouseRightDown() {

@@ -1,9 +1,9 @@
 High Priority
 x Show numbers of scarabs
 x implement quit/pause game.
-- implement herder tile
+x implement herder tile
 ? bug fix: nTiles wrong for non-red tiles
-- bug fix: infinite dice on click of set dice tile
+x bug fix: infinite dice on click of set dice tile
 - Make a list of the texture sheets that I need.
 - Dice Physics seems broken when rolling dice with the boards moving
 x Make a generic ability power that includes the UI state machine. 
@@ -34,7 +34,7 @@ x Don't allow player to click the dice before the dice have stopped rolling.
 x Should have a number of tiles appropriate to the number of players
 
 UI:
-- Hover hint text
+x Hover hint text
 - Get UI to work with any resolution.
 x Tile Ability bar to show all Tiles
   x Arrange Tile Ability bar sensibly as a player UI
@@ -133,7 +133,7 @@ x Gain 2 tokens if you player does not claim a tile
 x Force at least one lock before allowing re-roll.
 x game flow
 x multiplayer game
-- implement herder tile
+x implement herder tile
 - randomize initial tiles
 - implement remainder of specific tiles
 - roll-off game state logic

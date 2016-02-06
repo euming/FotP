@@ -79,6 +79,7 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
     {
         return bIsTemporary;
     }
+
     public bool isSetDie()
     {
         if (setDieValue > 0) return true;

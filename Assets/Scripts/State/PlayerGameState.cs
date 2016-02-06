@@ -9,15 +9,16 @@ public class PlayerGameState : MonoBehaviour {
         Uninitialized = -1,
         InitTurn,           //	initialization stuff at start of turn
 
-        //	loop
-        ReadyToRollDice,    //	waiting for player to roll the dice
-        DiceHaveBeenRolled, //	dice have been rolled. Player may choose some actions
-        WaitingForLock,     //	waiting for player to lock at least one die
+            //	loop
+            ReadyToRollDice,    //	waiting for player to roll the dice
+            DiceHaveBeenRolled, //	dice have been rolled. Player may choose some actions
+            WaitingForLock,     //	waiting for player to lock at least one die
 
-        //	end loop
-        AllDiceLocked,          //  all the dice have been locked
-        WaitingForPurchaseTile, //	player may choose a tile to purchase
-        TilePurchaseChosen,     //	player has chosen a tile to purchase. Waiting for final confirmation
+            //	end loop
+            AllDiceLocked,          //  all the dice have been locked
+            WaitingForPurchaseTile, //	player may choose a tile to purchase
+            TilePurchaseChosen,     //	player has chosen a tile to purchase. Waiting for final confirmation
+
         EndTurn,            //	my turn is officially done. 
         WaitingNextTurn,    //	waiting for another player's turn to be done so I can go
 

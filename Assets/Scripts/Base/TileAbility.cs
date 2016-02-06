@@ -13,6 +13,7 @@ public class TileAbility : MonoBehaviour {
         AcquireUndo,        //  player has returned this tile to the shop before turn end
         Select,             //  player has chosen this tile to use
         ChooseDie,          //  player has chosen a die
+        LockedPair,         //  player has locked a pair (for the Herder tile)
         AllTrigger,         //  all triggers fire
     };
 
@@ -47,34 +48,34 @@ public class TileAbility : MonoBehaviour {
     //  does something on the start of each turn
     public virtual void OnStartTurn(PlayerBoard plr)
     {
-        Debug.Log("Tile " + this.name + " triggered OnStartTurn TileAbility " + this.GetType().ToString() + "\n");
+        GameState.Message("Tile " + this.name + " triggered OnStartTurn TileAbility " + this.GetType().ToString() + "\n");
     }
     
     public virtual void OnEndOfTurn(PlayerBoard plr)
     {
-        Debug.Log("Tile " + this.name + " triggered OnEndOfTurn TileAbility " + this.GetType().ToString() + "\n");
+        GameState.Message("Tile " + this.name + " triggered OnEndOfTurn TileAbility " + this.GetType().ToString() + "\n");
     }
 
     public virtual void OnAllLocked(PlayerBoard plr)
     {
-        Debug.Log("Tile " + this.name + " triggered OnAllLocked TileAbility " + this.GetType().ToString() + "\n");
+        GameState.Message("Tile " + this.name + " triggered OnAllLocked TileAbility " + this.GetType().ToString() + "\n");
     }
     //	does something when we acquire this tile
     public virtual void OnAcquire(PlayerBoard plr)
 	{
-        Debug.Log("Tile " + this.name + " triggered OnAcquire TileAbility " + this.GetType().ToString() + "\n");
+        GameState.Message("Tile " + this.name + " triggered OnAcquire TileAbility " + this.GetType().ToString() + "\n");
     }
 
     //	if we change our mind and undo the acquire
     public virtual void OnAcquireUndo(PlayerBoard plr)
 	{
-        Debug.Log("Tile " + this.name + " triggered OnAcquireUndo TileAbility " + this.GetType().ToString() + "\n");
+        GameState.Message("Tile " + this.name + " triggered OnAcquireUndo TileAbility " + this.GetType().ToString() + "\n");
     }
 
     //	does something when we select this tile
     public virtual void OnSelect(PlayerBoard plr)
 	{
-        Debug.Log("Tile " + this.name + " triggered OnSelect TileAbility " + this.GetType().ToString() + "\n");
+        GameState.Message("Tile " + this.name + " triggered OnSelect TileAbility " + this.GetType().ToString() + "\n");
 		if (isArtifact)
 			isArtifactUsed = true;
 	}
@@ -82,7 +83,13 @@ public class TileAbility : MonoBehaviour {
     //	if we change our mind and undo the acquire
     public virtual void OnChooseDie(PlayerBoard plr)
     {
-        Debug.Log("Tile " + this.name + " triggered OnChooseDie TileAbility " + this.GetType().ToString() + "\n");
+        GameState.Message("Tile " + this.name + " triggered OnChooseDie TileAbility " + this.GetType().ToString() + "\n");
+    }
+
+    //  if our player has a locked pair
+    public virtual void OnLockedPair(PlayerBoard plr)
+    {
+        GameState.Message("Tile " + this.name + " triggered OnLockedPair TileAbility " + this.GetType().ToString() + "\n");
     }
 
     public void FireTrigger(PlayerTurnStateTriggers trig, PlayerBoard plr)
@@ -120,6 +127,9 @@ public class TileAbility : MonoBehaviour {
                 break;
             case PlayerTurnStateTriggers.ChooseDie:
                 OnChooseDie(plr);
+                break;
+            case PlayerTurnStateTriggers.LockedPair:
+                OnLockedPair(plr);
                 break;
         }
     }

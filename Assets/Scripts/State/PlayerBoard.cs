@@ -16,12 +16,14 @@ public class PlayerBoard : MonoBehaviour {
     PlayerGameState pgs;
     bool isFirstRoll = false;
     bool bisStartPlayer;
+    bool bHasExtraHerderDie = false;    //  true if the player has already gotten a herder die for this turn.
 
 	public void NewGame()
 	{
         curTileInUse = null;
         curScarabInUse = null;
         bisStartPlayer = false;
+        bHasExtraHerderDie = false;
         tileList.Clear();
 		diceList.Clear();
 		for (int ii=0; ii<3; ++ii) {
@@ -165,8 +167,11 @@ public class PlayerBoard : MonoBehaviour {
 		Destroy (die.gameObject);
 	}
 
-	//	do we own a tile?
-	public Tile Has(Tile tile)
+    //	========================================================================================
+    //	tile stuff
+
+    //	do we own a tile?
+    public Tile Has(Tile tile)
 	{
         Tile gotIt = null;
         foreach (Tile t in tileList) {
@@ -240,6 +245,7 @@ public class PlayerBoard : MonoBehaviour {
         PharoahDie.SortList(diceList);
 	}
 
+    //  query the player game state for whether this player may roll the dice or not.
 	public bool PlayerMayRollDice()
 	{
 		bool bMayRoll = false;
@@ -354,11 +360,18 @@ public class PlayerBoard : MonoBehaviour {
         die.RollDie();
         return true;
     }
+
+    // RollDice signals the end of the last roll and the beginning of the next one.
     //	return - were dice rolled or not?
     bool bForcePass = false;
 	public bool RollDice()
 	{
-		if (!PlayerMayRollDice ()) {
+        if (!isFirstRoll)
+        {
+            CheckEndOfRollTriggers();   //  some things trigger at the end of a roll. Only do this after the first roll
+        }
+
+        if (!PlayerMayRollDice ()) {    //  this signifies end of turn if the player is not allowed to roll dice.
 			//	we can't roll dice because we just purchased a new tile. We can only end the turn here.
 			if (pgs.curState == PlayerGameState.PlayerGameStates.TilePurchaseChosen) {
 				GameState.EndTurn();
@@ -449,6 +462,19 @@ public class PlayerBoard : MonoBehaviour {
 			pgs.SetState (PlayerGameState.PlayerGameStates.InitTurn);
 		HideDice ();
         isFirstRoll = true;
+        bHasExtraHerderDie = false;
+    }
+
+    public bool hasHerderDie()
+    {
+        return bHasExtraHerderDie;
+    }
+
+    public void GiveHerderDie(PharoahDie die)
+    {
+        bHasExtraHerderDie = true;
+        pgs.mayRollDice = true; //  if we JUST got a herder die, we are always allowed a roll of the herder die, even if we just locked all of our other dice.
+        GameState.Message(this.name + " received a Herder die!");
     }
 
     public void LockDieRotations()
@@ -495,14 +521,42 @@ public class PlayerBoard : MonoBehaviour {
 	{
 		GameState.Message (this.name + " turn has ended");
 		this.gameObject.SetActive (false);
+
+        //  End of Turn Triggers
+        foreach (Tile tile in tileList)
+        {
+            TileAbility ability = tile.GetComponent<TileAbility>();
+            if (ability)
+            {
+                //  Herder ability. If the player has locked a pair, then give the player a die for the remainder of the turn.
+                if (ability.onStateTrigger == TileAbility.PlayerTurnStateTriggers.LockedPair)
+                {
+
+                }
+            }
+        }
+
+        //  for all dice - remove all temporary dice
+        for (int ii = diceList.Count-1; ii >= 0; ii--)    //  reverse remove so we don't get weird list problems
+        {
+            PharoahDie d6 = diceList[ii];
+            if (d6.isTemporary())   //  remove temporary dice
+            {
+                diceList.RemoveAt(ii);    //  take this die out of this list
+                Destroy(d6.gameObject);   //    destroy this whole die.
+            }
+        }
+        /*
         foreach (PharoahDie d6 in diceList)
         {
-            if (d6.isTemporary())
+            if (d6.isTemporary())   //  remove temporary dice
             {
                 diceList.Remove(d6);
                 Destroy(d6.gameObject);
             }
         }
+        */
+        //  for all dice - reset all permanent dice
         foreach (PharoahDie d6 in diceList) {
 			d6.ReadyToRoll();
 			d6.EndTurn();
@@ -531,6 +585,11 @@ public class PlayerBoard : MonoBehaviour {
     public void OnCancelClick()
     {
         pgs.OnCancelClick();
+    }
+
+    void CheckEndOfRollTriggers()
+    {
+        FireTriggers(TileAbility.PlayerTurnStateTriggers.LockedPair);
     }
     //  ***************** Tile ability stuff
     public void FireTriggers(TileAbility.PlayerTurnStateTriggers trigState)
