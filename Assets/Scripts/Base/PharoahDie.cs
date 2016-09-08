@@ -6,6 +6,8 @@ using System.Collections.Generic;
 public class PharoahDie : Die_d6, IComparable<PharoahDie> {
     public bool isTempLocked = false;   //	when we want to lock this at the end of the turn, but have the option to undo it
     public bool isLocked = false;
+    public bool hasCustomValues = false;
+    public int[] customValues; //  subtract die_d6 value by 1 to get the index into this array.
     public bool isAutoLocking = false;	//	this autolocks (white dice are immediate dice)
     bool onMoveCompleteUnslot = false;   //  when we're done moving, unslot (this is for moving to dice cup)
     bool isUndoable = false;        //	can we undo?
@@ -55,7 +57,34 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
                 return -1;
         }
     }
-
+    //  overrides for custom die stuff
+    override public int MaxValue()
+    {
+        int maxval = base.MaxValue();
+        if (hasCustomValues)
+        {
+            maxval = 1; //  reset maxval to lowest value to find the real maxvalue on this die.
+            for (int ii=0; ii<this.customValues.Length; ii++)
+            {
+                if (customValues[ii] > maxval)
+                    maxval = customValues[ii];
+            }
+        }
+        return maxval;
+    }
+    override public int GetValue()
+    {
+        int val = base.GetValue();  //  this is the die value, 1-6.
+        if (hasCustomValues)
+        {
+            int index = val - 1;
+            if (index <= this.customValues.Length-1)
+            {
+                val = this.customValues[index];
+            }
+        }
+        return val;
+    }
     static public void SortList(List<PharoahDie> diceList)
     {
         diceList.Sort();
