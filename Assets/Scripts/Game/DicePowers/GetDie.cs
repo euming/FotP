@@ -49,11 +49,11 @@ public class GetDie : TileAbility {
 
         return die;
     }
-    public override void OnLockedPair(PlayerBoard plr)
+    public override void OnLockedAny(PlayerBoard plr)
     {
-        base.OnLockedPair(plr);
+        base.OnLockedAny(plr);
         //  check to see if the player already has a Herder Die
-        if (plr.hasHerderDie()) return; //  early bail.
+        if (plr.hasHerderDie()) return; //  early bail. Probably print some sort of message and give the scarab tokens.
 
         //  check to see if the player has a locked pair
         //  if so, do the same thing as acquire

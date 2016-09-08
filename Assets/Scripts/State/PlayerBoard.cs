@@ -361,6 +361,17 @@ public class PlayerBoard : MonoBehaviour {
         return true;
     }
 
+    //  when we start a new roll, some state changes need to happen.
+    void InitRoll()
+    {
+        if (pgs)
+        {
+            pgs.StartTurn();
+            //pgs.diceLockedThisTurn = 0;
+            //pgs.lastDiceLockedThisTurn = 0;
+        }
+    }
+
     // RollDice signals the end of the last roll and the beginning of the next one.
     //	return - were dice rolled or not?
     bool bForcePass = false;
@@ -529,7 +540,7 @@ public class PlayerBoard : MonoBehaviour {
             if (ability)
             {
                 //  Herder ability. If the player has locked a pair, then give the player a die for the remainder of the turn.
-                if (ability.onStateTrigger == TileAbility.PlayerTurnStateTriggers.LockedPair)
+                if (ability.onStateTrigger == TileAbility.PlayerTurnStateTriggers.LockedAny)
                 {
 
                 }
@@ -589,7 +600,10 @@ public class PlayerBoard : MonoBehaviour {
 
     void CheckEndOfRollTriggers()
     {
-        FireTriggers(TileAbility.PlayerTurnStateTriggers.LockedPair);
+        if (pgs && (pgs.diceLockedThisTurn >= 1))
+        {
+            FireTriggers(TileAbility.PlayerTurnStateTriggers.LockedAny);
+        }
     }
     //  ***************** Tile ability stuff
     public void FireTriggers(TileAbility.PlayerTurnStateTriggers trigState)

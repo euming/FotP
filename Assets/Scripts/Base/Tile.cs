@@ -130,8 +130,9 @@ public class Tile : SelectableObject {
 				}
 			}
 			else {
-				string msg = (mySlot.name + " is not qualified to buy " + this.name + " because it didn't satisfy " + mySlot.name);
-				GameState.Message(msg);
+                //string msg = (mySlot.name + " is not qualified to buy " + this.name + "\nbecause it didn't satisfy" + mySlot.name);
+                string msg = ("Cannot claim " + this.name + "\nbecause locked dice did not satisfy\n" + mySlot.name);
+                GameState.Message(msg);
 			}
 		}
 	}

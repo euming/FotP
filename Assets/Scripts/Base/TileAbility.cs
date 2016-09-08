@@ -13,7 +13,7 @@ public class TileAbility : MonoBehaviour {
         AcquireUndo,        //  player has returned this tile to the shop before turn end
         Select,             //  player has chosen this tile to use
         ChooseDie,          //  player has chosen a die
-        LockedPair,         //  player has locked a pair (for the Herder tile)
+        LockedAny,         //  player has locked at least a single die (for the Herder tile)
         AllTrigger,         //  all triggers fire
     };
 
@@ -86,10 +86,10 @@ public class TileAbility : MonoBehaviour {
         GameState.Message("Tile " + this.name + " triggered OnChooseDie TileAbility " + this.GetType().ToString() + "\n");
     }
 
-    //  if our player has a locked pair
-    public virtual void OnLockedPair(PlayerBoard plr)
+    //  if our player has a locked pair (actually, locked any die) LockedAny
+    public virtual void OnLockedAny(PlayerBoard plr)
     {
-        GameState.Message("Tile " + this.name + " triggered OnLockedPair TileAbility " + this.GetType().ToString() + "\n");
+        GameState.Message("Tile " + this.name + " triggered OnLockedAny TileAbility " + this.GetType().ToString() + "\n");
     }
 
     public void FireTrigger(PlayerTurnStateTriggers trig, PlayerBoard plr)
@@ -128,8 +128,8 @@ public class TileAbility : MonoBehaviour {
             case PlayerTurnStateTriggers.ChooseDie:
                 OnChooseDie(plr);
                 break;
-            case PlayerTurnStateTriggers.LockedPair:
-                OnLockedPair(plr);
+            case PlayerTurnStateTriggers.LockedAny:
+                OnLockedAny(plr);
                 break;
         }
     }

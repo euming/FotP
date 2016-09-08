@@ -49,6 +49,7 @@ public class PlayerGameState : MonoBehaviour {
         curState = PlayerGameStates.WaitingNextTurn;
         mayRollDice = false;
         diceLockedThisTurn = 0;
+        lastDiceLockedThisTurn = 0;
         myPlayer = GetComponent<PlayerBoard>();
     }
     // Use this for initialization
@@ -66,7 +67,14 @@ public class PlayerGameState : MonoBehaviour {
             }
             if (lastDiceLockedThisTurn != diceLockedThisTurn) {
                 if (diceLockedThisTurn > 0) {
-                    GameState.Message(this.name + " has " + diceLockedThisTurn.ToString() + " locked dice and may roll dice.");
+                    if (diceLockedThisTurn == 1)
+                    {
+                        GameState.Message(this.name + " has " + diceLockedThisTurn.ToString() + " locked die and may roll dice.");
+                    }
+                    else
+                    {
+                        GameState.Message(this.name + " has " + diceLockedThisTurn.ToString() + " locked dice and may roll dice.");
+                    }
                 }
                 else {
                     GameState.Message(this.name + " has " + diceLockedThisTurn.ToString() + " locked dice and must lock a die.");
@@ -110,6 +118,9 @@ public class PlayerGameState : MonoBehaviour {
 		case PlayerGameStates.DiceHaveBeenRolled:
 			mayRollDice = false;
 			isInitialRoll = false;
+                //  no dice have been locked by the player right after dice have been rolled.
+            diceLockedThisTurn = 0;
+            lastDiceLockedThisTurn = 0;
             break;
 		case PlayerGameStates.WaitingForLock:
 			mayRollDice = false;
