@@ -12,8 +12,20 @@ x Game state triggers to enable certain tiles to be played.
 x Should instantiate/clone tiles rather than use the actual tile
 x Can only reroll active dice.
   x Make sure the flow works when not-active dice are chosen and rejected.
+- Choose number of players. Needs UI and code.
+- Implement roll-off for pharaoh
+  - When the queen is claimed, that player claims the pharaoh token and announces his roll to the other players, placing 1 die
+	in the appropriate numbered die in the pyramid (UI thing).
+	Any players who did not get a turn this round (right of start player and left of Queen claimant) gets 1 die token.
+	- Automatically skip players who cannot win due to not enough dice.
+	Queen gets one last chance to claim the Pharoah if someone has claimed him. Then the game ends.
+	
+  
 
 Bugs:
+x Player must lock a die before being able to roll again.
+x Sometime allows you to roll dice without having locked a die.
+x Allows you to lock a die and then unlock a die and then roll again. Should not allow you to go to next phase if you undo a locked die and have no locked dice for the phase.
 x Incorrectly deciding that all dice have settled.
 x pass turn is broken
 x Some tiles are upside-down. Make sure the TileSlot forces orientation.
@@ -36,7 +48,6 @@ x Should have a number of tiles appropriate to the number of players
 UI:
 x Hover hint text
 - Get UI to work with any resolution.
-- Use touch interface to be able to swipe info screens from sides of the board.
 x Tile Ability bar to show all Tiles
   x Arrange Tile Ability bar sensibly as a player UI
   - Slide tiles left/right
@@ -53,7 +64,19 @@ x Show scarabs. Allow scarab use
 - hover for tooltip on tiles
 - Other players
 - Herder tile
+  - The Herder tile may be claimed by any locked dice. However, it is possible on future turns to not be able to claim any tile.
+    If that happens, claim 2 scarab tokens instead.
+	
+- Use touch interface to be able to swipe info screens from sides of the board.
 - Open PurchaseBoard to highest row that may be purchased.
+- Implement Pharoah token which sits on the Queen.
+- Show locked dice in a pyramid like in the regular game. Rotate in 3D 90 degrees to show the pyramid!
+
+Lower Priority
+- Make pyramid for locked dice.
+- Start player tile
+- Start tile
+- Player warning when white dice were not specifically locked?
 
 Tile abilities:
 t - testing
