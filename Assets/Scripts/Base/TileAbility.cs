@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 //	this is what grants the tile some ability.
 public class TileAbility : MonoBehaviour {
@@ -36,6 +37,7 @@ public class TileAbility : MonoBehaviour {
     public bool isArtifact;
 	public bool isArtifactUsed;		//	Artifacts may be used once per game. Once used, we can't use it again
 	public bool isUsedThisTurn;     //	true if we already used this ability this turn
+    public List<PlayerTurnStateTriggers> fireOnTriggerList;
     public PlayerTurnStateTriggers onStateTrigger = PlayerTurnStateTriggers.AllTrigger;  //  on this state, trigger this ability
 
     /*
@@ -109,16 +111,9 @@ public class TileAbility : MonoBehaviour {
         GameState.Message("Tile " + this.name + " triggered OnLockedAny TileAbility " + this.GetType().ToString() + "\n");
     }
 
-    public void FireTrigger(PlayerTurnStateTriggers trig, PlayerBoard plr)
+    //  this calls the actual delegates for the triggers
+    public virtual void ActualFireTrigger(PlayerTurnStateTriggers trig, PlayerBoard plr)
     {
-        if (onStateTrigger != PlayerTurnStateTriggers.AllTrigger)   //  if we trigger on all triggers, ignore this bail.
-        {
-            if (trig != PlayerTurnStateTriggers.AcquireUndo)  //  undo does not bail but always goes through
-            {
-                if (onStateTrigger != trig) return; //  bail if it's not the right trigger.
-            }
-        }
-
         switch (trig)
         {
             default:
@@ -153,5 +148,40 @@ public class TileAbility : MonoBehaviour {
                 OnLockedAny(plr);
                 break;
         }
+    }
+
+    //  returns true - if trigger is allowed to fire its delegate
+    //  returns false - if trigger is not selected as one of the allowed triggers
+    public virtual bool FilterTriggers(PlayerTurnStateTriggers trig, PlayerBoard plr)
+    {
+        bool isAllowed = false;
+        if (onStateTrigger==PlayerTurnStateTriggers.AllTrigger) isAllowed = true;
+        if (trig == PlayerTurnStateTriggers.AcquireUndo) isAllowed = true;
+        if (trig == onStateTrigger) isAllowed = true;
+        foreach(PlayerTurnStateTriggers testTrig in fireOnTriggerList)
+        {
+            if (testTrig == trig) isAllowed = true;
+        }
+        return isAllowed;
+    }
+    
+    //  received a type of trigger from somewhere. If this TileAbility is listening for it, then fire it off using the appropriate delegate
+    //  AllTrigger - listens to all triggers and fires off delegates (if any) on all of them.
+    //  AcquireUndo - is a system level trigger and must always fire.
+    public virtual void FireTrigger(PlayerTurnStateTriggers trig, PlayerBoard plr)
+    {
+        /*  //  old logic
+        if (onStateTrigger != PlayerTurnStateTriggers.AllTrigger)   //  if we trigger on all triggers, ignore this bail.
+        {
+            if (trig != PlayerTurnStateTriggers.AcquireUndo)  //  undo does not bail but always goes through
+            {
+                if (onStateTrigger != trig) return; //  bail if it's not the right trigger.
+            }
+        }
+        */
+        bool allowTriggerToFire = FilterTriggers(trig, plr);
+
+        if (allowTriggerToFire)
+            ActualFireTrigger(trig, plr);
     }
 }
