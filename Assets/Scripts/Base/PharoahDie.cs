@@ -6,7 +6,10 @@ using System.Collections.Generic;
 public class PharoahDie : Die_d6, IComparable<PharoahDie> {
     public bool isTempLocked = false;   //	when we want to lock this at the end of the turn, but have the option to undo it
     public bool isLocked = false;
-    public bool hasCustomValues = false;
+    public bool hasCustomValues = false;    //  if the die has different numbers than 123456.
+    public TileAbility[] specialAbility;      //  Tie this die's special ability with this tile
+
+    public bool hasCustomAbilities = false; //  if the die has the capability of doing something special.
     public int[] customValues; //  subtract die_d6 value by 1 to get the index into this array.
     public bool isAutoLocking = false;	//	this autolocks (white dice are immediate dice)
     bool onMoveCompleteUnslot = false;   //  when we're done moving, unslot (this is for moving to dice cup)
@@ -201,8 +204,14 @@ public class PharoahDie : Die_d6, IComparable<PharoahDie> {
     }
 
     //  this is a die we just purchased. We can't do anything with it.
-    public void PurchasedDie()
+    public void PurchasedDie(TileAbility purchaser)
     {
+        //specialAbility[0] = purchaser;  //  this die remembers which tile purchased it in case the die needs a special ability.
+        specialAbility = purchaser.GetComponents<TileAbility>();
+        foreach(TileAbility ability in specialAbility)
+        {
+            ability.SetMyDie(this);
+        }
         isLocked = true;
         isTempLocked = true;
         this.MoveToDiceCupArea();

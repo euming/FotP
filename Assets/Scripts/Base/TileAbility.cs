@@ -9,6 +9,8 @@ public class TileAbility : MonoBehaviour {
         StartOfTurn,
         EndOfTurn,
         AllLocked,
+        OnAcquireDie,       //  when the player gains a die
+        OnSpecificRoll,     //  on a specific roll, this trigger fires.
         Acquire,            //  player has claimed this tile from the shop
         AcquireUndo,        //  player has returned this tile to the shop before turn end
         Select,             //  player has chosen this tile to use
@@ -28,6 +30,9 @@ public class TileAbility : MonoBehaviour {
         Any
     };
 
+    protected PharoahDie myDie;
+
+    public int  specificRoll;   //  abilities that trigger on a specific roll use this.
     public bool isArtifact;
 	public bool isArtifactUsed;		//	Artifacts may be used once per game. Once used, we can't use it again
 	public bool isUsedThisTurn;     //	true if we already used this ability this turn
@@ -44,6 +49,15 @@ public class TileAbility : MonoBehaviour {
 	
 	}
 	*/
+    public void SetMyDie(PharoahDie die)
+    {
+        myDie = die;
+    }
+    public virtual void OnAcquireDie(PharoahDie die)
+    {
+        GameState.Message("Tile " + this.name + " triggered OnAcquireDie PharoahDie " + die.name + "\n");
+        myDie = die;
+    }
 
     //  does something on the start of each turn
     public virtual void OnStartTurn(PlayerBoard plr)
@@ -71,7 +85,10 @@ public class TileAbility : MonoBehaviour {
 	{
         GameState.Message("Tile " + this.name + " triggered OnAcquireUndo TileAbility " + this.GetType().ToString() + "\n");
     }
-
+    public virtual void OnSpecificDie(int dieRoll)
+    {
+        GameState.Message("Tile " + this.name + " triggered OnSpecificDie roll= " + dieRoll.ToString() + "\n");
+    }
     //	does something when we select this tile
     public virtual void OnSelect(PlayerBoard plr)
 	{
@@ -105,6 +122,10 @@ public class TileAbility : MonoBehaviour {
         switch (trig)
         {
             default:
+            case PlayerTurnStateTriggers.OnSpecificRoll:    //  my die has rolled. Send the trigger of what that roll was so that the TileAbility may react to it.
+                int dieRoll = this.myDie.GetValue();
+                OnSpecificDie(dieRoll);
+                break;
             case PlayerTurnStateTriggers.NoTrigger:
                 break;
             case PlayerTurnStateTriggers.StartOfTurn:

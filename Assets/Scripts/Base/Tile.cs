@@ -101,6 +101,16 @@ public class Tile : SelectableObject {
 
 	public override void OnSelect(PlayerBoard currentPlayer) {
 		base.OnSelect(currentPlayer);
+        if (GameState.GetCurrentGameState().CheatModeEnabled)
+        {
+            //  if the player does not have this tile and we're not in a slot and we're in cheat mode, then acquire this tile temporarily because it's probably for testing.
+            if (!currentPlayer.Has(this) && !mySlot)
+            {
+                //  minghack: Put this tile into the player's temporary tile stack so that we may test loose tiles easily.
+                GameState.Message("Cheat:" + currentPlayer.name + " adds temp tile" + this.name);
+                currentPlayer.AddTempTile(this);
+            }
+        }
 		if (currentPlayer.Has(this)) {
             if (this.canUndo)
             {
@@ -114,10 +124,15 @@ public class Tile : SelectableObject {
         }
 		else {
 			bool bQualifiedToPurchase = false;
-			if (mySlot) 
-				bQualifiedToPurchase = mySlot.isQualified();
-			else
-				Debug.LogError("No Slot found for Tile " + this.name);
+            if (mySlot)
+            {
+                bQualifiedToPurchase = mySlot.isQualified();
+            }
+            else
+            {
+                Debug.LogError("No Slot found for Tile " + this.name);
+            }
+
 			if (bQualifiedToPurchase) {
 				bool bGotOne = mySlot.HasOne();
 				if (bGotOne) {
@@ -131,7 +146,15 @@ public class Tile : SelectableObject {
 			}
 			else {
                 //string msg = (mySlot.name + " is not qualified to buy " + this.name + "\nbecause it didn't satisfy" + mySlot.name);
-                string msg = ("Cannot claim " + this.name + "\nbecause locked dice did not satisfy\n" + mySlot.name);
+                string msg = "";
+                if (mySlot)
+                {
+                    msg = ("Cannot claim " + this.name + "\nbecause locked dice did not satisfy\n" + mySlot.name);
+                }
+                else
+                {
+                    msg = this.name + " was not in a slot.";
+                }
                 GameState.Message(msg);
 			}
 		}

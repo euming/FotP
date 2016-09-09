@@ -7,6 +7,7 @@ using System.Collections.Generic;
 public class PlayerBoard : MonoBehaviour {
 
 	public List<Tile>	tileList;	//	all my tiles
+    private List<Tile> tempTileList;    //  temporary tiles for the turn. Use this for borrowing opponent's tiles or temporarily having abilities granted by dice or whatever.
 	public List<PharoahDie>	diceList;	//	all my dice
 	public List<Scarab>		scarabList;		//	all my scarabs
     public PlayerBoardUI    plrUI;             //  my UI for tiles
@@ -46,7 +47,8 @@ public class PlayerBoard : MonoBehaviour {
 
 	void Awake() {
 		pgs = GetComponent<PlayerGameState> ();
-	}
+        tempTileList = new List<Tile>();
+    }
 	// Use this for initialization
 	void Start () {
 	}
@@ -180,6 +182,29 @@ public class PlayerBoard : MonoBehaviour {
 		}
 		return gotIt;
 	}
+
+    //  this allows us to give the player some temporary abilities.
+    public void AddTempTile(Tile tile)
+    {
+        tileList.Add(tile);
+
+        tempTileList.Add(tile);
+        tile.canUndo = false;   //  hack: We want to be able to use this tle right away if we take it. So, don't let the click to take it undo it!
+    }
+    public void RemoveTempTile(Tile tile)
+    {
+        tileList.Remove(tile);
+        tempTileList.Remove(tile);
+    }
+    //  dump all the temp tiles that we have at the end of every turn.
+    public void RemoveAllTempTiles()
+    {
+        foreach(Tile tile in tempTileList)
+        {
+            tileList.Remove(tile);
+        }
+        tempTileList.Clear();
+    }
 
     void AddTile(Tile tile)
     {
@@ -546,6 +571,9 @@ public class PlayerBoard : MonoBehaviour {
                 }
             }
         }
+
+        //  remove all temporary tiles.
+        RemoveAllTempTiles();
 
         //  for all dice - remove all temporary dice
         for (int ii = diceList.Count-1; ii >= 0; ii--)    //  reverse remove so we don't get weird list problems

@@ -7,7 +7,6 @@ public class GetDie : TileAbility {
 	public int 					setDieValue;	//	-1 for none
 	public DiceFactory.DieType 	type;
     public bool                 isTemporary;        //  temporary dice are given and then taken away when the player's turn ends
-	PharoahDie					myDie;
 
     public override void OnSelect(PlayerBoard plr)
     {
@@ -26,7 +25,7 @@ public class GetDie : TileAbility {
 	{
         base.OnAcquire(plr);
         myDie = GetNewDie(plr);
-        myDie.PurchasedDie();
+        myDie.PurchasedDie(this);
 	}
 
 	public override void OnAcquireUndo(PlayerBoard plr)
@@ -40,6 +39,7 @@ public class GetDie : TileAbility {
     PharoahDie GetNewDie(PlayerBoard plr)
     {
         PharoahDie die = plr.AddDie(type);
+        myDie = die;    //  remember the die that this tileAbility bought. We may need to do something with it later.
         if (setDieValue > 0)
         {
             die.MakeSetDie(setDieValue);

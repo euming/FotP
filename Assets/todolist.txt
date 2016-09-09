@@ -1,4 +1,8 @@
+Architecture questions
+- Is a Dieability any different than a TileAbility? Should we separate them into different classes?
+
 High Priority
+- Double check herder rules: Claim on any die. Roll 1 die if at least a locked pair on that roll.
 x Show numbers of scarabs
 x implement quit/pause game.
 x implement herder tile
@@ -12,6 +16,7 @@ x Game state triggers to enable certain tiles to be played.
 x Should instantiate/clone tiles rather than use the actual tile
 x Can only reroll active dice.
   x Make sure the flow works when not-active dice are chosen and rejected.
+- Networking play!
 - Choose number of players. Needs UI and code.
 - Implement roll-off for pharaoh
   - When the queen is claimed, that player claims the pharaoh token and announces his roll to the other players, placing 1 die
@@ -23,6 +28,10 @@ x Can only reroll active dice.
   
 
 Bugs:
+- Adjust Die tile allows you to adjust a new die without finishing the old one.
+? Head Servant may only work on immediate dice.
+- Artisan add pips on a die should end when clicking on the tile a second time.
+- Player should not be able to claim a card after already claiming a card with the existing roll.
 x Player must lock a die before being able to roll again.
 x Sometime allows you to roll dice without having locked a die.
 x Allows you to lock a die and then unlock a die and then roll again. Should not allow you to go to next phase if you undo a locked die and have no locked dice for the phase.
@@ -46,11 +55,12 @@ x Don't allow player to click the dice before the dice have stopped rolling.
 x Should have a number of tiles appropriate to the number of players
 
 UI:
+- When Artisan Die rolled a 1, change tile to be able to click and change other die rolls.
 x Hover hint text
 - Get UI to work with any resolution.
 x Tile Ability bar to show all Tiles
   x Arrange Tile Ability bar sensibly as a player UI
-  - Slide tiles left/right
+  - Slide slide-outs left/right up/down.
 - Darken out Tiles that are not available anymore.
 x Purchase board should allow us to buy tiles easily.
   x Place tiles in slots correctly oriented.
@@ -61,7 +71,8 @@ x Automatically open purchase board when done rolling
 x Print out status messages
 x Show scarabs. Allow scarab use
 - Automatically close other tiles if opening one.
-- hover for tooltip on tiles
+x hover for tooltip on tiles
+  - put tooltips in a more attractive UI text box.
 - Other players
 - Herder tile
   - The Herder tile may be claimed by any locked dice. However, it is possible on future turns to not be able to claim any tile.
@@ -153,12 +164,15 @@ Dice:
 x d6_purple does not have a purple texture
 x d6_orange is not orange
 - Custom Dice: weird colored dice abilities
-  - orange, 
-  - yellow, 
-  - blue, 
-  - green, 
-  - black, 
-  - purple
+  - Perhaps needs better artwork. 
+    - Better material?
+	- Better texture maps?
+  x orange, Serf, 123412
+  x yellow, Noble, 563456
+  - blue, Artisan *1=adjust 1 die, 23456
+  - green, Intrigue **, 12345, **=adjust 2 dice. if locked on **, has no value.
+  - black, Voyage, *,R,R,DD,L,L, *=adjust, R=reroll, DD=2 dice remaining turn, L=lock
+  - purple, Decree, *+ adjust die or (Use someone else's tile), 23456
   
 Gameplay:
 x Remember who the start player is.

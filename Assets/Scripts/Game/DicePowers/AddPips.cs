@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class AddPips : TileAbility
 {
+    private bool hasBeenActivatedBySpecificRoll; //  sometimes, this is actually a die ability that is enabled by a specific roll.
     public int nPips = 1;
     public bool isExactlyNumPips = false;
     public int nDice = 1;   //  -1 for any number of dice.
@@ -28,6 +29,7 @@ public class AddPips : TileAbility
     {
         base.OnStartTurn(plr);
         this.isUsedThisTurn = false;    //  refresh this every turn.
+        hasBeenActivatedBySpecificRoll = false;
     }
 
     public override void OnSelect(PlayerBoard plr)
@@ -56,6 +58,13 @@ public class AddPips : TileAbility
         plr.AskToChooseDone(this.OnDone);
     }
 
+    public override void OnSpecificDie(int dieRoll)
+    {
+        if (dieRoll == specificRoll)
+        {
+            hasBeenActivatedBySpecificRoll = true;
+        }
+    }
     public override void OnChooseDie(PlayerBoard plr)
     {
         base.OnChooseDie(plr);
