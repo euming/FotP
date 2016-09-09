@@ -402,6 +402,7 @@ public class PlayerBoard : MonoBehaviour {
     bool bForcePass = false;
 	public bool RollDice()
 	{
+        FireTriggers(TileAbility.PlayerTurnStateTriggers.StartOfRoll);
         if (!isFirstRoll)
         {
             CheckEndOfRollTriggers();   //  some things trigger at the end of a roll. Only do this after the first roll
@@ -636,9 +637,18 @@ public class PlayerBoard : MonoBehaviour {
     //  ***************** Tile ability stuff
     public void FireTriggers(TileAbility.PlayerTurnStateTriggers trigState)
     {
-        foreach(Tile tile in tileList)
+        //  all of the tiles that the player owns are now triggered
+        foreach (Tile tile in tileList)
         {
             tile.FireTrigger(trigState, this);
+        }
+        //  all of the dice which may have special abilities are triggered too
+        foreach(PharoahDie die in this.diceList)
+        {
+            foreach (TileAbility ability in die.specialAbility)
+            {
+                ability.FireTrigger(trigState, this);
+            }
         }
     }
 }

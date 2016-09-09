@@ -10,6 +10,7 @@ public class Reroll : TileAbility
     {
         base.OnStartTurn(plr);
         this.isUsedThisTurn = false;    //  refresh this every turn.
+        isUsedThisRoll = false;
     }
 
     public override void OnSelect(PlayerBoard plr)
@@ -17,7 +18,12 @@ public class Reroll : TileAbility
         base.OnSelect(plr);
         if (this.isUsedThisTurn)
         {
-            GameState.Message("Already used " + this.name + " this turn.");
+            GameState.Message("Already used " + this.name + "\nduring this turn.");
+            return;
+        }
+        if (isUsedThisRoll)
+        {
+            GameState.Message("Already used " + this.name + "\nduring this roll.");
             return;
         }
         myPlayer = plr;

@@ -18,6 +18,8 @@ public class TileAbility : MonoBehaviour {
         ChooseDie,          //  player has chosen a die
         LockedAny,         //  player has locked at least a single die (for the Herder tile)
         AllTrigger,         //  all triggers fire
+        StartOfRoll,
+        //  only add new triggers here so prefabs won't be disturbed.
     };
 
     public enum DieType
@@ -37,6 +39,7 @@ public class TileAbility : MonoBehaviour {
     public bool isArtifact;
 	public bool isArtifactUsed;		//	Artifacts may be used once per game. Once used, we can't use it again
 	public bool isUsedThisTurn;     //	true if we already used this ability this turn
+    public bool isUsedThisRoll;     //  true if we used this ability during this roll.
     public List<PlayerTurnStateTriggers> fireOnTriggerList;
     public PlayerTurnStateTriggers onStateTrigger = PlayerTurnStateTriggers.AllTrigger;  //  on this state, trigger this ability
 
@@ -59,6 +62,11 @@ public class TileAbility : MonoBehaviour {
     {
         GameState.Message("Tile " + this.name + " triggered OnAcquireDie PharoahDie " + die.name + "\n");
         myDie = die;
+    }
+
+    public virtual void OnStartRoll(PlayerBoard plr)
+    {
+        GameState.Message("Tile " + this.name + " triggered OnStartRoll TileAbility " + this.GetType().ToString() + "\n");
     }
 
     //  does something on the start of each turn
@@ -122,6 +130,9 @@ public class TileAbility : MonoBehaviour {
                 OnSpecificDie(dieRoll);
                 break;
             case PlayerTurnStateTriggers.NoTrigger:
+                break;
+            case PlayerTurnStateTriggers.StartOfRoll:
+                OnStartRoll(plr);
                 break;
             case PlayerTurnStateTriggers.StartOfTurn:
                 OnStartTurn(plr);

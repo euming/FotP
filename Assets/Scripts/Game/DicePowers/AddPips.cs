@@ -6,6 +6,7 @@ public class AddPips : TileAbility
 {
     private bool hasBeenActivatedBySpecificRoll; //  sometimes, this is actually a die ability that is enabled by a specific roll.
     public int nPips = 1;
+    public bool onlyOneUsePerTurn = false;
     public bool isExactlyNumPips = false;
     public int nDice = 1;   //  -1 for any number of dice.
     public bool setToAnyFace = false;
@@ -25,22 +26,46 @@ public class AddPips : TileAbility
         adjustedDice = new List<PharoahDie>();
     }
 
+    public override void OnStartRoll(PlayerBoard plr)
+    {
+        this.isUsedThisRoll = false;
+    }
+
     public override void OnStartTurn(PlayerBoard plr)
     {
         base.OnStartTurn(plr);
         this.isUsedThisTurn = false;    //  refresh this every turn.
         hasBeenActivatedBySpecificRoll = false;
+        curDie = null;
+        adjustedDice.Clear();
     }
 
     public override void OnSelect(PlayerBoard plr)
     {
         base.OnSelect(plr);
-        if (this.isUsedThisTurn)
+        if (this.isUsedThisTurn && this.onlyOneUsePerTurn)
         {
-            GameState.Message("Already used " + this.name + " this turn.");
+            GameState.Message("Already used " + this.name + "\nduring this turn.");
             return;
         }
+        if (this.isUsedThisRoll)
+        {
+            GameState.Message("Already used " + this.name + "\nduring this roll.");
+            return;
 
+        }
+        //  sometimes, this is a DieAbility rather than a TileAbility.  SOme die abilities only are allowed on certain rolls of that die.
+        if (specificRoll > 0)
+        {
+            if (this.myDie != null)
+            {
+                if (this.myDie.GetValue() != specificRoll)
+                {
+                    GameState.Message("Die " + this.myDie.name + " must be " + specificRoll.ToString() + " to use this ability.\n");
+                    return;
+                }
+            }
+        }
         curDie = null;
         adjustedDice.Clear();
         if (nDice == -1)
@@ -83,6 +108,8 @@ public class AddPips : TileAbility
     bool OnCancel(PharoahDie d)
     {
         bool bSuccess = false;
+        this.isUsedThisTurn = false;
+        this.isUsedThisRoll = false;
         GameState.Message("Cancel");
         foreach(PharoahDie die in adjustedDice)
         {
@@ -98,6 +125,7 @@ public class AddPips : TileAbility
     {
         bool bSuccess = false;
         GameState.Message("Done");
+        hasBeenActivatedBySpecificRoll = false; //  deactivate this die ability when done.
         foreach (PharoahDie die in adjustedDice)
         {
             die.FinalizeTempPips();
@@ -107,6 +135,7 @@ public class AddPips : TileAbility
         UIState.EnableCancelButton(false);
         UIState.EnableDoneButton(false);
         this.isUsedThisTurn = true;
+        this.isUsedThisRoll = true;
         return bSuccess;
     }
 

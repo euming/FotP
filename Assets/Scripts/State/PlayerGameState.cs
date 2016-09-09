@@ -94,6 +94,16 @@ public class PlayerGameState : MonoBehaviour {
         myPlayer.FireTriggers(TileAbility.PlayerTurnStateTriggers.StartOfTurn);
     }
 
+    public void InitRoll()
+    {
+        if (!isInitialRoll) return;
+        mayRollDice = false;
+        isInitialRoll = false;
+        //  no dice have been locked by the player right after dice have been rolled.
+        diceLockedThisTurn = 0;
+        lastDiceLockedThisTurn = 0;
+//        myPlayer.FireTriggers(TileAbility.PlayerTurnStateTriggers.StartOfRoll);
+    }
     //  go back to the previous state
     public PlayerGameStates UndoState()
     {
@@ -116,11 +126,7 @@ public class PlayerGameState : MonoBehaviour {
             mayPurchaseTile = false;
             break;
 		case PlayerGameStates.DiceHaveBeenRolled:
-			mayRollDice = false;
-			isInitialRoll = false;
-                //  no dice have been locked by the player right after dice have been rolled.
-            diceLockedThisTurn = 0;
-            lastDiceLockedThisTurn = 0;
+            InitRoll();
             break;
 		case PlayerGameStates.WaitingForLock:
 			mayRollDice = false;
