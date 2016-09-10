@@ -49,6 +49,19 @@ public class GetDie : TileAbility {
 
         return die;
     }
+    public override void OnStartTurn(PlayerBoard plr)
+    {
+        base.OnStartTurn(plr);
+        myDie = GetNewDie(plr);
+    }
+    public override void OnEndOfTurn(PlayerBoard plr)
+    {
+        if (myDie)
+        {
+            if (myDie.isTemporary())
+                plr.DestroyDie(myDie);
+        }
+    }
     public override void OnLockedAny(PlayerBoard plr)
     {
         base.OnLockedAny(plr);

@@ -163,7 +163,7 @@ public class AddPips : TileAbility
         if (!die.isDieType(onlyFor))
         {
             myPlayer.AskToChooseDie(this.PickDie, this.GetType().ToString()); //  ask the player to choose a die or dice
-            GameState.Message("Cannot pick " + die.name + " because it's the wrong type.");
+            GameState.Message("Cannot pick " + die.name + " because it's\nthe wrong type.");
             return false;
         }
 

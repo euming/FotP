@@ -28,10 +28,14 @@ x Can only reroll active dice.
   
 
 Bugs:
+- Moving pips between dice does not work with serf die
+- Indentured Servant is getting scarabs on beginning of turn.
+- Green intrigue die should have no value when 6** is locked.
 - Adjust Die tile allows you to adjust a new die without finishing the old one.
 ? Head Servant may only work on immediate dice.
 - Artisan add pips on a die should end when clicking on the tile a second time.
 - Player should not be able to claim a card after already claiming a card with the existing roll.
+- Palace key gets 2 dice, but displays only 1 moved to cup
 x Player must lock a die before being able to roll again.
 x Sometime allows you to roll dice without having locked a die.
 x Allows you to lock a die and then unlock a die and then roll again. Should not allow you to go to next phase if you undo a locked die and have no locked dice for the phase.
@@ -101,64 +105,64 @@ x - done
   x Farmer
   x Guard
   x Indentured Worker
-  - Serf - Roll +1 serf die to start your turn
+  t Serf - Roll +1 serf die to start your turn
   x Worker
   t Beggar - Each turn, gain 1 token before your first roll
   x Servant
   t Soothsayer
   t Ankh
-  - Omen
+  - Omen - After claiming this tile, immediately take another turn, rolling 1 fewer standard die than normal to start it.
   t Ancestral Guidance
 - Level 4
-  - Artisan
+  x Artisan
   t Builder
-  - Noble Adoption
+  x Noble Adoption
   x Palace Servants
   x Soldier
-  - Grain Merchant
+  - Grain Merchant - reroll 1+ active dice to gain 1 token.
   x Entertainer
-  - Match Maker
-  - Good Omen
-  - Palace Key
-  - Spirit of the Dead
+  - Match Maker - adjust 1 active die to match any locked die
+  - Good Omen - After claiming this tile, immediately take another turn.
+  x Palace Key - Roll +2 standard dice to start your turn.
+  - Spirit of the Dead - After locking all rolled dice, gain +1 standard die and adjust it to any face and lock it.
 
 - Level 5
   x Charioteer
-  - Conspirator
+  x Conspirator - Get an intrigue die.
   x Overseer
-  - Ship Captain
+  - Ship Captain - Roll +1 Voyage die to start your turn.
   t Tomb Builder
   t Head Servant
   x Master Artisan
   x Priest
-  - Bad Omen
+  - Bad Omen - play after your turn. each other player rolls 2 fewer standard dice to start their next turn, unless it is the final roll-off. Roll +1 standard die your next turn.
   t Burial Mask
-  - Royal Decree
+  - Royal Decree - Roll +3 Immediate dice to start your final roll-off turn.
 
 - Level 6
-  - Embalmer
-  - Estate Overseer
+  - Embalmer - After any roll, may bring 1 Standard die in as a 6
+  - Estate Overseer - gain 1 token and put a standard die with value 1 on this tile. After each roll, you may bring this die into play. If not, increase the die by 1, and leave it on this tile until the next roll.
   t Grain Trader
-  - Priest of the Dead
+  - Priest of the Dead - after locking all dice, gain +1 standard die, adjust to any number and lock it.
   x Royal Attendants
   t Astrologer
   x Priestess
-  - Surveyor
-  - Pharoah's Gift
-  - Secret Passage
-  - Treasure
+  - Surveyor - replace 1 active die with 2 immediate dice whose pips sum equals the active die. These dice must be locked before your next roll.
+  - Pharoah's Gift - After your final roll-off, redo your roll-off. Do not regain any used tokens or artifacts.
+  - Secret Passage - Claim up to 2 level 3 tiles you don't already have.
+  - Treasure - Divide your dice into two groups. Claim a yellow or blue tile with each group that you don't already have.
 
 - Level 7
-  - Queen
+  - Queen - when claimed, take the pharoah token. after any roll, ou may bring any standard die into play at any value.
   x General
-  - Grand Vizier
-  - Granary Master
+  - Grand Vizier - Roll +1 Decree die at the start of your turn.
+  - Granary Master - Roll 1 Standard die, and put a standard die of value 1 on this tile. Increase its value by 1 each roll.
   x Heir
   t Royal Astrologer
-  - Royal Mother
-  - Queen's Favor
-  - Royal Death
-  - Royal Power
+  - Royal Mother - Replace any number of active Immediate and/or a serf die with an equal number of tokens and a standard die to roll for the rest of the turn starting next roll.
+  - Queen's Favor - After any turn except the final roll-off claim any yellow or blue tile of level 6 or lower that you don't already have then immediately take another turn.
+  - Royal Death - Play immediately. Give +1 die token to any player who did not get a turn this round. You begin the final roll-off with +2 immediate dice. Players must beat 7 1's to qualify to claim the pharoah.
+  - Royal Power - Claim up to 2 blue tiles of level 6 or lower that you don't already have.
 
 Dice:
 x d6_purple does not have a purple texture
@@ -169,8 +173,8 @@ x d6_orange is not orange
 	- Better texture maps?
   x orange, Serf, 123412
   x yellow, Noble, 563456
-  - blue, Artisan *1=adjust 1 die, 23456
-  - green, Intrigue **, 12345, **=adjust 2 dice. if locked on **, has no value.
+  x blue, Artisan *1=adjust 1 die, 23456
+  b green, Intrigue **, 12345, **=adjust 2 dice. if locked on **, has no value.
   - black, Voyage, *,R,R,DD,L,L, *=adjust, R=reroll, DD=2 dice remaining turn, L=lock
   - purple, Decree, *+ adjust die or (Use someone else's tile), 23456
   
