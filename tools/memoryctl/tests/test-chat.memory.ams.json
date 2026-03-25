@@ -1,0 +1,599 @@
+﻿{
+  "objects": [
+    {
+      "objectId": "chat-msg:575850c7-beef-5b97-a067-7d47e3c768fd",
+      "objectKind": "chat_message",
+      "inSituRef": null,
+      "semanticPayload": {
+        "embedding": null,
+        "tags": [
+          "in",
+          "chat",
+          "telegram"
+        ],
+        "summary": "Ming: Ideally I\u0027d like this to work automatically.",
+        "provenance": {
+          "session_id": "9bb9cdfa-866a-5c6d-aa83-a22beed19695",
+          "message_id": "102",
+          "direction": "in",
+          "author": "Ming",
+          "ts": "2026-02-02T23:42:00-08:00",
+          "channel": "telegram",
+          "text": "Ideally I\u0027d like this to work automatically."
+        }
+      },
+      "createdAt": "2026-02-20T22:21:33.2760025+00:00",
+      "updatedAt": "2026-02-20T22:21:33.2760026+00:00"
+    },
+    {
+      "objectId": "chat-msg:763c26e8-892c-5db3-b9f7-080d62b12d2a",
+      "objectKind": "chat_message",
+      "inSituRef": null,
+      "semanticPayload": {
+        "embedding": null,
+        "tags": [
+          "out",
+          "chat",
+          "telegram"
+        ],
+        "summary": "Rocky: Added maintain.",
+        "provenance": {
+          "session_id": "9bb9cdfa-866a-5c6d-aa83-a22beed19695",
+          "message_id": "101",
+          "direction": "out",
+          "author": "Rocky",
+          "ts": "2026-02-02T23:41:00-08:00",
+          "channel": "telegram",
+          "text": "Added maintain."
+        }
+      },
+      "createdAt": "2026-02-20T22:21:33.2746544+00:00",
+      "updatedAt": "2026-02-20T22:21:33.2746545+00:00"
+    },
+    {
+      "objectId": "chat-msg:d76a0508-2638-545a-b454-43e19daef116",
+      "objectKind": "chat_message",
+      "inSituRef": null,
+      "semanticPayload": {
+        "embedding": null,
+        "tags": [
+          "in",
+          "chat",
+          "telegram"
+        ],
+        "summary": "Ming: ok add the maintenance command now",
+        "provenance": {
+          "session_id": "9bb9cdfa-866a-5c6d-aa83-a22beed19695",
+          "message_id": "100",
+          "direction": "in",
+          "author": "Ming",
+          "ts": "2026-02-02T23:40:00-08:00",
+          "channel": "telegram",
+          "text": "ok add the maintenance command now"
+        }
+      },
+      "createdAt": "2026-02-20T22:21:33.2722671+00:00",
+      "updatedAt": "2026-02-20T22:21:33.2722674+00:00"
+    },
+    {
+      "objectId": "chat-session:9bb9cdfa-866a-5c6d-aa83-a22beed19695",
+      "objectKind": "chat_session",
+      "inSituRef": null,
+      "semanticPayload": null,
+      "createdAt": "2026-02-20T22:21:33.2425812+00:00",
+      "updatedAt": "2026-02-20T22:21:33.2425814+00:00"
+    },
+    {
+      "objectId": "memanchor:0f730083-b292-5bec-9026-1f7c077bfbfa",
+      "objectKind": "memanchor",
+      "inSituRef": null,
+      "semanticPayload": null,
+      "createdAt": "2026-02-20T22:21:33.278415+00:00",
+      "updatedAt": "2026-02-20T22:21:33.2784152+00:00"
+    },
+    {
+      "objectId": "memanchor:6a1c569d-737f-57d3-8fd5-283fea1b27f0",
+      "objectKind": "memanchor",
+      "inSituRef": null,
+      "semanticPayload": null,
+      "createdAt": "2026-02-20T22:21:33.2858441+00:00",
+      "updatedAt": "2026-02-20T22:21:33.2858443+00:00"
+    },
+    {
+      "objectId": "session-ref:9bb9cdfa-866a-5c6d-aa83-a22beed19695",
+      "objectKind": "session_ref",
+      "inSituRef": null,
+      "semanticPayload": null,
+      "createdAt": "2026-02-20T22:21:33.2788188+00:00",
+      "updatedAt": "2026-02-20T22:21:33.2788189+00:00"
+    },
+    {
+      "objectId": "time:day:2026-02-03",
+      "objectKind": "container",
+      "inSituRef": null,
+      "semanticPayload": null,
+      "createdAt": "2026-02-20T22:21:33.274307+00:00",
+      "updatedAt": "2026-02-20T22:21:33.274307+00:00"
+    },
+    {
+      "objectId": "time:minute:2026-02-03T07:40",
+      "objectKind": "container",
+      "inSituRef": null,
+      "semanticPayload": null,
+      "createdAt": "2026-02-20T22:21:33.274309+00:00",
+      "updatedAt": "2026-02-20T22:21:33.274309+00:00"
+    },
+    {
+      "objectId": "time:minute:2026-02-03T07:41",
+      "objectKind": "container",
+      "inSituRef": null,
+      "semanticPayload": null,
+      "createdAt": "2026-02-20T22:21:33.2746658+00:00",
+      "updatedAt": "2026-02-20T22:21:33.2746658+00:00"
+    },
+    {
+      "objectId": "time:minute:2026-02-03T07:42",
+      "objectKind": "container",
+      "inSituRef": null,
+      "semanticPayload": null,
+      "createdAt": "2026-02-20T22:21:33.2760296+00:00",
+      "updatedAt": "2026-02-20T22:21:33.2760297+00:00"
+    },
+    {
+      "objectId": "time:month:2026-02",
+      "objectKind": "container",
+      "inSituRef": null,
+      "semanticPayload": null,
+      "createdAt": "2026-02-20T22:21:33.2743009+00:00",
+      "updatedAt": "2026-02-20T22:21:33.274301+00:00"
+    },
+    {
+      "objectId": "time:year:2026",
+      "objectKind": "container",
+      "inSituRef": null,
+      "semanticPayload": null,
+      "createdAt": "2026-02-20T22:21:33.2742976+00:00",
+      "updatedAt": "2026-02-20T22:21:33.2742979+00:00"
+    }
+  ],
+  "containers": [
+    {
+      "containerId": "chat-session:9bb9cdfa-866a-5c6d-aa83-a22beed19695",
+      "containerKind": "chat_session",
+      "expectationMetadata": {
+        "interpretation": "chat_transcript",
+        "stereotype": null,
+        "comparisonRules": null
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "additionalPolicies": null
+      },
+      "anchors": null,
+      "absoluteSemantics": {
+        "absoluteKind": "chat",
+        "originMetadata": null
+      },
+      "headLinknodeId": "ln_5185fba0b6964e248ddb73488089ead6",
+      "tailLinknodeId": "ln_a786edcdb00d4bfa85438e2248ad6ce3",
+      "metadata": {
+        "channel": "telegram",
+        "chat_id": "-5229501860",
+        "title": "Chat telegram:-5229501860 2026-02-02 23:40 (3 msgs)",
+        "source": "telegram:-5229501860",
+        "started_at": "2026-02-02T23:40:00-08:00",
+        "ended_at": "2026-02-02T23:42:00-08:00",
+        "participants": [
+          {
+            "author": "Ming",
+            "direction": "in"
+          },
+          {
+            "author": "Rocky",
+            "direction": "out"
+          }
+        ]
+      },
+      "hypothesisState": {},
+      "semanticPayload": null
+    },
+    {
+      "containerId": "memanchor:0f730083-b292-5bec-9026-1f7c077bfbfa",
+      "containerKind": "memanchor",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame",
+        "stereotype": null,
+        "comparisonRules": null
+      },
+      "policies": {
+        "uniqueMembers": false,
+        "additionalPolicies": null
+      },
+      "anchors": null,
+      "absoluteSemantics": {
+        "absoluteKind": "other",
+        "originMetadata": null
+      },
+      "headLinknodeId": "ln_10c4a5fb98c243b6b73588644bd127c2",
+      "tailLinknodeId": "ln_10c4a5fb98c243b6b73588644bd127c2",
+      "metadata": {
+        "name": "Conversations"
+      },
+      "hypothesisState": {},
+      "semanticPayload": null
+    },
+    {
+      "containerId": "memanchor:6a1c569d-737f-57d3-8fd5-283fea1b27f0",
+      "containerKind": "memanchor",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame",
+        "stereotype": null,
+        "comparisonRules": null
+      },
+      "policies": {
+        "uniqueMembers": false,
+        "additionalPolicies": null
+      },
+      "anchors": null,
+      "absoluteSemantics": {
+        "absoluteKind": "other",
+        "originMetadata": null
+      },
+      "headLinknodeId": "ln_47963c7a0b1a49518d7243b4c9a4786f",
+      "tailLinknodeId": "ln_47963c7a0b1a49518d7243b4c9a4786f",
+      "metadata": {
+        "name": "Chat: telegram:-5229501860"
+      },
+      "hypothesisState": {},
+      "semanticPayload": null
+    },
+    {
+      "containerId": "time:day:2026-02-03",
+      "containerKind": "time_day",
+      "expectationMetadata": {
+        "interpretation": "time_hierarchy",
+        "stereotype": null,
+        "comparisonRules": null
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "additionalPolicies": null
+      },
+      "anchors": null,
+      "absoluteSemantics": {
+        "absoluteKind": "time",
+        "originMetadata": null
+      },
+      "headLinknodeId": "ln_7a27747fc6574c74ac77b512254e1686",
+      "tailLinknodeId": "ln_39d07e6db1104327a16307fbcb9eed85",
+      "metadata": null,
+      "hypothesisState": {},
+      "semanticPayload": null
+    },
+    {
+      "containerId": "time:minute:2026-02-03T07:40",
+      "containerKind": "time_minute",
+      "expectationMetadata": {
+        "interpretation": "time_hierarchy",
+        "stereotype": null,
+        "comparisonRules": null
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "additionalPolicies": null
+      },
+      "anchors": null,
+      "absoluteSemantics": {
+        "absoluteKind": "time",
+        "originMetadata": null
+      },
+      "headLinknodeId": "ln_96b4ead2ec6d430fb3e563baefd8d00e",
+      "tailLinknodeId": "ln_96b4ead2ec6d430fb3e563baefd8d00e",
+      "metadata": null,
+      "hypothesisState": {},
+      "semanticPayload": null
+    },
+    {
+      "containerId": "time:minute:2026-02-03T07:41",
+      "containerKind": "time_minute",
+      "expectationMetadata": {
+        "interpretation": "time_hierarchy",
+        "stereotype": null,
+        "comparisonRules": null
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "additionalPolicies": null
+      },
+      "anchors": null,
+      "absoluteSemantics": {
+        "absoluteKind": "time",
+        "originMetadata": null
+      },
+      "headLinknodeId": "ln_18c18b5e3e10447c96ef257c87ddac75",
+      "tailLinknodeId": "ln_18c18b5e3e10447c96ef257c87ddac75",
+      "metadata": null,
+      "hypothesisState": {},
+      "semanticPayload": null
+    },
+    {
+      "containerId": "time:minute:2026-02-03T07:42",
+      "containerKind": "time_minute",
+      "expectationMetadata": {
+        "interpretation": "time_hierarchy",
+        "stereotype": null,
+        "comparisonRules": null
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "additionalPolicies": null
+      },
+      "anchors": null,
+      "absoluteSemantics": {
+        "absoluteKind": "time",
+        "originMetadata": null
+      },
+      "headLinknodeId": "ln_0865ebd6df7c44cba58a0f27d59e0dd1",
+      "tailLinknodeId": "ln_0865ebd6df7c44cba58a0f27d59e0dd1",
+      "metadata": null,
+      "hypothesisState": {},
+      "semanticPayload": null
+    },
+    {
+      "containerId": "time:month:2026-02",
+      "containerKind": "time_month",
+      "expectationMetadata": {
+        "interpretation": "time_hierarchy",
+        "stereotype": null,
+        "comparisonRules": null
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "additionalPolicies": null
+      },
+      "anchors": null,
+      "absoluteSemantics": {
+        "absoluteKind": "time",
+        "originMetadata": null
+      },
+      "headLinknodeId": "ln_10b64c92f04d4433872b6bd70edfea30",
+      "tailLinknodeId": "ln_10e5129bc1134d6eaed186116f8d5d85",
+      "metadata": null,
+      "hypothesisState": {},
+      "semanticPayload": null
+    },
+    {
+      "containerId": "time:year:2026",
+      "containerKind": "time_year",
+      "expectationMetadata": {
+        "interpretation": "time_hierarchy",
+        "stereotype": null,
+        "comparisonRules": null
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "additionalPolicies": null
+      },
+      "anchors": null,
+      "absoluteSemantics": {
+        "absoluteKind": "time",
+        "originMetadata": null
+      },
+      "headLinknodeId": "ln_88586dc589f0498288bd1bdf6599d221",
+      "tailLinknodeId": "ln_44975affab014e2a92c2f117b70edb71",
+      "metadata": null,
+      "hypothesisState": {},
+      "semanticPayload": null
+    }
+  ],
+  "linkNodes": [
+    {
+      "linkNodeId": "ln_00adedf1ef974bb9a6faa5115db75c49",
+      "containerId": "time:month:2026-02",
+      "objectId": "chat-msg:763c26e8-892c-5db3-b9f7-080d62b12d2a",
+      "prevLinknodeId": "ln_1dc793f0eb3548649fee90b191eaaac5",
+      "nextLinknodeId": "ln_10e5129bc1134d6eaed186116f8d5d85",
+      "relDelta": null,
+      "metadata": null
+    },
+    {
+      "linkNodeId": "ln_036da5c964f84fdebc54fcf0385ec04d",
+      "containerId": "time:year:2026",
+      "objectId": "chat-msg:763c26e8-892c-5db3-b9f7-080d62b12d2a",
+      "prevLinknodeId": "ln_6d2571dd71cd4b279cd772ae57cb8a60",
+      "nextLinknodeId": "ln_44975affab014e2a92c2f117b70edb71",
+      "relDelta": null,
+      "metadata": null
+    },
+    {
+      "linkNodeId": "ln_0865ebd6df7c44cba58a0f27d59e0dd1",
+      "containerId": "time:minute:2026-02-03T07:42",
+      "objectId": "chat-msg:575850c7-beef-5b97-a067-7d47e3c768fd",
+      "prevLinknodeId": null,
+      "nextLinknodeId": null,
+      "relDelta": null,
+      "metadata": null
+    },
+    {
+      "linkNodeId": "ln_0b7886dc59e244fdbc0a36a50d15022f",
+      "containerId": "time:day:2026-02-03",
+      "objectId": "chat-msg:d76a0508-2638-545a-b454-43e19daef116",
+      "prevLinknodeId": "ln_7a27747fc6574c74ac77b512254e1686",
+      "nextLinknodeId": "ln_38545f8cbd3748e2a38fda10d7be11a5",
+      "relDelta": null,
+      "metadata": null
+    },
+    {
+      "linkNodeId": "ln_10b64c92f04d4433872b6bd70edfea30",
+      "containerId": "time:month:2026-02",
+      "objectId": "time:day:2026-02-03",
+      "prevLinknodeId": null,
+      "nextLinknodeId": "ln_1dc793f0eb3548649fee90b191eaaac5",
+      "relDelta": null,
+      "metadata": null
+    },
+    {
+      "linkNodeId": "ln_10c4a5fb98c243b6b73588644bd127c2",
+      "containerId": "memanchor:0f730083-b292-5bec-9026-1f7c077bfbfa",
+      "objectId": "session-ref:9bb9cdfa-866a-5c6d-aa83-a22beed19695",
+      "prevLinknodeId": null,
+      "nextLinknodeId": null,
+      "relDelta": null,
+      "metadata": {
+        "relevance": 0.8,
+        "reason": "ingest-chatlog",
+        "addedBy": null,
+        "createdAt": "2026-02-20T22:21:33.2239505\u002B00:00"
+      }
+    },
+    {
+      "linkNodeId": "ln_10e5129bc1134d6eaed186116f8d5d85",
+      "containerId": "time:month:2026-02",
+      "objectId": "chat-msg:575850c7-beef-5b97-a067-7d47e3c768fd",
+      "prevLinknodeId": "ln_00adedf1ef974bb9a6faa5115db75c49",
+      "nextLinknodeId": null,
+      "relDelta": null,
+      "metadata": null
+    },
+    {
+      "linkNodeId": "ln_18c18b5e3e10447c96ef257c87ddac75",
+      "containerId": "time:minute:2026-02-03T07:41",
+      "objectId": "chat-msg:763c26e8-892c-5db3-b9f7-080d62b12d2a",
+      "prevLinknodeId": null,
+      "nextLinknodeId": null,
+      "relDelta": null,
+      "metadata": null
+    },
+    {
+      "linkNodeId": "ln_1dc793f0eb3548649fee90b191eaaac5",
+      "containerId": "time:month:2026-02",
+      "objectId": "chat-msg:d76a0508-2638-545a-b454-43e19daef116",
+      "prevLinknodeId": "ln_10b64c92f04d4433872b6bd70edfea30",
+      "nextLinknodeId": "ln_00adedf1ef974bb9a6faa5115db75c49",
+      "relDelta": null,
+      "metadata": null
+    },
+    {
+      "linkNodeId": "ln_2a716f702c8441e2bf4816e311d18222",
+      "containerId": "time:day:2026-02-03",
+      "objectId": "chat-msg:763c26e8-892c-5db3-b9f7-080d62b12d2a",
+      "prevLinknodeId": "ln_38545f8cbd3748e2a38fda10d7be11a5",
+      "nextLinknodeId": "ln_d6080aa31c084f41a8e450b1b6de5d24",
+      "relDelta": null,
+      "metadata": null
+    },
+    {
+      "linkNodeId": "ln_38545f8cbd3748e2a38fda10d7be11a5",
+      "containerId": "time:day:2026-02-03",
+      "objectId": "time:minute:2026-02-03T07:41",
+      "prevLinknodeId": "ln_0b7886dc59e244fdbc0a36a50d15022f",
+      "nextLinknodeId": "ln_2a716f702c8441e2bf4816e311d18222",
+      "relDelta": null,
+      "metadata": null
+    },
+    {
+      "linkNodeId": "ln_39d07e6db1104327a16307fbcb9eed85",
+      "containerId": "time:day:2026-02-03",
+      "objectId": "chat-msg:575850c7-beef-5b97-a067-7d47e3c768fd",
+      "prevLinknodeId": "ln_d6080aa31c084f41a8e450b1b6de5d24",
+      "nextLinknodeId": null,
+      "relDelta": null,
+      "metadata": null
+    },
+    {
+      "linkNodeId": "ln_44975affab014e2a92c2f117b70edb71",
+      "containerId": "time:year:2026",
+      "objectId": "chat-msg:575850c7-beef-5b97-a067-7d47e3c768fd",
+      "prevLinknodeId": "ln_036da5c964f84fdebc54fcf0385ec04d",
+      "nextLinknodeId": null,
+      "relDelta": null,
+      "metadata": null
+    },
+    {
+      "linkNodeId": "ln_47963c7a0b1a49518d7243b4c9a4786f",
+      "containerId": "memanchor:6a1c569d-737f-57d3-8fd5-283fea1b27f0",
+      "objectId": "session-ref:9bb9cdfa-866a-5c6d-aa83-a22beed19695",
+      "prevLinknodeId": null,
+      "nextLinknodeId": null,
+      "relDelta": null,
+      "metadata": {
+        "relevance": 0.8,
+        "reason": "ingest-chatlog",
+        "addedBy": null,
+        "createdAt": "2026-02-20T22:21:33.2239505\u002B00:00"
+      }
+    },
+    {
+      "linkNodeId": "ln_5185fba0b6964e248ddb73488089ead6",
+      "containerId": "chat-session:9bb9cdfa-866a-5c6d-aa83-a22beed19695",
+      "objectId": "chat-msg:d76a0508-2638-545a-b454-43e19daef116",
+      "prevLinknodeId": null,
+      "nextLinknodeId": "ln_5525234fe7174e50bb1df0ebd74763aa",
+      "relDelta": null,
+      "metadata": null
+    },
+    {
+      "linkNodeId": "ln_5525234fe7174e50bb1df0ebd74763aa",
+      "containerId": "chat-session:9bb9cdfa-866a-5c6d-aa83-a22beed19695",
+      "objectId": "chat-msg:763c26e8-892c-5db3-b9f7-080d62b12d2a",
+      "prevLinknodeId": "ln_5185fba0b6964e248ddb73488089ead6",
+      "nextLinknodeId": "ln_a786edcdb00d4bfa85438e2248ad6ce3",
+      "relDelta": null,
+      "metadata": null
+    },
+    {
+      "linkNodeId": "ln_6d2571dd71cd4b279cd772ae57cb8a60",
+      "containerId": "time:year:2026",
+      "objectId": "chat-msg:d76a0508-2638-545a-b454-43e19daef116",
+      "prevLinknodeId": "ln_88586dc589f0498288bd1bdf6599d221",
+      "nextLinknodeId": "ln_036da5c964f84fdebc54fcf0385ec04d",
+      "relDelta": null,
+      "metadata": null
+    },
+    {
+      "linkNodeId": "ln_7a27747fc6574c74ac77b512254e1686",
+      "containerId": "time:day:2026-02-03",
+      "objectId": "time:minute:2026-02-03T07:40",
+      "prevLinknodeId": null,
+      "nextLinknodeId": "ln_0b7886dc59e244fdbc0a36a50d15022f",
+      "relDelta": null,
+      "metadata": null
+    },
+    {
+      "linkNodeId": "ln_88586dc589f0498288bd1bdf6599d221",
+      "containerId": "time:year:2026",
+      "objectId": "time:month:2026-02",
+      "prevLinknodeId": null,
+      "nextLinknodeId": "ln_6d2571dd71cd4b279cd772ae57cb8a60",
+      "relDelta": null,
+      "metadata": null
+    },
+    {
+      "linkNodeId": "ln_96b4ead2ec6d430fb3e563baefd8d00e",
+      "containerId": "time:minute:2026-02-03T07:40",
+      "objectId": "chat-msg:d76a0508-2638-545a-b454-43e19daef116",
+      "prevLinknodeId": null,
+      "nextLinknodeId": null,
+      "relDelta": null,
+      "metadata": null
+    },
+    {
+      "linkNodeId": "ln_a786edcdb00d4bfa85438e2248ad6ce3",
+      "containerId": "chat-session:9bb9cdfa-866a-5c6d-aa83-a22beed19695",
+      "objectId": "chat-msg:575850c7-beef-5b97-a067-7d47e3c768fd",
+      "prevLinknodeId": "ln_5525234fe7174e50bb1df0ebd74763aa",
+      "nextLinknodeId": null,
+      "relDelta": null,
+      "metadata": null
+    },
+    {
+      "linkNodeId": "ln_d6080aa31c084f41a8e450b1b6de5d24",
+      "containerId": "time:day:2026-02-03",
+      "objectId": "time:minute:2026-02-03T07:42",
+      "prevLinknodeId": "ln_2a716f702c8441e2bf4816e311d18222",
+      "nextLinknodeId": "ln_39d07e6db1104327a16307fbcb9eed85",
+      "relDelta": null,
+      "metadata": null
+    }
+  ]
+}

@@ -84,8 +84,8 @@ namespace FotP.Engine.State
                 if (_state.TurnState.Phase == TurnPhase.Claiming)
                     break; // All dice locked
 
-                // Scarab phase - simplified: skip for now
-                _state.TurnState.FinishScarabPhase();
+                // Scarab phase
+                RunScarabPhase(player);
 
                 // Continue decision
                 bool continueRolling = _state.TurnState.Zones.Cup.Count > 0 &&
@@ -121,6 +121,34 @@ namespace FotP.Engine.State
                 _state.QueenClaimant = player;
 
             _state.TurnState.EndTurn(_state);
+        }
+
+        private void RunScarabPhase(Player player)
+        {
+            // Allow the player to use any number of scarabs they own
+            while (player.Scarabs.Count > 0)
+            {
+                var chosen = player.Input.ChooseScarab(player.Scarabs, player);
+                if (chosen == null)
+                    break;
+
+                // Remove the scarab before applying (it's consumed)
+                player.Scarabs.Remove(chosen);
+
+                var lockedDice = _state.TurnState.Zones.GetAllLockedDice();
+                var cupList = _state.TurnState.Zones.Cup;
+
+                Die? target = null;
+                if (chosen.Type == ScarabType.Reroll || chosen.Type == ScarabType.Pip)
+                {
+                    if (lockedDice.Count > 0)
+                        target = player.Input.ChooseDie(lockedDice, $"Choose a die for {chosen.Type} scarab", player);
+                }
+
+                chosen.Apply(target, _state.Rng, cupList);
+            }
+
+            _state.TurnState.FinishScarabPhase();
         }
 
         private void FinishRound()

@@ -1,0 +1,181 @@
+project: FotP-SmartLists
+description: >
+  Runtime object containers for Favor of the Pharaoh. Each SmartList here is
+  an actual container that holds singleton game objects. Objects can live on
+  multiple SmartLists simultaneously. Destroying an object removes it from all
+  lists. Destroying a parent cascades to its children (e.g., removing a Tile
+  removes its Abilities from every list they appear on).
+
+nodes:
+  # ─── PLAYER CONTAINERS ───
+  - id: players
+    title: "Player Containers"
+    description: >
+      SmartLists that hold Player objects. A Player is a singleton that appears
+      on multiple lists simultaneously.
+    children:
+      - id: turn-order
+        title: "Turn Order"
+        description: >
+          Circular SmartList of Player objects in clockwise seating order.
+          Head = start player. The game loop iterates this list each round.
+          During roll-off, this same list is walked but skipping eliminated
+          players.
+      - id: rolloff-eligible
+        title: "Roll-Off Eligible Players"
+        description: >
+          SmartList of Player objects who can still compete in the roll-off.
+          Subset of Turn Order. Players whose max possible score < Pharaoh
+          target are removed. Same Player singletons as Turn Order.
+
+  # ─── TILE CONTAINERS ───
+  - id: tiles
+    title: "Tile Containers"
+    description: >
+      SmartLists that hold Tile objects. A Tile is a singleton with child
+      Ability objects. When a tile moves from Market to Player, it's the
+      same object — just on a different SmartList.
+    children:
+      - id: market-stack
+        title: "Market Stack (per bar slot)"
+        description: >
+          One SmartList per bar slot. LIFO stack of Tile objects. Top tile
+          is claimable. When a player claims the top tile, it's popped from
+          this stack and pushed onto the player's Owned Tiles list. When
+          the stack is empty, the slot is exhausted. There are ~20-30 of
+          these stacks in a game (varies by bar configuration).
+      - id: player-owned-tiles
+        title: "Player Owned Tiles"
+        description: >
+          SmartList of Tile objects this player has claimed. The same Tile
+          singleton that was on a Market Stack. Grows over the game. Each
+          Tile carries its child Abilities with it. Used to derive bonus
+          dice, available abilities, and claiming restrictions.
+      - id: player-owned-yellow
+        title: "Player Owned Yellow (Populace)"
+        description: >
+          Filtered view / sub-SmartList of Player Owned Tiles containing
+          only yellow tiles. Used for the restriction: one yellow per level.
+      - id: player-owned-blue
+        title: "Player Owned Blue (Priesthood)"
+        description: >
+          Filtered view / sub-SmartList of Player Owned Tiles containing
+          only blue tiles. One blue per level restriction.
+      - id: player-owned-red
+        title: "Player Owned Red (Artifacts)"
+        description: >
+          Filtered view / sub-SmartList of Player Owned Tiles containing
+          only red tiles. Each has used/unused state. Destroying a used
+          artifact removes it and cascades to its Ability children.
+
+  # ─── ABILITY CONTAINERS ───
+  - id: abilities
+    title: "Ability Containers"
+    description: >
+      SmartLists that hold Ability objects. An Ability is a singleton child
+      of a Tile. The same Ability object can appear on multiple lists (e.g.,
+      both under its parent Tile and on the Available Abilities list).
+    children:
+      - id: tile-abilities
+        title: "Tile Abilities (parent-child)"
+        description: >
+          Each Tile has a SmartList of its child Ability objects. This is the
+          ownership relationship. If the Tile is destroyed, these Abilities
+          cascade-delete from all lists. A tile may have multiple abilities
+          with different trigger types.
+      - id: available-abilities
+        title: "Available Abilities This Turn"
+        description: >
+          SmartList of Ability objects that can be activated this turn.
+          Populated at Start of Turn from all owned tiles' abilities.
+          When an ability is used (once-per-turn), it's removed from this
+          list. Same Ability singletons that live under their parent Tiles.
+      - id: available-abilities-roll
+        title: "Available Abilities This Roll"
+        description: >
+          SmartList of Ability objects that can be activated this roll.
+          Subset of Available Abilities This Turn for once-per-roll abilities.
+          Reset (repopulated from Available Abilities This Turn) at the start
+          of each roll within the turn.
+      - id: pending-custom-abilities
+        title: "Pending Custom Dice Abilities"
+        description: >
+          SmartList of Ability objects triggered by custom dice faces landing
+          on special values (Artisan *, Intrigue **, Voyage faces, Decree *).
+          Populated after a roll. Player resolves each one, removing it from
+          the list as it's consumed.
+      - id: triggered-abilities
+        title: "Triggered Abilities Queue"
+        description: >
+          SmartList of Ability objects that have been triggered by a game
+          state transition (StartOfTurn, AfterRoll, LockedAny, AllLocked,
+          Acquire, etc). Populated by FireTriggers(). Processed in order,
+          then cleared. Same singletons as the Tile's children.
+
+  # ─── DIE CONTAINERS ───
+  - id: dice
+    title: "Die Containers"
+    description: >
+      SmartLists that hold Die objects. A Die is a singleton that moves between
+      zone SmartLists as the turn progresses. The same Die object is never
+      duplicated — it's just on different lists at different times.
+    children:
+      - id: player-dice-pool
+        title: "Player Dice Pool"
+        description: >
+          SmartList of all Die objects this player owns. Permanent across turns.
+          Starts with 3 standard red dice. Grows when tiles grant custom dice
+          (Serf->orange, Noble Adoption->yellow, etc). The pool is the
+          authoritative ownership list; zone lists are views into it.
+      - id: dice-in-cup
+        title: "Dice in Cup"
+        description: >
+          SmartList of Die objects available to roll. At turn start, all dice
+          from Player Dice Pool + temporary bonus dice are here. As dice are
+          locked, they leave this list. When empty, player cannot roll.
+      - id: dice-active
+        title: "Active Dice"
+        description: >
+          SmartList of Die objects that have been rolled but not yet locked.
+          Player interacts with these: locking, scarab use, ability targets.
+          After locking, a die moves from Active to Locked.
+      - id: dice-locked
+        title: "Locked Dice"
+        description: >
+          SmartList of Die objects locked into the pyramid. Ordered by lock
+          sequence. Their pip values are summed for criteria checking and
+          roll-off scoring. Only standard numeric values count.
+      - id: dice-set
+        title: "Set Dice"
+        description: >
+          SmartList of Die objects whose values have been fixed by abilities
+          (Tomb Builder, Astrologer, etc). These bypass normal rolling.
+          The Die singleton is on this list AND on Active or Locked.
+      - id: dice-temporary
+        title: "Temporary Dice"
+        description: >
+          SmartList of Die objects created during the turn from +1 Die tokens
+          or tile abilities. These are singletons that exist only for the
+          current turn. At End of Turn, they're destroyed — which cascade-removes
+          them from Cup, Active, Locked, or wherever they ended up.
+
+  # ─── SCARAB CONTAINERS ───
+  - id: scarabs
+    title: "Scarab Containers"
+    description: >
+      SmartLists that hold Scarab token objects. A Scarab is a singleton
+      with a type (Reroll, Pip, Die). Moves from Supply to Player on gain,
+      destroyed on spend.
+    children:
+      - id: scarab-supply
+        title: "Scarab Supply Pool"
+        description: >
+          Three SmartLists (one per type) holding unowned Scarab objects.
+          When a player gains a token, the Scarab moves from here to the
+          player's Scarab list. Finite supply: 31 reroll, 31 pip, 3 die.
+      - id: player-scarabs
+        title: "Player Scarabs"
+        description: >
+          SmartList of Scarab objects this player holds. When spent, the
+          Scarab is destroyed (removed from this list). Could also return
+          to Supply Pool if the design prefers recycling over destruction.

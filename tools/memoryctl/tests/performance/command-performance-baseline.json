@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "notes": "Baselines are median command runtimes (ms) measured on GitHub Actions windows-latest with .NET 9 Release/no-build. Thresholds are pragmatic guardrails for coarse regression detection under variable hosted-runner load, not strict micro-benchmarks.",
+  "commands": {
+    "validate": {
+      "fixture": "tools/memoryctl/tests/fixtures/mixed-card-states.memory.jsonl",
+      "baselineMedianMs": 300,
+      "maxAllowedMedianMs": 2400
+    },
+    "query": {
+      "fixture": "tools/memoryctl/tests/fixtures/mixed-card-states.memory.jsonl",
+      "baselineMedianMs": 350,
+      "maxAllowedMedianMs": 2600
+    },
+    "prompt": {
+      "fixture": "tools/memoryctl/tests/fixtures/mixed-card-states.memory.jsonl",
+      "baselineMedianMs": 420,
+      "maxAllowedMedianMs": 2600
+    },
+    "add": {
+      "fixture": "tools/memoryctl/tests/fixtures/missing-optional-payloads.memory.jsonl",
+      "baselineMedianMs": 360,
+      "maxAllowedMedianMs": 2400
+    }
+  }
+}

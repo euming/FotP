@@ -1,0 +1,3 @@
+{"type":"chat_event","channel":"telegram","chat_id":"-1","message_id":"1","ts":"2026-02-03T00:00:00Z","author":"A","direction":"in","text":"ok"}
+{ type:chat_event,channel:telegram,chat_id:-1,message_id:BAD,ts:bad,author:A,direction:in,text:bad}
+{"type":"chat_event","channel":"telegram","chat_id":"-1","message_id":"2","ts":"2026-02-03T00:01:00Z","author":"A","direction":"in","text":"ok2"}

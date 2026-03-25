@@ -22,11 +22,8 @@ namespace FotP.Engine.Tiles.Abilities
             var others = state.TurnOrder.Where(p => p != player && p.Tokens > 0).ToList();
             if (others.Count == 0) return;
 
-            // The active player chooses which opponent to afflict
-            var target = player.Input.ChooseDie(null!, "Bad Omen: Choose target player", player);
-            // Use token loss directly on an other player — pick the first other player
-            // (full player-choice UI would need ChoosePlayer; use first other as fallback)
-            var victim = others[0];
+            var victim = player.Input.ChoosePlayer(others, "Bad Omen: Choose a player to lose 1 token", player)
+                         ?? others[0];
             victim.Tokens = System.Math.Max(0, victim.Tokens - 1);
         }
     }

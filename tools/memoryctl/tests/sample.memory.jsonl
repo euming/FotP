@@ -1,0 +1,5 @@
+{"type":"format","name":"card-binder","version":1}
+{"type":"binder","id":"b8f3c2c9-8a89-4b68-b1d8-8db45a53f38a","name":"Realtime Voice"}
+{"type":"card","id":"8a9a4d49-0c9c-4e6c-8bda-0c8e1c3f7d1d","state":"Active"}
+{"type":"taglink","card_id":"8a9a4d49-0c9c-4e6c-8bda-0c8e1c3f7d1d","binder_id":"b8f3c2c9-8a89-4b68-b1d8-8db45a53f38a","meta":{"Relevance":0.9,"Reason":"core"}}
+{"type":"card_payload","card_id":"8a9a4d49-0c9c-4e6c-8bda-0c8e1c3f7d1d","title":"WebRTC codec mismatch","text":"OpenAI Realtime WebRTC may negotiate Opus/G.711 rather than raw PCM (L16). Plan: accept Opus and decode or use audio track callbacks.","source":"notes","updated_at":"2026-02-03T00:00:00Z"}

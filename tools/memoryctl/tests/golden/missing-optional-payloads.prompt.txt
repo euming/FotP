@@ -1,0 +1,8 @@
+# memory.md (compiled)
+
+## Containers
+
+## Objects
+- cccccccc-cccc-cccc-cccc-ccccccccccc1 kind=card summary=<none> in_situ=<none>
+- cccccccc-cccc-cccc-cccc-ccccccccccc2 kind=card summary=<none> in_situ=fixture-only-source
+- cccccccc-cccc-cccc-cccc-ccccccccccc3 kind=card summary=Payload title without text in_situ=<none>

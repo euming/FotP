@@ -1,0 +1,26 @@
+{
+  "project": "swarm-dashboard-rich",
+  "description": "Replace the hand-rolled ANSI dashboard in scripts/swarm/dashboard.py with a rich-based TUI. Three panels: (1) plan tree with live NodeStatus overlay, (2) active agents table, (3) log ring buffer. Uses rich.live.Live as the render loop driver. No external deps beyond rich (already common in Python tooling).",
+  "nodes": [
+    {
+      "title": "P1-scaffold",
+      "description": "Add `rich` to the project's Python dependencies and create the new module `scripts/swarm/dashboard_rich.py` with a working skeleton. The skeleton must: (1) import and use `rich.live.Live` as the render context (replacing the current poll+erase loop in `Dashboard.render()`); (2) define a `RichDashboard` class with the same public interface as the existing `Dashboard` — `register(status)`, `unregister(title)`, `render(step, max_steps)`, `clear()` — so it can be swapped in with a one-line change in `run-swarm-plan.py`; (3) define a `Layout` with three named regions: `plan_tree`, `agents`, `log`; (4) produce a visible but placeholder render (e.g. static text in each panel) that confirms the Live context works in a terminal. Check `requirements.txt` or `pyproject.toml` for where to add `rich`; if neither exists, add a comment at the top of `dashboard_rich.py` noting the install command. Do NOT modify `dashboard.py` or `run-swarm-plan.py` yet.",
+      "depends_on": []
+    },
+    {
+      "title": "P2-plan-tree-panel",
+      "description": "Implement the plan tree panel in `dashboard_rich.py`. Add a `NodeStatus` enum with values: `pending`, `ready`, `running`, `done`, `failed`, `blocked`. Add an `update_tree(nodes)` method to `RichDashboard` that accepts a list of dicts with keys `title`, `depends_on` (list of titles), and `status` (NodeStatus). Render the tree as a `rich.tree.Tree` where: the root label is the project name + overall progress fraction (e.g. `gnuisngnu-pipeline-integration-2  [5/7]`); each node is a leaf with a colored status icon and elapsed time for done nodes. Status icon+color mapping: `pending` = dim `\u00b7`, `ready` = yellow `\u25cb`, `running` = cyan spinner (use `rich.spinner.Spinner` or a static `\u25d1`), `done` = green `\u2713`, `failed` = red `\u2717`, `blocked` = dim `\u00b7`. The tree panel must handle the case where `update_tree` has not yet been called (show a placeholder). Since this plan is a linear chain, nodes are always sequential siblings under one root \u2014 the tree should render them in dependency order (blocked nodes listed after the node they depend on).",
+      "depends_on": ["P1-scaffold"]
+    },
+    {
+      "title": "P3-agents-and-log-panels",
+      "description": "Implement the active agents panel and log ring buffer panel in `dashboard_rich.py`. Agents panel: render as a `rich.table.Table` with columns: Status icon, Team, Model/effort, Title (truncated to 30 chars), Elapsed, Phase, Current tool. Reuse the existing `AgentStatus` and `Phase` dataclasses from `swarm/dashboard.py` \u2014 do not duplicate them, import them. Each row's color follows Phase: thinking=dim white, tool_use=cyan, writing=white, done=green, failed=red. Log panel: add an `add_log(line: str)` method to `RichDashboard`. Keep a `deque(maxlen=8)` of log lines. Render as a `rich.panel.Panel` with title `[dim]log[/dim]`, content as plain text lines joined by newlines, oldest at top. Both panels must render gracefully when empty (agents table shows 'no agents', log panel shows empty).",
+      "depends_on": ["P2-plan-tree-panel"]
+    },
+    {
+      "title": "P4-orchestrator-wiring",
+      "description": "Wire `RichDashboard` into the orchestrator and remove the old dashboard. Steps: (1) In `run-swarm-plan.py`, change `from swarm.dashboard import Dashboard` to `from swarm.dashboard_rich import RichDashboard as Dashboard` \u2014 this single import swap should work because `RichDashboard` has the same public interface. (2) Wherever `self.log(...)` is called in `Orchestrator`, also call `self.dashboard.add_log(...)` so the log panel stays populated. (3) After each `get_ready_nodes()` call in `_run_inner`, call `self.dashboard.update_tree(nodes)` with the full node list (all nodes, not just ready ones) and their current statuses. The orchestrator already knows which nodes are completed (`self._completed_artifacts`), running (`self.running_agents`), and ready (return of `get_ready_nodes()`); blocked = everything else. (4) Wrap the `_run_inner` dispatch loop body in the `Live` context from `RichDashboard` (or have `RichDashboard.__enter__`/`__exit__` manage it so the caller does `with self.dashboard:`). (5) Delete `scripts/swarm/dashboard.py`. Verify: run `python scripts/run-swarm-plan.py --dry-run run` and confirm the rich TUI renders without error.",
+      "depends_on": ["P3-agents-and-log-panels"]
+    }
+  ]
+}

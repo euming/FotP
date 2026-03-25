@@ -119,5 +119,18 @@ namespace FotP.Engine.Players
             var input = Console.ReadLine() ?? "y";
             return input.Trim().ToLower().StartsWith("y");
         }
+
+        public Player? ChoosePlayer(IReadOnlyList<Player> players, string prompt, Player activePlayer)
+        {
+            if (players.Count == 0) return null;
+            Console.WriteLine($"\n{prompt}:");
+            for (int i = 0; i < players.Count; i++)
+                Console.WriteLine($"  [{i}] {players[i].Name} (tokens: {players[i].Tokens})");
+            Console.Write("Choose player (or Enter to skip): ");
+            var input = Console.ReadLine() ?? "";
+            if (int.TryParse(input.Trim(), out int idx) && idx >= 0 && idx < players.Count)
+                return players[idx];
+            return null;
+        }
     }
 }

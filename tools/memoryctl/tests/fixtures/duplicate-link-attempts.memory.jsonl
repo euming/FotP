@@ -1,0 +1,7 @@
+{"type":"format","name":"card-binder","version":1}
+{"type":"binder","id":"33333333-3333-3333-3333-333333333333","name":"Topic: Dedup"}
+{"type":"card","id":"bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbb1","state":"Active"}
+{"type":"taglink","card_id":"bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbb1","binder_id":"33333333-3333-3333-3333-333333333333","meta":{"Relevance":0.8,"Reason":"first link"}}
+{"type":"taglink","card_id":"bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbb1","binder_id":"33333333-3333-3333-3333-333333333333","meta":{"Relevance":0.4,"Reason":"duplicate attempt should be idempotent"}}
+{"type":"taglink","card_id":"bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbb1","binder_id":"33333333-3333-3333-3333-333333333333"}
+{"type":"card_payload","card_id":"bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbb1","title":"Idempotent link behavior","text":"Duplicate taglink records should not create duplicate memberships.","source":"fixture","updated_at":"2026-02-17T20:03:00Z"}

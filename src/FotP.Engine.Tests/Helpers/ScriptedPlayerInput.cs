@@ -52,4 +52,7 @@ public class ScriptedPlayerInput : IPlayerInput
     public bool ChooseYesNo(string prompt, Player player) => false;
 
     public bool ChooseUseAbility(Ability ability, Player player) => !_neverUseAbility;
+
+    public Player? ChoosePlayer(IReadOnlyList<Player> players, string prompt, Player activePlayer)
+        => players.FirstOrDefault();
 }

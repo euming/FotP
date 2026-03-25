@@ -1,0 +1,9 @@
+- Payload title without text  (score=1.55)
+    text=1 memAnchor=0.25 meta=0.3
+    memAnchors: Topic: Payloads
+- cccccccc-cccc-cccc-cccc-ccccccccccc1  (score=0.5)
+    text=0 memAnchor=0.25 meta=0.25
+    memAnchors: Topic: Payloads
+- cccccccc-cccc-cccc-cccc-ccccccccccc2  (score=0.5)
+    text=0 memAnchor=0.25 meta=0.25
+    memAnchors: Topic: Payloads

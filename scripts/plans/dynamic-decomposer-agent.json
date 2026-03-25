@@ -1,0 +1,38 @@
+{
+  "project": "dynamic-decomposer-agent",
+  "description": "Add a beetle agent to the swarm that dynamically breaks large tasks into subtasks at runtime. Workers trigger a 'decompose' interrupt when they detect a task exceeds their ability to execute in one pass. The orchestrator spawns a beetle agent that analyzes the task, produces a subplan via load-plan --into-active, and the orchestrator resumes by dispatching the children. This makes planning recursive and depth-first — the tree walks itself.",
+  "nodes": [
+    {
+      "title": "01-decompose-interrupt-policy",
+      "description": "Add a new interrupt policy 'decompose' to the swarm-plan interrupt command in ams.py. When a worker calls 'swarm-plan interrupt --policy decompose --reason <why> --subtask-hints <comma-sep hints>', it signals the orchestrator that this task should be broken into subtasks rather than repaired. The interrupt node stores the worker's analysis of why decomposition is needed and its suggested subtask breakdown. Modify callstack_interrupt in ams.py to accept the 'decompose' policy and store subtask_hints as a field on the policy node."
+    },
+    {
+      "title": "02-worker-yml-decompose-protocol",
+      "description": "Update .claude/teams/worker.yml to teach workers when and how to trigger decomposition. Add a section after the interrupt-for-repair protocol that says: if you determine the task requires multiple independent implementation steps, or you find yourself needing to make changes across more than 3 files in different subsystems, or the task description is too vague to produce a concrete implementation, call 'swarm-plan interrupt --policy decompose --reason <analysis> --subtask-hints <hint1,hint2,...>'. The worker should provide its best-effort breakdown as hints, not a full plan. The worker should NOT attempt partial implementation before interrupting — decompose early.",
+      "depends_on": "01-decompose-interrupt-policy"
+    },
+    {
+      "title": "03-beetle-agent-yml",
+      "description": "Create .claude/teams/beetle.yml (the 'beetle' — the decomposing bug). The beetle agent reads the interrupted node's context including the worker's subtask-hints, reads relevant source code to understand the scope, searches AMS memory for similar past decompositions, then produces a JSON plan file (using the load-plan format: project, nodes with title/description/depends_on). The beetle writes the plan to a temp file and outputs 'PLAN FILE: <path>' to stdout so the orchestrator can find it. The beetle should: (1) break tasks into 2-5 concrete subtasks, (2) each subtask should be achievable by a single worker in one pass, (3) specify dependency edges between subtasks, (4) include the worker's hints but refine them with code-level specifics. The beetle does NOT execute any of the subtasks.",
+      "depends_on": "01-decompose-interrupt-policy"
+    },
+    {
+      "title": "04-orchestrator-decompose-handler",
+      "description": "Add _handle_beetle_completion to run-swarm-plan.py. When the beetle finishes: (1) parse 'PLAN FILE: <path>' from stdout, (2) call 'swarm-plan resume' to clear the decompose interrupt, (3) call 'swarm-plan load-plan --file <path> --into-active' to inject the subtasks as children of the current node, (4) call advance() to descend into the first ready child. Also add detection in poll_and_advance: when active_node_kind is 'decompose' (or policy node with decompose policy), spawn the beetle agent instead of the repairer. Add 'decomposer' to the team routing in _spawn_agent.",
+      "depends_on": [
+        "02-worker-yml-decompose-protocol",
+        "03-decomposer-agent-yml"
+      ]
+    },
+    {
+      "title": "05-recursive-depth-guard",
+      "description": "Add a MAX_DECOMPOSE_DEPTH constant (default 3) to the Orchestrator class. Track decomposition depth by counting how many ancestor nodes in the current path were created by decomposition (tag beetle-created nodes with a 'decomposed_from' field). If depth exceeds the limit, skip decomposition and let the worker attempt the task as-is. Log a warning. This prevents infinite decomposition loops where tasks keep getting broken down but never executed.",
+      "depends_on": "04-orchestrator-decompose-handler"
+    },
+    {
+      "title": "06-decompose-observation-logging",
+      "description": "When a decomposition occurs, record an observation on the parent node with title 'decomposed: <original-task>' and text showing the subtask breakdown. This creates an audit trail in the swarm-plan so future agents and sessions can see how tasks were decomposed. Also record in AMS memory via swarm-plan observe so the beetle can learn from past decomposition patterns.",
+      "depends_on": "04-orchestrator-decompose-handler"
+    }
+  ]
+}

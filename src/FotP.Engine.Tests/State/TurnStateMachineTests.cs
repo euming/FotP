@@ -283,5 +283,8 @@ namespace FotP.Engine.Tests.State
         public bool ChooseYesNo(string prompt, Player player) => false;
 
         public bool ChooseUseAbility(Ability ability, Player player) => false; // Skip abilities
+
+        public Player? ChoosePlayer(IReadOnlyList<Player> players, string prompt, Player activePlayer)
+            => players.Count > 0 ? players[0] : null;
     }
 }

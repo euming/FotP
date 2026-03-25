@@ -1,0 +1,25 @@
+{
+  "nodes": [
+    {
+      "id": "33333333-3333-3333-3333-333333333333",
+      "kind": "memAnchor",
+      "label": "Topic: Dedup",
+      "memAnchorName": "Topic: Dedup",
+      "safeFileName": "Topic_Dedup"
+    },
+    {
+      "id": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbb1",
+      "kind": "card",
+      "label": "Idempotent link behavior",
+      "memAnchorName": null,
+      "safeFileName": null
+    }
+  ],
+  "edges": [
+    {
+      "from": "33333333-3333-3333-3333-333333333333",
+      "to": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbb1",
+      "kind": "taglink"
+    }
+  ]
+}

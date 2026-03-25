@@ -1,0 +1,620 @@
+{
+  "project": "FotP-Rules-v20",
+  "description": "Definitive structured rules for Favor of the Pharaoh v20 by Thomas Lehmann. Source: docs/FotP_Online_rules_v20.pdf. This is the authoritative game-design knowledge base for the digital implementation.\n",
+  "nodes": [
+    {
+      "id": "overview",
+      "title": "Game Overview",
+      "description": "2-4 players vie for the Pharaoh's favor by working their way up Egyptian society, gathering influence (represented by dice and powers) to gain entry to the next social level. Once any player gains the Queen's influence, a final contest (roll-off) occurs for the Pharaoh's favor.\n"
+    },
+    {
+      "id": "components",
+      "title": "Game Components",
+      "description": "1 Pharaoh token, 1 Start Player tile, 3 Start tiles, 63 Populace tiles (yellow), 36 Priesthood tiles (blue), 36 Artifact tiles (red), 4 Pyramids, 12 Standard dice (red), 8 Immediate dice (white), 6 Unique Custom dice (orange Serf, yellow Noble, blue Artisan, green Intrigue, black Voyage, purple Decree), 5 Double-sided Level bars, 3 +1 Die tokens, 31 +1 Pip tokens, 31 Reroll tokens.\n"
+    },
+    {
+      "id": "setup",
+      "title": "Game Setup",
+      "children": [
+        {
+          "id": "setup-bars",
+          "title": "Level Bars",
+          "description": "Place 5 double-sided level bars (A side for first game). Each bar shows dice criteria required to claim tiles at that level. Level 3 (bottom) through Level 7 (top/Queen). Bars are double-sided for replayability.\n"
+        },
+        {
+          "id": "setup-tiles",
+          "title": "Tile Stacks",
+          "description": "Stack populace (yellow), priesthood (blue), and artifact (red) tiles on each bar slot. Number of tiles per stack = number of players minus 1. For first game use specific tiles as shown in setup diagram. For later games, randomly deal 1 of each matching type per bar slot.\n"
+        },
+        {
+          "id": "setup-pharaoh",
+          "title": "Pharaoh Placement",
+          "description": "Place the Pharaoh token on the Queen tile (level 7).\n"
+        },
+        {
+          "id": "setup-players",
+          "title": "Player Setup",
+          "description": "Each player gets: 1 pyramid, 3 standard (red) dice, 1 reroll token. Youngest player gets Start Player tile and goes first. Clockwise order.\n"
+        },
+        {
+          "id": "setup-scarabs",
+          "title": "Scarab Token Supply",
+          "description": "Place the Scarab tokens where they are accessible to all players. Three types: Reroll tokens, +1 Pip tokens, +1 Die tokens. Players who do not claim a tile on their turn gain 2 tokens of their choice.\n"
+        }
+      ]
+    },
+    {
+      "id": "turn-structure",
+      "title": "Player Turn Structure",
+      "children": [
+        {
+          "id": "turn-start",
+          "title": "Start of Turn",
+          "description": "Player begins in Ready to Roll state. All dice are in the cup. Fire Start of Turn triggers from owned tiles (e.g., Serf adds +1 serf die, Palace Key adds +2 standard dice, Beggar gains 1 token). Standard dice count is 3 + any bonus dice from tiles.\n"
+        },
+        {
+          "id": "turn-roll",
+          "title": "Roll Phase",
+          "description": "Roll all dice in the cup. After rolling, player MUST lock at least one die into their pyramid before doing anything else. Immediate (white) dice must be locked after being rolled - they cannot remain active.\n"
+        },
+        {
+          "id": "turn-lock",
+          "title": "Lock Phase",
+          "description": "Player locks one or more dice into pyramid slots. Locked dice form the pattern checked against level bar criteria. After locking at least one die, player may spend scarab tokens (reroll, +1 pip, +1 die) on active dice. Fire LockedAny triggers (e.g., Herder: if you lock a pair, roll +1 standard die).\n"
+        },
+        {
+          "id": "turn-continue-or-stop",
+          "title": "Continue or Stop Decision",
+          "description": "If active dice remain in cup, player may roll again (return to Roll Phase). If all dice are locked, player must stop. Fire AllLocked triggers (e.g., Priest of the Dead, Spirit of the Dead: gain +1 standard die at any value and lock it).\n"
+        },
+        {
+          "id": "turn-claim",
+          "title": "Claim Tile Phase",
+          "description": "Player checks locked dice against level bar criteria. May claim ONE tile whose criteria are satisfied. Only locked standard-value dice count toward criteria (custom dice with special faces like Intrigue ** or Voyage symbols do not count as pip values). Cannot claim a tile at a level where you already own a tile of that color. If player does not claim a tile, gain 2 scarab tokens of any type.\n"
+        },
+        {
+          "id": "turn-end",
+          "title": "End of Turn",
+          "description": "Return all dice to cup. Remove temporary/immediate dice. Reset per-turn ability flags (isUsedThisTurn, isUsedThisRoll). Fire End of Turn triggers. Advance to next player clockwise.\n"
+        }
+      ]
+    },
+    {
+      "id": "scarab-tokens",
+      "title": "Scarab Token System",
+      "children": [
+        {
+          "id": "scarab-reroll",
+          "title": "Reroll Token",
+          "description": "Spend to reroll exactly one active (unlocked) die. May be used after locking at least one die. Consumed on use.\n"
+        },
+        {
+          "id": "scarab-pip",
+          "title": "+1 Pip Token",
+          "description": "Spend to add +1 to one die's value. Die cannot exceed its maximum face value (6 for standard, varies for custom). Consumed on use.\n"
+        },
+        {
+          "id": "scarab-die",
+          "title": "+1 Die Token",
+          "description": "Spend to add one standard die to your cup and immediately roll it. This die is temporary for the current turn only. Consumed on use.\n"
+        },
+        {
+          "id": "scarab-gain",
+          "title": "Gaining Tokens",
+          "description": "If a player does not claim a tile on their turn, they gain 2 scarab tokens of any combination of types. Some tile abilities also grant tokens (e.g., Beggar gives 1 token at start of turn, Grain Merchant gives 1 token for rerolling).\n"
+        }
+      ]
+    },
+    {
+      "id": "claiming-rules",
+      "title": "Tile Claiming Rules",
+      "children": [
+        {
+          "id": "claim-criteria",
+          "title": "Criteria Matching",
+          "description": "Level bars show dice requirements: N-of-a-kind, straights, pairs, sum thresholds, all different, all even, all odd, etc. Only locked dice with standard numeric pip values count. Custom dice faces with special symbols (Intrigue **, Voyage letters) have no pip value and do not count toward criteria. Tiles with red/blue/yellow color match populace /priesthood/artifact types.\n"
+        },
+        {
+          "id": "claim-restriction",
+          "title": "Claiming Restrictions",
+          "description": "A player may only claim ONE tile per turn. A player cannot claim a tile at a level where they already own a tile of that same color. The Herder tile is special: it can be claimed by ANY locked dice (no specific criteria), but if on a future turn you cannot claim any tile, you gain 2 tokens instead of using Herder's benefit.\n"
+        },
+        {
+          "id": "claim-priority",
+          "title": "Tile Stack Priority",
+          "description": "When a tile stack has multiple tiles, claim the top tile. Once a stack is empty, that tile is no longer available. Number of tiles per stack equals number of players minus 1.\n"
+        }
+      ]
+    },
+    {
+      "id": "powers",
+      "title": "Tile Power Categories",
+      "children": [
+        {
+          "id": "power-roll-extra",
+          "title": "Roll Extra Dice Powers",
+          "description": "Add dice to cup at start of turn. Examples: Serf (+1 orange serf die), Palace Key (+2 standard dice), Conspirator (+1 green intrigue die), Ship Captain (+1 black voyage die), Grand Vizier (+1 purple decree die), Royal Decree (+3 immediate dice in final roll-off only).\n"
+        },
+        {
+          "id": "power-adjust",
+          "title": "Adjust Die Powers",
+          "description": "Change an active die to any face value. Soothsayer: adjust 1 die after your first roll only. Astrologer: adjust 1 die once per turn. Royal Astrologer: adjust 1 die after any roll. Builder: adjust 1 die but its final value must be 5 or 6. Match Maker: adjust 1 active die to match any locked die's value.\n"
+        },
+        {
+          "id": "power-reroll",
+          "title": "Reroll Powers",
+          "description": "Re-roll active dice. Queen: after any roll, bring any standard die into play at any value. Priest: after locking all dice, reroll. Grain Merchant: reroll 1+ active dice to gain 1 token. Entertainer: reroll 1+ active dice.\n"
+        },
+        {
+          "id": "power-stored-die",
+          "title": "Stored Die Powers (Increment Per Roll)",
+          "description": "Estate Overseer: place a standard die at value 1 on tile. After each roll, may bring it into play; if not, increase by 1. Granary Master: same mechanic \u00e2\u20ac\u201d stored die increments each roll you don't use it.\n"
+        },
+        {
+          "id": "power-tokens",
+          "title": "Token-Granting Powers",
+          "description": "Beggar: gain 1 token before first roll each turn. Grain Merchant: reroll active dice to gain 1 token. Not claiming a tile: gain 2 tokens.\n"
+        },
+        {
+          "id": "power-extra-turn",
+          "title": "Extra Turn Powers",
+          "description": "Omen: after claiming, immediately take another turn with 1 fewer standard die. Good Omen: after claiming, immediately take another turn with normal dice count. Queen's Favor: after any turn except final roll-off, claim any yellow or blue tile level 6 or lower that you don't have, then take another turn.\n"
+        },
+        {
+          "id": "power-replace",
+          "title": "Dice Replacement Powers",
+          "description": "Surveyor: replace 1 active die with 2 immediate dice whose pips sum equals the replaced die. These must be locked before next roll. Royal Mother: replace any number of active immediate and/or serf dice with equal number of tokens plus a standard die for rest of turn.\n"
+        },
+        {
+          "id": "power-claim-extra",
+          "title": "Extra Tile Claiming Powers",
+          "description": "Secret Passage: claim up to 2 level 3 tiles you don't already have. Treasure: divide dice into 2 groups, claim a yellow or blue tile with each group that you don't already have. Royal Power: claim up to 2 blue tiles level 6 or lower you don't already have.\n"
+        },
+        {
+          "id": "power-affect-others",
+          "title": "Powers Affecting Other Players",
+          "description": "Bad Omen: play after your turn. Each other player rolls 2 fewer standard dice to start their next turn (unless final roll-off). You roll +1 standard die your next turn. Decree die (*=1 face): use another player's tile ability once this turn.\n"
+        },
+        {
+          "id": "power-artifacts",
+          "title": "Artifact Powers (Red Tiles - One Time Use)",
+          "description": "Red tiles are artifacts \u00e2\u20ac\u201d usable once per game. After use, flip face down. Examples: Burial Mask (when all dice locked, gain +1 standard die at any value), Ancestral Guidance (adjust 1 die), Ankh (reroll), Tomb Builder (lock 1 active die at any value). A player's pyramid total may not be adjusted, rerolled, or brought into after final roll-off locking.\n"
+        }
+      ]
+    },
+    {
+      "id": "dice-types",
+      "title": "Dice Types and Faces",
+      "children": [
+        {
+          "id": "dice-standard",
+          "title": "Standard Die (Red)",
+          "description": "Faces: 1-2-3-4-5-6. Normal six-sided die. All pip values count toward criteria."
+        },
+        {
+          "id": "dice-immediate",
+          "title": "Immediate Die (White)",
+          "description": "Faces: 1-2-3-4-5-6. Must be locked immediately after being rolled. Cannot remain active. Standard pip values count toward criteria.\n"
+        },
+        {
+          "id": "dice-serf",
+          "title": "Serf Die (Orange)",
+          "description": "Faces: 1-2-3-4-1-2. Low-value die. Added by Serf tile at start of turn. Pip values count toward criteria normally.\n"
+        },
+        {
+          "id": "dice-noble",
+          "title": "Noble Die (Yellow)",
+          "description": "Faces: 5-6-3-4-5-6. High-value die with no 1 or 2 faces. Added by Noble Adoption tile. Pip values count toward criteria normally.\n"
+        },
+        {
+          "id": "dice-artisan",
+          "title": "Artisan Die (Blue)",
+          "description": "Faces: *-2-3-4-5-6. The * face (value 1) triggers a special ability: adjust 1 active die to any value. When not on *, the die has its normal pip value for criteria.\n"
+        },
+        {
+          "id": "dice-intrigue",
+          "title": "Intrigue Die (Green)",
+          "description": "Faces: **-2-3-4-5 (note: only goes to 5, ** is on the 6 position). The ** face triggers: adjust 2 active dice to any values. IMPORTANT: when locked showing **, the die has NO pip value for criteria purposes. On faces 2-5 it counts normally.\n"
+        },
+        {
+          "id": "dice-voyage",
+          "title": "Voyage Die (Black)",
+          "description": "Faces: *-R-R-DD-L-L. * = adjust 1 active die. R = reroll 1 active die. DD = gain 2 standard dice for remaining turn. L = lock 1 active die at any value. Each face triggers its ability when rolled. The die itself has no pip value for criteria.\n"
+        },
+        {
+          "id": "dice-decree",
+          "title": "Decree Die (Purple)",
+          "description": "Faces: *-2-3-4-5-6. The * face (value 1) offers a choice: adjust 1 active die to any value OR use one of another player's tile abilities once this turn. On faces 2-6 the die counts as normal pip values.\n"
+        }
+      ]
+    },
+    {
+      "id": "level-bars",
+      "title": "Level Bar Criteria (A-side)",
+      "children": [
+        {
+          "id": "level-3",
+          "title": "Level 3 Criteria",
+          "description": "Three of a Kind (3 dice same value). Three of a Kind (red bar variant). Pair (2 dice same value). All Even (all dice even numbers). All Odd (all dice odd numbers). All Dice 2-4 (each die is 2, 3, or 4). All Dice 1-4 (each die is 1, 2, 3, or 4).\n"
+        },
+        {
+          "id": "level-4",
+          "title": "Level 4 Criteria",
+          "description": "Four of a Kind (4 dice same value). 1234 or 2345 or 3456 (straight of 4). All Dice 2-5 (each die 2-5). All Different (all dice different values). Two Pairs (2 separate pairs). Pair of 6s (two 6s). Pair of 6s and Pair of 1s (two pairs specific). Sum >= 20 (total pips >= 20).\n"
+        },
+        {
+          "id": "level-5",
+          "title": "Level 5 Criteria",
+          "description": "Five of a Kind (5 dice same value). 12345 or 23456 (straight of 5). All Dice 3-6 (each die 3-6). Pair and Three of a Kind (full house). Three 6s (three dice showing 6). Two Three-of-a-Kinds (two separate triples). Sum >= 25 (total pips >= 25).\n"
+        },
+        {
+          "id": "level-6",
+          "title": "Level 6 Criteria",
+          "description": "Six of a Kind (6 dice same value). 1-2-3-4-5-6 (full straight). All Dice >= 5 (every die 5 or 6). Three Pairs (3 separate pairs). Four of a Kind and Three 3s (4-of-a-kind + three 3s). Pair and Four of a Kind (pair + 4-of-a-kind). Sum >= 35 (total pips >= 35).\n"
+        },
+        {
+          "id": "level-7",
+          "title": "Level 7 Criteria (Queen Level)",
+          "description": "Seven of a Kind (7 dice same value). Three of a Kind and Two Pairs (triple + 2 pairs). Pair and Five of a Kind (pair + 5-of-a-kind). Four of a Kind and Pair of 6s (4-of-a-kind + pair of 6s). Three of a Kind and Four of a Kind (3-of-a-kind + 4-of-a-kind). Sum >= 36 (total pips >= 36). Only the Queen tile exists at level 7.\n"
+        }
+      ]
+    },
+    {
+      "id": "final-rolloff",
+      "title": "Final Roll-Off",
+      "children": [
+        {
+          "id": "rolloff-trigger",
+          "title": "Roll-Off Trigger",
+          "description": "When the Queen tile is claimed, that player takes the Pharaoh token and announces their roll total (sum of locked dice pip values in pyramid). Any players to the right of the start player who have not yet had a turn this round receive +1 die token each.\n"
+        },
+        {
+          "id": "rolloff-round-completion",
+          "title": "Round Completion",
+          "description": "The current round completes normally. All remaining players who have not yet taken a turn this round get their normal turns. These are NOT roll-off turns yet.\n"
+        },
+        {
+          "id": "rolloff-turns",
+          "title": "Roll-Off Turns",
+          "description": "Starting with the next player clockwise after the Queen claimer, each player gets one final roll-off turn. This is a normal turn but it is their LAST turn. The goal is to lock dice whose pip sum beats the current Pharaoh's score. Players who match or exceed the Pharaoh's total take the Pharaoh token. Skip players who mathematically cannot win (not enough dice remaining to reach the target value).\n"
+        },
+        {
+          "id": "rolloff-queen-last-chance",
+          "title": "Queen's Last Chance",
+          "description": "After all roll-off turns, if someone has taken the Pharaoh token from the Queen claimer, the Queen claimer gets one last chance to reclaim the Pharaoh by doing a final roll-off turn themselves.\n"
+        },
+        {
+          "id": "rolloff-winner",
+          "title": "Determining the Winner",
+          "description": "The player holding the Pharaoh token after all roll-off turns (and Queen's last chance) wins. In case of a tie (equal pip sums), the player closest to the right of the Queen claimer wins. The Pharaoh token physically passes to each new leader during roll-off turns.\n"
+        }
+      ]
+    },
+    {
+      "id": "tile-catalog-level3",
+      "title": "Level 3 Tiles",
+      "children": [
+        {
+          "id": "tile-farmer",
+          "title": "Farmer (Yellow, Level 3)",
+          "description": "Gain +1 pip on 1 active die after your first roll."
+        },
+        {
+          "id": "tile-guard",
+          "title": "Guard (Yellow, Level 3)",
+          "description": "Gain +1 pip on 1 active die after any roll."
+        },
+        {
+          "id": "tile-indentured-worker",
+          "title": "Indentured Worker (Yellow, Level 3)",
+          "description": "Gain +1 pip on 1 active standard die after any roll."
+        },
+        {
+          "id": "tile-serf",
+          "title": "Serf (Yellow, Level 3)",
+          "description": "Roll +1 serf (orange) die to start your turn."
+        },
+        {
+          "id": "tile-worker",
+          "title": "Worker (Yellow, Level 3)",
+          "description": "Gain +1 pip on 1 active die after your first roll."
+        },
+        {
+          "id": "tile-beggar",
+          "title": "Beggar (Yellow, Level 3)",
+          "description": "Each turn, gain 1 token before your first roll."
+        },
+        {
+          "id": "tile-servant",
+          "title": "Servant (Yellow, Level 3)",
+          "description": "Reroll 1 active die after any roll."
+        },
+        {
+          "id": "tile-soothsayer",
+          "title": "Soothsayer (Blue, Level 3)",
+          "description": "After your first roll, adjust 1 active die to any value."
+        },
+        {
+          "id": "tile-ankh",
+          "title": "Ankh (Red, Level 3)",
+          "description": "Artifact. Reroll any number of active dice once per game."
+        },
+        {
+          "id": "tile-ancestral-guidance",
+          "title": "Ancestral Guidance (Red, Level 3)",
+          "description": "Artifact. Adjust 1 active die to any value once per game."
+        },
+        {
+          "id": "tile-omen",
+          "title": "Omen (Red, Level 3)",
+          "description": "Artifact. After claiming this tile, immediately take another turn, rolling 1 fewer standard die than normal.\n"
+        }
+      ]
+    },
+    {
+      "id": "tile-catalog-level4",
+      "title": "Level 4 Tiles",
+      "children": [
+        {
+          "id": "tile-artisan",
+          "title": "Artisan (Yellow, Level 4)",
+          "description": "Each turn, gain +1 pip on 1 active die after your 1st roll, and another after your 2nd roll."
+        },
+        {
+          "id": "tile-builder",
+          "title": "Builder (Yellow, Level 4)",
+          "description": "After any roll, adjust 1 active die. Its final value must be 5 or 6."
+        },
+        {
+          "id": "tile-noble-adoption",
+          "title": "Noble Adoption (Yellow, Level 4)",
+          "description": "Roll +1 noble (yellow) die to start your turn."
+        },
+        {
+          "id": "tile-palace-servants",
+          "title": "Palace Servants (Yellow, Level 4)",
+          "description": "Roll +1 immediate (white) die to start your turn."
+        },
+        {
+          "id": "tile-soldier",
+          "title": "Soldier (Yellow, Level 4)",
+          "description": "Gain +1 pip on each active standard die after your first roll."
+        },
+        {
+          "id": "tile-grain-merchant",
+          "title": "Grain Merchant (Yellow, Level 4)",
+          "description": "Reroll 1+ active dice to gain 1 token."
+        },
+        {
+          "id": "tile-entertainer",
+          "title": "Entertainer (Blue, Level 4)",
+          "description": "After any roll, reroll 1+ active dice."
+        },
+        {
+          "id": "tile-match-maker",
+          "title": "Match Maker (Blue, Level 4)",
+          "description": "Adjust 1 active die to match any locked die's value."
+        },
+        {
+          "id": "tile-good-omen",
+          "title": "Good Omen (Red, Level 4)",
+          "description": "Artifact. After claiming this tile, immediately take another turn."
+        },
+        {
+          "id": "tile-palace-key",
+          "title": "Palace Key (Red, Level 4)",
+          "description": "Artifact. Roll +2 standard dice to start your turn. One-time use."
+        },
+        {
+          "id": "tile-spirit-of-dead",
+          "title": "Spirit of the Dead (Red, Level 4)",
+          "description": "Artifact. After locking all rolled dice, gain +1 standard die, adjust it to any face value, and lock it.\n"
+        }
+      ]
+    },
+    {
+      "id": "tile-catalog-level5",
+      "title": "Level 5 Tiles",
+      "children": [
+        {
+          "id": "tile-charioteer",
+          "title": "Charioteer (Yellow, Level 5)",
+          "description": "Roll +1 immediate (white) die and +1 standard die to start your turn."
+        },
+        {
+          "id": "tile-conspirator",
+          "title": "Conspirator (Yellow, Level 5)",
+          "description": "Roll +1 intrigue (green) die to start your turn."
+        },
+        {
+          "id": "tile-overseer",
+          "title": "Overseer (Yellow, Level 5)",
+          "description": "Gain +1 pip on 1 active die after any roll, and +1 pip on another active die after any roll."
+        },
+        {
+          "id": "tile-ship-captain",
+          "title": "Ship Captain (Yellow, Level 5)",
+          "description": "Roll +1 voyage (black) die to start your turn."
+        },
+        {
+          "id": "tile-tomb-builder",
+          "title": "Tomb Builder (Blue, Level 5)",
+          "description": "After any roll, lock 1 active die at any value."
+        },
+        {
+          "id": "tile-head-servant",
+          "title": "Head Servant (Blue, Level 5)",
+          "description": "After any roll, reroll any number of active dice."
+        },
+        {
+          "id": "tile-master-artisan",
+          "title": "Master Artisan (Yellow, Level 5)",
+          "description": "Each turn, gain +1 pip on 1 active die after each roll."
+        },
+        {
+          "id": "tile-priest",
+          "title": "Priest (Blue, Level 5)",
+          "description": "After any roll, reroll 1 active die and gain +1 pip on 1 active die."
+        },
+        {
+          "id": "tile-bad-omen",
+          "title": "Bad Omen (Red, Level 5)",
+          "description": "Artifact. Play after your turn. Each other player rolls 2 fewer standard dice to start their next turn (unless final roll-off). You roll +1 standard die your next turn.\n"
+        },
+        {
+          "id": "tile-burial-mask",
+          "title": "Burial Mask (Red, Level 5)",
+          "description": "Artifact. After locking all dice, gain +1 standard die at any value and lock it.\n"
+        },
+        {
+          "id": "tile-royal-decree",
+          "title": "Royal Decree (Red, Level 5)",
+          "description": "Artifact. Roll +3 immediate dice to start your final roll-off turn."
+        }
+      ]
+    },
+    {
+      "id": "tile-catalog-level6",
+      "title": "Level 6 Tiles",
+      "children": [
+        {
+          "id": "tile-embalmer",
+          "title": "Embalmer (Yellow, Level 6)",
+          "description": "After any roll, may bring 1 standard die into play as a 6."
+        },
+        {
+          "id": "tile-estate-overseer",
+          "title": "Estate Overseer (Yellow, Level 6)",
+          "description": "Gain 1 token and put a standard die with value 1 on this tile. After each roll, you may bring this die into play. If not, increase it by 1. Leave on tile until used or turn ends.\n"
+        },
+        {
+          "id": "tile-grain-trader",
+          "title": "Grain Trader (Blue, Level 6)",
+          "description": "Each turn, gain +1 pip on 1 active die after each roll, starting with your first."
+        },
+        {
+          "id": "tile-priest-of-dead",
+          "title": "Priest of the Dead (Blue, Level 6)",
+          "description": "After locking all dice, gain +1 standard die, adjust to any value, and lock it.\n"
+        },
+        {
+          "id": "tile-royal-attendants",
+          "title": "Royal Attendants (Yellow, Level 6)",
+          "description": "Roll +2 standard dice and +1 immediate die to start your turn."
+        },
+        {
+          "id": "tile-astrologer",
+          "title": "Astrologer (Blue, Level 6)",
+          "description": "Once per turn, adjust 1 active die to any value."
+        },
+        {
+          "id": "tile-priestess",
+          "title": "Priestess (Yellow, Level 6)",
+          "description": "After any roll, reroll 1+ active dice and gain +1 pip on 1 active die."
+        },
+        {
+          "id": "tile-surveyor",
+          "title": "Surveyor (Blue, Level 6)",
+          "description": "Replace 1 active die with 2 immediate dice whose pip sum equals the replaced die. These 2 dice must be locked before your next roll.\n"
+        },
+        {
+          "id": "tile-pharaohs-gift",
+          "title": "Pharaoh's Gift (Red, Level 6)",
+          "description": "Artifact. After your final roll-off, redo your entire roll-off turn. Do not regain any used tokens or artifacts.\n"
+        },
+        {
+          "id": "tile-secret-passage",
+          "title": "Secret Passage (Red, Level 6)",
+          "description": "Artifact. Claim up to 2 level 3 tiles you don't already have."
+        },
+        {
+          "id": "tile-treasure",
+          "title": "Treasure (Red, Level 6)",
+          "description": "Artifact. Divide your locked dice into two groups. Claim a yellow or blue tile with each group that you don't already have.\n"
+        }
+      ]
+    },
+    {
+      "id": "tile-catalog-level7",
+      "title": "Level 7 Tiles",
+      "children": [
+        {
+          "id": "tile-queen",
+          "title": "Queen (Yellow, Level 7)",
+          "description": "When claimed, take the Pharaoh token. After any roll, may bring any standard die into play at any value. Claiming the Queen triggers the Final Roll-Off.\n"
+        },
+        {
+          "id": "tile-general",
+          "title": "General (Yellow, Level 7)",
+          "description": "Roll +3 standard dice to start your turn."
+        },
+        {
+          "id": "tile-grand-vizier",
+          "title": "Grand Vizier (Yellow, Level 7)",
+          "description": "Roll +1 decree (purple) die at the start of your turn."
+        },
+        {
+          "id": "tile-granary-master",
+          "title": "Granary Master (Yellow, Level 7)",
+          "description": "Roll +1 standard die and put a standard die of value 1 on this tile. Increase its value by 1 each roll you don't bring it into play.\n"
+        },
+        {
+          "id": "tile-heir",
+          "title": "Heir (Yellow, Level 7)",
+          "description": "Roll +2 standard dice and +1 immediate die to start your turn."
+        },
+        {
+          "id": "tile-royal-astrologer",
+          "title": "Royal Astrologer (Blue, Level 7)",
+          "description": "After any roll, adjust 1 active die to any value. Immediately lock it."
+        },
+        {
+          "id": "tile-royal-mother",
+          "title": "Royal Mother (Blue, Level 7)",
+          "description": "Replace any number of active immediate and/or serf dice with an equal number of tokens and a standard die to roll for the rest of the turn.\n"
+        },
+        {
+          "id": "tile-queens-favor",
+          "title": "Queen's Favor (Red, Level 7)",
+          "description": "Artifact. After any turn except the final roll-off, claim any yellow or blue tile of level 6 or lower you don't already have, then immediately take another turn.\n"
+        },
+        {
+          "id": "tile-royal-death",
+          "title": "Royal Death (Red, Level 7)",
+          "description": "Artifact. Play immediately on acquire. Give +1 die token to any player who did not get a turn this round. You begin the final roll-off with +2 immediate dice. Other players must beat seven 1s (sum of 7) to qualify to claim the Pharaoh.\n"
+        },
+        {
+          "id": "tile-royal-power",
+          "title": "Royal Power (Red, Level 7)",
+          "description": "Artifact. Claim up to 2 blue tiles of level 6 or lower you don't already have."
+        }
+      ]
+    },
+    {
+      "id": "custom-dice-abilities",
+      "title": "Custom Dice Special Face Abilities",
+      "children": [
+        {
+          "id": "ability-artisan-star",
+          "title": "Artisan Die * Face (Blue, face value 1)",
+          "description": "When rolled on *, adjust 1 active die to any value. The * itself counts as pip value 1."
+        },
+        {
+          "id": "ability-intrigue-stars",
+          "title": "Intrigue Die ** Face (Green, face position 6)",
+          "description": "When rolled on **, adjust 2 active dice to any values. CRITICAL: when locked showing **, the die has NO pip value for criteria. On other faces (2-5) it counts normally.\n"
+        },
+        {
+          "id": "ability-voyage-faces",
+          "title": "Voyage Die Faces (Black)",
+          "description": "* = adjust 1 active die to any value. R = reroll 1 active die. DD = gain 2 additional standard dice for the remaining turn. L = lock 1 active die at any chosen value. The voyage die itself never has a pip value for criteria.\n"
+        },
+        {
+          "id": "ability-decree-star",
+          "title": "Decree Die * Face (Purple, face value 1)",
+          "description": "When rolled on *, choose one: (A) adjust 1 active die to any value, OR (B) use one of another player's tile abilities once this turn. The * counts as pip value 1. On faces 2-6 it counts normally.\n"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+description: >
+  Evolve the JIT interrupt/repair flow into a structured BugReport system with
+  a global BugFix DB. Parent detects subagent failure, pauses the line, spawns
+  a bug-report agent that creates a persistent BugReport Node. BugFixes are
+  cross-referenced with BugReports for future FEP self-improvement.
+
+nodes:
+  - title: 01-bugreport-node-schema
+    description: >
+      Define the BugReport Node schema as a SmartList node type. Fields: bug_id,
+      source_agent, parent_agent, error_output, stack_context, attempted_fixes,
+      reproduction_steps, recommended_fix_plan, severity, status (open/in-repair/resolved),
+      created_at, resolved_at. Global registry path: smartlist/bug-reports/.
+      Implement the schema in the memoryctl codebase.
+
+  - title: 02-parent-detection-and-line-pause
+    description: >
+      Modify run-swarm-plan.py so the orchestrator (parent) detects subagent failure
+      via exit code or inbox signal, then pauses the execution line (keeps the node in
+      a 'paused' state rather than killing it). Currently workers self-interrupt; this
+      shifts detection responsibility to the parent.
+    depends_on: 01-bugreport-node-schema
+
+  - title: 03-bug-report-agent
+    description: >
+      Create a bug-report agent (.claude/teams/bug-reporter.yml) that the parent spawns
+      when a line is paused. The agent: (1) reads the failed node's context, error output,
+      and swarm-plan state, (2) searches AMS memory for similar past bugs, (3) produces a
+      structured BugReport Node with detailed diagnosis and recommended fix plan, (4) writes
+      it to the global registry at smartlist/bug-reports/.
+    depends_on: 01-bugreport-node-schema
+
+  - title: 04-orchestrator-integration
+    description: >
+      Wire the new flow into run-swarm-plan.py: on subagent failure -> parent pauses line ->
+      spawns bug-reporter -> BugReport Node created -> existing repairer reads BugReport and
+      executes the recommended fix plan -> on success, resume the paused line. Replaces the
+      current ad-hoc interrupt policy node with the BugReport as the handoff artifact between
+      detection and repair.
+    depends_on:
+      - 02-parent-detection-and-line-pause
+      - 03-bug-report-agent
+
+  - title: 05-global-registry-query
+    description: >
+      Make the BugReport registry queryable: add memoryctl or ams.bat commands to list open
+      bugs, search by subsystem, and check if a similar bug was already reported/fixed. This
+      feeds back into the repairer and bug-reporter agents so they can avoid duplicate work
+      and learn from past fixes.
+    depends_on: 04-orchestrator-integration
+
+  - title: 06-bugfix-db-stubs
+    description: >
+      Stub out the BugFix global DB (smartlist/bug-fixes/). Schema: fix_id, title, tool_type
+      (script/patch/config), applicable_bug_patterns, success_count, failure_count, cross-refs
+      to BugReport IDs. Define the assignment interface: when a repairer is spawned, the
+      orchestrator queries the BugFix DB for fixes matching the BugReport's pattern and injects
+      them into the repairer's context. Architecture notes only — no FEP learning implementation.
+      Leave hooks for future FEP integration to score and evolve fixes based on outcomes.
+    depends_on: 05-global-registry-query

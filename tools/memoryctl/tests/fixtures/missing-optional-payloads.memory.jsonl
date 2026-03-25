@@ -1,0 +1,10 @@
+{"type":"format","name":"card-binder","version":1}
+{"type":"binder","id":"44444444-4444-4444-4444-444444444444","name":"Topic: Payloads"}
+{"type":"card","id":"cccccccc-cccc-cccc-cccc-ccccccccccc1","state":"Active"}
+{"type":"card","id":"cccccccc-cccc-cccc-cccc-ccccccccccc2","state":"Active"}
+{"type":"card","id":"cccccccc-cccc-cccc-cccc-ccccccccccc3","state":"Active"}
+{"type":"taglink","card_id":"cccccccc-cccc-cccc-cccc-ccccccccccc1","binder_id":"44444444-4444-4444-4444-444444444444"}
+{"type":"taglink","card_id":"cccccccc-cccc-cccc-cccc-ccccccccccc2","binder_id":"44444444-4444-4444-4444-444444444444","meta":{"Reason":"missing text/title fields"}}
+{"type":"taglink","card_id":"cccccccc-cccc-cccc-cccc-ccccccccccc3","binder_id":"44444444-4444-4444-4444-444444444444","meta":{"Relevance":0.6}}
+{"type":"card_payload","card_id":"cccccccc-cccc-cccc-cccc-ccccccccccc2","source":"fixture-only-source"}
+{"type":"card_payload","card_id":"cccccccc-cccc-cccc-cccc-ccccccccccc3","title":"Payload title without text"}

@@ -1,0 +1,2 @@
+{"type":"chat_event","channel":"telegram","chat_id":"-5229501860","message_id":"1","ts":"2026-02-02T23:50:00.0000000-08:00","author":"Ming","direction":"in","text":"hello memory"}
+{"type":"chat_event","channel":"telegram","chat_id":"-5229501860","message_id":"2","ts":"2026-02-02T23:51:00.0000000-08:00","author":"Rocky","direction":"out","text":"logged"}

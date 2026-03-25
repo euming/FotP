@@ -71,57 +71,41 @@ namespace FotP.Engine.State
             CurrentPlayer = TurnOrder[0];
         }
 
+        // Color composition per level: (yellowCount, blueCount, redCount).
+        // Matches the current first-game bar layout; randomization selects which tiles fill each colour slot.
+        private static readonly (int Y, int B, int R)[] LevelColorLayout =
+        {
+            (4, 0, 1), // level 3: 4 Yellow, 0 Blue, 1 Red
+            (3, 2, 1), // level 4: 3 Yellow, 2 Blue, 1 Red
+            (2, 1, 0), // level 5: 2 Yellow, 1 Blue
+            (1, 1, 1), // level 6: 1 Yellow, 1 Blue, 1 Red
+        };
+
         private void SetupMarket()
         {
             int playerCount = TurnOrder.Count;
             int stackSize = playerCount; // one copy per player per slot
 
-            // Build tile lists per level (first-game fixed setup, shuffled within level).
-            var level3Tiles = new List<Tile>
-            {
-                TileFactory.CreateTile("Farmer", 3, TileColor.Yellow),
-                TileFactory.CreateTile("Guard", 3, TileColor.Yellow),
-                TileFactory.CreateTile("Beggar", 3, TileColor.Blue),
-                TileFactory.CreateTile("Servant", 3, TileColor.Blue),
-                TileFactory.CreateTile("Ankh", 3, TileColor.Red),
-            };
-
-            var level4Tiles = new List<Tile>
-            {
-                TileFactory.CreateTile("Serf", 4, TileColor.Yellow),
-                TileFactory.CreateTile("Soothsayer", 4, TileColor.Yellow),
-                TileFactory.CreateTile("Artisan", 4, TileColor.Blue),
-                TileFactory.CreateTile("Noble Adoption", 4, TileColor.Blue),
-                TileFactory.CreateTile("Palace Key", 4, TileColor.Red),
-                TileFactory.CreateTile("Entertainer", 4, TileColor.Blue),
-            };
-
-            var level5Tiles = new List<Tile>
-            {
-                TileFactory.CreateTile("Merchant", 5, TileColor.Yellow),
-                TileFactory.CreateTile("Priest", 5, TileColor.Blue),
-                TileFactory.CreateTile("Mason", 5, TileColor.Yellow),
-            };
-
-            var level6Tiles = new List<Tile>
-            {
-                TileFactory.CreateTile("Architect", 6, TileColor.Yellow),
-                TileFactory.CreateTile("General", 6, TileColor.Blue),
-                TileFactory.CreateTile("Scholar", 6, TileColor.Yellow),
-            };
-
-            Shuffle(level3Tiles);
-            Shuffle(level4Tiles);
-            Shuffle(level5Tiles);
-            Shuffle(level6Tiles);
-
-            // Assign criteria from the active bar side.
-            // Tile i in a level gets the criterion from slot i of the bar config.
+            var pool = new TilePool();
             int slot = 0;
-            AssignCriteriaAndAddStacks(level3Tiles, 3, stackSize, ref slot);
-            AssignCriteriaAndAddStacks(level4Tiles, 4, stackSize, ref slot);
-            AssignCriteriaAndAddStacks(level5Tiles, 5, stackSize, ref slot);
-            AssignCriteriaAndAddStacks(level6Tiles, 6, stackSize, ref slot);
+
+            // For each level 3-6: draw tiles randomly from TilePool by colour, shuffle, assign bar criteria.
+            for (int i = 0; i < LevelColorLayout.Length; i++)
+            {
+                int level = i + 3;
+                var (yCount, bCount, rCount) = LevelColorLayout[i];
+
+                var levelTiles = new List<Tile>();
+                for (int y = 0; y < yCount; y++)
+                    levelTiles.Add(CreateFromDef(pool.DrawRandom(TileColor.Yellow, level, Rng)));
+                for (int b = 0; b < bCount; b++)
+                    levelTiles.Add(CreateFromDef(pool.DrawRandom(TileColor.Blue, level, Rng)));
+                for (int r = 0; r < rCount; r++)
+                    levelTiles.Add(CreateFromDef(pool.DrawRandom(TileColor.Red, level, Rng)));
+
+                Shuffle(levelTiles);
+                AssignCriteriaAndAddStacks(levelTiles, level, stackSize, ref slot);
+            }
 
             // Level 7 – Queen (only 1 copy, always last, slot 0 of level-7 bar)
             var queenTile = TileFactory.CreateTile("Queen", 7, TileColor.Yellow);
@@ -143,6 +127,9 @@ namespace FotP.Engine.State
                 Market.Stacks.Add(new TileStack(tiles[i], stackSize, slotIndex++));
             }
         }
+
+        private static Tile CreateFromDef(TileDefinition def)
+            => TileFactory.CreateTile(def.Name, def.Level, def.Color);
 
         private void Shuffle<T>(List<T> list)
         {

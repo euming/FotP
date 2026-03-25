@@ -1,0 +1,7 @@
+{"type":"format","name":"card-binder","version":1}
+{"type":"binder","id":"2a681f5a-1d39-4762-8d0f-1bc9ebf2f22e","name":"Conversations"}
+{"type":"binder","id":"27f7a8d5-3e0a-4349-86fb-21648dba7a37","name":"Chat: telegram:-1"}
+{"type":"card","id":"535a1dc0-a075-5775-9c56-e006e6d9e56b","state":"Active"}
+{"type":"taglink","card_id":"535a1dc0-a075-5775-9c56-e006e6d9e56b","binder_id":"2a681f5a-1d39-4762-8d0f-1bc9ebf2f22e","meta":{"Relevance":0.8,"Reason":"ingest-chatlog","AddedBy":"memoryctl","CreatedAt":"2026-02-03T16:03:52.2840649-08:00"}}
+{"type":"taglink","card_id":"535a1dc0-a075-5775-9c56-e006e6d9e56b","binder_id":"27f7a8d5-3e0a-4349-86fb-21648dba7a37","meta":{"Relevance":0.8,"Reason":"ingest-chatlog","AddedBy":"memoryctl","CreatedAt":"2026-02-03T16:03:52.2840649-08:00"}}
+{"type":"card_payload","card_id":"535a1dc0-a075-5775-9c56-e006e6d9e56b","title":"Chat telegram:-1 2026-02-03 00:00 (2 msgs)","text":"Channel: telegram\r\nChatId: -1\r\nRange: 2026-02-03T00:00:00.0000000\u002B00:00 \u2192 2026-02-03T00:01:00.0000000\u002B00:00\r\n\r\n[00:00] A: ok\r\n[00:01] A: ok2","source":"telegram:-1","updated_at":"2026-02-03T16:03:52.2840649-08:00"}

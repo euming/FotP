@@ -1,0 +1,311 @@
+{
+  "objects": [
+    {
+      "objectId": "agent-memory:short-term:smartlists",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T06:12:55.599895600Z",
+      "updatedAt": "2026-03-25T06:12:55.599895600Z"
+    },
+    {
+      "objectId": "agent-memory:smartlists",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T06:12:55.599902700Z",
+      "updatedAt": "2026-03-25T06:12:55.599902700Z"
+    },
+    {
+      "objectId": "cache-tool:swarm-repairer:v1",
+      "objectKind": "cache_tool",
+      "semanticPayload": {
+        "provenance": {
+          "cache_smartlist_path": "smartlist/cache/swarm-repairer_v1",
+          "tool_id": "swarm-repairer:v1",
+          "tool_version": "1.0"
+        }
+      },
+      "createdAt": "2026-03-25T06:12:55.940911500Z",
+      "updatedAt": "2026-03-25T06:54:58.419249500Z"
+    },
+    {
+      "objectId": "cache-tool:swarm-verifier:v1",
+      "objectKind": "cache_tool",
+      "semanticPayload": {
+        "provenance": {
+          "cache_smartlist_path": "smartlist/cache/swarm-verifier_v1",
+          "tool_id": "swarm-verifier:v1",
+          "tool_version": "1.0"
+        }
+      },
+      "createdAt": "2026-03-25T06:12:55.770388800Z",
+      "updatedAt": "2026-03-25T06:54:58.234910700Z"
+    },
+    {
+      "objectId": "cache-tool:swarm-worker:v1",
+      "objectKind": "cache_tool",
+      "semanticPayload": {
+        "provenance": {
+          "cache_smartlist_path": "smartlist/cache/swarm-worker_v1",
+          "tool_id": "swarm-worker:v1",
+          "tool_version": "1.0"
+        }
+      },
+      "createdAt": "2026-03-25T06:12:55.599839400Z",
+      "updatedAt": "2026-03-25T06:54:58.064122100Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/cache",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "durable"
+        ],
+        "summary": "cache",
+        "provenance": {
+          "created_at": "2026-03-25T06:12:55.599839400+00:00",
+          "created_by": "cache",
+          "display_name": "cache",
+          "durability": "durable",
+          "members_container_id": "smartlist-members:smartlist/cache",
+          "parent_path": "",
+          "path": "smartlist/cache",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "cache",
+          "updated_at": "2026-03-25T06:54:58.419244400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T06:12:55.599839400Z",
+      "updatedAt": "2026-03-25T06:54:58.419244400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/cache/swarm-repairer-v1",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "durable"
+        ],
+        "summary": "swarm-repairer-v1",
+        "provenance": {
+          "created_at": "2026-03-25T06:12:55.940911500+00:00",
+          "created_by": "cache",
+          "display_name": "swarm-repairer-v1",
+          "durability": "durable",
+          "members_container_id": "smartlist-members:smartlist/cache/swarm-repairer-v1",
+          "parent_path": "smartlist/cache",
+          "path": "smartlist/cache/swarm-repairer-v1",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "swarm-repairer-v1",
+          "updated_at": "2026-03-25T06:54:58.419244400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T06:12:55.940911500Z",
+      "updatedAt": "2026-03-25T06:54:58.419244400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/cache/swarm-verifier-v1",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "durable"
+        ],
+        "summary": "swarm-verifier-v1",
+        "provenance": {
+          "created_at": "2026-03-25T06:12:55.770388800+00:00",
+          "created_by": "cache",
+          "display_name": "swarm-verifier-v1",
+          "durability": "durable",
+          "members_container_id": "smartlist-members:smartlist/cache/swarm-verifier-v1",
+          "parent_path": "smartlist/cache",
+          "path": "smartlist/cache/swarm-verifier-v1",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "swarm-verifier-v1",
+          "updated_at": "2026-03-25T06:54:58.234905400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T06:12:55.770388800Z",
+      "updatedAt": "2026-03-25T06:54:58.234905400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/cache/swarm-worker-v1",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "durable"
+        ],
+        "summary": "swarm-worker-v1",
+        "provenance": {
+          "created_at": "2026-03-25T06:12:55.599839400+00:00",
+          "created_by": "cache",
+          "display_name": "swarm-worker-v1",
+          "durability": "durable",
+          "members_container_id": "smartlist-members:smartlist/cache/swarm-worker-v1",
+          "parent_path": "smartlist/cache",
+          "path": "smartlist/cache/swarm-worker-v1",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "swarm-worker-v1",
+          "updated_at": "2026-03-25T06:54:58.064116300+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T06:12:55.599839400Z",
+      "updatedAt": "2026-03-25T06:54:58.064116300Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/cache",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T06:12:55.600215400Z",
+      "updatedAt": "2026-03-25T06:12:55.600215400Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/cache/swarm-repairer-v1",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T06:12:55.941253100Z",
+      "updatedAt": "2026-03-25T06:12:55.941253100Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/cache/swarm-verifier-v1",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T06:12:55.770744100Z",
+      "updatedAt": "2026-03-25T06:12:55.770744100Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/cache/swarm-worker-v1",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T06:12:55.600248900Z",
+      "updatedAt": "2026-03-25T06:12:55.600248900Z"
+    }
+  ],
+  "containers": [
+    {
+      "containerId": "agent-memory:short-term:smartlists",
+      "containerKind": "smartlist_root",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "agent-memory:smartlists",
+      "containerKind": "smartlist_root",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "headLinknodeId": "ln_58440f42004f4a109883284c02632cb5",
+      "tailLinknodeId": "ln_58440f42004f4a109883284c02632cb5",
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/cache",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "headLinknodeId": "ln_642470d7742248419989ed30c54737c2",
+      "tailLinknodeId": "ln_6c30b1a166be4f5ead8a708ddd1b49ec",
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/cache/swarm-repairer-v1",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/cache/swarm-verifier-v1",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/cache/swarm-worker-v1",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    }
+  ],
+  "linkNodes": [
+    {
+      "linkNodeId": "ln_58440f42004f4a109883284c02632cb5",
+      "containerId": "agent-memory:smartlists",
+      "objectId": "smartlist-bucket:smartlist/cache"
+    },
+    {
+      "linkNodeId": "ln_642470d7742248419989ed30c54737c2",
+      "containerId": "smartlist-members:smartlist/cache",
+      "objectId": "smartlist-bucket:smartlist/cache/swarm-worker-v1",
+      "nextLinknodeId": "ln_7d1e05a0c8f849b5992a990ad9069cbc"
+    },
+    {
+      "linkNodeId": "ln_6c30b1a166be4f5ead8a708ddd1b49ec",
+      "containerId": "smartlist-members:smartlist/cache",
+      "objectId": "smartlist-bucket:smartlist/cache/swarm-repairer-v1",
+      "prevLinknodeId": "ln_7d1e05a0c8f849b5992a990ad9069cbc"
+    },
+    {
+      "linkNodeId": "ln_7d1e05a0c8f849b5992a990ad9069cbc",
+      "containerId": "smartlist-members:smartlist/cache",
+      "objectId": "smartlist-bucket:smartlist/cache/swarm-verifier-v1",
+      "prevLinknodeId": "ln_642470d7742248419989ed30c54737c2",
+      "nextLinknodeId": "ln_6c30b1a166be4f5ead8a708ddd1b49ec"
+    }
+  ]
+}

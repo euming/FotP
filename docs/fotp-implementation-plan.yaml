@@ -1,0 +1,252 @@
+project: FotP-Implementation
+description: >
+  Implementation plan for Favor of the Pharaoh digital game. Pure C# game
+  engine with MVC separation — Unity is View only. Legacy code is throwaway.
+  Phases 1-3 are parallelizable by agent swarm. References rules in
+  FotP-Rules-v20, game loop in FotP-GameLoop, containers in FotP-SmartLists.
+
+nodes:
+  - id: phase1-object-model
+    title: "Phase 1: Core Object Model"
+    description: >
+      Pure C# classes with no Unity dependency. Define the singleton game
+      objects and the SmartList container that holds them. All objects are
+      plain C# — interfaces for anything needing a future View.
+    children:
+      - id: smartlist-container
+        title: "SmartList<T> Container"
+        description: >
+          Generic container supporting: add/remove objects, multi-membership
+          (same object on multiple lists), cascade delete (destroying object
+          removes from all lists), parent-child ownership (destroying parent
+          cascades to children). This is the foundational data structure.
+          Ref: FotP-SmartLists plan for all container instances.
+      - id: die-model
+        title: "Die Object"
+        description: >
+          Properties: value (1-6), dieType (Standard/Immediate/Serf/Noble/
+          Artisan/Intrigue/Voyage/Decree), customFaces (array of face values
+          or special symbols), isLocked, isTemporary, tempPipModifier.
+          Methods: Roll() returns random face, MaxValue(), HasPipValue()
+          (false for Intrigue ** and Voyage symbols when locked).
+          Ref: FotP-Rules-v20 dice-types-and-faces.
+      - id: tile-model
+        title: "Tile Object"
+        description: >
+          Properties: name, level (3-7), color (Yellow/Blue/Red), isArtifact
+          (red tiles), isArtifactUsed. Children: list of Ability objects
+          (SmartList parent-child). Ref: FotP-Rules-v20 tile catalogs.
+      - id: ability-model
+        title: "Ability Object"
+        description: >
+          Properties: triggerType (StartOfTurn/AfterRoll/LockedAny/AllLocked/
+          Acquire/Select/EndOfTurn/OnSpecificRoll), dieTypeFilter (Standard/
+          Immediate/Custom/Active/Locked/Any), isPerTurn, isPerRoll,
+          isArtifact, isUsedThisTurn, isUsedThisRoll. Abstract method:
+          Execute(gameState, player). Child of a Tile (cascade delete).
+          Ref: FotP-SmartLists ability-containers.
+      - id: scarab-model
+        title: "Scarab Object"
+        description: >
+          Properties: type (Reroll/Pip/Die). Methods: Apply(die, gameState).
+          Reroll: re-roll one active die. Pip: add +1 to die value (max 6).
+          Die: create temporary standard die and roll it.
+          Ref: FotP-Rules-v20 scarab-token-system.
+      - id: player-model
+        title: "Player Object"
+        description: >
+          Owns SmartLists: ownedTiles, dicePool, scarabs. Derived views:
+          ownedByColor (yellow/blue/red), ownedByLevel, bonusDiceSources.
+          Properties: name, pyramidScore (sum of locked dice pip values).
+          Ref: FotP-SmartLists per-player-state.
+      - id: criteria-model
+        title: "Criteria Objects"
+        description: >
+          Abstract base with Evaluate(lockedDice) -> bool. Subclasses:
+          NOfAKind(n), Straight(length), SumGreaterEqual(threshold),
+          AllDifferent, AllEven, AllOdd, AllDiceInRange(min,max), Pair,
+          TwoPairs, ThreePairs, FullHouse, PairOfValue(v),
+          CompoundCriteria(list of criteria). Each bar slot has one.
+          Ref: FotP-Rules-v20 level-bar-criteria-a-side.
+
+  - id: phase2-state-machine
+    title: "Phase 2: Game State Machine"
+    description: >
+      The game loop controller. Pure C# with event-driven state transitions.
+      No Unity. Drives the turn sequence, fires triggers, manages the market.
+    children:
+      - id: game-state
+        title: "GameState Controller"
+        description: >
+          Singleton managing: turnOrder (SmartList of Players), currentPlayer,
+          gamePhase (Setup/Playing/RollOff/GameOver), market (bar slots with
+          tile stacks), tokenSupply, roundNumber. Methods: Setup(), StartRound(),
+          NextPlayer(), EnterRollOff(), DetermineWinner().
+          Ref: FotP-GameLoop plan for full flow.
+      - id: turn-state-machine
+        title: "TurnStateMachine"
+        description: >
+          Per-turn controller. States: StartOfTurn -> Rolling -> Locking ->
+          ScarabUse -> ContinueDecision -> Claiming -> PostClaim -> EndOfTurn.
+          Manages dice zone transitions (Cup->Active->Locked), roll counting,
+          lock validation (must lock >= 1). Ref: FotP-GameLoop turn phases.
+      - id: trigger-system
+        title: "Trigger/Event System"
+        description: >
+          When state transitions occur, fire triggers to matching abilities.
+          FireTriggers(triggerType, player) -> collect all abilities with
+          matching triggerType from player's owned tiles -> execute each.
+          Queue system for abilities that need player input (choose a die).
+          Ref: FotP-SmartLists triggered-abilities-queue.
+      - id: market-manager
+        title: "Market Manager"
+        description: >
+          Manages tile stacks per bar slot. Methods: GetClaimableTiles(player,
+          lockedDice) evaluates criteria for each non-empty stack, filters
+          by color-per-level restriction. ClaimTile(player, tile) pops from
+          stack, pushes to player's ownedTiles. Ref: FotP-SmartLists
+          tile-containers.
+      - id: dice-zone-manager
+        title: "Dice Zone Manager"
+        description: >
+          Manages die movement between SmartLists: Cup, Active, Locked, Set.
+          Methods: RollAllInCup(), LockDie(die), UnlockDie(die) [rare],
+          AutoLockImmediateDice(), CollectAllToCup(). Validates lock rules.
+          Ref: FotP-SmartLists die-containers.
+
+  - id: phase3-tile-abilities
+    title: "Phase 3: Tile Abilities"
+    description: >
+      Implement all ~55 tile abilities as Ability subclasses. Each is a
+      pure C# class with Execute() logic. Highly parallelizable — each tile
+      can be implemented independently once the Ability base class exists.
+      Ref: FotP-Rules-v20 tile catalogs (levels 3-7).
+    children:
+      - id: level3-abilities
+        title: "Level 3 Tile Abilities (11 tiles)"
+        description: >
+          Farmer, Guard, Indentured Worker, Serf, Worker, Beggar, Servant,
+          Soothsayer, Ankh (artifact), Ancestral Guidance (artifact),
+          Omen (artifact + extra turn).
+          Ref: FotP-Rules-v20 level-3-tiles.
+      - id: level4-abilities
+        title: "Level 4 Tile Abilities (11 tiles)"
+        description: >
+          Artisan, Builder, Noble Adoption, Palace Servants, Soldier,
+          Grain Merchant, Entertainer, Match Maker, Good Omen (artifact +
+          extra turn), Palace Key (artifact), Spirit of the Dead (artifact).
+          Ref: FotP-Rules-v20 level-4-tiles.
+      - id: level5-abilities
+        title: "Level 5 Tile Abilities (11 tiles)"
+        description: >
+          Charioteer, Conspirator, Overseer, Ship Captain, Tomb Builder,
+          Head Servant, Master Artisan, Priest, Bad Omen (artifact, affects
+          others), Burial Mask (artifact), Royal Decree (artifact, roll-off).
+          Ref: FotP-Rules-v20 level-5-tiles.
+      - id: level6-abilities
+        title: "Level 6 Tile Abilities (11 tiles)"
+        description: >
+          Embalmer, Estate Overseer (stored die), Grain Trader, Priest of
+          the Dead, Royal Attendants, Astrologer, Priestess, Surveyor (dice
+          replacement), Pharaoh's Gift (artifact, redo roll-off), Secret
+          Passage (artifact, extra claims), Treasure (artifact, split claims).
+          Ref: FotP-Rules-v20 level-6-tiles.
+      - id: level7-abilities
+        title: "Level 7 Tile Abilities (10 tiles)"
+        description: >
+          Queen (triggers roll-off), General, Grand Vizier, Granary Master
+          (stored die), Heir, Royal Astrologer, Royal Mother (dice
+          replacement), Queen's Favor (artifact, extra turn + claim),
+          Royal Death (artifact, sets roll-off bar), Royal Power (artifact,
+          extra claims). Ref: FotP-Rules-v20 level-7-tiles.
+      - id: custom-dice-abilities
+        title: "Custom Dice Face Abilities (4)"
+        description: >
+          Artisan * (adjust 1 die), Intrigue ** (adjust 2 dice, no pip when
+          locked), Voyage faces (adjust/reroll/+2dice/lock), Decree *
+          (adjust or borrow tile). Ref: FotP-Rules-v20
+          custom-dice-special-face-abilities.
+
+  - id: phase4-rolloff
+    title: "Phase 4: Roll-Off"
+    description: >
+      The endgame. Triggered by Queen claim. Extends the state machine with
+      roll-off specific states and logic. Ref: FotP-Rules-v20 final-roll-off,
+      FotP-GameLoop final-roll-off.
+    children:
+      - id: queen-claim-trigger
+        title: "Queen Claim Trigger"
+        description: >
+          When Queen is claimed: set pharaohHolder, record pharaohScore,
+          transition gamePhase to RollOff after current round completes.
+          Award +1 die tokens to players who missed a turn this round.
+      - id: rolloff-turn-logic
+        title: "Roll-Off Turn Logic"
+        description: >
+          Each player gets 1 final turn. Same turn state machine but last
+          turn. Compute max possible score to skip eliminated players.
+          If player's locked dice total >= pharaohScore, transfer pharaoh.
+      - id: queen-last-chance
+        title: "Queen's Last Chance"
+        description: >
+          If pharaoh was taken from Queen claimer, they get one more turn.
+          Only fires if pharaohHolder != queenClaimer after all roll-off turns.
+      - id: victory-determination
+        title: "Victory Determination"
+        description: >
+          pharaohHolder wins. Tie-break: closest to queenClaimer's right
+          in turn order. Announce winner, display final state.
+
+  - id: phase5-test-harness
+    title: "Phase 5: Test Harness / Debug View"
+    description: >
+      Console-based game runner and automated tests. This is the View for
+      development — no Unity needed. Validates the entire engine works.
+    children:
+      - id: console-runner
+        title: "Console Game Runner"
+        description: >
+          Play a full game via console I/O. Print game state, prompt for
+          player choices (which die to lock, which tile to claim, which
+          scarab to spend). Supports multi-player hot-seat.
+      - id: unit-tests
+        title: "Unit Tests"
+        description: >
+          xUnit tests for: criteria evaluation (each subclass), die rolling
+          distribution, SmartList operations (add/remove/cascade), ability
+          triggers, state machine transitions, lock validation.
+      - id: scenario-tests
+        title: "Scenario / Integration Tests"
+        description: >
+          Set up specific board states and verify outcomes. Examples: player
+          with Herder locks a pair -> verify +1 die. Player claims Queen ->
+          verify roll-off triggers. Artifact used -> verify one-time flag.
+          Full game simulation with random choices -> verify no crashes.
+      - id: ai-player
+        title: "AI Player (Random/Simple)"
+        description: >
+          Automated player that makes random legal choices. Used for stress
+          testing full games. Can run 1000s of games to find edge cases.
+
+  - id: phase6-tile-randomization
+    title: "Phase 6: Tile Randomization [lead-engineer]"
+    description: >
+      For "later games" per the rules: randomly deal 1 tile of each matching
+      color per bar slot instead of the fixed first-game setup. Needs a
+      lead-engineer agent to decompose tile pool management, dealing logic,
+      and validation that all slots get valid tiles.
+
+  - id: phase7-bside-bars
+    title: "Phase 7: B-side Level Bars [lead-engineer]"
+    description: >
+      Each of the 5 level bars has an A side and B side with different
+      criteria. Need to catalog all B-side criteria from the rules and
+      create corresponding Criteria objects. Needs a lead-engineer agent
+      to decompose from the rulebook.
+
+  - id: phase8-unity-view
+    title: "Phase 8: Unity View Layer [future]"
+    description: >
+      Hook the pure C# engine to Unity rendering. Dice physics, 3D pyramid,
+      tile animations, UI panels. The engine exposes events/callbacks that
+      the View subscribes to. May target modern Unity 6 or Godot.

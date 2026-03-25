@@ -69,5 +69,11 @@ namespace FotP.Engine.Players
         public bool ChooseYesNo(string prompt, Player player) => _rng.Next(2) == 0;
 
         public bool ChooseUseAbility(Ability ability, Player player) => true; // Always use abilities
+
+        public Player? ChoosePlayer(IReadOnlyList<Player> players, string prompt, Player activePlayer)
+        {
+            if (players.Count == 0) return null;
+            return players[_rng.Next(players.Count)];
+        }
     }
 }

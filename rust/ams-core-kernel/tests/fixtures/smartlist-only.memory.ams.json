@@ -1,0 +1,39 @@
+{
+  "objects": [
+    {
+      "objectId": "smartlist-members:smartlist/architecture/incubation/rust-replatform",
+      "objectKind": "container",
+      "createdAt": "2026-03-13T20:00:00+00:00",
+      "updatedAt": "2026-03-13T20:00:00+00:00"
+    },
+    {
+      "objectId": "smartlist-note:1",
+      "objectKind": "smartlist_note",
+      "semanticPayload": {
+        "summary": "Search cache note",
+        "provenance": {
+          "title": "Search cache note",
+          "text": "Use manual invalidation for the search cache lane.",
+          "updated_at": "2026-03-13T20:00:00Z"
+        }
+      },
+      "createdAt": "2026-03-13T20:00:00+00:00",
+      "updatedAt": "2026-03-13T20:00:00+00:00"
+    }
+  ],
+  "containers": [
+    {
+      "containerId": "smartlist-members:smartlist/architecture/incubation/rust-replatform",
+      "containerKind": "smartlist_members",
+      "headLinknodeId": "ln:smartlist-note:1",
+      "tailLinknodeId": "ln:smartlist-note:1"
+    }
+  ],
+  "linkNodes": [
+    {
+      "linkNodeId": "ln:smartlist-note:1",
+      "containerId": "smartlist-members:smartlist/architecture/incubation/rust-replatform",
+      "objectId": "smartlist-note:1"
+    }
+  ]
+}

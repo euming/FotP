@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+set -eu
+
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+AMS_PY="$SCRIPT_DIR/ams.py"
+
+if [ ! -f "$AMS_PY" ]; then
+  echo "ERROR: ams.py not found at \"$AMS_PY\"." >&2
+  exit 1
+fi
+
+if command -v python3 >/dev/null 2>&1; then
+  exec python3 "$AMS_PY" "$@"
+fi
+
+if command -v python >/dev/null 2>&1; then
+  exec python "$AMS_PY" "$@"
+fi
+
+echo "ERROR: Python launcher not found. Install Python 3 or run the wrapper with python3." >&2
+exit 1

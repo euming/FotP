@@ -35,5 +35,8 @@ namespace FotP.Engine.Players
 
         /// <summary>Choose whether to use an ability.</summary>
         bool ChooseUseAbility(Ability ability, Player player);
+
+        /// <summary>Choose a player from a list (e.g. for targeting abilities).</summary>
+        Player? ChoosePlayer(IReadOnlyList<Player> players, string prompt, Player activePlayer);
     }
 }

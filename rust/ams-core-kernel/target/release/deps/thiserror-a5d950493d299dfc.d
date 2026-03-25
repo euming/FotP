@@ -1,0 +1,14 @@
+C:\Users\eumin\wkspaces\git\FotP\rust\ams-core-kernel\target\release\deps\thiserror-a5d950493d299dfc.d: C:\Users\eumin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.18\src\lib.rs C:\Users\eumin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.18\src\aserror.rs C:\Users\eumin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.18\src\display.rs C:\Users\eumin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.18\src\var.rs C:\Users\eumin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.18\src\private.rs C:\Users\eumin\wkspaces\git\FotP\rust\ams-core-kernel\target\release\build\thiserror-0e9fa83079853ff7\out/private.rs
+
+C:\Users\eumin\wkspaces\git\FotP\rust\ams-core-kernel\target\release\deps\libthiserror-a5d950493d299dfc.rlib: C:\Users\eumin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.18\src\lib.rs C:\Users\eumin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.18\src\aserror.rs C:\Users\eumin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.18\src\display.rs C:\Users\eumin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.18\src\var.rs C:\Users\eumin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.18\src\private.rs C:\Users\eumin\wkspaces\git\FotP\rust\ams-core-kernel\target\release\build\thiserror-0e9fa83079853ff7\out/private.rs
+
+C:\Users\eumin\wkspaces\git\FotP\rust\ams-core-kernel\target\release\deps\libthiserror-a5d950493d299dfc.rmeta: C:\Users\eumin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.18\src\lib.rs C:\Users\eumin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.18\src\aserror.rs C:\Users\eumin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.18\src\display.rs C:\Users\eumin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.18\src\var.rs C:\Users\eumin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.18\src\private.rs C:\Users\eumin\wkspaces\git\FotP\rust\ams-core-kernel\target\release\build\thiserror-0e9fa83079853ff7\out/private.rs
+
+C:\Users\eumin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.18\src\lib.rs:
+C:\Users\eumin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.18\src\aserror.rs:
+C:\Users\eumin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.18\src\display.rs:
+C:\Users\eumin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.18\src\var.rs:
+C:\Users\eumin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.18\src\private.rs:
+C:\Users\eumin\wkspaces\git\FotP\rust\ams-core-kernel\target\release\build\thiserror-0e9fa83079853ff7\out/private.rs:
+
+# env-dep:OUT_DIR=C:\\Users\\eumin\\wkspaces\\git\\FotP\\rust\\ams-core-kernel\\target\\release\\build\\thiserror-0e9fa83079853ff7\\out

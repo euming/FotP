@@ -1,0 +1,76 @@
+{
+  "project": "FotP-GameLoop",
+  "description": "Game loop state machine for Favor of the Pharaoh. Hierarchical SmartList organized from the perspective of play flow: what happens each tick, each player turn, each phase. This is the implementation-facing view that maps directly to code states and transitions.\n",
+  "nodes": [
+    {
+      "id": "game-setup",
+      "title": "Game Setup",
+      "description": "One-time initialization before play begins. Place level bars, stack tiles, distribute starting dice and tokens, determine first player.\n"
+    },
+    {
+      "id": "round-loop",
+      "title": "Round Loop",
+      "description": "Repeats until the Queen is claimed and the final roll-off completes. Each round cycles through all players in clockwise order starting from the start player.\n"
+    },
+    {
+      "id": "player-turn",
+      "title": "Player Turn",
+      "description": "One complete turn for the current player. Contains phases executed in sequence: StartOfTurn -> RollLoop -> ClaimPhase -> EndOfTurn. State: GameState.currentPlayer tracks who is active.\n"
+    },
+    {
+      "id": "start-of-turn",
+      "title": "Start of Turn Phase",
+      "description": "Initialize the turn. Add bonus dice from owned tiles to cup. Fire all StartOfTurn triggers. Code state: PlayerGameState.InitTurn -> ReadyToRollDice.\n"
+    },
+    {
+      "id": "roll-loop",
+      "title": "Roll Loop",
+      "description": "Inner loop: Roll -> Lock -> Scarabs -> Decision. Repeats until player stops or all dice are locked. Code state: ReadyToRollDice -> DiceHaveBeenRolled -> WaitingForLock.\n"
+    },
+    {
+      "id": "roll-phase",
+      "title": "Roll Phase",
+      "description": "Roll all dice currently in the cup. Fire AfterRoll triggers (Estate Overseer increment, Granary Master increment). Transition to lock phase. Code state: DiceHaveBeenRolled.\n"
+    },
+    {
+      "id": "lock-phase",
+      "title": "Lock Phase",
+      "description": "Player MUST lock at least 1 die. Immediate (white) dice auto-lock. Fire LockedAny triggers after each lock (Herder: locked pair -> +1 die). Code state: WaitingForLock.\n"
+    },
+    {
+      "id": "scarab-phase",
+      "title": "Scarab Phase",
+      "description": "Optional. After locking, player may spend scarab tokens on active dice. Reroll token: reroll 1 active die. +1 Pip token: add 1 pip to 1 die. +1 Die token: add 1 standard die and roll it immediately.\n"
+    },
+    {
+      "id": "continue-decision",
+      "title": "Continue or Stop Decision",
+      "description": "If active dice remain in cup: player may roll again (return to Roll Phase). If all dice locked: forced stop, fire AllLocked triggers (Priest of the Dead, Spirit of the Dead, Burial Mask: gain +1 die at any value). Proceed to Claim Phase.\n"
+    },
+    {
+      "id": "claim-phase",
+      "title": "Claim Phase",
+      "description": "Check locked dice pyramid against level bar criteria. Player may claim ONE tile whose criteria are met. Cannot claim at a level where player already owns same-color tile. If no claim: gain 2 scarab tokens. Fire Acquire triggers on claimed tile. Code state: WaitingForPurchaseTile -> TilePurchaseChosen.\n"
+    },
+    {
+      "id": "post-claim-effects",
+      "title": "Post-Claim Effects",
+      "description": "Handle special post-claim effects that alter game flow. Extra turn tiles (Omen, Good Omen, Queen's Favor) cause player to take another turn instead of passing. Extra claim tiles (Secret Passage, Treasure, Royal Power) allow additional tile claims. Queen claim triggers roll-off setup.\n"
+    },
+    {
+      "id": "end-of-turn",
+      "title": "End of Turn Phase",
+      "description": "Return all dice to cup. Remove temporary/immediate dice. Reset per-turn flags (isUsedThisTurn, isUsedThisRoll, per-roll artifact states). Fire EndOfTurn triggers. Advance to next player. Code state: EndTurn -> WaitingNextTurn.\n"
+    },
+    {
+      "id": "final-rolloff",
+      "title": "Final Roll-Off",
+      "description": "Triggered when Queen is claimed. NOT YET IMPLEMENTED in code. Requires new game states beyond the current PlayerGameState enum.\n"
+    },
+    {
+      "id": "victory",
+      "title": "Victory",
+      "description": "Pharaoh token holder wins. Tie-break: closest to Queen claimer's right. Display winner and final scores.\n"
+    }
+  ]
+}

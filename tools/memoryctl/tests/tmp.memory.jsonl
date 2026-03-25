@@ -1,0 +1,7 @@
+{"type":"format","name":"card-binder","version":1} 
+{"type":"binder","id":"11d1e477-bf2d-47d8-915f-3cf1dd5df07d","name":"Conversations"}
+{"type":"binder","id":"8c9a893f-349a-4406-87a8-86de37ab1d4c","name":"Chat: telegram:-5229501860"}
+{"type":"card","id":"da46f60c-0d34-5e86-8a5d-cffccd37fd81","state":"Active"}
+{"type":"taglink","card_id":"da46f60c-0d34-5e86-8a5d-cffccd37fd81","binder_id":"11d1e477-bf2d-47d8-915f-3cf1dd5df07d","meta":{"Relevance":0.8,"Reason":"ingest-chatlog","AddedBy":"memoryctl","CreatedAt":"2026-02-03T00:06:22.0208832-08:00"}}
+{"type":"taglink","card_id":"da46f60c-0d34-5e86-8a5d-cffccd37fd81","binder_id":"8c9a893f-349a-4406-87a8-86de37ab1d4c","meta":{"Relevance":0.8,"Reason":"ingest-chatlog","AddedBy":"memoryctl","CreatedAt":"2026-02-03T00:06:22.0208832-08:00"}}
+{"type":"card_payload","card_id":"da46f60c-0d34-5e86-8a5d-cffccd37fd81","title":"Chat telegram:-5229501860 2026-02-02 23:50 (2 msgs)","text":"Channel: telegram\r\nChatId: -5229501860\r\nRange: 2026-02-02T23:50:00.0000000-08:00 \u2192 2026-02-02T23:51:00.0000000-08:00\r\n\r\n[23:50] Ming: hello memory\r\n[23:51] Rocky: logged","source":"telegram:-5229501860","updated_at":"2026-02-03T00:06:22.0208832-08:00"}

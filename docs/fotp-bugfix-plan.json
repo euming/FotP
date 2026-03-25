@@ -1,0 +1,43 @@
+{
+  "project": "FotP-Bugfix-Sprint1",
+  "description": "Bug fixes and missing features found during sprint 1 verification. All work is in src/FotP.Engine/ (pure C#, no Unity).\n",
+  "nodes": [
+    {
+      "id": "fix-market-setup",
+      "title": "Fix GameState.SetupMarket() tile references",
+      "description": "CRITICAL. GameState.SetupMarket() references tiles that don't exist in TileFactory: \"Merchant\", \"Mason\", \"Architect\", \"Scholar\". These create tiles with null ClaimCriteria and no abilities. Fix by using real tile names from TileCatalog (54 tiles defined there). Either update SetupMarket to use TileCatalog IDs or update TileFactory to handle all names. The TileCatalog + TileDealer + TilePool already exist and know all valid tiles. Probably SetupMarket should use TileDealer.Deal() with BarSlotRequests instead of hardcoding tile names. File: src/FotP.Engine/State/GameState.cs lines 74-131. Related: src/FotP.Engine/Market/TileCatalog.cs, src/FotP.Engine/Market/TileDealer.cs, src/FotP.Engine/Tiles/TileFactory.cs.\n"
+    },
+    {
+      "id": "fix-scarab-phase",
+      "title": "Implement scarab phase in GameRunner",
+      "description": "GameRunner.RunTurn() skips the scarab phase with a comment \"simplified: skip for now\". Scarab, ScarabType, and Player.Scarabs SmartList all exist. Need to: (1) after locking dice, prompt player via IPlayerInput to spend scarab tokens, (2) implement Reroll (re-roll 1 active die), Pip (+1 to die, capped at MaxValue), Die (create temp standard die and roll it), (3) loop until player declines to spend more. File: src/FotP.Engine/State/GameRunner.cs around line 87. Related: src/FotP.Engine/Dice/Scarab.cs, src/FotP.Engine/Players/IPlayerInput.cs.\n"
+    },
+    {
+      "id": "fix-bad-omen",
+      "title": "Fix BadOmenAbility player selection",
+      "description": "BadOmenAbility passes null! to ChooseDie() as a placeholder for opponent selection, then ignores the result and targets others[0]. Fix by either (1) adding ChoosePlayer(IReadOnlyList<Player>) to IPlayerInput, or (2) since Bad Omen affects ALL other players per the rules (not a chosen one), just iterate all opponents and apply the -2 dice penalty to each. Per rules: \"each other player rolls 2 fewer standard dice to start their next turn\". File: src/FotP.Engine/Tiles/BadOmenAbility.cs line 26.\n"
+    },
+    {
+      "id": "wire-tile-randomization",
+      "title": "Wire tile randomization into game setup",
+      "description": "TileDealer, TilePool, TileCatalog, BarSlotRequest, and LevelBarConfig all exist but aren't used by GameState.Setup(). Replace the hardcoded SetupMarket() with TileDealer.Deal() using LevelBarConfig for the bar layout. Support both first-game (fixed tiles via FixedTileId) and random (later games). Add a parameter to GameState.Setup() or GameRunner to choose A-side/B-side and first-game vs random. Files: src/FotP.Engine/State/GameState.cs, src/FotP.Engine/Market/TileDealer.cs, src/FotP.Engine/Market/LevelBarConfig.cs.\n"
+    },
+    {
+      "id": "add-missing-iplayerinput-methods",
+      "title": "Add missing IPlayerInput decision methods",
+      "description": "Review IPlayerInput for completeness. Known missing: ChoosePlayer for abilities that target opponents (Bad Omen, Decree die borrow). Also check if ChooseScarabToSpend exists. May need: ChooseDiceToReroll (for abilities like Entertainer, Head Servant that reroll multiple dice), ChooseDieValue (for adjust abilities like Soothsayer, Astrologer). Audit all 53 ability Execute() methods to find any other missing input methods. File: src/FotP.Engine/Players/IPlayerInput.cs and its implementations ConsolePlayerInput.cs, RandomAIInput.cs.\n"
+    },
+    {
+      "id": "verify-all-tests-pass",
+      "title": "Verify all tests pass after fixes",
+      "description": "Run dotnet test after all fixes. Fix any regressions. Run the 100-game AI stress test. If GameState.Setup() is fixed, the stress test should exercise the full game flow including proper market setup, scarab usage, and all tile abilities firing correctly.\n",
+      "depends_on": [
+        "Fix GameState.SetupMarket() tile references",
+        "Implement scarab phase in GameRunner",
+        "Fix BadOmenAbility player selection",
+        "Wire tile randomization into game setup",
+        "Add missing IPlayerInput decision methods"
+      ]
+    }
+  ]
+}

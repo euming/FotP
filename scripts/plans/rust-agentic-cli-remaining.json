@@ -1,0 +1,39 @@
+{
+  "project": "rust-agentic-cli",
+  "description": "Wire remaining Rust CLI subcommands for swarm-plan operations, add tool-call recording, ensure output format compatibility with Python, port load-plan, and migrate ams.py to Rust-first dispatch.",
+  "nodes": [
+    {
+      "title": "01-swarm-plan-cli-subcommands",
+      "description": "Add clap Command variants and handler arms in rust/ams-core-kernel/src/main.rs for all swarm-plan operations. Variants: SwarmPlanContext, SwarmPlanPush, SwarmPlanPop, SwarmPlanObserve, SwarmPlanList, SwarmPlanShow, SwarmPlanSwitch, SwarmPlanPark, SwarmPlanInterrupt, SwarmPlanResume, SwarmPlanAdvance, SwarmPlanReadyNodes, SwarmPlanCompleteNode. Each variant takes --input (PathBuf for snapshot path) plus operation-specific args matching the Python CLI (see scripts/ams.py lines 1660-1720). Each handler: loads AmsStore from --input, calls the corresponding pub fn from src/callstack.rs, saves if mutating, prints output. Follow the existing pattern used by BugreportList/BugreportShow/etc in main.rs. The callstack.rs functions already exist: callstack_push, callstack_pop, callstack_observe, callstack_show, callstack_interrupt, callstack_resume, callstack_advance, callstack_complete_node, render_context_text, list_projects, switch_project, park_project, ready_nodes."
+    },
+    {
+      "title": "02-output-format-compat",
+      "description": "Ensure each swarm-plan CLI subcommand prints output in the exact format the orchestrator (scripts/run-swarm-plan.py) and ams.py callers expect. Key formats: context prints '[AMS Callstack Context]\\n...\\n[End callstack context]' (already handled by render_context_text). push prints 'action=push\\nnode_path=...\\nkind=...'. pop prints 'action=pop\\ncompleted=...\\nactive_node_path=...'. observe prints 'action=observe\\nnode_path=...\\ntitle=...'. list prints numbered project list. show prints numbered node tree. Switch/park print 'action=switch/park\\nproject=...'. Compare against scripts/ams.py output strings (search for 'action=' in the callstack section) and match exactly. Write a test in rust/ams-core-kernel that round-trips a push+context+pop sequence and asserts output format.",
+      "depends_on": "01-swarm-plan-cli-subcommands"
+    },
+    {
+      "title": "03-tool-call-recording",
+      "description": "Add a helper function record_tool_call(store, tool_name, is_error, result_preview, actor_id) to src/callstack.rs (or a shared utility module). It creates an ObjectRecord with object_kind='tool-call' and provenance fields: tool_name, is_error (bool as string), result_preview (first 200 chars of output), ts (ISO 8601 now). This plugs into the existing FEP pipeline (scripts/fep-tool-health-report.py reads tool-call objects). Call record_tool_call at the end of each swarm-plan CLI handler, passing the command name (e.g. 'swarm-plan-push') and whether it succeeded. The FEP bootstrap code in src/fep_bootstrap.rs already reads these objects — just match the schema it expects (see fep_bootstrap.rs line 158+ for field names).",
+      "depends_on": "01-swarm-plan-cli-subcommands"
+    },
+    {
+      "title": "04-load-plan-command",
+      "description": "Port callstack_load_plan from scripts/ams.py (lines 669-787) to Rust. Add a SwarmPlanLoadPlan clap variant with --input, --file (path to JSON plan), --into-active (bool flag), --actor-id. The function reads the JSON plan file (same schema as scripts/plans/*.json: project, description, nodes[] with title/description/depends_on), creates a project root node (or uses active node if --into-active), then creates child nodes with dependency edges. depends_on values are titles that get resolved to node paths. Use create_runtime_node and set_node_fields from callstack.rs. Print 'action=load-plan\\nproject=...\\nroot=...\\nnodes=N' plus the node listing. Add the handler arm in main.rs.",
+      "depends_on": "01-swarm-plan-cli-subcommands"
+    },
+    {
+      "title": "05-ams-py-rust-dispatch",
+      "description": "Update scripts/ams.py to try the Rust ams-core-kernel binary first for all swarm-plan subcommands, falling back to the existing Python implementation if the Rust binary is not found or returns a non-zero exit code with 'unknown command'. Follow the existing Rust-first dispatch pattern already in ams.py (search for 'rust' or 'ams-core-kernel' around lines 1582-1623). For each callstack subcommand (context, push, pop, observe, list, show, switch, park, interrupt, resume, advance, ready-nodes, complete-node, load-plan), build the equivalent ams-core-kernel CLI invocation, run it via subprocess, and return its output. Keep the Python path as fallback. Also route search/recall through Rust if not already done.",
+      "depends_on": [
+        "02-output-format-compat",
+        "03-tool-call-recording",
+        "04-load-plan-command"
+      ]
+    },
+    {
+      "title": "06-team-yml-docs",
+      "description": "Update .claude/teams/worker.yml and .claude/teams/repairer.yml to document that swarm-plan commands are now handled by ams-core-kernel natively. No path changes needed (ams.py dispatches transparently), but add a note in the tool documentation section of each team file that ams-core-kernel supports swarm-plan subcommands directly for debugging/reference. Keep changes minimal — just add an informational comment, don't restructure the files.",
+      "depends_on": "05-ams-py-rust-dispatch"
+    }
+  ]
+}
