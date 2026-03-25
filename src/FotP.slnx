@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="FotP.Console/FotP.Console.csproj" />
+  <Project Path="FotP.Engine.Tests/FotP.Engine.Tests.csproj" />
+  <Project Path="FotP.Engine/FotP.Engine.csproj" />
+</Solution>

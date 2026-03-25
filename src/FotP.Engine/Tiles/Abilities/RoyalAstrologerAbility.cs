@@ -1,0 +1,30 @@
+using FotP.Engine.Dice;
+using FotP.Engine.Players;
+using FotP.Engine.State;
+
+namespace FotP.Engine.Tiles.Abilities
+{
+    /// <summary>
+    /// Royal Astrologer: StartOfTurn, add 3 temporary Standard dice to the cup.
+    /// </summary>
+    public class RoyalAstrologerAbility : Ability
+    {
+        public RoyalAstrologerAbility()
+        {
+            TriggerType = TriggerType.StartOfTurn;
+            IsPerTurn = true;
+            EntityName = "Royal Astrologer Ability";
+        }
+
+        public override void Execute(GameState state, Player player)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                var die = new Die(DieType.Standard) { IsTemporary = true };
+                player.DicePool.Add(die);
+                state.TurnState.Zones.Cup.Add(die);
+                state.TurnState.Zones.Temporary.Add(die);
+            }
+        }
+    }
+}
