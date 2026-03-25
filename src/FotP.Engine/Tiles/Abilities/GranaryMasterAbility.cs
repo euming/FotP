@@ -60,6 +60,9 @@ namespace FotP.Engine.Tiles.Abilities
 
             state.TurnState.Zones.Active.Remove(die);
             state.TurnState.Zones.Locked.Remove(die);
+            state.TurnState.Zones.Temporary.Remove(die);
+            state.TurnState.Zones.Cup.Remove(die);
+            state.TurnState.Zones.SetAside.Remove(die);
             player.DicePool.Remove(die);
             die.IsLocked = false;
             die.IsTemporary = false;
