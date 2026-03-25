@@ -1,0 +1,3921 @@
+{
+  "objects": [
+    {
+      "objectId": "agent-memory:short-term:smartlists",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.590329300Z",
+      "updatedAt": "2026-03-25T07:49:44.590329300Z"
+    },
+    {
+      "objectId": "agent-memory:smartlists",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.590338Z",
+      "updatedAt": "2026-03-25T07:49:44.590338Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/20-observations",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "20-observations",
+        "provenance": {
+          "created_at": "2026-03-25T07:53:19.157690+00:00",
+          "created_by": "worker",
+          "display_name": "20-observations",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/20-observations",
+          "parent_path": "",
+          "path": "smartlist/20-observations",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "20-observations",
+          "updated_at": "2026-03-25T07:53:19.157690+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:53:19.157690Z",
+      "updatedAt": "2026-03-25T07:53:19.157690Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "execution-plan",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "execution-plan",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan",
+          "parent_path": "",
+          "path": "smartlist/execution-plan",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "execution-plan",
+          "updated_at": "2026-03-25T07:53:18.899635800+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:53:18.899635800Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "fotp-unityview",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "fotp-unityview",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview",
+          "parent_path": "smartlist/execution-plan",
+          "path": "smartlist/execution-plan/fotp-unityview",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "fotp-unityview",
+          "updated_at": "2026-03-25T07:53:18.899635800+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:53:18.899635800Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/00-node",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "00-node",
+        "provenance": {
+          "active_node_path": "smartlist/execution-plan/fotp-unityview",
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "00-node",
+          "durability": "short_term",
+          "kind": "work",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/00-node",
+          "next_command": "callstack push",
+          "node_path": "smartlist/execution-plan/fotp-unityview",
+          "owner": "claude-opus",
+          "parent_node_path": "",
+          "parent_path": "smartlist/execution-plan/fotp-unityview",
+          "path": "smartlist/execution-plan/fotp-unityview/00-node",
+          "plan_mode": "execute",
+          "resume_policy": "next-sibling",
+          "retrieval_visibility": "default",
+          "root_path": "smartlist/execution-plan/fotp-unityview",
+          "source": "manual",
+          "state": "active",
+          "title": "00-node",
+          "updated_at": "2026-03-25T07:53:18.899635800+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:53:18.899635800Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "10-children",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "10-children",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children",
+          "parent_path": "smartlist/execution-plan/fotp-unityview",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "10-children",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "boardview-market-bars-and-tile-display",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "boardview-market-bars-and-tile-display",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "boardview-market-bars-and-tile-display",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/00-node",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "00-node",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "00-node",
+          "durability": "short_term",
+          "kind": "work",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/00-node",
+          "next_command": "",
+          "node_path": "smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display",
+          "owner": "claude-opus",
+          "parent_node_path": "smartlist/execution-plan/fotp-unityview",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/00-node",
+          "resume_policy": "next-sibling",
+          "retrieval_visibility": "default",
+          "root_path": "smartlist/execution-plan/fotp-unityview",
+          "source": "manual",
+          "state": "ready",
+          "title": "BoardView - market bars and tile display",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/10-children",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "10-children",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "10-children",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/10-children",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/10-children",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "10-children",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/20-observations",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "20-observations",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "20-observations",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/20-observations",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/20-observations",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "20-observations",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/30-receipts",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "30-receipts",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "30-receipts",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/30-receipts",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/30-receipts",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "30-receipts",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/90-archive",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "90-archive",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "90-archive",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/90-archive",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/90-archive",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "90-archive",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "create-unity-6-project-and-import-engine-dll",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "create-unity-6-project-and-import-engine-dll",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "create-unity-6-project-and-import-engine-dll",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/00-node",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "00-node",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "00-node",
+          "durability": "short_term",
+          "kind": "work",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/00-node",
+          "next_command": "",
+          "node_path": "smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll",
+          "owner": "claude-opus",
+          "parent_node_path": "smartlist/execution-plan/fotp-unityview",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/00-node",
+          "resume_policy": "next-sibling",
+          "retrieval_visibility": "default",
+          "root_path": "smartlist/execution-plan/fotp-unityview",
+          "source": "manual",
+          "state": "ready",
+          "title": "Create Unity 6 project and import engine DLL",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/10-children",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "10-children",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "10-children",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/10-children",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/10-children",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "10-children",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/20-observations",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "20-observations",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "20-observations",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/20-observations",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/20-observations",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "20-observations",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/30-receipts",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "30-receipts",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "30-receipts",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/30-receipts",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/30-receipts",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "30-receipts",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/90-archive",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "90-archive",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "90-archive",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/90-archive",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/90-archive",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "90-archive",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "diceview-cup-active-area-locked-pyramid",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "diceview-cup-active-area-locked-pyramid",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "diceview-cup-active-area-locked-pyramid",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/00-node",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "00-node",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "00-node",
+          "durability": "short_term",
+          "kind": "work",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/00-node",
+          "next_command": "",
+          "node_path": "smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid",
+          "owner": "claude-opus",
+          "parent_node_path": "smartlist/execution-plan/fotp-unityview",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/00-node",
+          "resume_policy": "next-sibling",
+          "retrieval_visibility": "default",
+          "root_path": "smartlist/execution-plan/fotp-unityview",
+          "source": "manual",
+          "state": "ready",
+          "title": "DiceView - cup, active area, locked pyramid",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/10-children",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "10-children",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "10-children",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/10-children",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/10-children",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "10-children",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/20-observations",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "20-observations",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "20-observations",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/20-observations",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/20-observations",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "20-observations",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/30-receipts",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "30-receipts",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "30-receipts",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/30-receipts",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/30-receipts",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "30-receipts",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/90-archive",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "90-archive",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "90-archive",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/90-archive",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/90-archive",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "90-archive",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "gamecontroller-monobehaviour",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "gamecontroller-monobehaviour",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "gamecontroller-monobehaviour",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/00-node",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "00-node",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "00-node",
+          "durability": "short_term",
+          "kind": "work",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/00-node",
+          "next_command": "",
+          "node_path": "smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour",
+          "owner": "claude-opus",
+          "parent_node_path": "smartlist/execution-plan/fotp-unityview",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/00-node",
+          "resume_policy": "next-sibling",
+          "retrieval_visibility": "default",
+          "root_path": "smartlist/execution-plan/fotp-unityview",
+          "source": "manual",
+          "state": "ready",
+          "title": "GameController MonoBehaviour",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/10-children",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "10-children",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "10-children",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/10-children",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/10-children",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "10-children",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/20-observations",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "20-observations",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "20-observations",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/20-observations",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/20-observations",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "20-observations",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/30-receipts",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "30-receipts",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "30-receipts",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/30-receipts",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/30-receipts",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "30-receipts",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/90-archive",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "90-archive",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "90-archive",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/90-archive",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/90-archive",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "90-archive",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "integration-test-play-a-full-game-in-unity",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "integration-test-play-a-full-game-in-unity",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "integration-test-play-a-full-game-in-unity",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/00-node",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "00-node",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "depends_on": "GameController MonoBehaviour, UnityPlayerInput async IPlayerInput implementation, BoardView - market bars and tile display, DiceView - cup, active area, locked pyramid, Player UI panels, Main Menu scene, Results scene",
+          "display_name": "00-node",
+          "durability": "short_term",
+          "kind": "work",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/00-node",
+          "next_command": "",
+          "node_path": "smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity",
+          "owner": "claude-opus",
+          "parent_node_path": "smartlist/execution-plan/fotp-unityview",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/00-node",
+          "resume_policy": "next-sibling",
+          "retrieval_visibility": "default",
+          "root_path": "smartlist/execution-plan/fotp-unityview",
+          "source": "manual",
+          "state": "ready",
+          "title": "Integration test - play a full game in Unity",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/10-children",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "10-children",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "10-children",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/10-children",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/10-children",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "10-children",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/20-observations",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "20-observations",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "20-observations",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/20-observations",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/20-observations",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "20-observations",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/30-receipts",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "30-receipts",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "30-receipts",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/30-receipts",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/30-receipts",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "30-receipts",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/90-archive",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "90-archive",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "90-archive",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/90-archive",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/90-archive",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "90-archive",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "main-menu-scene",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "main-menu-scene",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "main-menu-scene",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/00-node",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "00-node",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "00-node",
+          "durability": "short_term",
+          "kind": "work",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/00-node",
+          "next_command": "",
+          "node_path": "smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene",
+          "owner": "claude-opus",
+          "parent_node_path": "smartlist/execution-plan/fotp-unityview",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/00-node",
+          "resume_policy": "next-sibling",
+          "retrieval_visibility": "default",
+          "root_path": "smartlist/execution-plan/fotp-unityview",
+          "source": "manual",
+          "state": "ready",
+          "title": "Main Menu scene",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/10-children",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "10-children",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "10-children",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/10-children",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/10-children",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "10-children",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/20-observations",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "20-observations",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "20-observations",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/20-observations",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/20-observations",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "20-observations",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/30-receipts",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "30-receipts",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "30-receipts",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/30-receipts",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/30-receipts",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "30-receipts",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/90-archive",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "90-archive",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "90-archive",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/90-archive",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/90-archive",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "90-archive",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "player-ui-panels",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "player-ui-panels",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "player-ui-panels",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/00-node",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "00-node",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "00-node",
+          "durability": "short_term",
+          "kind": "work",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/00-node",
+          "next_command": "",
+          "node_path": "smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels",
+          "owner": "claude-opus",
+          "parent_node_path": "smartlist/execution-plan/fotp-unityview",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/00-node",
+          "resume_policy": "next-sibling",
+          "retrieval_visibility": "default",
+          "root_path": "smartlist/execution-plan/fotp-unityview",
+          "source": "manual",
+          "state": "ready",
+          "title": "Player UI panels",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/10-children",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "10-children",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "10-children",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/10-children",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/10-children",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "10-children",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/20-observations",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "20-observations",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "20-observations",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/20-observations",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/20-observations",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "20-observations",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/30-receipts",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "30-receipts",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "30-receipts",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/30-receipts",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/30-receipts",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "30-receipts",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/90-archive",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "90-archive",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "90-archive",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/90-archive",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/90-archive",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "90-archive",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/results-scene",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "results-scene",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "results-scene",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/results-scene",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/results-scene",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "results-scene",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/results-scene/00-node",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "00-node",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "00-node",
+          "durability": "short_term",
+          "kind": "work",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/results-scene/00-node",
+          "next_command": "",
+          "node_path": "smartlist/execution-plan/fotp-unityview/10-children/results-scene",
+          "owner": "claude-opus",
+          "parent_node_path": "smartlist/execution-plan/fotp-unityview",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/results-scene",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/results-scene/00-node",
+          "resume_policy": "next-sibling",
+          "retrieval_visibility": "default",
+          "root_path": "smartlist/execution-plan/fotp-unityview",
+          "source": "manual",
+          "state": "ready",
+          "title": "Results scene",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/results-scene/10-children",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "10-children",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "10-children",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/results-scene/10-children",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/results-scene",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/results-scene/10-children",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "10-children",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/results-scene/20-observations",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "20-observations",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "20-observations",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/results-scene/20-observations",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/results-scene",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/results-scene/20-observations",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "20-observations",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/results-scene/30-receipts",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "30-receipts",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "30-receipts",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/results-scene/30-receipts",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/results-scene",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/results-scene/30-receipts",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "30-receipts",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/results-scene/90-archive",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "90-archive",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "90-archive",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/results-scene/90-archive",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/results-scene",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/results-scene/90-archive",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "90-archive",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "unityplayerinput-async-iplayerinput-implementation",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "unityplayerinput-async-iplayerinput-implementation",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "unityplayerinput-async-iplayerinput-implementation",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/00-node",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "00-node",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "00-node",
+          "durability": "short_term",
+          "kind": "work",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/00-node",
+          "next_command": "",
+          "node_path": "smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation",
+          "owner": "claude-opus",
+          "parent_node_path": "smartlist/execution-plan/fotp-unityview",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/00-node",
+          "resume_policy": "next-sibling",
+          "retrieval_visibility": "default",
+          "root_path": "smartlist/execution-plan/fotp-unityview",
+          "source": "manual",
+          "state": "ready",
+          "title": "UnityPlayerInput async IPlayerInput implementation",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/10-children",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "10-children",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "10-children",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/10-children",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/10-children",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "10-children",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/20-observations",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "20-observations",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "20-observations",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/20-observations",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/20-observations",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "20-observations",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/30-receipts",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "30-receipts",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "30-receipts",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/30-receipts",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/30-receipts",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "30-receipts",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/90-archive",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "90-archive",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "90-archive",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/90-archive",
+          "parent_path": "smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation",
+          "path": "smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/90-archive",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "90-archive",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/20-observations",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "20-observations",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "20-observations",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/20-observations",
+          "parent_path": "smartlist/execution-plan/fotp-unityview",
+          "path": "smartlist/execution-plan/fotp-unityview/20-observations",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "20-observations",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/30-receipts",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "30-receipts",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "30-receipts",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/30-receipts",
+          "parent_path": "smartlist/execution-plan/fotp-unityview",
+          "path": "smartlist/execution-plan/fotp-unityview/30-receipts",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "30-receipts",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/90-archive",
+      "objectKind": "smartlist_bucket",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_bucket",
+          "short_term"
+        ],
+        "summary": "90-archive",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "display_name": "90-archive",
+          "durability": "short_term",
+          "members_container_id": "smartlist-members:smartlist/execution-plan/fotp-unityview/90-archive",
+          "parent_path": "smartlist/execution-plan/fotp-unityview",
+          "path": "smartlist/execution-plan/fotp-unityview/90-archive",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "title": "90-archive",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/20-observations",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:53:19.158091Z",
+      "updatedAt": "2026-03-25T07:53:19.158091Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.590533900Z",
+      "updatedAt": "2026-03-25T07:49:44.590533900Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.590576300Z",
+      "updatedAt": "2026-03-25T07:49:44.590576300Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/00-node",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.590615100Z",
+      "updatedAt": "2026-03-25T07:49:44.590615100Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.590648800Z",
+      "updatedAt": "2026-03-25T07:49:44.590648800Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.592980100Z",
+      "updatedAt": "2026-03-25T07:49:44.592980100Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/00-node",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.593069800Z",
+      "updatedAt": "2026-03-25T07:49:44.593069800Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/10-children",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.593175Z",
+      "updatedAt": "2026-03-25T07:49:44.593175Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/20-observations",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.593255700Z",
+      "updatedAt": "2026-03-25T07:49:44.593255700Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/30-receipts",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.593333500Z",
+      "updatedAt": "2026-03-25T07:49:44.593333500Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/90-archive",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.593412400Z",
+      "updatedAt": "2026-03-25T07:49:44.593412400Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.591039100Z",
+      "updatedAt": "2026-03-25T07:49:44.591039100Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/00-node",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.591114700Z",
+      "updatedAt": "2026-03-25T07:49:44.591114700Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/10-children",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.591200200Z",
+      "updatedAt": "2026-03-25T07:49:44.591200200Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/20-observations",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.591283600Z",
+      "updatedAt": "2026-03-25T07:49:44.591283600Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/30-receipts",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.591362100Z",
+      "updatedAt": "2026-03-25T07:49:44.591362100Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/90-archive",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.591449Z",
+      "updatedAt": "2026-03-25T07:49:44.591449Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.593650300Z",
+      "updatedAt": "2026-03-25T07:49:44.593650300Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/00-node",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.593734Z",
+      "updatedAt": "2026-03-25T07:49:44.593734Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/10-children",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.593813400Z",
+      "updatedAt": "2026-03-25T07:49:44.593813400Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/20-observations",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.593890600Z",
+      "updatedAt": "2026-03-25T07:49:44.593890600Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/30-receipts",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.593967Z",
+      "updatedAt": "2026-03-25T07:49:44.593967Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/90-archive",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.594047100Z",
+      "updatedAt": "2026-03-25T07:49:44.594047100Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.591706700Z",
+      "updatedAt": "2026-03-25T07:49:44.591706700Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/00-node",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.591784100Z",
+      "updatedAt": "2026-03-25T07:49:44.591784100Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/10-children",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.591862200Z",
+      "updatedAt": "2026-03-25T07:49:44.591862200Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/20-observations",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.591937500Z",
+      "updatedAt": "2026-03-25T07:49:44.591937500Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/30-receipts",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.592013600Z",
+      "updatedAt": "2026-03-25T07:49:44.592013600Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/90-archive",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.592094100Z",
+      "updatedAt": "2026-03-25T07:49:44.592094100Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.596297400Z",
+      "updatedAt": "2026-03-25T07:49:44.596297400Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/00-node",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.596372800Z",
+      "updatedAt": "2026-03-25T07:49:44.596372800Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/10-children",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.596453200Z",
+      "updatedAt": "2026-03-25T07:49:44.596453200Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/20-observations",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.596533400Z",
+      "updatedAt": "2026-03-25T07:49:44.596533400Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/30-receipts",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.596612700Z",
+      "updatedAt": "2026-03-25T07:49:44.596612700Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/90-archive",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.596693700Z",
+      "updatedAt": "2026-03-25T07:49:44.596693700Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.594926600Z",
+      "updatedAt": "2026-03-25T07:49:44.594926600Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/00-node",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.595005200Z",
+      "updatedAt": "2026-03-25T07:49:44.595005200Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/10-children",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.595087800Z",
+      "updatedAt": "2026-03-25T07:49:44.595087800Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/20-observations",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.595175600Z",
+      "updatedAt": "2026-03-25T07:49:44.595175600Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/30-receipts",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.595255100Z",
+      "updatedAt": "2026-03-25T07:49:44.595255100Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/90-archive",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.595331300Z",
+      "updatedAt": "2026-03-25T07:49:44.595331300Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.594284400Z",
+      "updatedAt": "2026-03-25T07:49:44.594284400Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/00-node",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.594367500Z",
+      "updatedAt": "2026-03-25T07:49:44.594367500Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/10-children",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.594443600Z",
+      "updatedAt": "2026-03-25T07:49:44.594443600Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/20-observations",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.594520500Z",
+      "updatedAt": "2026-03-25T07:49:44.594520500Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/30-receipts",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.594601200Z",
+      "updatedAt": "2026-03-25T07:49:44.594601200Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/90-archive",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.594677900Z",
+      "updatedAt": "2026-03-25T07:49:44.594677900Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/results-scene",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.595587900Z",
+      "updatedAt": "2026-03-25T07:49:44.595587900Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/results-scene/00-node",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.595661800Z",
+      "updatedAt": "2026-03-25T07:49:44.595661800Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/results-scene/10-children",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.595776200Z",
+      "updatedAt": "2026-03-25T07:49:44.595776200Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/results-scene/20-observations",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.595853800Z",
+      "updatedAt": "2026-03-25T07:49:44.595853800Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/results-scene/30-receipts",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.595932400Z",
+      "updatedAt": "2026-03-25T07:49:44.595932400Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/results-scene/90-archive",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.596014300Z",
+      "updatedAt": "2026-03-25T07:49:44.596014300Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.592320900Z",
+      "updatedAt": "2026-03-25T07:49:44.592320900Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/00-node",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.592397Z",
+      "updatedAt": "2026-03-25T07:49:44.592397Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/10-children",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.592474900Z",
+      "updatedAt": "2026-03-25T07:49:44.592474900Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/20-observations",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.592551100Z",
+      "updatedAt": "2026-03-25T07:49:44.592551100Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/30-receipts",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.592628400Z",
+      "updatedAt": "2026-03-25T07:49:44.592628400Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/90-archive",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.592710300Z",
+      "updatedAt": "2026-03-25T07:49:44.592710300Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/20-observations",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.590683500Z",
+      "updatedAt": "2026-03-25T07:49:44.590683500Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/30-receipts",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.590718900Z",
+      "updatedAt": "2026-03-25T07:49:44.590718900Z"
+    },
+    {
+      "objectId": "smartlist-members:smartlist/execution-plan/fotp-unityview/90-archive",
+      "objectKind": "container",
+      "createdAt": "2026-03-25T07:49:44.590759400Z",
+      "updatedAt": "2026-03-25T07:49:44.590759400Z"
+    },
+    {
+      "objectId": "smartlist-note:3c9f8f8d9c9148d694ea5bd12fbdc620",
+      "objectKind": "smartlist_note",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_note",
+          "short_term"
+        ],
+        "summary": "work:Results scene",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "durability": "short_term",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "text": "End-of-game display: - Winner announcement with player name - Final scores (pyramid totals) - Tiles collected by each player - Rematch button (reload Game scene) - Main Menu button File: unity/Assets/Scripts/UI/ResultsController.cs.",
+          "title": "work:Results scene",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-note:437576b8656c457b98636d3bae428747",
+      "objectKind": "smartlist_note",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_note",
+          "short_term"
+        ],
+        "summary": "work:FotP-UnityView",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "durability": "short_term",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "text": "Unity 6 View layer for Favor of the Pharaoh. Implements IPlayerInput via async UI interactions. Reuses Tom's original art assets from Assets/. Top-down board camera. Scene-per-screen. Deterministic dice (engine rolls, Unity animates). Unity 6.3 at C:\\Program Files\\Unity\\Hub\\Editor\\6000.3.6f1. References FotP.Engine.dll built from src/FotP.Engine/.",
+          "title": "work:FotP-UnityView",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-note:4744234e997d4f9aa074fd5ab1f7a36d",
+      "objectKind": "smartlist_note",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_note",
+          "short_term"
+        ],
+        "summary": "child-done:done:spot-check-10-ability-implementations-against-rules",
+        "provenance": {
+          "created_at": "2026-03-25T07:53:19.157690+00:00",
+          "created_by": "worker",
+          "durability": "short_term",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "text": "Fixed 9 of 10 ability implementations that were incorrect vs rules; ShipCaptain was already correct. Changes: (1) Priest: was AllLocked/tokens, now AfterRoll reroll-1-die+pip-on-another; (2) Priestess: was reroll-all, now reroll-1+-chosen AND +1 pip on 1 die; (3) Embalmer: was lock-existing-die, now adds new temp Standard die at value 6 to Active zone; (4) Charioteer: was 1 Standard die, now 2 Standard dice; (5) BadOmen: was take-token, now sets StandardDiceModifierNextTurn; (6) TombBuilder: was +1 pip, now set-value+lock; (7) HeadServant: was up-to-2-dice, now any number; (8) Astrologer: was IsPerRoll, now IsPerTurn; (9) GrainTrader: was StartOfTurn tokens, now AfterRoll +1 pip. Added Player.StandardDiceModifierNextTurn, fixed TurnStateMachine all-locked-after-AfterRoll detection. 22 new unit tests in Level5Level6AbilityTests.cs. All 301 tests pass.",
+          "title": "child-done:done:spot-check-10-ability-implementations-against-rules",
+          "updated_at": "2026-03-25T07:53:19.157690+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:53:19.157690Z",
+      "updatedAt": "2026-03-25T07:53:19.157690Z"
+    },
+    {
+      "objectId": "smartlist-note:4e67fb4476bc471792c1df1a85afa086",
+      "objectKind": "smartlist_note",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_note",
+          "short_term"
+        ],
+        "summary": "work:Create Unity 6 project and import engine DLL",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "durability": "short_term",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "text": "Create a new Unity 6 project under the repo (e.g. unity/ directory). Use URP (Universal Render Pipeline) for modern rendering with 2D/3D flexibility. Import FotP.Engine.dll as a managed plugin. Verify the engine DLL loads and GameState can be instantiated from a MonoBehaviour. Copy Tom's art assets from the old Assets/Textures/ and Assets/Materials/ into the new project. Set up 3 scenes: MainMenu, Game, Results. Unity path: C:\\Program Files\\Unity\\Hub\\Editor\\6000.3.6f1\\Editor. NOTE: Claude cannot run Unity Editor directly. Create the project structure, scripts, and scene configs as files. The user will open in Unity to verify.",
+          "title": "work:Create Unity 6 project and import engine DLL",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-note:6303dd7ab56e4d389f5cf6a199f2243b",
+      "objectKind": "smartlist_note",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_note",
+          "short_term"
+        ],
+        "summary": "work:UnityPlayerInput async IPlayerInput implementation",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "durability": "short_term",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "text": "Implements IPlayerInput where each method blocks (via async/Task or coroutine) until the player makes a UI choice. Pattern for each method: 1. Show relevant UI (highlight clickable dice, show buttons, etc). 2. Set a TaskCompletionSource<T> or callback. 3. Await player click/selection. 4. Hide UI, return the selected value. Methods to implement (all async): - ChooseDiceToLock: highlight active dice, player clicks to toggle, Done button - ChooseContinueRolling: show Roll Again / Stop buttons - ChooseTileToClaim: highlight claimable market tiles, click or Pass - ChooseDie: highlight candidate dice, click one - ChooseMultipleDice: highlight candidates, toggle select, Done - ChoosePipValue: number picker (1-6) popup - ChooseScarab: show scarab panel, click one or Pass - ChoosePlayer: show player portraits, click one - ChooseYesNo: Yes/No dialog - ChooseUseAbility: tile glow + click or Skip File: unity/Assets/Scripts/UI/UnityPlayerInput.cs. This is the most critical piece â€” every player interaction flows through it.",
+          "title": "work:UnityPlayerInput async IPlayerInput implementation",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-note:74704ad4ce414aa3b3195dd086db8cd8",
+      "objectKind": "smartlist_note",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_note",
+          "short_term"
+        ],
+        "summary": "work:DiceView - cup, active area, locked pyramid",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "durability": "short_term",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "text": "Three zones rendered on the board: - Cup area: shows dice count, click to roll - Active area: rolled dice displayed with face values, clickable for\n  locking and ability targeting\n- Locked area: pyramid arrangement of locked dice Dice rolling animation: when engine rolls, animate the die spinning and landing on the determined value. Can be simple 2D flip animation or 3D tumble â€” start simple (2D sprite swap with a brief shake). Use Tom's dice textures from Assets/Dice/ and Assets/Textures/. Subscribe to zone SmartList events (OnAdded/OnRemoved) to move dice visuals between areas. File: unity/Assets/Scripts/Views/DiceView.cs.",
+          "title": "work:DiceView - cup, active area, locked pyramid",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-note:76c7e37bfc5c482abd1643353d431f56",
+      "objectKind": "smartlist_note",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_note",
+          "short_term"
+        ],
+        "summary": "work:Player UI panels",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "durability": "short_term",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "text": "UI overlay showing: - Current player indicator and turn phase - Owned tiles bar (scrollable, shows tile abilities) - Scarab token display (reroll/pip/die counts) - Status text for prompts (\"Choose a die to lock\", etc) - Done/Cancel buttons for multi-step selections - Score display (pyramid total) Use Unity UI Toolkit or legacy Canvas â€” Canvas is simpler for a first pass. Player tiles use Tom's artwork. File: unity/Assets/Scripts/Views/PlayerUI.cs.",
+          "title": "work:Player UI panels",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-note:8cccdd8471564231a159a3753f16d891",
+      "objectKind": "smartlist_note",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_note",
+          "short_term"
+        ],
+        "summary": "work:Main Menu scene",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "durability": "short_term",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "text": "Simple menu scene: - Game title (Favor of the Pharaoh) - Player count selection (2-4) - Player name entry (with AI toggle per player) - Bar side selection (A or B) - Random tiles toggle - Play button â†’ loads Game scene with config Use ScriptableObject or static config class to pass settings between scenes. File: unity/Assets/Scripts/UI/MainMenuController.cs.",
+          "title": "work:Main Menu scene",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-note:bc9e357c96fd400585405ca93b6aca04",
+      "objectKind": "smartlist_note",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_note",
+          "short_term"
+        ],
+        "summary": "work:Integration test - play a full game in Unity",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "durability": "short_term",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "text": "Wire everything together and verify a complete game can be played: 1. Start from Main Menu, configure 2 players (1 human, 1 AI) 2. Play through several turns: roll dice, lock, claim tiles 3. Verify scarab spending works 4. Verify tile abilities trigger and prompt correctly 5. Play to roll-off and verify winner is displayed This is a manual test â€” document the steps for the user to verify in the Unity Editor play mode. File: unity/Assets/Scripts/Tests/IntegrationTestChecklist.md.",
+          "title": "work:Integration test - play a full game in Unity",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-note:d15c5cd17b2d4681bf72c4c77ea28ce5",
+      "objectKind": "smartlist_note",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_note",
+          "short_term"
+        ],
+        "summary": "work:BoardView - market bars and tile display",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "durability": "short_term",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "text": "Top-down board layout showing: - 5 level bars (levels 3-7) arranged vertically - Each bar has slots with tile stacks (use Tom's tile textures) - Tile stacks show top tile face, count indicator for remaining - Empty slots grayed out - Claimable tiles highlight when in Claim phase Subscribe to GameController events to update when tiles are claimed. Use Tom's textures from Assets/Textures/ for tile art. File: unity/Assets/Scripts/Views/BoardView.cs.",
+          "title": "work:BoardView - market bars and tile display",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "smartlist-note:fe826417374d46ee8e7b48443227a6d6",
+      "objectKind": "smartlist_note",
+      "semanticPayload": {
+        "tags": [
+          "smartlist_note",
+          "short_term"
+        ],
+        "summary": "work:GameController MonoBehaviour",
+        "provenance": {
+          "created_at": "2026-03-25T07:49:44.589902400+00:00",
+          "created_by": "claude-opus",
+          "durability": "short_term",
+          "retrieval_visibility": "default",
+          "source": "manual",
+          "text": "Central MonoBehaviour that owns GameState and GameRunner. Lives in the Game scene. On scene load: creates GameState, calls Setup() with player configs, creates GameRunner. Runs the game loop via async/coroutine â€” GameRunner.RunGame() is synchronous so wrap each turn step in a coroutine yield or use UniTask for async. Exposes events that Views subscribe to: OnTurnStarted, OnDiceRolled, OnDiceLocked, OnTileClaimed, OnPhaseChanged, OnGameOver. Holds reference to UnityPlayerInput. File: unity/Assets/Scripts/GameController.cs.",
+          "title": "work:GameController MonoBehaviour",
+          "updated_at": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "tool-call:433e46a3f75c4c88aa9c472cef96d53b",
+      "objectKind": "tool-call",
+      "semanticPayload": {
+        "provenance": {
+          "actor_id": "worker",
+          "is_error": false,
+          "result_preview": "action=observe\nnode_path=\ntitle=child-done:done:spot-check-10-ability-implementations-against-rules",
+          "tool_name": "swarm-plan-observe",
+          "ts": "2026-03-25T07:53:19.157690+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:53:19.157690Z",
+      "updatedAt": "2026-03-25T07:53:19.157690Z"
+    },
+    {
+      "objectId": "tool-call:bbea94e5fbd64b1a96e105ba79aad530",
+      "objectKind": "tool-call",
+      "semanticPayload": {
+        "provenance": {
+          "actor_id": "claude-opus",
+          "is_error": false,
+          "result_preview": "action=load-plan project=FotP-UnityView nodes=9",
+          "tool_name": "swarm-plan-load-plan",
+          "ts": "2026-03-25T07:49:44.589902400+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:49:44.589902400Z",
+      "updatedAt": "2026-03-25T07:49:44.589902400Z"
+    },
+    {
+      "objectId": "tool-call:de76fef333dd4722a8abb309cb1da6a1",
+      "objectKind": "tool-call",
+      "semanticPayload": {
+        "provenance": {
+          "actor_id": "orchestrator",
+          "is_error": false,
+          "result_preview": "action=enter-execute\nplan_mode=execute\nroot_path=smartlist/execution-plan/fotp-unityview",
+          "tool_name": "swarm-plan-enter-execute",
+          "ts": "2026-03-25T07:53:18.899635800+00:00"
+        }
+      },
+      "createdAt": "2026-03-25T07:53:18.899635800Z",
+      "updatedAt": "2026-03-25T07:53:18.899635800Z"
+    }
+  ],
+  "containers": [
+    {
+      "containerId": "agent-memory:short-term:smartlists",
+      "containerKind": "smartlist_root",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "headLinknodeId": "ln_8fb97c67ef144453b40d5b4e961c348c",
+      "tailLinknodeId": "ln_225ea0f6b7254c7f9a2d6a630f9faf0f",
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "agent-memory:smartlists",
+      "containerKind": "smartlist_root",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/20-observations",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "headLinknodeId": "ln_95065e9071c34ecf9597b8d68beafb47",
+      "tailLinknodeId": "ln_95065e9071c34ecf9597b8d68beafb47",
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "headLinknodeId": "ln_3e3d220582c4497390a63ec6a03de4f0",
+      "tailLinknodeId": "ln_3e3d220582c4497390a63ec6a03de4f0",
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "headLinknodeId": "ln_e38bd587bae64e3182ba876ccc3006af",
+      "tailLinknodeId": "ln_ba4997ea547a46ecb8c4855a7d13a5f4",
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/00-node",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "graphShape": "dag",
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "headLinknodeId": "ln_d6c0907246b341d6a45e657764a68765",
+      "tailLinknodeId": "ln_74a745dad5a74e3a8a6d5e98ef7f25d6",
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "headLinknodeId": "ln_16270ffdac0f4b979995cd5d4270ca40",
+      "tailLinknodeId": "ln_dcad370b903549cdb69dd41f25821bab",
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/00-node",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/10-children",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/20-observations",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "headLinknodeId": "ln_669a3934f95145f7ae60dc7dbd0b35f7",
+      "tailLinknodeId": "ln_669a3934f95145f7ae60dc7dbd0b35f7",
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/30-receipts",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/90-archive",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "headLinknodeId": "ln_410916d6d1544a5e8cefdd07e7db2914",
+      "tailLinknodeId": "ln_ab5bc6b5e364459fad3fbf3ae4eb969e",
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/00-node",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/10-children",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/20-observations",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "headLinknodeId": "ln_1e60ae39071147aebff3bb21f55afac9",
+      "tailLinknodeId": "ln_1e60ae39071147aebff3bb21f55afac9",
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/30-receipts",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/90-archive",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "headLinknodeId": "ln_5a610b500ee5446ca1a8e469d377ca8c",
+      "tailLinknodeId": "ln_224b1eaf3b924500816b86ff6af2e4a8",
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/00-node",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/10-children",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/20-observations",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "headLinknodeId": "ln_dcb91a142b9d4fd69e63933400f3963e",
+      "tailLinknodeId": "ln_dcb91a142b9d4fd69e63933400f3963e",
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/30-receipts",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/90-archive",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "headLinknodeId": "ln_09371333aca442a8bb5d07c073d853e5",
+      "tailLinknodeId": "ln_8bb33b93f4a54e3faf6d714de97ebe6e",
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/00-node",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/10-children",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/20-observations",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "headLinknodeId": "ln_2b1e555b36c14e2e9ff681789870934c",
+      "tailLinknodeId": "ln_2b1e555b36c14e2e9ff681789870934c",
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/30-receipts",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/90-archive",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "headLinknodeId": "ln_8265b95651b44ab1bd84f192e8c02148",
+      "tailLinknodeId": "ln_07a024a3c41d428388b9a5c4ba0e51c3",
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/00-node",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/10-children",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/20-observations",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "headLinknodeId": "ln_275b66db7f5240c9910871c5f318f5e6",
+      "tailLinknodeId": "ln_275b66db7f5240c9910871c5f318f5e6",
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/30-receipts",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/90-archive",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "headLinknodeId": "ln_c415f0cdd9ca44139bdd35b9daf2387b",
+      "tailLinknodeId": "ln_0578883649d546b0b26198e197e1c68a",
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/00-node",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/10-children",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/20-observations",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "headLinknodeId": "ln_b2beac3c99ea4629acecd5cd25ecb812",
+      "tailLinknodeId": "ln_b2beac3c99ea4629acecd5cd25ecb812",
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/30-receipts",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/90-archive",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "headLinknodeId": "ln_9aedd5b34eb245ddbab48b9080ac562d",
+      "tailLinknodeId": "ln_9aa5494da2dc43259f4f54d693238d38",
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/00-node",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/10-children",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/20-observations",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "headLinknodeId": "ln_046c6e4ec75248d4b3dd3a81b9625b31",
+      "tailLinknodeId": "ln_046c6e4ec75248d4b3dd3a81b9625b31",
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/30-receipts",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/90-archive",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/results-scene",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "headLinknodeId": "ln_1dbdc821435945d0b519e37947abb0e7",
+      "tailLinknodeId": "ln_bcaf0a2c439c46ef940f6a29739f92db",
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/results-scene/00-node",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/results-scene/10-children",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/results-scene/20-observations",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "headLinknodeId": "ln_6b788cde6e8b46728c390cd79a5788c8",
+      "tailLinknodeId": "ln_6b788cde6e8b46728c390cd79a5788c8",
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/results-scene/30-receipts",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/results-scene/90-archive",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "headLinknodeId": "ln_15a1d8b5ea5d4c9a936eedc1516d29a6",
+      "tailLinknodeId": "ln_ab8205e8fb2148dbbda32bb23698cfe8",
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/00-node",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/10-children",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/20-observations",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "headLinknodeId": "ln_318dd6909e8f492999d051ced72d793e",
+      "tailLinknodeId": "ln_318dd6909e8f492999d051ced72d793e",
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/30-receipts",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/90-archive",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/20-observations",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "headLinknodeId": "ln_073b582cc17049a98ba1efbd038008f4",
+      "tailLinknodeId": "ln_073b582cc17049a98ba1efbd038008f4",
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/30-receipts",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    },
+    {
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/90-archive",
+      "containerKind": "smartlist_members",
+      "expectationMetadata": {
+        "interpretation": "ordered_frame"
+      },
+      "policies": {
+        "uniqueMembers": true,
+        "orderedByRecency": false,
+        "allowMultiParent": false
+      },
+      "absoluteSemantics": {
+        "absoluteKind": "other"
+      },
+      "hypothesisState": {}
+    }
+  ],
+  "linkNodes": [
+    {
+      "linkNodeId": "ln_03eb1071087e4dea85837a619bc6eebc",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/results-scene",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/results-scene/30-receipts",
+      "prevLinknodeId": "ln_dce953676eb14de099eedc08879035c5",
+      "nextLinknodeId": "ln_bcaf0a2c439c46ef940f6a29739f92db"
+    },
+    {
+      "linkNodeId": "ln_046c6e4ec75248d4b3dd3a81b9625b31",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/20-observations",
+      "objectId": "smartlist-note:76c7e37bfc5c482abd1643353d431f56"
+    },
+    {
+      "linkNodeId": "ln_0578883649d546b0b26198e197e1c68a",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/90-archive",
+      "prevLinknodeId": "ln_bb560c07cfaf475ebbf7a607e180b80f"
+    },
+    {
+      "linkNodeId": "ln_073b582cc17049a98ba1efbd038008f4",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/20-observations",
+      "objectId": "smartlist-note:437576b8656c457b98636d3bae428747"
+    },
+    {
+      "linkNodeId": "ln_07a024a3c41d428388b9a5c4ba0e51c3",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/90-archive",
+      "prevLinknodeId": "ln_406baa6f2ad64c1db8f50efc489b3a8c"
+    },
+    {
+      "linkNodeId": "ln_0882127aa5fe486782b2af56cd65a702",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/10-children",
+      "prevLinknodeId": "ln_5a610b500ee5446ca1a8e469d377ca8c",
+      "nextLinknodeId": "ln_f403161100d2415ba5922bfd66834103"
+    },
+    {
+      "linkNodeId": "ln_09371333aca442a8bb5d07c073d853e5",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/00-node",
+      "nextLinknodeId": "ln_cc1190d476e4410999b6d76c318cb9df"
+    },
+    {
+      "linkNodeId": "ln_0a5cb173699740958a589c18b0199cfe",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/20-observations",
+      "prevLinknodeId": "ln_e2da31200d314284b0b74b99abf0e6f7",
+      "nextLinknodeId": "ln_0d0edbd111c04046a2d5bee296e54857"
+    },
+    {
+      "linkNodeId": "ln_0b081b5655f14849b934e6fbc1446500",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels",
+      "prevLinknodeId": "ln_f60870a7479947748cef5827225c7ad8",
+      "nextLinknodeId": "ln_b01f2a6050d34fa6bf8ae65360d19f8b"
+    },
+    {
+      "linkNodeId": "ln_0d0edbd111c04046a2d5bee296e54857",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/30-receipts",
+      "prevLinknodeId": "ln_0a5cb173699740958a589c18b0199cfe",
+      "nextLinknodeId": "ln_9aa5494da2dc43259f4f54d693238d38"
+    },
+    {
+      "linkNodeId": "ln_0d4f7592ac6e4f778cd572c126b9b467",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/30-receipts",
+      "prevLinknodeId": "ln_12c0d69a121c4a6da2df88029d6ac606",
+      "nextLinknodeId": "ln_dcad370b903549cdb69dd41f25821bab"
+    },
+    {
+      "linkNodeId": "ln_12c0d69a121c4a6da2df88029d6ac606",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/20-observations",
+      "prevLinknodeId": "ln_51b346952f834d3693ea88b5ff9a2027",
+      "nextLinknodeId": "ln_0d4f7592ac6e4f778cd572c126b9b467"
+    },
+    {
+      "linkNodeId": "ln_15a1d8b5ea5d4c9a936eedc1516d29a6",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/00-node",
+      "nextLinknodeId": "ln_41e61d7f79354946b153baa8101d8ffc"
+    },
+    {
+      "linkNodeId": "ln_16270ffdac0f4b979995cd5d4270ca40",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/00-node",
+      "nextLinknodeId": "ln_51b346952f834d3693ea88b5ff9a2027"
+    },
+    {
+      "linkNodeId": "ln_1dbdc821435945d0b519e37947abb0e7",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/results-scene",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/results-scene/00-node",
+      "nextLinknodeId": "ln_db53ccaf7e224a2b97223299a4537bf6"
+    },
+    {
+      "linkNodeId": "ln_1e60ae39071147aebff3bb21f55afac9",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/20-observations",
+      "objectId": "smartlist-note:4e67fb4476bc471792c1df1a85afa086"
+    },
+    {
+      "linkNodeId": "ln_224b1eaf3b924500816b86ff6af2e4a8",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/90-archive",
+      "prevLinknodeId": "ln_cb330d9c52e74a4283a7f62e4f372dc9"
+    },
+    {
+      "linkNodeId": "ln_225ea0f6b7254c7f9a2d6a630f9faf0f",
+      "containerId": "agent-memory:short-term:smartlists",
+      "objectId": "smartlist-bucket:smartlist/20-observations",
+      "prevLinknodeId": "ln_8fb97c67ef144453b40d5b4e961c348c"
+    },
+    {
+      "linkNodeId": "ln_275b66db7f5240c9910871c5f318f5e6",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/20-observations",
+      "objectId": "smartlist-note:bc9e357c96fd400585405ca93b6aca04"
+    },
+    {
+      "linkNodeId": "ln_2b1e555b36c14e2e9ff681789870934c",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/20-observations",
+      "objectId": "smartlist-note:fe826417374d46ee8e7b48443227a6d6"
+    },
+    {
+      "linkNodeId": "ln_31874c0426c4403c99727483c72fa9ce",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/10-children",
+      "prevLinknodeId": "ln_c415f0cdd9ca44139bdd35b9daf2387b",
+      "nextLinknodeId": "ln_508f46f9cdef448db2bcde5e1532a811"
+    },
+    {
+      "linkNodeId": "ln_318dd6909e8f492999d051ced72d793e",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/20-observations",
+      "objectId": "smartlist-note:6303dd7ab56e4d389f5cf6a199f2243b"
+    },
+    {
+      "linkNodeId": "ln_39c8dbc5d3e041c995aca0c26467a548",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/results-scene",
+      "prevLinknodeId": "ln_b01f2a6050d34fa6bf8ae65360d19f8b",
+      "nextLinknodeId": "ln_74a745dad5a74e3a8a6d5e98ef7f25d6"
+    },
+    {
+      "linkNodeId": "ln_3e3d220582c4497390a63ec6a03de4f0",
+      "containerId": "smartlist-members:smartlist/execution-plan",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview"
+    },
+    {
+      "linkNodeId": "ln_406baa6f2ad64c1db8f50efc489b3a8c",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/30-receipts",
+      "prevLinknodeId": "ln_7a82ae34061b48c6a39d27106ee73707",
+      "nextLinknodeId": "ln_07a024a3c41d428388b9a5c4ba0e51c3"
+    },
+    {
+      "linkNodeId": "ln_410916d6d1544a5e8cefdd07e7db2914",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/00-node",
+      "nextLinknodeId": "ln_d9ee4e5857024156b8f5eaa1db0b44ee"
+    },
+    {
+      "linkNodeId": "ln_41e61d7f79354946b153baa8101d8ffc",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/10-children",
+      "prevLinknodeId": "ln_15a1d8b5ea5d4c9a936eedc1516d29a6",
+      "nextLinknodeId": "ln_bf58ab54cf4041d29561d9959b9018fa"
+    },
+    {
+      "linkNodeId": "ln_42e30ae71956455596d4dad4628ae763",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour",
+      "prevLinknodeId": "ln_d6c0907246b341d6a45e657764a68765",
+      "nextLinknodeId": "ln_e9055b1a2cb64a71a965d7c237fed835"
+    },
+    {
+      "linkNodeId": "ln_466383f82efa4425bbd739bc0cdba0ec",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/20-observations",
+      "prevLinknodeId": "ln_cc1190d476e4410999b6d76c318cb9df",
+      "nextLinknodeId": "ln_5b5b7267a4564f738e0fa432847b0957"
+    },
+    {
+      "linkNodeId": "ln_508f46f9cdef448db2bcde5e1532a811",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/20-observations",
+      "prevLinknodeId": "ln_31874c0426c4403c99727483c72fa9ce",
+      "nextLinknodeId": "ln_bb560c07cfaf475ebbf7a607e180b80f"
+    },
+    {
+      "linkNodeId": "ln_51b346952f834d3693ea88b5ff9a2027",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/10-children",
+      "prevLinknodeId": "ln_16270ffdac0f4b979995cd5d4270ca40",
+      "nextLinknodeId": "ln_12c0d69a121c4a6da2df88029d6ac606"
+    },
+    {
+      "linkNodeId": "ln_5a610b500ee5446ca1a8e469d377ca8c",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/00-node",
+      "nextLinknodeId": "ln_0882127aa5fe486782b2af56cd65a702"
+    },
+    {
+      "linkNodeId": "ln_5b5b7267a4564f738e0fa432847b0957",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/30-receipts",
+      "prevLinknodeId": "ln_466383f82efa4425bbd739bc0cdba0ec",
+      "nextLinknodeId": "ln_8bb33b93f4a54e3faf6d714de97ebe6e"
+    },
+    {
+      "linkNodeId": "ln_669a3934f95145f7ae60dc7dbd0b35f7",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/20-observations",
+      "objectId": "smartlist-note:d15c5cd17b2d4681bf72c4c77ea28ce5"
+    },
+    {
+      "linkNodeId": "ln_6aaa0b03ee29411488af45502fd75948",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children",
+      "prevLinknodeId": "ln_e38bd587bae64e3182ba876ccc3006af",
+      "nextLinknodeId": "ln_b5a901bbb84740568303f19c48b984fa"
+    },
+    {
+      "linkNodeId": "ln_6b788cde6e8b46728c390cd79a5788c8",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/results-scene/20-observations",
+      "objectId": "smartlist-note:3c9f8f8d9c9148d694ea5bd12fbdc620"
+    },
+    {
+      "linkNodeId": "ln_74a745dad5a74e3a8a6d5e98ef7f25d6",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity",
+      "prevLinknodeId": "ln_39c8dbc5d3e041c995aca0c26467a548"
+    },
+    {
+      "linkNodeId": "ln_7a82ae34061b48c6a39d27106ee73707",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/20-observations",
+      "prevLinknodeId": "ln_8c00f84e94f34e58b5d6fe03031f250f",
+      "nextLinknodeId": "ln_406baa6f2ad64c1db8f50efc489b3a8c"
+    },
+    {
+      "linkNodeId": "ln_8265b95651b44ab1bd84f192e8c02148",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/00-node",
+      "nextLinknodeId": "ln_8c00f84e94f34e58b5d6fe03031f250f"
+    },
+    {
+      "linkNodeId": "ln_8bb33b93f4a54e3faf6d714de97ebe6e",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/90-archive",
+      "prevLinknodeId": "ln_5b5b7267a4564f738e0fa432847b0957"
+    },
+    {
+      "linkNodeId": "ln_8c00f84e94f34e58b5d6fe03031f250f",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/integration-test-play-a-full-game-in-unity/10-children",
+      "prevLinknodeId": "ln_8265b95651b44ab1bd84f192e8c02148",
+      "nextLinknodeId": "ln_7a82ae34061b48c6a39d27106ee73707"
+    },
+    {
+      "linkNodeId": "ln_8fb97c67ef144453b40d5b4e961c348c",
+      "containerId": "agent-memory:short-term:smartlists",
+      "objectId": "smartlist-bucket:smartlist/execution-plan",
+      "nextLinknodeId": "ln_225ea0f6b7254c7f9a2d6a630f9faf0f"
+    },
+    {
+      "linkNodeId": "ln_95065e9071c34ecf9597b8d68beafb47",
+      "containerId": "smartlist-members:smartlist/20-observations",
+      "objectId": "smartlist-note:4744234e997d4f9aa074fd5ab1f7a36d"
+    },
+    {
+      "linkNodeId": "ln_9aa5494da2dc43259f4f54d693238d38",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/90-archive",
+      "prevLinknodeId": "ln_0d0edbd111c04046a2d5bee296e54857"
+    },
+    {
+      "linkNodeId": "ln_9aedd5b34eb245ddbab48b9080ac562d",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/00-node",
+      "nextLinknodeId": "ln_e2da31200d314284b0b74b99abf0e6f7"
+    },
+    {
+      "linkNodeId": "ln_9e8514a92ce744f1b2ac6857121272de",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/20-observations",
+      "prevLinknodeId": "ln_d9ee4e5857024156b8f5eaa1db0b44ee",
+      "nextLinknodeId": "ln_dfc5687ef3d84991a5b11dcd21f8b6a7"
+    },
+    {
+      "linkNodeId": "ln_a26c5a56140d45eb94a3e83ccff90709",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display",
+      "prevLinknodeId": "ln_e9055b1a2cb64a71a965d7c237fed835",
+      "nextLinknodeId": "ln_f60870a7479947748cef5827225c7ad8"
+    },
+    {
+      "linkNodeId": "ln_a7c42fcc1bb34dd397a7c8f1114177bc",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/30-receipts",
+      "prevLinknodeId": "ln_b5a901bbb84740568303f19c48b984fa",
+      "nextLinknodeId": "ln_ba4997ea547a46ecb8c4855a7d13a5f4"
+    },
+    {
+      "linkNodeId": "ln_ab5bc6b5e364459fad3fbf3ae4eb969e",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/90-archive",
+      "prevLinknodeId": "ln_dfc5687ef3d84991a5b11dcd21f8b6a7"
+    },
+    {
+      "linkNodeId": "ln_ab8205e8fb2148dbbda32bb23698cfe8",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/90-archive",
+      "prevLinknodeId": "ln_cc467ac7fe0043faa20b88e0b1672aae"
+    },
+    {
+      "linkNodeId": "ln_b01f2a6050d34fa6bf8ae65360d19f8b",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene",
+      "prevLinknodeId": "ln_0b081b5655f14849b934e6fbc1446500",
+      "nextLinknodeId": "ln_39c8dbc5d3e041c995aca0c26467a548"
+    },
+    {
+      "linkNodeId": "ln_b2beac3c99ea4629acecd5cd25ecb812",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/20-observations",
+      "objectId": "smartlist-note:8cccdd8471564231a159a3753f16d891"
+    },
+    {
+      "linkNodeId": "ln_b5a901bbb84740568303f19c48b984fa",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/20-observations",
+      "prevLinknodeId": "ln_6aaa0b03ee29411488af45502fd75948",
+      "nextLinknodeId": "ln_a7c42fcc1bb34dd397a7c8f1114177bc"
+    },
+    {
+      "linkNodeId": "ln_ba4997ea547a46ecb8c4855a7d13a5f4",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/90-archive",
+      "prevLinknodeId": "ln_a7c42fcc1bb34dd397a7c8f1114177bc"
+    },
+    {
+      "linkNodeId": "ln_bb560c07cfaf475ebbf7a607e180b80f",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/30-receipts",
+      "prevLinknodeId": "ln_508f46f9cdef448db2bcde5e1532a811",
+      "nextLinknodeId": "ln_0578883649d546b0b26198e197e1c68a"
+    },
+    {
+      "linkNodeId": "ln_bcaf0a2c439c46ef940f6a29739f92db",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/results-scene",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/results-scene/90-archive",
+      "prevLinknodeId": "ln_03eb1071087e4dea85837a619bc6eebc"
+    },
+    {
+      "linkNodeId": "ln_bf58ab54cf4041d29561d9959b9018fa",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/20-observations",
+      "prevLinknodeId": "ln_41e61d7f79354946b153baa8101d8ffc",
+      "nextLinknodeId": "ln_cc467ac7fe0043faa20b88e0b1672aae"
+    },
+    {
+      "linkNodeId": "ln_c415f0cdd9ca44139bdd35b9daf2387b",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/main-menu-scene/00-node",
+      "nextLinknodeId": "ln_31874c0426c4403c99727483c72fa9ce"
+    },
+    {
+      "linkNodeId": "ln_cb330d9c52e74a4283a7f62e4f372dc9",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/30-receipts",
+      "prevLinknodeId": "ln_f403161100d2415ba5922bfd66834103",
+      "nextLinknodeId": "ln_224b1eaf3b924500816b86ff6af2e4a8"
+    },
+    {
+      "linkNodeId": "ln_cc1190d476e4410999b6d76c318cb9df",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/gamecontroller-monobehaviour/10-children",
+      "prevLinknodeId": "ln_09371333aca442a8bb5d07c073d853e5",
+      "nextLinknodeId": "ln_466383f82efa4425bbd739bc0cdba0ec"
+    },
+    {
+      "linkNodeId": "ln_cc467ac7fe0043faa20b88e0b1672aae",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation/30-receipts",
+      "prevLinknodeId": "ln_bf58ab54cf4041d29561d9959b9018fa",
+      "nextLinknodeId": "ln_ab8205e8fb2148dbbda32bb23698cfe8"
+    },
+    {
+      "linkNodeId": "ln_d6c0907246b341d6a45e657764a68765",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll",
+      "nextLinknodeId": "ln_42e30ae71956455596d4dad4628ae763"
+    },
+    {
+      "linkNodeId": "ln_d9ee4e5857024156b8f5eaa1db0b44ee",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/10-children",
+      "prevLinknodeId": "ln_410916d6d1544a5e8cefdd07e7db2914",
+      "nextLinknodeId": "ln_9e8514a92ce744f1b2ac6857121272de"
+    },
+    {
+      "linkNodeId": "ln_db53ccaf7e224a2b97223299a4537bf6",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/results-scene",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/results-scene/10-children",
+      "prevLinknodeId": "ln_1dbdc821435945d0b519e37947abb0e7",
+      "nextLinknodeId": "ln_dce953676eb14de099eedc08879035c5"
+    },
+    {
+      "linkNodeId": "ln_dcad370b903549cdb69dd41f25821bab",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/boardview-market-bars-and-tile-display/90-archive",
+      "prevLinknodeId": "ln_0d4f7592ac6e4f778cd572c126b9b467"
+    },
+    {
+      "linkNodeId": "ln_dcb91a142b9d4fd69e63933400f3963e",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/20-observations",
+      "objectId": "smartlist-note:74704ad4ce414aa3b3195dd086db8cd8"
+    },
+    {
+      "linkNodeId": "ln_dce953676eb14de099eedc08879035c5",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/results-scene",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/results-scene/20-observations",
+      "prevLinknodeId": "ln_db53ccaf7e224a2b97223299a4537bf6",
+      "nextLinknodeId": "ln_03eb1071087e4dea85837a619bc6eebc"
+    },
+    {
+      "linkNodeId": "ln_dfc5687ef3d84991a5b11dcd21f8b6a7",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/create-unity-6-project-and-import-engine-dll/30-receipts",
+      "prevLinknodeId": "ln_9e8514a92ce744f1b2ac6857121272de",
+      "nextLinknodeId": "ln_ab5bc6b5e364459fad3fbf3ae4eb969e"
+    },
+    {
+      "linkNodeId": "ln_e2da31200d314284b0b74b99abf0e6f7",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/player-ui-panels/10-children",
+      "prevLinknodeId": "ln_9aedd5b34eb245ddbab48b9080ac562d",
+      "nextLinknodeId": "ln_0a5cb173699740958a589c18b0199cfe"
+    },
+    {
+      "linkNodeId": "ln_e38bd587bae64e3182ba876ccc3006af",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/00-node",
+      "nextLinknodeId": "ln_6aaa0b03ee29411488af45502fd75948"
+    },
+    {
+      "linkNodeId": "ln_e9055b1a2cb64a71a965d7c237fed835",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/unityplayerinput-async-iplayerinput-implementation",
+      "prevLinknodeId": "ln_42e30ae71956455596d4dad4628ae763",
+      "nextLinknodeId": "ln_a26c5a56140d45eb94a3e83ccff90709"
+    },
+    {
+      "linkNodeId": "ln_f403161100d2415ba5922bfd66834103",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid/20-observations",
+      "prevLinknodeId": "ln_0882127aa5fe486782b2af56cd65a702",
+      "nextLinknodeId": "ln_cb330d9c52e74a4283a7f62e4f372dc9"
+    },
+    {
+      "linkNodeId": "ln_f60870a7479947748cef5827225c7ad8",
+      "containerId": "smartlist-members:smartlist/execution-plan/fotp-unityview/10-children",
+      "objectId": "smartlist-bucket:smartlist/execution-plan/fotp-unityview/10-children/diceview-cup-active-area-locked-pyramid",
+      "prevLinknodeId": "ln_a26c5a56140d45eb94a3e83ccff90709",
+      "nextLinknodeId": "ln_0b081b5655f14849b934e6fbc1446500"
+    }
+  ]
+}

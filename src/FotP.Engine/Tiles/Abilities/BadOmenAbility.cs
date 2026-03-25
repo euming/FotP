@@ -5,8 +5,8 @@ using FotP.Engine.State;
 namespace FotP.Engine.Tiles.Abilities
 {
     /// <summary>
-    /// Bad Omen: Artifact, EndOfTurn, force one other player to lose 1 token next turn
-    /// (represented by decrementing their tokens immediately).
+    /// Bad Omen (Red L5): Artifact, EndOfTurn. Each other player rolls 2 fewer standard dice next turn.
+    /// You roll +1 standard die next turn.
     /// </summary>
     public class BadOmenAbility : Ability
     {
@@ -19,12 +19,12 @@ namespace FotP.Engine.Tiles.Abilities
 
         public override void Execute(GameState state, Player player)
         {
-            var others = state.TurnOrder.Where(p => p != player && p.Tokens > 0).ToList();
-            if (others.Count == 0) return;
+            // Each other player rolls 2 fewer standard dice next turn
+            foreach (var other in state.TurnOrder.Where(p => p != player))
+                other.StandardDiceModifierNextTurn -= 2;
 
-            var victim = player.Input.ChoosePlayer(others, "Bad Omen: Choose a player to lose 1 token", player)
-                         ?? others[0];
-            victim.Tokens = System.Math.Max(0, victim.Tokens - 1);
+            // You roll +1 standard die next turn
+            player.StandardDiceModifierNextTurn += 1;
         }
     }
 }

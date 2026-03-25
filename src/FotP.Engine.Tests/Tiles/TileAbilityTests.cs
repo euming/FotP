@@ -439,4 +439,296 @@ public class TileAbilityTests
         var ability = new SpiritOfTheDeadAbility();
         Assert.Equal(TriggerType.AllLocked, ability.TriggerType);
     }
+
+    // ─── Secret Passage ──────────────────────────────────────────────────────
+
+    [Fact]
+    public void SecretPassage_Execute_GrantsOneAdditionalClaim()
+    {
+        var (state, player) = MakeStateWithPlayer();
+        var ability = new SecretPassageAbility();
+        int before = player.AdditionalClaims;
+
+        ability.Execute(state, player);
+
+        Assert.Equal(before + 1, player.AdditionalClaims);
+    }
+
+    [Fact]
+    public void SecretPassage_IsArtifact()
+    {
+        var ability = new SecretPassageAbility();
+        Assert.True(ability.IsArtifact);
+    }
+
+    [Fact]
+    public void SecretPassage_TriggerType_IsAcquire()
+    {
+        var ability = new SecretPassageAbility();
+        Assert.Equal(TriggerType.Acquire, ability.TriggerType);
+    }
+
+    // ─── Treasure ────────────────────────────────────────────────────────────
+
+    [Fact]
+    public void Treasure_Execute_GrantsTwoAdditionalClaims()
+    {
+        var (state, player) = MakeStateWithPlayer();
+        var ability = new TreasureAbility();
+        int before = player.AdditionalClaims;
+
+        ability.Execute(state, player);
+
+        Assert.Equal(before + 2, player.AdditionalClaims);
+    }
+
+    [Fact]
+    public void Treasure_IsArtifact()
+    {
+        var ability = new TreasureAbility();
+        Assert.True(ability.IsArtifact);
+    }
+
+    [Fact]
+    public void Treasure_TriggerType_IsAcquire()
+    {
+        var ability = new TreasureAbility();
+        Assert.Equal(TriggerType.Acquire, ability.TriggerType);
+    }
+
+    // ─── Royal Power ─────────────────────────────────────────────────────────
+
+    [Fact]
+    public void RoyalPower_Execute_GrantsTwoAdditionalClaimsAndOneExtraTurn()
+    {
+        var (state, player) = MakeStateWithPlayer();
+        var ability = new RoyalPowerAbility();
+        int claimsBefore = player.AdditionalClaims;
+        int turnsBefore = player.ExtraTurns;
+
+        ability.Execute(state, player);
+
+        Assert.Equal(claimsBefore + 2, player.AdditionalClaims);
+        Assert.Equal(turnsBefore + 1, player.ExtraTurns);
+    }
+
+    [Fact]
+    public void RoyalPower_IsArtifact()
+    {
+        var ability = new RoyalPowerAbility();
+        Assert.True(ability.IsArtifact);
+    }
+
+    [Fact]
+    public void RoyalPower_TriggerType_IsAcquire()
+    {
+        var ability = new RoyalPowerAbility();
+        Assert.Equal(TriggerType.Acquire, ability.TriggerType);
+    }
+
+    // ─── Queen's Favor ───────────────────────────────────────────────────────
+
+    [Fact]
+    public void QueensFavor_Execute_GrantsOneAdditionalClaimAndOneExtraTurn()
+    {
+        var (state, player) = MakeStateWithPlayer();
+        var ability = new QueensFavorAbility();
+        int claimsBefore = player.AdditionalClaims;
+        int turnsBefore = player.ExtraTurns;
+
+        ability.Execute(state, player);
+
+        Assert.Equal(claimsBefore + 1, player.AdditionalClaims);
+        Assert.Equal(turnsBefore + 1, player.ExtraTurns);
+    }
+
+    [Fact]
+    public void QueensFavor_IsArtifact()
+    {
+        var ability = new QueensFavorAbility();
+        Assert.True(ability.IsArtifact);
+    }
+
+    [Fact]
+    public void QueensFavor_TriggerType_IsAcquire()
+    {
+        var ability = new QueensFavorAbility();
+        Assert.Equal(TriggerType.Acquire, ability.TriggerType);
+    }
+
+    // ─── Surveyor ─────────────────────────────────────────────────────────────
+
+    [Fact]
+    public void Surveyor_Execute_SplitsActiveDieIntoTwoImmediateDice()
+    {
+        // ScriptedPlayerInput.ChoosePipValue returns 3; die has pip value 5 → split 3+2
+        var (state, player) = MakeStateWithPlayer();
+        var die = AddActiveDie(state, player, 5);
+        int activeBefore = state.TurnState.Zones.Active.Count;
+
+        var ability = new SurveyorAbility();
+        ability.Execute(state, player);
+
+        // Original die removed, 2 immediate dice added → net +1 active
+        Assert.Equal(activeBefore + 1, state.TurnState.Zones.Active.Count);
+        Assert.DoesNotContain(die, state.TurnState.Zones.Active);
+
+        var newDice = state.TurnState.Zones.Active.Where(d => d.DieType == DieType.Immediate).ToList();
+        Assert.Equal(2, newDice.Count);
+        Assert.Equal(5, newDice.Sum(d => d.PipValue)); // values sum to original
+        Assert.All(newDice, d => Assert.True(d.IsTemporary));
+    }
+
+    [Fact]
+    public void Surveyor_Execute_DoesNothingWhenNoActiveDice()
+    {
+        var (state, player) = MakeStateWithPlayer();
+        int poolBefore = player.DicePool.Count;
+
+        var ability = new SurveyorAbility();
+        ability.Execute(state, player);
+
+        Assert.Equal(poolBefore, player.DicePool.Count);
+    }
+
+    [Fact]
+    public void Surveyor_TriggerType_IsAfterRoll()
+    {
+        var ability = new SurveyorAbility();
+        Assert.Equal(TriggerType.AfterRoll, ability.TriggerType);
+    }
+
+    // ─── Royal Mother ─────────────────────────────────────────────────────────
+
+    [Fact]
+    public void RoyalMother_Execute_ReplacesImmediateDiceWithTokensAndStandard()
+    {
+        var (state, player) = MakeStateWithPlayer();
+
+        // Add 2 Immediate dice to Active zone
+        var imm1 = new Die(DieType.Immediate) { IsTemporary = true };
+        var imm2 = new Die(DieType.Immediate) { IsTemporary = true };
+        imm1.SetValue(3); imm2.SetValue(4);
+        player.DicePool.Add(imm1); player.DicePool.Add(imm2);
+        state.TurnState.Zones.Active.Add(imm1); state.TurnState.Zones.Active.Add(imm2);
+
+        int tokensBefore = player.Tokens;
+        int cupBefore = state.TurnState.Zones.Cup.Count;
+
+        // ScriptedPlayerInput.ChooseMultipleDice returns first die only
+        var ability = new RoyalMotherAbility();
+        ability.Execute(state, player);
+
+        // At least 1 token gained and 1 Standard die added to Cup
+        Assert.True(player.Tokens > tokensBefore);
+        Assert.Equal(cupBefore + 1, state.TurnState.Zones.Cup.Count);
+        Assert.True(state.TurnState.Zones.Cup.Any(d => d.DieType == DieType.Standard && d.IsTemporary));
+    }
+
+    [Fact]
+    public void RoyalMother_Execute_DoesNothingWhenNoEligibleDice()
+    {
+        var (state, player) = MakeStateWithPlayer();
+        int tokensBefore = player.Tokens;
+        int cupBefore = state.TurnState.Zones.Cup.Count;
+
+        var ability = new RoyalMotherAbility();
+        ability.Execute(state, player);
+
+        Assert.Equal(tokensBefore, player.Tokens);
+        Assert.Equal(cupBefore, state.TurnState.Zones.Cup.Count);
+    }
+
+    [Fact]
+    public void RoyalMother_TriggerType_IsAfterRoll()
+    {
+        var ability = new RoyalMotherAbility();
+        Assert.Equal(TriggerType.AfterRoll, ability.TriggerType);
+    }
+
+    // ─── Herder ─────────────────────────────────────────────────────────────────
+
+    [Fact]
+    public void Herder_TriggerType_IsLockedAny()
+    {
+        var ability = new HerderAbility();
+        Assert.Equal(TriggerType.LockedAny, ability.TriggerType);
+    }
+
+    [Fact]
+    public void Herder_IsPerTurn()
+    {
+        var ability = new HerderAbility();
+        Assert.True(ability.IsPerTurn);
+    }
+
+    [Fact]
+    public void Herder_CanActivate_WithPair_ReturnsTrue()
+    {
+        var (state, player) = MakeStateWithPlayer();
+        AddLockedDie(state, player, 3);
+        AddLockedDie(state, player, 3);
+
+        var ability = new HerderAbility();
+        Assert.True(ability.CanActivate(state, player));
+    }
+
+    [Fact]
+    public void Herder_CanActivate_NoPair_ReturnsFalse()
+    {
+        var (state, player) = MakeStateWithPlayer();
+        AddLockedDie(state, player, 2);
+        AddLockedDie(state, player, 4);
+
+        var ability = new HerderAbility();
+        Assert.False(ability.CanActivate(state, player));
+    }
+
+    [Fact]
+    public void Herder_Execute_AddsTemporaryStandardDieToCup()
+    {
+        var (state, player) = MakeStateWithPlayer();
+        AddLockedDie(state, player, 3);
+        AddLockedDie(state, player, 3);
+
+        int cupBefore = state.TurnState.Zones.Cup.Count;
+        var ability = new HerderAbility();
+        ability.Execute(state, player);
+
+        Assert.Equal(cupBefore + 1, state.TurnState.Zones.Cup.Count);
+        var added = state.TurnState.Zones.Cup.Last();
+        Assert.Equal(DieType.Standard, added.DieType);
+        Assert.True(added.IsTemporary);
+    }
+
+    [Fact]
+    public void Herder_Execute_AddsDieToPlayerPool()
+    {
+        var (state, player) = MakeStateWithPlayer();
+        int poolBefore = player.DicePool.Count;
+
+        var ability = new HerderAbility();
+        ability.Execute(state, player);
+
+        Assert.Equal(poolBefore + 1, player.DicePool.Count);
+    }
+
+    [Fact]
+    public void Herder_Factory_HasNullClaimCriteria()
+    {
+        var tile = TileFactory.CreateTile("Herder", 3, TileColor.Red);
+        Assert.Null(tile.ClaimCriteria);
+    }
+
+    [Fact]
+    public void Herder_CanActivate_UsedThisTurn_ReturnsFalse()
+    {
+        var (state, player) = MakeStateWithPlayer();
+        AddLockedDie(state, player, 3);
+        AddLockedDie(state, player, 3);
+
+        var ability = new HerderAbility();
+        ability.IsUsedThisTurn = true;
+        Assert.False(ability.CanActivate(state, player));
+    }
 }

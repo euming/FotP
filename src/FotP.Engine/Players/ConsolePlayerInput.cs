@@ -132,5 +132,18 @@ namespace FotP.Engine.Players
                 return players[idx];
             return null;
         }
+
+        public Tile? ChooseTile(IReadOnlyList<Tile> tiles, string prompt, Player player)
+        {
+            if (tiles.Count == 0) return null;
+            Console.WriteLine($"\n{prompt}:");
+            for (int i = 0; i < tiles.Count; i++)
+                Console.WriteLine($"  [{i}] {tiles[i]}");
+            Console.Write("Choose tile (or Enter to skip): ");
+            var input = Console.ReadLine() ?? "";
+            if (int.TryParse(input.Trim(), out int idx) && idx >= 0 && idx < tiles.Count)
+                return tiles[idx];
+            return null;
+        }
     }
 }

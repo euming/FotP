@@ -23,6 +23,9 @@ namespace FotP.Engine.Players
         /// <summary>Additional tile claims allowed this turn (e.g., Secret Passage, Royal Power). Reset each turn.</summary>
         public int AdditionalClaims { get; set; }
 
+        /// <summary>Modifier to number of standard dice rolled next turn (positive = more, negative = fewer). Reset each turn.</summary>
+        public int StandardDiceModifierNextTurn { get; set; }
+
         public Player(string name, IPlayerInput input)
         {
             Name = name;

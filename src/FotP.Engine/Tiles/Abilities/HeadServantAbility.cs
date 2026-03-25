@@ -5,7 +5,7 @@ using FotP.Engine.State;
 namespace FotP.Engine.Tiles.Abilities
 {
     /// <summary>
-    /// Head Servant: AfterRoll, reroll up to 2 active dice (once per roll).
+    /// Head Servant (Blue L5): AfterRoll, reroll ANY NUMBER of active dice. Once per roll.
     /// </summary>
     public class HeadServantAbility : Ability
     {
@@ -21,20 +21,9 @@ namespace FotP.Engine.Tiles.Abilities
             var activeDice = state.TurnState.Zones.Active.ToList();
             if (activeDice.Count == 0) return;
 
-            // Choose up to 2 dice
-            var die1 = player.Input.ChooseDie(activeDice, "Head Servant: Choose 1st die to reroll", player);
-            if (die1 != null)
-            {
-                die1.Roll(state.Rng);
-                activeDice.Remove(die1);
-            }
-
-            if (activeDice.Count > 0)
-            {
-                var die2 = player.Input.ChooseDie(activeDice, "Head Servant: Choose 2nd die to reroll (or skip)", player);
-                if (die2 != null)
-                    die2.Roll(state.Rng);
-            }
+            var diceToReroll = player.Input.ChooseMultipleDice(activeDice, "Head Servant: Choose any dice to reroll", player);
+            foreach (var die in diceToReroll)
+                die.Roll(state.Rng);
         }
     }
 }

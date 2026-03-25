@@ -75,6 +75,105 @@ namespace FotP.Engine.Tests
         }
 
         [Fact]
+        public void TwoHundred_AI_Games_No_Exceptions()
+        {
+            var failures = new List<(int seed, string message)>();
+
+            for (int i = 0; i < 200; i++)
+            {
+                try
+                {
+                    var rng = new Random(i + 1000);
+                    var state = new GameState(rng);
+                    int playerCount = (i % 3) + 2; // 2, 3, or 4 players
+                    var players = new List<(string, IPlayerInput)>();
+                    for (int p = 0; p < playerCount; p++)
+                        players.Add(($"P{p + 1}", new RandomAIInput(rng)));
+                    state.Setup(players);
+
+                    var runner = new GameRunner(state);
+                    var winner = runner.RunGame();
+                    Assert.NotNull(winner);
+                }
+                catch (Exception ex)
+                {
+                    failures.Add((i + 1000, ex.Message));
+                }
+            }
+
+            Assert.True(failures.Count == 0,
+                $"{failures.Count} game(s) failed:\n" +
+                string.Join("\n", failures.Select(f => $"  seed={f.seed}: {f.message}")));
+        }
+
+        [Fact]
+        public void Fifty_ThreePlayer_Games_No_Exceptions()
+        {
+            var failures = new List<(int seed, string message)>();
+
+            for (int i = 0; i < 50; i++)
+            {
+                try
+                {
+                    var rng = new Random(i + 2000);
+                    var state = new GameState(rng);
+                    state.Setup(new List<(string, IPlayerInput)>
+                    {
+                        ("P1", new RandomAIInput(rng)),
+                        ("P2", new RandomAIInput(rng)),
+                        ("P3", new RandomAIInput(rng))
+                    });
+
+                    var runner = new GameRunner(state);
+                    var winner = runner.RunGame();
+                    Assert.NotNull(winner);
+                }
+                catch (Exception ex)
+                {
+                    failures.Add((i + 2000, ex.Message));
+                }
+            }
+
+            Assert.True(failures.Count == 0,
+                $"{failures.Count} 3-player game(s) failed:\n" +
+                string.Join("\n", failures.Select(f => $"  seed={f.seed}: {f.message}")));
+        }
+
+        [Fact]
+        public void Fifty_FourPlayer_Games_No_Exceptions()
+        {
+            var failures = new List<(int seed, string message)>();
+
+            for (int i = 0; i < 50; i++)
+            {
+                try
+                {
+                    var rng = new Random(i + 3000);
+                    var state = new GameState(rng);
+                    state.Setup(new List<(string, IPlayerInput)>
+                    {
+                        ("P1", new RandomAIInput(rng)),
+                        ("P2", new RandomAIInput(rng)),
+                        ("P3", new RandomAIInput(rng)),
+                        ("P4", new RandomAIInput(rng))
+                    });
+
+                    var runner = new GameRunner(state);
+                    var winner = runner.RunGame();
+                    Assert.NotNull(winner);
+                }
+                catch (Exception ex)
+                {
+                    failures.Add((i + 3000, ex.Message));
+                }
+            }
+
+            Assert.True(failures.Count == 0,
+                $"{failures.Count} 4-player game(s) failed:\n" +
+                string.Join("\n", failures.Select(f => $"  seed={f.seed}: {f.message}")));
+        }
+
+        [Fact]
         public void ExtraTurns_Are_Consumed_Before_Advancing_To_Next_Player()
         {
             // Track how many turns each player takes

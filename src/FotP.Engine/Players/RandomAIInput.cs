@@ -75,5 +75,11 @@ namespace FotP.Engine.Players
             if (players.Count == 0) return null;
             return players[_rng.Next(players.Count)];
         }
+
+        public Tile? ChooseTile(IReadOnlyList<Tile> tiles, string prompt, Player player)
+        {
+            if (tiles.Count == 0) return null;
+            return tiles[_rng.Next(tiles.Count)];
+        }
     }
 }

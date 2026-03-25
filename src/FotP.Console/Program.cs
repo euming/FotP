@@ -153,5 +153,6 @@ namespace FotP.Console
         public bool ChooseYesNo(string prompt, Player player) => _inner.ChooseYesNo(prompt, player);
         public bool ChooseUseAbility(FotP.Engine.Tiles.Ability ability, Player player) => _inner.ChooseUseAbility(ability, player);
         public Player? ChoosePlayer(IReadOnlyList<Player> players, string prompt, Player activePlayer) => _inner.ChoosePlayer(players, prompt, activePlayer);
+        public FotP.Engine.Tiles.Tile? ChooseTile(IReadOnlyList<FotP.Engine.Tiles.Tile> tiles, string prompt, Player player) => _inner.ChooseTile(tiles, prompt, player);
     }
 }

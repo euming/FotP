@@ -1,12 +1,12 @@
 using System.Linq;
+using FotP.Engine.Dice;
 using FotP.Engine.Players;
 using FotP.Engine.State;
 
 namespace FotP.Engine.Tiles.Abilities
 {
     /// <summary>
-    /// Embalmer: AfterRoll, lock 1 active die without it consuming your mandatory lock step.
-    /// The die is moved to Locked and contributes to the pyramid but the active dice remain available.
+    /// Embalmer (Yellow L6): AfterRoll, bring 1 new standard temporary die into play showing a 6. Once per turn.
     /// </summary>
     public class EmbalmerAbility : Ability
     {
@@ -19,11 +19,12 @@ namespace FotP.Engine.Tiles.Abilities
 
         public override void Execute(GameState state, Player player)
         {
-            var activeDice = state.TurnState.Zones.Active.ToList();
-            if (activeDice.Count == 0) return;
-            var die = player.Input.ChooseDie(activeDice, "Embalmer: Choose a die to lock for free", player);
-            if (die != null)
-                state.TurnState.Zones.LockDie(die);
+            // Bring a new standard die into play at value 6
+            var die = new Die(DieType.Standard) { IsTemporary = true };
+            die.SetValue(6);
+            player.DicePool.Add(die);
+            state.TurnState.Zones.Active.Add(die);
+            state.TurnState.Zones.Temporary.Add(die);
         }
     }
 }

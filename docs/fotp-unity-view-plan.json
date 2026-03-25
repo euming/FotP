@@ -1,0 +1,60 @@
+{
+  "project": "FotP-UnityView",
+  "description": "Unity 6 View layer for Favor of the Pharaoh. Implements IPlayerInput via async UI interactions. Reuses Tom's original art assets from Assets/. Top-down board camera. Scene-per-screen. Deterministic dice (engine rolls, Unity animates). Unity 6.3 at C:\\Program Files\\Unity\\Hub\\Editor\\6000.3.6f1. References FotP.Engine.dll built from src/FotP.Engine/.\n",
+  "nodes": [
+    {
+      "id": "create-unity-project",
+      "title": "Create Unity 6 project and import engine DLL",
+      "description": "Create a new Unity 6 project under the repo (e.g. unity/ directory). Use URP (Universal Render Pipeline) for modern rendering with 2D/3D flexibility. Import FotP.Engine.dll as a managed plugin. Verify the engine DLL loads and GameState can be instantiated from a MonoBehaviour. Copy Tom's art assets from the old Assets/Textures/ and Assets/Materials/ into the new project. Set up 3 scenes: MainMenu, Game, Results. Unity path: C:\\Program Files\\Unity\\Hub\\Editor\\6000.3.6f1\\Editor. NOTE: Claude cannot run Unity Editor directly. Create the project structure, scripts, and scene configs as files. The user will open in Unity to verify.\n"
+    },
+    {
+      "id": "game-controller",
+      "title": "GameController MonoBehaviour",
+      "description": "Central MonoBehaviour that owns GameState and GameRunner. Lives in the Game scene. On scene load: creates GameState, calls Setup() with player configs, creates GameRunner. Runs the game loop via async/coroutine \u00e2\u20ac\u201d GameRunner.RunGame() is synchronous so wrap each turn step in a coroutine yield or use UniTask for async. Exposes events that Views subscribe to: OnTurnStarted, OnDiceRolled, OnDiceLocked, OnTileClaimed, OnPhaseChanged, OnGameOver. Holds reference to UnityPlayerInput. File: unity/Assets/Scripts/GameController.cs.\n"
+    },
+    {
+      "id": "unity-player-input",
+      "title": "UnityPlayerInput async IPlayerInput implementation",
+      "description": "Implements IPlayerInput where each method blocks (via async/Task or coroutine) until the player makes a UI choice. Pattern for each method: 1. Show relevant UI (highlight clickable dice, show buttons, etc). 2. Set a TaskCompletionSource<T> or callback. 3. Await player click/selection. 4. Hide UI, return the selected value. Methods to implement (all async): - ChooseDiceToLock: highlight active dice, player clicks to toggle, Done button - ChooseContinueRolling: show Roll Again / Stop buttons - ChooseTileToClaim: highlight claimable market tiles, click or Pass - ChooseDie: highlight candidate dice, click one - ChooseMultipleDice: highlight candidates, toggle select, Done - ChoosePipValue: number picker (1-6) popup - ChooseScarab: show scarab panel, click one or Pass - ChoosePlayer: show player portraits, click one - ChooseYesNo: Yes/No dialog - ChooseUseAbility: tile glow + click or Skip File: unity/Assets/Scripts/UI/UnityPlayerInput.cs. This is the most critical piece \u00e2\u20ac\u201d every player interaction flows through it.\n"
+    },
+    {
+      "id": "board-view",
+      "title": "BoardView - market bars and tile display",
+      "description": "Top-down board layout showing: - 5 level bars (levels 3-7) arranged vertically - Each bar has slots with tile stacks (use Tom's tile textures) - Tile stacks show top tile face, count indicator for remaining - Empty slots grayed out - Claimable tiles highlight when in Claim phase Subscribe to GameController events to update when tiles are claimed. Use Tom's textures from Assets/Textures/ for tile art. File: unity/Assets/Scripts/Views/BoardView.cs.\n"
+    },
+    {
+      "id": "dice-view",
+      "title": "DiceView - cup, active area, locked pyramid",
+      "description": "Three zones rendered on the board: - Cup area: shows dice count, click to roll - Active area: rolled dice displayed with face values, clickable for\n  locking and ability targeting\n- Locked area: pyramid arrangement of locked dice Dice rolling animation: when engine rolls, animate the die spinning and landing on the determined value. Can be simple 2D flip animation or 3D tumble \u00e2\u20ac\u201d start simple (2D sprite swap with a brief shake). Use Tom's dice textures from Assets/Dice/ and Assets/Textures/. Subscribe to zone SmartList events (OnAdded/OnRemoved) to move dice visuals between areas. File: unity/Assets/Scripts/Views/DiceView.cs.\n"
+    },
+    {
+      "id": "player-ui",
+      "title": "Player UI panels",
+      "description": "UI overlay showing: - Current player indicator and turn phase - Owned tiles bar (scrollable, shows tile abilities) - Scarab token display (reroll/pip/die counts) - Status text for prompts (\"Choose a die to lock\", etc) - Done/Cancel buttons for multi-step selections - Score display (pyramid total) Use Unity UI Toolkit or legacy Canvas \u00e2\u20ac\u201d Canvas is simpler for a first pass. Player tiles use Tom's artwork. File: unity/Assets/Scripts/Views/PlayerUI.cs.\n"
+    },
+    {
+      "id": "main-menu-scene",
+      "title": "Main Menu scene",
+      "description": "Simple menu scene: - Game title (Favor of the Pharaoh) - Player count selection (2-4) - Player name entry (with AI toggle per player) - Bar side selection (A or B) - Random tiles toggle - Play button \u00e2\u2020\u2019 loads Game scene with config Use ScriptableObject or static config class to pass settings between scenes. File: unity/Assets/Scripts/UI/MainMenuController.cs.\n"
+    },
+    {
+      "id": "results-scene",
+      "title": "Results scene",
+      "description": "End-of-game display: - Winner announcement with player name - Final scores (pyramid totals) - Tiles collected by each player - Rematch button (reload Game scene) - Main Menu button File: unity/Assets/Scripts/UI/ResultsController.cs.\n"
+    },
+    {
+      "id": "integration-test",
+      "title": "Integration test - play a full game in Unity",
+      "description": "Wire everything together and verify a complete game can be played: 1. Start from Main Menu, configure 2 players (1 human, 1 AI) 2. Play through several turns: roll dice, lock, claim tiles 3. Verify scarab spending works 4. Verify tile abilities trigger and prompt correctly 5. Play to roll-off and verify winner is displayed This is a manual test \u00e2\u20ac\u201d document the steps for the user to verify in the Unity Editor play mode. File: unity/Assets/Scripts/Tests/IntegrationTestChecklist.md.\n",
+      "depends_on": [
+        "GameController MonoBehaviour",
+        "UnityPlayerInput async IPlayerInput implementation",
+        "BoardView - market bars and tile display",
+        "DiceView - cup, active area, locked pyramid",
+        "Player UI panels",
+        "Main Menu scene",
+        "Results scene"
+      ]
+    }
+  ]
+}

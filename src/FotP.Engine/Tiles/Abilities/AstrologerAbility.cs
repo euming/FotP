@@ -5,15 +5,14 @@ using FotP.Engine.State;
 namespace FotP.Engine.Tiles.Abilities
 {
     /// <summary>
-    /// Astrologer: AfterRoll, adjust 1 active die to any value (usable every roll, once per roll).
-    /// Superior version of Soothsayer which only works on the first roll.
+    /// Astrologer (Blue L6): AfterRoll, adjust 1 active die to any value. Once per turn.
     /// </summary>
     public class AstrologerAbility : Ability
     {
         public AstrologerAbility()
         {
             TriggerType = TriggerType.AfterRoll;
-            IsPerRoll = true;
+            IsPerTurn = true;
             EntityName = "Astrologer Ability";
         }
 

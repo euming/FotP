@@ -1,0 +1,58 @@
+project: FotP-Sprint3-5
+description: >
+  Sprint 3.5: Fix incorrect ability implementations and add missing B-side
+  bar test. 301 tests currently passing.
+
+nodes:
+  - id: fix-surveyor
+    title: "Fix Surveyor ability - split die into 2 immediate dice"
+    description: >
+      WRONG: Currently replaces Standard die with Noble die.
+      CORRECT per rules (Blue, Level 6): Replace 1 active die with 2
+      immediate dice whose pip values SUM to the replaced die's pip value.
+      These 2 dice must be locked before the player's next roll.
+      Implementation: (1) player chooses 1 active die via ChooseDie,
+      (2) player chooses how to split the pip value via ChoosePipValue
+      (value for first die; second die = original - first), (3) remove
+      original die from Active, (4) create 2 temporary Immediate dice with
+      the split values, add to Active zone. They auto-lock as Immediate dice.
+      Validate: split values must be >= 1 and sum to original pip value.
+      File: src/FotP.Engine/Tiles/Abilities/SurveyorAbility.cs.
+      Test: replace a die with pip value 5, get dice with values 2+3.
+
+  - id: fix-royal-mother
+    title: "Fix Royal Mother ability - replace immediate/serf with tokens + standard"
+    description: >
+      WRONG: Currently replaces Standard die with Noble die.
+      CORRECT per rules (Blue, Level 7): Replace any number of active
+      Immediate and/or Serf dice with an equal number of tokens AND one
+      standard die to roll for the rest of the turn.
+      Implementation: (1) collect active dice that are Immediate or Serf type,
+      (2) player chooses which of these to replace via ChooseMultipleDice,
+      (3) for each replaced die: remove from Active, destroy it, grant player
+      1 token, (4) create 1 temporary Standard die, add to Cup for remaining
+      rolls this turn. Only 1 standard die regardless of how many replaced.
+      File: src/FotP.Engine/Tiles/Abilities/RoyalMotherAbility.cs.
+      Test: replace 2 Immediate dice, verify player gains 2 tokens and 1
+      new standard die in cup.
+
+  - id: add-bside-stress-test
+    title: "Add B-side bar stress test"
+    description: >
+      No test currently exercises B-side bar criteria. Add a test that runs
+      100 AI games with BarSide.B explicitly set. GameState.Setup() should
+      accept a BarSide parameter or there should be a way to set ActiveBarSide
+      before Setup. Check how LevelBarConfig.Get() is called and wire B-side
+      into the test. Verify zero exceptions.
+      File: src/FotP.Engine.Tests/GameSimulationTests.cs.
+      Test: Hundred_AI_Games_BSide_No_Exceptions.
+
+  - id: verify-clean
+    title: "Verify all tests pass"
+    description: >
+      Build, run full test suite, verify 0 failures. Confirm stress tests
+      cover A-side, B-side, 2/3/4 players.
+    depends_on:
+      - "Fix Surveyor ability - split die into 2 immediate dice"
+      - "Fix Royal Mother ability - replace immediate/serf with tokens + standard"
+      - "Add B-side bar stress test"

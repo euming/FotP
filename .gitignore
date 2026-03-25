@@ -20,3 +20,18 @@
 
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
+
+# .NET build outputs (src/ game engine)
+src/**/bin/
+src/**/obj/
+
+# Allow src/ project files (override Unity-era exclusions)
+!src/**/*.csproj
+!src/**/*.slnx
+
+# AMS write logs (ephemeral)
+*.ams-write-log.jsonl
+*.ams-write-state.json
+
+# PDF page renders (generated)
+docs/pdf_pages/

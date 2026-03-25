@@ -38,5 +38,8 @@ namespace FotP.Engine.Players
 
         /// <summary>Choose a player from a list (e.g. for targeting abilities).</summary>
         Player? ChoosePlayer(IReadOnlyList<Player> players, string prompt, Player activePlayer);
+
+        /// <summary>Choose a tile from a list (e.g. for Decree die borrow-tile ability).</summary>
+        Tile? ChooseTile(IReadOnlyList<Tile> tiles, string prompt, Player player);
     }
 }

@@ -35,6 +35,31 @@ namespace FotP.Engine.State
             // Collect all dice to cup
             Zones.CollectAllToCup(player.DicePool);
 
+            // Apply any dice modifier from previous turn (e.g. Bad Omen)
+            int diceModifier = player.StandardDiceModifierNextTurn;
+            player.StandardDiceModifierNextTurn = 0;
+            if (diceModifier < 0)
+            {
+                int toRemove = System.Math.Min(-diceModifier, Zones.Cup.Count - 1);
+                for (int i = 0; i < toRemove; i++)
+                {
+                    var stdDie = Zones.Cup.FirstOrDefault(d => d.DieType == DieType.Standard);
+                    if (stdDie == null) break;
+                    Zones.Cup.Remove(stdDie);
+                    player.DicePool.Remove(stdDie);
+                }
+            }
+            else if (diceModifier > 0)
+            {
+                for (int i = 0; i < diceModifier; i++)
+                {
+                    var die = new Die(DieType.Standard) { IsTemporary = true };
+                    player.DicePool.Add(die);
+                    Zones.Cup.Add(die);
+                    Zones.Temporary.Add(die);
+                }
+            }
+
             // Reset per-turn player state
             player.AdditionalClaims = 0;
 
@@ -66,10 +91,22 @@ namespace FotP.Engine.State
             // Auto-lock immediate dice
             Zones.AutoLockImmediateDice();
 
+            // Fire custom dice face abilities (Artisan *, Intrigue **, Voyage faces, Decree *)
+            FireCustomDiceFaceAbilities(state, CurrentPlayer);
+
             // Fire AfterRoll triggers
             FireTriggers(TriggerType.AfterRoll, state, CurrentPlayer);
 
-            Phase = TurnPhase.Locking;
+            // If all dice are now locked (e.g. TombBuilder locked the last die), skip to Claiming
+            if (Zones.Active.Count == 0 && Zones.Cup.Count == 0)
+            {
+                FireTriggers(TriggerType.AllLocked, state, CurrentPlayer!);
+                Phase = TurnPhase.Claiming;
+            }
+            else
+            {
+                Phase = TurnPhase.Locking;
+            }
         }
 
         /// <summary>Lock selected dice. Returns true if successful.</summary>
@@ -153,6 +190,129 @@ namespace FotP.Engine.State
         {
             FireTriggers(TriggerType.EndOfTurn, state, CurrentPlayer!);
             Phase = TurnPhase.EndOfTurn;
+        }
+
+        private void FireCustomDiceFaceAbilities(GameState state, Player player)
+        {
+            // Snapshot active dice; effects may add/move dice
+            var activeDice = Zones.Active.ToList();
+            foreach (var die in activeDice)
+            {
+                if (!Zones.Active.Contains(die)) continue; // moved by a prior effect
+
+                switch (die.DieType)
+                {
+                    case DieType.Artisan when die.IsStarFace:
+                        ExecuteAdjustActive(state, player, "Artisan *: Choose a die to adjust");
+                        break;
+
+                    case DieType.Intrigue when die.IsDoubleStarFace:
+                        ExecuteAdjustActive(state, player, "Intrigue **: Choose first die to adjust");
+                        ExecuteAdjustActive(state, player, "Intrigue **: Choose second die to adjust");
+                        break;
+
+                    case DieType.Voyage:
+                        ExecuteVoyageFace(state, player, die);
+                        break;
+
+                    case DieType.Decree when die.IsStarFace:
+                        ExecuteDecreStar(state, player);
+                        break;
+                }
+            }
+        }
+
+        private void ExecuteAdjustActive(GameState state, Player player, string prompt)
+        {
+            var candidates = Zones.Active.Where(d => d.HasPipValue).ToList();
+            if (candidates.Count == 0) return;
+            var target = player.Input.ChooseDie(candidates, prompt, player);
+            if (target == null) return;
+            int value = player.Input.ChoosePipValue(target, "Choose pip value", player);
+            target.SetValue(value);
+        }
+
+        private void ExecuteVoyageFace(GameState state, Player player, Die voyageDie)
+        {
+            switch (voyageDie.Value)
+            {
+                case DieFaces.VoyageAdjust:
+                    ExecuteAdjustActive(state, player, "Voyage *: Choose a die to adjust");
+                    break;
+
+                case DieFaces.VoyageReroll:
+                {
+                    var candidates = Zones.Active.Where(d => d != voyageDie).ToList();
+                    var target = player.Input.ChooseDie(candidates, "Voyage R: Choose a die to reroll", player);
+                    if (target != null) target.Roll(_rng);
+                    break;
+                }
+
+                case DieFaces.VoyageDoubleDice:
+                    for (int i = 0; i < 2; i++)
+                    {
+                        var tempDie = new Die(DieType.Standard) { IsTemporary = true };
+                        tempDie.Roll(_rng);
+                        player.DicePool.Add(tempDie);
+                        Zones.Active.Add(tempDie);
+                        Zones.Temporary.Add(tempDie);
+                    }
+                    break;
+
+                case DieFaces.VoyageLock:
+                {
+                    var candidates = Zones.Active.Where(d => d != voyageDie && d.HasPipValue).ToList();
+                    var target = player.Input.ChooseDie(candidates, "Voyage L: Choose a die to lock at any value", player);
+                    if (target != null)
+                    {
+                        int value = player.Input.ChoosePipValue(target, "Choose pip value to lock at", player);
+                        target.SetValue(value);
+                        Zones.LockDie(target);
+                    }
+                    break;
+                }
+            }
+        }
+
+        private void ExecuteDecreStar(GameState state, Player player)
+        {
+            bool borrowTile = player.Input.ChooseYesNo(
+                "Decree *: Borrow another player's tile ability? (No = adjust a die)", player);
+
+            if (borrowTile)
+            {
+                var others = state.TurnOrder.Where(p => p != player && p.OwnedTiles.Count > 0).ToList();
+                if (others.Count == 0)
+                {
+                    ExecuteAdjustActive(state, player, "Decree *: No tiles to borrow, adjust a die instead");
+                    return;
+                }
+
+                var chosenPlayer = player.Input.ChoosePlayer(others, "Decree *: Choose a player to borrow from", player);
+                if (chosenPlayer == null)
+                {
+                    ExecuteAdjustActive(state, player, "Decree *: Adjust a die instead");
+                    return;
+                }
+
+                var tiles = chosenPlayer.OwnedTiles.ToList();
+                var chosenTile = player.Input.ChooseTile(tiles, "Decree *: Choose a tile to borrow", player);
+                if (chosenTile == null) return;
+
+                // Execute the first activatable ability on the borrowed tile
+                foreach (var ability in chosenTile.Abilities)
+                {
+                    if (ability.CanActivate(state, player))
+                    {
+                        ability.Execute(state, player);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                ExecuteAdjustActive(state, player, "Decree *: Choose a die to adjust");
+            }
         }
 
         private void FireTriggers(TriggerType triggerType, GameState state, Player player)

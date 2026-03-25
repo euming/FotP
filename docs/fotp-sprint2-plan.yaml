@@ -1,0 +1,84 @@
+project: FotP-Sprint2
+description: >
+  Sprint 2: Fix remaining bugs and gaps found during verification.
+  All work in src/FotP.Engine/ (pure C#). 188 tests currently passing.
+
+nodes:
+  - id: fix-extra-turns
+    title: "Fix extra turns not consumed in game loop"
+    description: >
+      CRITICAL. Player.ExtraTurns is set by Omen, Good Omen, Queen's Favor,
+      Royal Power abilities but GameRunner.RunGame() never checks it. After
+      RunTurn() completes, should loop: while (player.ExtraTurns > 0) {
+      player.ExtraTurns--; RunTurn(player); } before calling NextPlayer().
+      Also handle Omen's special rule: -1 standard die for the extra turn.
+      File: src/FotP.Engine/State/GameRunner.cs around line 32-42.
+      Test: seed a game where Omen is claimed, verify extra turn fires.
+
+  - id: fix-granary-master-bug
+    title: "Fix Granary Master stored-die zone cleanup"
+    description: >
+      Same bug as Estate Overseer had. GranaryMasterEndAbility.Execute() only
+      removes the stored die from Active and Locked zones, but not from
+      Temporary, Cup, or SetAside. If the die was temporary, end-of-turn
+      cleanup will Destroy() it, then next turn StartAbility tries to add the
+      destroyed entity back. Fix: remove from ALL zones (Active, Locked,
+      Temporary, Cup, SetAside) and DicePool, same as the Estate Overseer fix.
+      File: src/FotP.Engine/Tiles/Abilities/GranaryMasterAbility.cs.
+      Test: run stress test seeds that exercise Granary Master.
+
+  - id: fix-rolloff-completeness
+    title: "Complete roll-off implementation"
+    description: >
+      Roll-off has gaps. Fix all of these in GameRunner.RunRollOff():
+      1. Royal Death integration: check RollOffBarScore when set (Royal Death
+         makes players need to beat 7 ones = sum of 7 to qualify).
+         Currently RunRollOff uses PharaohScore but ignores RollOffBarScore.
+      2. Eliminated player skip: before a player's roll-off turn, compute
+         their max possible score (num_dice * 6). If max < target, skip them.
+      3. Compensation tokens: players who missed a turn in the round when
+         Queen was claimed get +1 die token each.
+      4. Queen's Last Chance: after all roll-off turns, if PharaohHolder !=
+         QueenClaimant, give QueenClaimant one more roll-off turn.
+      File: src/FotP.Engine/State/GameRunner.cs RunRollOff method.
+      Ref: FotP-Rules-v20 final-roll-off children for full rules.
+
+  - id: wire-random-game-setup
+    title: "Wire random tile setup into GameState"
+    description: >
+      TileCatalog, TilePool, TileDealer, LevelBarConfig all exist. GameState
+      .Setup() currently only does first-game fixed layout. Add a parameter
+      (bool randomTiles = false) to Setup(). When true, for each bar slot,
+      draw a random tile of matching color+level from a SmartList of available
+      tiles (pick random index, remove from source, place on slot). Keep it
+      simple: make a list of all tiles for that (color, level), pick random,
+      remove, repeat. No need for the TileDealer class complexity.
+      File: src/FotP.Engine/State/GameState.cs SetupMarket().
+      Test: verify random setup produces valid market with no duplicate tiles.
+
+  - id: add-additional-claims
+    title: "Implement additional claims in game loop"
+    description: >
+      Player.AdditionalClaims is set by Secret Passage (1 extra), Treasure (2
+      extra, split dice groups), Royal Power (2 extra blue tiles). But
+      GameRunner doesn't consume it. After the normal claim phase, check
+      player.AdditionalClaims > 0 and loop: let player claim another tile
+      (with appropriate restrictions per the granting ability). Treasure is
+      special: player splits locked dice into 2 groups and claims with each.
+      File: src/FotP.Engine/State/GameRunner.cs after claim phase.
+      Test: verify Secret Passage grants extra claim at level 3.
+
+  - id: stress-test-200-games
+    title: "Stress test 200 games with all fixes"
+    description: >
+      After all fixes, run 200 AI games (seeds 0-199) across 2, 3, and 4
+      player configurations. Verify zero exceptions. Check that extra turns
+      fire, roll-off completes properly, additional claims work. Add this as
+      a permanent test in GameSimulationTests.
+      File: src/FotP.Engine.Tests/GameSimulationTests.cs.
+    depends_on:
+      - "Fix extra turns not consumed in game loop"
+      - "Fix Granary Master stored-die zone cleanup"
+      - "Complete roll-off implementation"
+      - "Wire random tile setup into GameState"
+      - "Implement additional claims in game loop"

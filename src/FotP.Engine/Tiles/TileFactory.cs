@@ -44,6 +44,10 @@ namespace FotP.Engine.Tiles
                     tile.ClaimCriteria = new NOfAKind(2);
                     tile.AddAbility(new ServantAbility());
                     break;
+                case "Herder":
+                    // No ClaimCriteria: can be claimed with any locked dice
+                    tile.AddAbility(new HerderAbility());
+                    break;
 
                 case "Soothsayer":
                     tile.ClaimCriteria = new Straight(3);

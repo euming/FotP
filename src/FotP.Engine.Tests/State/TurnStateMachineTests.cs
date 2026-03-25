@@ -286,5 +286,8 @@ namespace FotP.Engine.Tests.State
 
         public Player? ChoosePlayer(IReadOnlyList<Player> players, string prompt, Player activePlayer)
             => players.Count > 0 ? players[0] : null;
+
+        public Tile? ChooseTile(IReadOnlyList<Tile> tiles, string prompt, Player player)
+            => tiles.Count > 0 ? tiles[0] : null;
     }
 }

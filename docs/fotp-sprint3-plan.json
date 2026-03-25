@@ -1,0 +1,49 @@
+{
+  "project": "FotP-Sprint3",
+  "description": "Sprint 3: Edge cases, custom dice abilities, dice replacement powers, multi-player stress testing, and B-side bar validation. All pure C# in src/FotP.Engine/. 202 tests currently passing.\n",
+  "nodes": [
+    {
+      "id": "custom-dice-face-abilities",
+      "title": "Custom dice face abilities during play",
+      "description": "When custom dice land on special faces during a roll, their abilities should trigger. Verify and fix the following in GameRunner/TurnStateMachine: 1. Artisan die * face (value 0 or special): adjust 1 active die to any\n   value. Should prompt player via IPlayerInput.ChooseDie + ChoosePipValue.\n2. Intrigue die ** face: adjust 2 active dice. Same prompting twice.\n   When locked showing **, die has NO pip value for criteria.\n3. Voyage die faces: * = adjust, R = reroll 1 active, DD = gain 2 temp\n   standard dice, L = lock 1 active at any value. Each face triggers\n   its effect immediately after rolling.\n4. Decree die * face: player chooses: adjust 1 die OR use another\n   player's tile ability once. The \"borrow tile\" option needs\n   IPlayerInput.ChoosePlayer + ChooseTile flow.\nCheck if these are already handled in the trigger system or if they need explicit handling after each roll. The Die class has special face detection (HasPipValue, IsStarFace etc) \u00e2\u20ac\u201d use those. Files: src/FotP.Engine/State/TurnStateMachine.cs, src/FotP.Engine/State/GameRunner.cs, src/FotP.Engine/Dice/Die.cs. Ref: FotP-Rules-v20 custom-dice-special-face-abilities. Test: create a scenario where Artisan die rolls *, verify adjust fires.\n"
+    },
+    {
+      "id": "surveyor-royal-mother",
+      "title": "Verify Surveyor and Royal Mother dice replacement",
+      "description": "Per the rules: - Surveyor (Blue, Level 6): Replace 1 active die with 2 immediate dice\n  whose pip sum equals the replaced die. The 2 dice must be locked\n  before the next roll.\n- Royal Mother (Blue, Level 7): Replace any number of active immediate\n  and/or serf dice with equal number of tokens plus a standard die for\n  the rest of the turn.\nThe audit noted these may have simplified implementations (Noble die replacement). Read the actual ability code, compare to rules, and fix if wrong. These are complex abilities that need specific IPlayerInput interactions (choose which die to replace, choose pip split for Surveyor). Files: src/FotP.Engine/Tiles/Abilities/SurveyorAbility.cs, src/FotP.Engine/Tiles/Abilities/RoyalMotherAbility.cs. Ref: FotP-Rules-v20 level-6-tiles (Surveyor), level-7-tiles (Royal Mother). Test: unit test for Surveyor replacing a 5-pip die with two dice summing to 5.\n"
+    },
+    {
+      "id": "bside-bar-stress-test",
+      "title": "B-side bar configuration stress test",
+      "description": "LevelBarConfig has both A-side and B-side configurations. Run 100 AI games with B-side bars to verify all B-side criteria work correctly and no crashes occur. The setup already supports BarSide selection. Create a test that explicitly uses BarSide.B for game setup. File: src/FotP.Engine.Tests/GameSimulationTests.cs. Test: Hundred_AI_Games_BSide_No_Exceptions.\n"
+    },
+    {
+      "id": "multiplayer-stress-test",
+      "title": "3-player and 4-player stress tests",
+      "description": "Current stress tests are 2-player only. Add 100-game stress tests for 3-player and 4-player configurations. More players means more tile interactions, more scarab token contention, and more complex roll-off logic. Verify zero exceptions across all player counts. File: src/FotP.Engine.Tests/GameSimulationTests.cs. Tests: Hundred_AI_Games_3Player, Hundred_AI_Games_4Player.\n"
+    },
+    {
+      "id": "herder-tile-validation",
+      "title": "Verify Herder tile special rules",
+      "description": "Herder is special per the rules: it can be claimed by ANY locked dice (no specific criteria needed). However, if on a future turn the player cannot claim any tile, they gain 2 tokens instead. Verify: 1. Herder has no claim criteria (or a criteria that always passes). 2. The \"can't claim, gain 2 tokens\" fallback works. 3. Herder appears in the market at the correct level. Read the Herder implementation and verify against rules. Files: src/FotP.Engine/Tiles/TileFactory.cs (Herder creation), search for \"Herder\" in abilities. Ref: FotP-Rules-v20 rules (Herder tile section). Test: scenario test where Herder is claimed with random dice.\n"
+    },
+    {
+      "id": "ability-correctness-sweep",
+      "title": "Spot-check 10 ability implementations against rules",
+      "description": "Pick 10 abilities across levels and verify their Execute() logic matches the rules exactly. Focus on abilities with nuanced rules: 1. Priest (Blue L5): after any roll, reroll 1 active die AND +1 pip\n   on another. Two separate effects.\n2. Priestess (Yellow L6): after any roll, reroll 1+ active dice AND\n   +1 pip on 1 active die.\n3. Embalmer (Yellow L6): after any roll, may bring 1 standard die\n   into play as a 6. Creates a new temporary die at value 6.\n4. Charioteer (Yellow L5): roll +1 white AND +1 standard at start. 5. Bad Omen (Red L5): each OTHER player rolls 2 fewer standard dice\n   next turn. You roll +1 next turn.\n6. Tomb Builder (Blue L5): after any roll, lock 1 active die at any\n   chosen value.\n7. Head Servant (Blue L5): after any roll, reroll ANY NUMBER of\n   active dice (not just 1).\n8. Astrologer (Blue L6): once per turn, adjust 1 active die. 9. Grain Trader (Blue L6): +1 pip on 1 active die after each roll. 10. Ship Captain (Yellow L5): roll +1 voyage (black) die at start. Read each ability file, compare to the rules in FotP-Rules-v20 tile catalogs, and fix any discrepancies. Write a unit test for each one that verifies the core mechanic. Ref: FotP-Rules-v20 level-5-tiles, level-6-tiles.\n"
+    },
+    {
+      "id": "final-verification",
+      "title": "Final verification: all tests green",
+      "description": "Run full test suite after all Sprint 3 fixes. Verify 0 failures. Run 200-game stress test across all player counts and both bar sides. Update test count in project notes.\n",
+      "depends_on": [
+        "Custom dice face abilities during play",
+        "Verify Surveyor and Royal Mother dice replacement",
+        "B-side bar configuration stress test",
+        "3-player and 4-player stress tests",
+        "Verify Herder tile special rules",
+        "Spot-check 10 ability implementations against rules"
+      ]
+    }
+  ]
+}

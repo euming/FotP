@@ -55,4 +55,7 @@ public class ScriptedPlayerInput : IPlayerInput
 
     public Player? ChoosePlayer(IReadOnlyList<Player> players, string prompt, Player activePlayer)
         => players.FirstOrDefault();
+
+    public Tile? ChooseTile(IReadOnlyList<Tile> tiles, string prompt, Player player)
+        => tiles.FirstOrDefault();
 }
