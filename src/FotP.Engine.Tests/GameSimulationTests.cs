@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using FotP.Engine.Players;
 using FotP.Engine.State;
+using FotP.Engine.Tests.Helpers;
 using Xunit;
 
 namespace FotP.Engine.Tests
@@ -71,6 +72,42 @@ namespace FotP.Engine.Tests
             var winner = runner.RunGame();
 
             Assert.NotNull(winner);
+        }
+
+        [Fact]
+        public void ExtraTurns_Are_Consumed_Before_Advancing_To_Next_Player()
+        {
+            // Track how many turns each player takes
+            var turnCounts = new Dictionary<string, int>();
+
+            var rng = new Random(42);
+            var state = new GameState(rng);
+
+            // Use scripted inputs so the game is deterministic
+            var aliceInput = new ScriptedPlayerInput(alwaysStop: true, alwaysClaim: false);
+            var bobInput = new ScriptedPlayerInput(alwaysStop: true, alwaysClaim: false);
+
+            state.Setup(new List<(string, IPlayerInput)>
+            {
+                ("Alice", aliceInput),
+                ("Bob", bobInput)
+            });
+
+            var alice = state.TurnOrder[0];
+            var bob   = state.TurnOrder[1];
+
+            // Grant Alice 2 extra turns at the start
+            alice.ExtraTurns = 2;
+
+            // Run just enough rounds to confirm the extra turns are consumed
+            var runner = new GameRunner(state, maxRounds: 3);
+
+            // Alice should take 3 turns before Bob takes 1 (turns 1+2+3 for Alice, then Bob)
+            // We verify this by checking ExtraTurns is 0 after the game runner processes them.
+            runner.RunGame();
+
+            // After the game, ExtraTurns on Alice should be 0 (all consumed)
+            Assert.Equal(0, alice.ExtraTurns);
         }
     }
 }

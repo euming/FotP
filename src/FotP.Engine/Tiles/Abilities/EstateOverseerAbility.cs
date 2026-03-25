@@ -59,9 +59,12 @@ namespace FotP.Engine.Tiles.Abilities
             var die = player.Input.ChooseDie(candidates, "Estate Overseer: Choose a die to store for next turn", player);
             if (die == null) return;
 
-            // Remove from zones and pool — it persists on the tile
+            // Remove from all zones and pool — it persists on the tile
             state.TurnState.Zones.Active.Remove(die);
             state.TurnState.Zones.Locked.Remove(die);
+            state.TurnState.Zones.Temporary.Remove(die);
+            state.TurnState.Zones.Cup.Remove(die);
+            state.TurnState.Zones.SetAside.Remove(die);
             player.DicePool.Remove(die);
             die.IsLocked = false;
             die.IsTemporary = false;

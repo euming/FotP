@@ -212,11 +212,28 @@ namespace FotP.Engine.State
         /// </summary>
         private void RunRollOff()
         {
+            // 1. Royal Death integration: if RollOffBarScore is set and higher, use it as the floor
+            if (State.RollOffBarScore.HasValue && State.RollOffBarScore.Value > State.PharaohScore)
+                State.PharaohScore = State.RollOffBarScore.Value;
+
+            // 3. Compensation dice: players who already had their turn this round (before queen
+            //    claimer in turn order) missed the chance to play knowing it was the final round.
+            //    Give each of them +1 standard die for the roll-off.
+            var ordered = State.TurnOrder.ToList();
+            int queenIdx = ordered.IndexOf(State.QueenClaimant!);
+            for (int i = 0; i < queenIdx; i++)
+                ordered[i].DicePool.Add(new Die(DieType.Standard));
+
             bool tokenLeftQueenClaimer = false;
 
             // Each roll-off player gets one full turn (roll/lock, no claim)
             foreach (var player in State.RollOffPlayers)
             {
+                // 2. Eliminated player skip: if max possible score (all 6s) can't beat the bar, skip
+                int maxPossible = player.DicePool.Count * 6;
+                if (maxPossible < State.PharaohScore)
+                    continue;
+
                 int score = RunRollOffTurn(player);
 
                 // Take the Pharaoh token by matching or beating the current score
@@ -228,7 +245,7 @@ namespace FotP.Engine.State
                 }
             }
 
-            // If the token changed hands, queen claimer gets one final reclaim attempt
+            // 4. Queen's Last Chance: if the token changed hands, queen claimer gets one final reclaim attempt
             if (tokenLeftQueenClaimer && State.QueenClaimant != null)
             {
                 int score = RunRollOffTurn(State.QueenClaimant);

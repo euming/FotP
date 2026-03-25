@@ -29,7 +29,8 @@ namespace FotP.Engine.State
         {
             while (_state.Phase == GamePhase.Playing && _state.RoundNumber <= _maxRounds)
             {
-                RunTurn(_state.CurrentPlayer!);
+                var currentPlayer = _state.CurrentPlayer!;
+                RunTurn(currentPlayer);
 
                 // Check if Queen was claimed
                 if (_state.QueenClaimant != null)
@@ -37,6 +38,19 @@ namespace FotP.Engine.State
                     // Remaining players get one more turn
                     FinishRound();
                     return RunRollOff();
+                }
+
+                // Consume extra turns before advancing to next player
+                while (currentPlayer.ExtraTurns > 0)
+                {
+                    currentPlayer.ExtraTurns--;
+                    RunTurn(currentPlayer);
+
+                    if (_state.QueenClaimant != null)
+                    {
+                        FinishRound();
+                        return RunRollOff();
+                    }
                 }
 
                 _state.NextPlayer();
@@ -120,6 +134,24 @@ namespace FotP.Engine.State
             if (chosenTile?.Name == "Queen")
                 _state.QueenClaimant = player;
 
+            // Additional claims granted by tile abilities (e.g., Secret Passage, Treasure, Royal Power)
+            while (player.AdditionalClaims > 0)
+            {
+                player.AdditionalClaims--;
+                _state.TurnState.ResetToClaimingPhase();
+                var additionalClaimable = _state.Market.GetClaimableStacks(player, _state.TurnState.Zones.GetAllLockedDice());
+                Tile? additionalTile = null;
+                if (additionalClaimable.Count > 0)
+                {
+                    var additionalClaimableTiles = additionalClaimable.Select(s => s.Prototype).ToList();
+                    additionalTile = player.Input.ChooseTileToClaim(additionalClaimableTiles, player);
+                }
+                _state.TurnState.ClaimTile(additionalTile, player, _state);
+
+                if (additionalTile?.Name == "Queen")
+                    _state.QueenClaimant = player;
+            }
+
             _state.TurnState.EndTurn(_state);
         }
 
@@ -171,10 +203,28 @@ namespace FotP.Engine.State
         {
             _state.EnterRollOff();
 
+            // 1. Royal Death integration: if RollOffBarScore is set and higher, use it as the floor
+            if (_state.RollOffBarScore.HasValue && _state.RollOffBarScore.Value > _state.PharaohScore)
+                _state.PharaohScore = _state.RollOffBarScore.Value;
+
+            // 3. Compensation dice: players who already had their turn this round (before queen
+            //    claimer in turn order) get +1 standard die for the roll-off.
+            var ordered = _state.TurnOrder.ToList();
+            int queenIdx = ordered.IndexOf(_state.QueenClaimant!);
+            for (int i = 0; i < queenIdx; i++)
+                ordered[i].DicePool.Add(new Die(DieType.Standard));
+
+            bool tokenLeftQueenClaimer = false;
+
             // Each roll-off player rolls all their dice once.
             // If their pyramid score >= PharaohScore, they take the Pharaoh token.
             foreach (var player in _state.RollOffPlayers)
             {
+                // 2. Eliminated player skip: if max possible score (all 6s) can't beat the bar, skip
+                int maxPossible = player.DicePool.Count * 6;
+                if (maxPossible < _state.PharaohScore)
+                    continue;
+
                 foreach (var die in player.DicePool)
                 {
                     die.IsLocked = false;
@@ -188,6 +238,30 @@ namespace FotP.Engine.State
                 {
                     _state.PharaohHolder = player;
                     _state.PharaohScore = score;
+                    tokenLeftQueenClaimer = true;
+                }
+            }
+
+            // 4. Queen's Last Chance: if the token changed hands, queen claimer gets one final attempt
+            if (tokenLeftQueenClaimer && _state.QueenClaimant != null)
+            {
+                int maxPossible = _state.QueenClaimant.DicePool.Count * 6;
+                if (maxPossible >= _state.PharaohScore)
+                {
+                    foreach (var die in _state.QueenClaimant.DicePool)
+                    {
+                        die.IsLocked = false;
+                        die.TempPipModifier = 0;
+                        die.Roll(_state.Rng);
+                        die.IsLocked = true;
+                    }
+
+                    int score = _state.QueenClaimant.PyramidScore;
+                    if (score >= _state.PharaohScore)
+                    {
+                        _state.PharaohHolder = _state.QueenClaimant;
+                        _state.PharaohScore = score;
+                    }
                 }
             }
 

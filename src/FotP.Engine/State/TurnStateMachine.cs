@@ -35,6 +35,9 @@ namespace FotP.Engine.State
             // Collect all dice to cup
             Zones.CollectAllToCup(player.DicePool);
 
+            // Reset per-turn player state
+            player.AdditionalClaims = 0;
+
             // Reset per-turn state on abilities
             foreach (var tile in player.OwnedTiles)
                 foreach (var ability in tile.Abilities)
@@ -122,6 +125,12 @@ namespace FotP.Engine.State
             if (Phase != TurnPhase.ContinueDecision)
                 throw new InvalidOperationException($"Cannot continue in phase {Phase}");
             // Phase stays at ContinueDecision, caller will call PerformRoll
+        }
+
+        /// <summary>Reset phase to Claiming to allow an additional claim after PostClaim.</summary>
+        public void ResetToClaimingPhase()
+        {
+            Phase = TurnPhase.Claiming;
         }
 
         /// <summary>Process tile claim.</summary>
